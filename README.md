@@ -4,13 +4,13 @@
  Código escrito con C# 9.0 y Visual Studio 2019 copn .NET Framework 4.8
  
  Para usar las características de C# 9.0 en un proyecto de .NET Framework 4.8 (por defecto se usa C# 7.3)
- hay que indicar esto en el fichero del proyecto:
+ hay que indicar esto en el fichero del proyecto:<br>
  
    &lt;PropertyGroup&gt;<br>
     &lt;LangVersion>latest</LangVersion&gt;<br>
   &lt;/PropertyGroup&gt;<br>
 <br>
-Y en el código (ponerlo al final del la definición del namespace principal)
+Y en el código (ponerlo al final del la definición del namespace principal)<br>
 /* <br>
 Para evitar el error al usar init:<br>
 Error CS0518 Predefined type ‘System.Runtime.CompilerServices.IsExternalInit’ is not defined or imported<br>
