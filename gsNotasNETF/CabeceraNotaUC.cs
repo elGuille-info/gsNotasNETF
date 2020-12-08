@@ -21,13 +21,6 @@ using System.Diagnostics;
 namespace gsNotasNETF
 {
     /// <summary>
-    /// Delegado para los eventos de seleccionar grupo y nota.
-    /// </summary>
-    /// <param name="nota">El texto del elemento seleccionado.</param>
-    /// <param name="index">El índice del elemento seleccionado.</param>
-    public delegate void TextoModificado(string nota, int index);
-
-    /// <summary>
     /// Control para poner como cabecera del control de notas y gestionar los grupos y notas.
     /// </summary>
     /// <remarks>Se usa por NotaUC. No usar directamente.</remarks>
@@ -389,6 +382,8 @@ namespace gsNotasNETF
             _notas[grupo][CboNotas.SelectedIndex] = nota;
             CboNotas.Items[CboNotas.SelectedIndex] = nota;
 
+            OnNotaCambiada(nota, CboNotas.SelectedIndex);
+
             iniciando = false;
         }
 
@@ -608,7 +603,8 @@ namespace gsNotasNETF
 
             Titulo = $"'{Grupo} - {TituloNota}'";
 
-            OnGrupoCambiado(Grupo, CboGrupos.SelectedIndex);
+            if (CboGrupos.Items.Count > 0 && CboGrupos.SelectedIndex != -1)
+                OnGrupoCambiado(Grupo, CboGrupos.SelectedIndex);
 
             AsignarNotas(Grupo);
         }
@@ -623,6 +619,8 @@ namespace gsNotasNETF
                 OnGrupoCambiado(Grupo, CboGrupos.SelectedIndex);
 
             if(!_notas.ContainsKey(Grupo))
+                GruposAdd(Grupo, "");
+            else 
                 AsignarNotas(Grupo);
         }
 
@@ -656,7 +654,9 @@ namespace gsNotasNETF
             {
                 e.Handled = true;
                 e.SuppressKeyPress = true;
-                SendKeys.Send("{TAB}");
+                    SendKeys.Send("{TAB}");
+
+                OnGrupoCambiado(Grupo, CboGrupos.SelectedIndex);
             }
         }
 

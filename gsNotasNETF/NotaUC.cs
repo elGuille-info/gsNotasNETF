@@ -25,6 +25,50 @@ namespace gsNotasNETF
     public partial class NotaUC : UserControl
     {
         /// <summary>
+        /// Se produce cuando se selecciona una nota.
+        /// </summary>
+        public event TextoModificado NotaCambiada;
+
+        /// <summary>
+        /// Se produce cuando se selecciona un grupo.
+        /// </summary>
+        public event TextoModificado GrupoCambiado;
+
+        /// <summary>
+        /// Este evento se produce cuando se han cambiado los datos y no se han guardado.
+        /// </summary>
+        public event MensajeDelegate DatosModificados;
+
+        protected virtual void OnNotaCambiada(string texto, int index)
+        {
+            NotaCambiada?.Invoke(texto, index);
+        }
+        protected virtual void OnGrupoCambiado(string texto, int index)
+        {
+            GrupoCambiado?.Invoke(texto, index);
+        }
+        protected virtual void OnDatosModificados(string mensaje)
+        {
+            DatosModificados?.Invoke(mensaje);
+        }
+
+        private bool _Modificado;
+
+        /// <summary>
+        /// Indica si los datos se han modificado.
+        /// </summary>
+        public bool Modificado
+        {
+            get { return _Modificado; }
+            private set 
+            {
+                _Modificado = value;
+                if (_Modificado)
+                    OnDatosModificados("Los datos se han modificado.");
+            }
+        }
+
+        /// <summary>
         /// El fichero donde se guardarán o se leerán las notas.
         /// </summary>
         [Browsable(false)]
@@ -35,7 +79,10 @@ namespace gsNotasNETF
         /// <summary>
         /// El path al directorio de documentos.
         /// </summary>
-        public string DirDocumentos { get; init; }
+        [Browsable(false)]
+        public string DirDocumentos 
+        { get {return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); } 
+        }
 
         /// <summary>
         /// La versión del fichero no la de Application.ProductVersion
@@ -55,30 +102,11 @@ namespace gsNotasNETF
             NombreProducto = fvi.ProductName;
             VersionProducto = fvi.ProductVersion;
 
-            DirDocumentos = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            //DirDocumentos = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             FicNotas = Path.Combine(DirDocumentos, $"{fvi.ProductName}.notasUC.txt");
 
             BackColor = Color.White;
             cabeceraNotaUC1.LongitudTituloNota = CabeceraNotaUC.LongitudTituloNotaDefault;
-        }
-
-        /// <summary>
-        /// Se produce cuando se selecciona una nota.
-        /// </summary>
-        public event TextoModificado NotaCambiada;
-
-        /// <summary>
-        /// Se produce cuando se selecciona un grupo.
-        /// </summary>
-        public event TextoModificado GrupoCambiado;
-
-        protected virtual void OnNotaCambiada(string texto, int index)
-        {
-            NotaCambiada?.Invoke(texto, index);
-        }
-        protected virtual void OnGrupoCambiado(string texto, int index)
-        {
-            GrupoCambiado?.Invoke(texto, index);
         }
 
         private void NotaUC_Load(object sender, EventArgs e)
@@ -241,6 +269,8 @@ namespace gsNotasNETF
                 cabeceraNotaUC1.GuardarNotas(FicNotas);
             else
                 cabeceraNotaUC1.GuardarNotas(nuevoNombre);
+
+            Modificado = false;
         }
 
         /// <summary>
@@ -253,6 +283,8 @@ namespace gsNotasNETF
                 cabeceraNotaUC1.LeerNotas(FicNotas);
             else
                 cabeceraNotaUC1.LeerNotas(nuevoNombre);
+
+            Modificado = false;
         }
 
         //
@@ -336,6 +368,8 @@ namespace gsNotasNETF
                 cabeceraNotaUC1.NotasAdd(g, txtEdit.Text);
                 OnNotaCambiada(txtEdit.Text, cabeceraNotaUC1.ComboNotas.SelectedIndex);
             }
+
+            Modificado = true;
         }
 
         private void MnuSustituirNota_Click(object sender, EventArgs e)
@@ -348,6 +382,8 @@ namespace gsNotasNETF
                 return;
 
             cabeceraNotaUC1.NotaReplace(g, txtEdit.Text);
+
+            Modificado = true;
         }
 
         private void MnuClasificar_Click(object sender, EventArgs e)
@@ -361,6 +397,8 @@ namespace gsNotasNETF
 
             Notas[g].Sort();
             cabeceraNotaUC1.AsignarNotas(g);
+
+            Modificado = true;
         }
 
         /// <summary>
@@ -437,6 +475,8 @@ namespace gsNotasNETF
             cabeceraNotaUC1.ComboNotas.Items.RemoveAt(i);
 
             statusInfo.Text = "Se ha eliminado la nota, el texto se deja en el editor.";
+
+            Modificado = true;
         }
 
         private void NotaUC_KeyUp(object sender, KeyEventArgs e)

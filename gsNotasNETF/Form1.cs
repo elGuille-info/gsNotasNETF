@@ -32,16 +32,7 @@ namespace gsNotasNETF
 {
     public partial class Form1 : Form
     {
-
-        ///// <summary>
-        ///// El path del fichero de notas.
-        ///// </summary>
-        //private string FicNotas { get; init; }
-
-        ///// <summary>
-        ///// El path al directorio de documentos.
-        ///// </summary>
-        //private string DirDocumentos { get; init; }
+        private readonly string[] noAsignar;
 
         public Form1()
         {
@@ -51,35 +42,46 @@ namespace gsNotasNETF
             Random rnd = new Random();
             var n = rnd.Next(0, 3);
             if (n==1)
-                ColoresGrupo = new List<Color>() {Color.FromArgb(0,99,177), Color.Gold, Color.Lime, Color.Pink, Color.Yellow,
-                                                  Color.AliceBlue, Color.LightGray, Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow };
+                ColoresGrupo = new List<Color>() {Color.LightSkyBlue, Color.Gold, Color.PaleGreen, Color.LightPink, Color.Yellow,
+                                                  Color.FromArgb(0,99,177), Color.LightGoldenrodYellow, Color.AliceBlue, Color.LightGray, Color.Pink };
             else if(n==2)
                 ColoresGrupo = new List<Color>() {Color.AliceBlue, Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow,
-                                                  Color.LightGray, Color.Gold, Color.FromArgb(0,99,177), Color.Lime, Color.Pink, Color.Yellow };
+                                                  Color.LightGray, Color.Gold, Color.FromArgb(0,99,177), Color.PaleGreen, Color.Pink, Color.Yellow };
             else
                 ColoresGrupo = new List<Color>() {Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow, Color.Gold, Color.DeepPink,
-                                                  Color.Lime, Color.Yellow, Color.LightGray,Color.AliceBlue,Color.FromArgb(0,99,177) };
+                                                  Color.PaleGreen, Color.Yellow, Color.LightGray,Color.AliceBlue,Color.FromArgb(0,99,177) };
 
+            noAsignar = new string[] { notaUC1.Name };
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            flowLayoutPanel1.Controls.Clear();
+            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+
+            //flowLayoutPanel1.Controls.Clear();
+            
+            CtrlNotas.Clear();
+            foreach (Label c in flowLayoutPanel1.Controls)
+                CtrlNotas.Add(c);
+            
+            // para que la primera etiqueta se ponga más grande
+            LblNota_Click(LblNota, null);
         }
 
         /// <summary>
         /// Colección con las etiquetas a mostrar con el contenido de las notas
         /// del grupo seleccionado.
         /// </summary>
-        private readonly List<Label> TxtNotas = new List<Label>();
+        private readonly List<Label> CtrlNotas = new List<Label>();
 
         private string ElGrupo;
         private int ElGrupoIndex;
-        //private string LaNota;
 
         private List<Color> ColoresGrupo = new List<Color>() {
-            Color.FromArgb(0,99,177), Color.Gold, Color.Lime, Color.Pink, Color.Yellow, 
+            Color.FromArgb(0,99,177), Color.Gold, Color.PaleGreen, Color.Pink, Color.Yellow, 
             Color.LightGray,Color.AliceBlue, Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow };
+
+        private readonly Size NormalSize = new Size(180, 80);
 
         private void notaUC1_GrupoCambiado(string grupo, int index)
         {
@@ -95,27 +97,44 @@ namespace gsNotasNETF
         private void notaUC1_NotaCambiada(string nota, int index)
         {
             MostrarNotas(ElGrupo, ElGrupoIndex);
-            //LaNota = nota;
 
-            for (var i = 0; i < TxtNotas.Count; i++)
+            for (var i = 0; i < CtrlNotas.Count; i++)
             { 
                 if (i == index)
-                {
-                    TxtNotas[i].Font = new Font(TxtNota.Font, FontStyle.Bold);
-                    TxtNotas[i].FlatStyle = FlatStyle.Popup;
-                    TxtNotas[i].BorderStyle = BorderStyle.Fixed3D;
-                    TxtNotas[i].Padding = new Padding(3);
-                }
+                    AsignarValores(CtrlNotas[i], true);
                 else
-                {
-                    TxtNotas[i].Font = new Font(TxtNota.Font, FontStyle.Regular);
-                    TxtNotas[i].FlatStyle = FlatStyle.Standard;
-                    TxtNotas[i].BorderStyle = BorderStyle.None;
-                    TxtNotas[i].Padding = new Padding(0);
-                }
+                    AsignarValores(CtrlNotas[i], false);
             }
         }
 
+        private void AsignarValores(Label lbl, bool esSeleccionado)
+        {
+            if (esSeleccionado)
+            {
+                lbl.FlatStyle = FlatStyle.Popup;
+                lbl.BorderStyle = BorderStyle.Fixed3D;
+                lbl.Padding = new Padding(0);
+                lbl.Font = new Font(LblNota.Font, FontStyle.Bold);
+                flowLayoutPanel1.SetFlowBreak(lbl, true);
+                //lbl.Width = flowLayoutPanel1.ClientSize.Width-12;
+                lbl.Width = (int)(flowLayoutPanel1.ClientSize.Width / 2) - 12;
+                //lbl.Height = 90;
+                //lbl.Height = (int)(flowLayoutPanel1.ClientSize.Height / 1.5) - 12;
+                lbl.Height = flowLayoutPanel1.ClientSize.Height - 12;
+                lbl.BringToFront();
+            }
+            else
+            {
+                lbl.FlatStyle = FlatStyle.Flat;
+                lbl.BorderStyle = BorderStyle.None;
+                lbl.Padding = new Padding(2);
+                lbl.Font = new Font(LblNota.Font, FontStyle.Regular);
+                flowLayoutPanel1.SetFlowBreak(lbl, false);
+                lbl.Size = NormalSize;
+                lbl.SendToBack();
+            }
+        }
+                
         private void MostrarNotas(string grupo, int index)
         {
             Color col = GetRandomColor();
@@ -143,8 +162,8 @@ namespace gsNotasNETF
                 }
             }
             else if (ColoresGrupo.Count < notaUC1.Notas.Keys.Count)
-            { 
-                for(var j=ColoresGrupo.Count; j<notaUC1.Notas.Keys.Count; j++)
+            {
+                for (var j = ColoresGrupo.Count; j < notaUC1.Notas.Keys.Count; j++)
                 {
                     var n = rnd.Next(1, 4);
                     byte r = col.R, g = col.G, b = col.B;
@@ -165,40 +184,41 @@ namespace gsNotasNETF
                 }
             }
 
-            TxtNotas.Clear();
+            CtrlNotas.Clear();
             flowLayoutPanel1.Controls.Clear();
+
+            // Esto se dará cuando se cree un nuevo grupo
+            if (ElGrupoIndex < 0)
+                return;
+
             // Poner color aleatorio a cada grupo
             col = ColoresGrupo[ElGrupoIndex];
-            //int i = 0;
             for (var j = 0; j < notaUC1.Notas[grupo].Count; j++)
             {
                 var n = notaUC1.Notas[grupo][j];
-                var txt = CrearNota(n, col);
-                txt.Click += TxtNota_Click;
-                TxtNotas.Add(txt);
-                flowLayoutPanel1.Controls.Add(txt);
-                txt.Tag = j;
+                var lbl = CrearNota(n, col);
+                lbl.Click += LblNota_Click;
+                CtrlNotas.Add(lbl);
+                flowLayoutPanel1.Controls.Add(lbl);
+                lbl.Tag = j;
                 if (j == index)
                 {
-                    txt.Font = new Font(txt.Font, FontStyle.Bold);
-                    txt.FlatStyle = FlatStyle.Popup;
-                    txt.BorderStyle = BorderStyle.Fixed3D;
-                    txt.Padding = new Padding(3);
+                    AsignarValores(lbl, true);
                 }
             }
         }
 
         private Label CrearNota(string nota, Color col)
         {
-            var txt = new Label();
-            txt.Size = TxtNota.Size;
-            txt.Margin =new Padding(3);
-            txt.Font = new Font(TxtNota.Font, FontStyle.Regular);
-            SetBackColor(txt, col);
-            txt.Text = nota;
-            txt.Padding = new Padding(0);
+            var lbl = new Label();
+            
+            AsignarValores(lbl, false);
+            // Los valores fijos
+            lbl.Margin = new Padding(3);
+            SetBackColor(lbl, col);
+            lbl.Text = nota;
 
-            return txt;
+            return lbl;
         }
 
         private Color GetRandomColor(byte red=0, byte green=0, byte blue=0)
@@ -219,22 +239,32 @@ namespace gsNotasNETF
             ctrl.ForeColor = (col.GetBrightness() < 0.5) ? (Color.White) : (Color.Black);
         }
 
-        private void TxtNota_Click(object sender, EventArgs e)
+        private void LblNota_Click(object sender, EventArgs e)
         {
-            foreach (var l in TxtNotas)
+            foreach (var l in CtrlNotas)
             {
-                l.FlatStyle = FlatStyle.Standard;
-                l.BorderStyle = BorderStyle.None;
-                l.Padding = new Padding(0);
-                l.Font = new Font(TxtNota.Font, FontStyle.Regular);
+                AsignarValores(l, false);
             }
             var lbl = sender as Label;
-            lbl.FlatStyle = FlatStyle.Popup;
-            lbl.BorderStyle = BorderStyle.Fixed3D;
-            lbl.Padding = new Padding(3);
-            lbl.Font = new Font(TxtNota.Font, FontStyle.Bold);
-            var index = (int)lbl.Tag;
-            notaUC1.Seleccionar(index);
+            AsignarValores(lbl, true);
+
+            if (!(lbl.Tag is null))
+                notaUC1.Seleccionar((int)lbl.Tag);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (notaUC1.Modificado)
+            {
+                if (MessageBox.Show("Los datos están modificados y no se han guardado." + "\n\r"+
+                                    "¿Quieres guardarlos?", 
+                                    "Datos modificados", 
+                                    MessageBoxButtons.YesNo, 
+                                    MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                {
+                    notaUC1.GuardarNotas();
+                }
+            }
         }
     }
 }
