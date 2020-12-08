@@ -11,10 +11,9 @@
     <LangVersion>latest</LangVersion>
 </PropertyGroup>
 ```
-
 <br>
 Y en el código (ponerlo al final del la definición del namespace principal)<br>
-
+<br>
 ``` c#
 /* 
 Para evitar el error al usar init:
