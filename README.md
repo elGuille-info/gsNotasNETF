@@ -6,9 +6,9 @@
  Para usar las características de C# 9.0 en un proyecto de .NET Framework 4.8 (por defecto se usa C# 7.3)
  hay que indicar esto en el fichero del proyecto:
  
-   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
+   &lt;PropertyGroup&gt;
+    &lt;LangVersion>latest</LangVersion&gt;
+  &lt;/PropertyGroup&gt;
 
 Y en el código (ponerlo al final del la definición del namespace principal)
 /* 
