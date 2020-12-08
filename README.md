@@ -1,6 +1,9 @@
 # gsNotasNETF
  Gestionar notas y grupos de notas con editor integrado.
  
+ >**NOTA:**<br>
+ >El **NETF** del nombre es para indicar que está compilado con .NET Framework y no con .NET (Core)
+ 
  Código escrito con C# 9.0 y Visual Studio 2019 copn .NET Framework 4.8
  
  Para usar las características de C# 9.0 en un proyecto de .NET Framework 4.8 (por defecto se usa C# 7.3)
