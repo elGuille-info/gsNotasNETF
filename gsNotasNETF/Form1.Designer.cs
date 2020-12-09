@@ -145,11 +145,9 @@ namespace gsNotasNETF
             // 
             this.notaUC1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.notaUC1.BackColor = System.Drawing.Color.White;
             this.notaUC1.EditorRtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang3082{\\fonttbl{\\f0\\fnil\\fcharset0 " +
     "Consolas;}}\r\n{\\*\\generator Riched20 10.0.19041}\\viewkind4\\uc1 \r\n\\pard\\f0\\fs20\\pa" +
     "r\r\n}\r\n";
-            this.notaUC1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.notaUC1.Location = new System.Drawing.Point(12, 223);
             this.notaUC1.MinimumSize = new System.Drawing.Size(400, 200);
             this.notaUC1.Name = "notaUC1";

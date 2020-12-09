@@ -595,6 +595,7 @@ namespace gsNotasNETF
                 if (CboNotas.Items.Count > 0)
                     CboNotas.SelectedIndex = 0;
             }
+            OnGrupoCambiado(CboGrupos.Text,CboGrupos.SelectedIndex);
         }
 
         private void CboGrupos_SelectedIndexChanged(object sender, EventArgs e)

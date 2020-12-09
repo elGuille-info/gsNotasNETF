@@ -57,6 +57,9 @@ namespace gsNotasNETF
         /// <summary>
         /// Indica si los datos se han modificado.
         /// </summary>
+        [Browsable(true)]
+        [Description("Indica si los datos se han modificado.")]
+        [Category("NotasUC")]
         public bool Modificado
         {
             get { return _Modificado; }
@@ -71,17 +74,21 @@ namespace gsNotasNETF
         /// <summary>
         /// El fichero donde se guardarán o se leerán las notas.
         /// </summary>
-        [Browsable(false)]
-        [Description("El fichero con las notas")]
+        [Browsable(true)]
+        [Description("El fichero con las notas.")]
         [DefaultValue("Notas.notasUC.txt")]
+        [Category("NotasUC")]
         public string FicNotas { get; private set; }
 
         /// <summary>
         /// El path al directorio de documentos.
         /// </summary>
-        [Browsable(false)]
+        [Browsable(true)]
+        [Description("El directorio de documentos.")]
+        [Category("NotasUC")]
         public string DirDocumentos 
-        { get {return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); } 
+        { 
+            get {return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); } 
         }
 
         /// <summary>
@@ -144,6 +151,7 @@ namespace gsNotasNETF
         /// </summary>
         [Browsable(true)]
         [Description("El ComboBox con los grupos de notas.")]
+        [Category("NotasUC")]
         public ComboBox ComboGrupos
         {
             get { return cabeceraNotaUC1.ComboGrupos; }
@@ -155,6 +163,7 @@ namespace gsNotasNETF
         /// <remarks>Hay que rellenarla con las nots de cada elemento del Grupo.</remarks>
         [Browsable(true)]
         [Description("El ComboBox con las notas.")]
+        [Category("NotasUC")]
         public ComboBox ComboNotas
         {
             get { return cabeceraNotaUC1.ComboNotas; }
@@ -165,7 +174,8 @@ namespace gsNotasNETF
         /// </summary>
         [Browsable(true)]
         [Description("El color de fondo del control y del control de las notas.")]
-        [DefaultValue("White")]
+        [DefaultValue( typeof(Color), "White")]
+        [Category("NotasUC")]
         public override Color BackColor 
         { 
             get => base.BackColor;
@@ -181,7 +191,8 @@ namespace gsNotasNETF
         /// </summary>
         [Browsable(true)]
         [Description("El color de las letras del control y del control de las notas.")]
-        [DefaultValue("0; 99; 177")]
+        [DefaultValue(typeof(Color),"0,99,177")]
+        [Category("NotasUC")]
         public override Color ForeColor
         {
             get => base.ForeColor;
@@ -198,6 +209,7 @@ namespace gsNotasNETF
         [Browsable(true)]
         [Description("El texto del editor.")]
         [DefaultValue("")]
+        [Category("NotasUC")]
         public string EditorText
         {
             get { return txtEdit.Text; }
@@ -210,6 +222,7 @@ namespace gsNotasNETF
         [Browsable(true)]
         [Description("El texto enriquecido (Rtf) del editor.")]
         [DefaultValue("")]
+        [Category("NotasUC")]
         public string EditorRtf
         {
             get { return txtEdit.Rtf; }
@@ -225,6 +238,8 @@ namespace gsNotasNETF
         /// Las notas a asignar.
         /// </summary>
         [Browsable(false)]
+        [Description("Colección con los grupos y notas.")]
+        [Category("NotasUC")]
         public Dictionary<string, List<string>> Notas
         {
             get { return cabeceraNotaUC1.Notas; }
@@ -237,7 +252,6 @@ namespace gsNotasNETF
         /// </summary>
         /// <param name="grupo">El nombre grupo.</param>
         /// <param name="notas">Colección con las notas a asignar al grupo.</param>
-        [Browsable(false)]
         public void GruposAdd(string grupo, List<string> notas)
         {
             cabeceraNotaUC1.GruposAdd(grupo, notas);
@@ -250,7 +264,6 @@ namespace gsNotasNETF
         /// <param name="grupo">El nombre del grupo.</param>
         /// <param name="nota">Una nota a añadir al grupo. 
         /// Si es una cadena vacía, solo se crea el grupo si no existe previamente.</param>
-        [Browsable(false)]
         public void GruposAdd(string grupo, string nota = "")
         {
             if (string.IsNullOrEmpty(nota))
@@ -302,6 +315,8 @@ namespace gsNotasNETF
         {
             cabeceraNotaUC1.Titulo = $"Notas de '{cabeceraNotaUC1.Grupo}'";
             OnGrupoCambiado(nota, index);
+
+            statusInfo.Text = $"Grupo: '{cabeceraNotaUC1.Grupo}' con {cabeceraNotaUC1.ComboNotas.Items.Count} notas";
         }
 
         //
