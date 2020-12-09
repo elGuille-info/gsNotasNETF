@@ -53,11 +53,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Delegados.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FormEditarNotaUC.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormEditarNotaUC.Designer.cs">
+      <DependentUpon>FormEditarNotaUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormNotasUC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNotasUC.Designer.cs">
+      <DependentUpon>FormNotasUC.cs</DependentUpon>
     </Compile>
     <Compile Include="NotaUC.cs">
       <SubType>UserControl</SubType>
@@ -73,8 +79,11 @@
     <Compile Include="CabeceraNotaUC.Designer.cs">
       <DependentUpon>CabeceraNotaUC.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormEditarNotaUC.resx">
+      <DependentUpon>FormEditarNotaUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNotasUC.resx">
+      <DependentUpon>FormNotasUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NotaUC.resx">
       <DependentUpon>NotaUC.cs</DependentUpon>

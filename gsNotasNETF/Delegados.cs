@@ -26,3 +26,13 @@ namespace gsNotasNETF
     /// <param name="index">El índice del elemento seleccionado.</param>
     public delegate void TextoModificado(string nota, int index);
 }
+
+/* 
+Para evitar el error al usar init:
+Error CS0518 Predefined type ‘System.Runtime.CompilerServices.IsExternalInit’ is not defined or imported
+*/
+namespace System.Runtime.CompilerServices
+{
+    public class IsExternalInit { }
+}
+

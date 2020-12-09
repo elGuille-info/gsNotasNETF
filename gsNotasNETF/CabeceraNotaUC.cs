@@ -61,6 +61,26 @@ namespace gsNotasNETF
         }
 
         /// <summary>
+        /// Oculta o muestra los controles de grupos y notas.
+        /// </summary>
+        [Browsable(true)]
+        [Description("Oculta o muestra los controles de grupos y notas.")]
+        public bool OcultarControles
+        {
+            get { return CboGrupos.Visible; }
+            set
+            {
+                CboGrupos.Enabled = !value;
+                CboGrupos.BackColor = this.BackColor;
+                CboNotas.Visible = !value;
+                //if (value)
+                //    this.Height = LabelTitulo.Height;
+                //else
+                //    this.Height = LabelTitulo.Height + CboGrupos.Height;
+            }
+        }
+
+        /// <summary>
         /// El color de fondo del control y del color del texto del título.
         /// </summary>
         [Browsable(true)]

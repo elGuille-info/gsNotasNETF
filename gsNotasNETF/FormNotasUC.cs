@@ -1,4 +1,11 @@
-﻿/* 
+﻿//-----------------------------------------------------------------------------
+// FormNotaUC                                                       (05/Dic/20)
+// Formulario para manejar las notas
+//
+// (c) Guillermo (elGuille) Som, 2020
+//-----------------------------------------------------------------------------
+
+/* 
     Para poder usar el C# 9.0 (por defecto en .NET Framework se usa el 7.3)
     hay que añadir esto en el fichero del proyecto:
     <PropertyGroup>
@@ -30,11 +37,11 @@ using System.IO;
 
 namespace gsNotasNETF
 {
-    public partial class Form1 : Form
+    public partial class FormNotasUC : Form
     {
         private readonly string[] noAsignar;
 
-        public Form1()
+        public FormNotasUC()
         {
             InitializeComponent();
 
@@ -54,18 +61,33 @@ namespace gsNotasNETF
             noAsignar = new string[] { notaUC1.Name };
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void FormNotasUC_Load(object sender, EventArgs e)
         {
-            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+            NotasFlowLayoutPanel.FlowDirection = FlowDirection.TopDown;
 
             //flowLayoutPanel1.Controls.Clear();
             
             CtrlNotas.Clear();
-            foreach (Label c in flowLayoutPanel1.Controls)
+            foreach (Label c in NotasFlowLayoutPanel.Controls)
                 CtrlNotas.Add(c);
             
             // para que la primera etiqueta se ponga más grande
             LblNota_Click(LblNota, null);
+        }
+
+        private void FormNotasUC_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (notaUC1.Modificado)
+            {
+                if (MessageBox.Show("Los datos están modificados y no se han guardado." + "\n\r" +
+                                    "¿Quieres guardarlos?",
+                                    "Datos modificados",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                {
+                    notaUC1.GuardarNotas();
+                }
+            }
         }
 
         /// <summary>
@@ -73,6 +95,8 @@ namespace gsNotasNETF
         /// del grupo seleccionado.
         /// </summary>
         private readonly List<Label> CtrlNotas = new List<Label>();
+        
+        private readonly List<Label> CtrlGrupos = new List<Label>();
 
         private string ElGrupo;
         private int ElGrupoIndex;
@@ -89,6 +113,15 @@ namespace gsNotasNETF
             ElGrupo = grupo;
             ElGrupoIndex = index;
 
+            MostrarGrupos(ElGrupo, ElGrupoIndex);
+
+            for (var i = 0; i < CtrlGrupos.Count; i++)
+            {
+                if (i == index)
+                    AsignarValores(CtrlGrupos[i], true, esNota:false);
+                else
+                    AsignarValores(CtrlGrupos[i], false, esNota: false);
+            }
             notaUC1.ComboGrupos.Text = ElGrupo;
 
             MostrarNotas(grupo, index);
@@ -101,26 +134,34 @@ namespace gsNotasNETF
             for (var i = 0; i < CtrlNotas.Count; i++)
             { 
                 if (i == index)
-                    AsignarValores(CtrlNotas[i], true);
+                    AsignarValores(CtrlNotas[i], true, true);
                 else
-                    AsignarValores(CtrlNotas[i], false);
+                    AsignarValores(CtrlNotas[i], false, true);
             }
         }
 
-        private void AsignarValores(Label lbl, bool esSeleccionado)
+        private void AsignarValores(Label lbl, bool esSeleccionado, bool esNota)
         {
             if (esSeleccionado)
             {
                 lbl.FlatStyle = FlatStyle.Popup;
                 lbl.BorderStyle = BorderStyle.Fixed3D;
                 lbl.Padding = new Padding(0);
-                lbl.Font = new Font(LblNota.Font, FontStyle.Bold);
-                flowLayoutPanel1.SetFlowBreak(lbl, true);
-                //lbl.Width = flowLayoutPanel1.ClientSize.Width-12;
-                lbl.Width = (int)(flowLayoutPanel1.ClientSize.Width / 2) - 12;
-                //lbl.Height = 90;
-                //lbl.Height = (int)(flowLayoutPanel1.ClientSize.Height / 1.5) - 12;
-                lbl.Height = flowLayoutPanel1.ClientSize.Height - 12;
+                if (esNota)
+                {
+                    lbl.Font = new Font(LblNota.Font, FontStyle.Bold);
+                    NotasFlowLayoutPanel.SetFlowBreak(lbl, true);
+                    lbl.Width = (int)(NotasFlowLayoutPanel.ClientSize.Width / 2) - 12;
+                    lbl.Height = NotasFlowLayoutPanel.ClientSize.Height - 12;
+                }
+                else
+                {
+                    lbl.Font = new Font(LblGrupo.Font, FontStyle.Bold);
+                    //GruposFlowLayoutPanel.SetFlowBreak(lbl, true);
+                    //lbl.Width = (int)(GruposFlowLayoutPanel.ClientSize.Width / 2) - 12;
+                    //lbl.Height =(int)( GruposFlowLayoutPanel.ClientSize.Height/2) - 12;
+                    lbl.Size = NormalSize;
+                }
                 lbl.BringToFront();
             }
             else
@@ -128,14 +169,83 @@ namespace gsNotasNETF
                 lbl.FlatStyle = FlatStyle.Flat;
                 lbl.BorderStyle = BorderStyle.None;
                 lbl.Padding = new Padding(2);
-                lbl.Font = new Font(LblNota.Font, FontStyle.Regular);
-                flowLayoutPanel1.SetFlowBreak(lbl, false);
+                if (esNota)
+                {
+                    lbl.Font = new Font(LblNota.Font, FontStyle.Regular);
+                    NotasFlowLayoutPanel.SetFlowBreak(lbl, false);
+                }
+                else
+                {
+                    lbl.Font = new Font(LblGrupo.Font, FontStyle.Regular);
+                    //GruposFlowLayoutPanel.SetFlowBreak(lbl, false);
+                }
                 lbl.Size = NormalSize;
                 lbl.SendToBack();
             }
         }
                 
         private void MostrarNotas(string grupo, int index)
+        {
+            Color col = AsignarColoresGrupos();
+
+            CtrlNotas.Clear();
+            NotasFlowLayoutPanel.Controls.Clear();
+
+            // Esto se dará cuando se cree un nuevo grupo
+            if (ElGrupoIndex < 0)
+                return;
+
+            // Poner color aleatorio a cada grupo
+            col = ColoresGrupo[ElGrupoIndex];
+            for (var j = 0; j < notaUC1.Notas[grupo].Count; j++)
+            {
+                var n = notaUC1.Notas[grupo][j];
+                var lbl = CrearNota(n, col);
+                lbl.Click += LblNota_Click;
+                lbl.DoubleClick += LblNota_DoubleClick;
+                CtrlNotas.Add(lbl);
+                NotasFlowLayoutPanel.Controls.Add(lbl);
+                lbl.Tag = j;
+                if (j == index)
+                {
+                    AsignarValores(lbl, true, true);
+                }
+            }
+        }
+
+        private void MostrarGrupos(string grupo, int index)
+        {
+            Color col = AsignarColoresGrupos();
+
+            CtrlGrupos.Clear();
+            GruposFlowLayoutPanel.Controls.Clear();
+
+            // Esto se dará cuando se cree un nuevo grupo
+            if (ElGrupoIndex < 0)
+                return;
+
+            // Poner color aleatorio a cada grupo
+            //col = ColoresGrupo[ElGrupoIndex];
+            int ind = 0;
+            foreach (var n in notaUC1.Notas.Keys)
+            {
+                col = ColoresGrupo[ind];
+                var s = $"{n}\n\rGrupo con {notaUC1.Notas[n].Count} notas.";
+                var lbl = CrearNota(s, col);
+                lbl.Click += LblGrupo_Click;
+                lbl.DoubleClick += LblGrupo_DoubleClick;
+                CtrlGrupos.Add(lbl);
+                GruposFlowLayoutPanel.Controls.Add(lbl);
+                lbl.Tag = ind;
+                if (ind == index)
+                {
+                    AsignarValores(lbl, true, false);
+                }
+                ind++;
+            }
+        }
+
+        private Color AsignarColoresGrupos()
         {
             Color col = GetRandomColor();
             var rnd = new Random();
@@ -153,7 +263,7 @@ namespace gsNotasNETF
                         g = 0;
                     else if (n == 3)
                         b = 0;
-                    Color col2; // = GetRandomColor(r, g, b);
+                    Color col2;
                     do
                     {
                         col2 = GetRandomColor(r, g, b);
@@ -184,35 +294,14 @@ namespace gsNotasNETF
                 }
             }
 
-            CtrlNotas.Clear();
-            flowLayoutPanel1.Controls.Clear();
-
-            // Esto se dará cuando se cree un nuevo grupo
-            if (ElGrupoIndex < 0)
-                return;
-
-            // Poner color aleatorio a cada grupo
-            col = ColoresGrupo[ElGrupoIndex];
-            for (var j = 0; j < notaUC1.Notas[grupo].Count; j++)
-            {
-                var n = notaUC1.Notas[grupo][j];
-                var lbl = CrearNota(n, col);
-                lbl.Click += LblNota_Click;
-                CtrlNotas.Add(lbl);
-                flowLayoutPanel1.Controls.Add(lbl);
-                lbl.Tag = j;
-                if (j == index)
-                {
-                    AsignarValores(lbl, true);
-                }
-            }
+            return col;
         }
 
         private Label CrearNota(string nota, Color col)
         {
             var lbl = new Label();
             
-            AsignarValores(lbl, false);
+            AsignarValores(lbl, false, true);
             // Los valores fijos
             lbl.Margin = new Padding(3);
             SetBackColor(lbl, col);
@@ -243,37 +332,45 @@ namespace gsNotasNETF
         {
             foreach (var l in CtrlNotas)
             {
-                AsignarValores(l, false);
+                AsignarValores(l, false, true);
             }
             var lbl = sender as Label;
-            AsignarValores(lbl, true);
+            AsignarValores(lbl, true, true);
 
             if (!(lbl.Tag is null))
-                notaUC1.Seleccionar((int)lbl.Tag);
-        }
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (notaUC1.Modificado)
             {
-                if (MessageBox.Show("Los datos están modificados y no se han guardado." + "\n\r"+
-                                    "¿Quieres guardarlos?", 
-                                    "Datos modificados", 
-                                    MessageBoxButtons.YesNo, 
-                                    MessageBoxIcon.Exclamation) == DialogResult.Yes)
-                {
-                    notaUC1.GuardarNotas();
-                }
+                notaUC1.Seleccionar((int)lbl.Tag, true);
+                lbl.Click -= LblNota_Click;
             }
         }
-    }
-}
 
-/* 
-Para evitar el error al usar init:
-Error CS0518 Predefined type ‘System.Runtime.CompilerServices.IsExternalInit’ is not defined or imported
-*/
-namespace System.Runtime.CompilerServices
-{
-    public class IsExternalInit { }
+        private void LblNota_DoubleClick(object sender, EventArgs e)
+        {
+            //NotaUC nuevaNota = new NotaUC(notaUC1, notaUC1.ComboGrupos.Text, notaUC1.ComboNotas.SelectedIndex);
+            //frmEditUC = new FormEditarNotaUC(notaUC1);
+            FormEditarNotaUC frmEditUC;
+            frmEditUC = new FormEditarNotaUC(notaUC1, notaUC1.ComboNotas.Text, notaUC1.ComboNotas.SelectedIndex);
+            //frmEditUC = new FormEditarNotaUC(notaUC1);
+
+            frmEditUC.Show();
+        }
+
+        private void LblGrupo_Click(object sender, EventArgs e)
+        {
+            foreach (var l in CtrlNotas)
+            {
+                AsignarValores(l, false, false);
+            }
+            var lbl = sender as Label;
+            AsignarValores(lbl, true, false);
+
+            if (!(lbl.Tag is null))
+                notaUC1.Seleccionar((int)lbl.Tag, false);
+        }
+
+        private void LblGrupo_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

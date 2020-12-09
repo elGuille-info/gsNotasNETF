@@ -24,6 +24,62 @@ namespace gsNotasNETF
     /// </summary>
     public partial class NotaUC : UserControl
     {
+
+        public NotaUC()
+        {
+            InitializeComponent();
+
+            var ensamblado = System.Reflection.Assembly.GetCallingAssembly();
+            var fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(ensamblado.Location);
+            FileVersion = fvi.FileVersion;
+            NombreProducto = fvi.ProductName;
+            VersionProducto = fvi.ProductVersion;
+
+            //DirDocumentos = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            FicNotas = Path.Combine(DirDocumentos, $"{fvi.ProductName}.notasUC.txt");
+
+            BackColor = Color.White;
+            ForeColor = Color.FromArgb(0, 99, 177);
+            cabeceraNotaUC1.LongitudTituloNota = CabeceraNotaUC.LongitudTituloNotaDefault;
+
+            // Esto estaba en el evento Load
+            const int m_AñoActual = 2020;
+
+            var elGuille = "©Guillermo Som (elGuille), 2020";
+            if (DateTime.Now.Year > m_AñoActual)
+                elGuille += $"-{DateTime.Now.Year}";
+            elGuille += $" - {NombreProducto} v{VersionProducto} ({FileVersion})";
+
+            statusInfo.Text = elGuille;
+            statusInfoTecla.Text = "...";
+            statusInfoPos.Enabled = false;
+            statusInfoPos.Text = "L: 0 , C: 0";
+            txtEdit.Text = "";
+            cabeceraNotaUC1.ComboGrupos.Text = "";
+            cabeceraNotaUC1.ComboNotas.Text = "";
+            cabeceraNotaUC1.Titulo = "";
+        }
+                
+        /// <summary>
+        /// Crear una nueva instancia para mostrar una nota por separado.
+        /// </summary>
+        /// <param name="notaIndex"></param>
+        public NotaUC(NotaUC notaUC, string grupo, int notaIndex) : this()
+        {
+            this.NotaUCBase = notaUC;
+
+            Notas = notaUC.Notas;
+            txtEdit.Text = notaUC.Notas[grupo][notaIndex];
+
+            //cabeceraNotaUC1.Enabled = false;
+            foreach (ToolStripItem c in statusInfoTecla.DropDownItems)
+            {
+                c.Enabled = false;
+            }
+            MnuSustituirNota.Enabled = true;
+            cabeceraNotaUC1.OcultarControles = true;
+        }
+
         /// <summary>
         /// Se produce cuando se selecciona una nota.
         /// </summary>
@@ -53,6 +109,16 @@ namespace gsNotasNETF
         }
 
         private bool _Modificado;
+
+        internal NotaUC NotaUCBase = null;
+
+        /// <summary>
+        /// La versión del fichero no la de Application.ProductVersion
+        /// </summary>
+        private string FileVersion;
+
+        private string NombreProducto;
+        private string VersionProducto;
 
         /// <summary>
         /// Indica si los datos se han modificado.
@@ -91,59 +157,98 @@ namespace gsNotasNETF
             get {return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); } 
         }
 
-        /// <summary>
-        /// La versión del fichero no la de Application.ProductVersion
-        /// </summary>
-        private string FileVersion;
-
-        private string NombreProducto;
-        private string VersionProducto;
-
-        public NotaUC()
-        {
-            InitializeComponent();
-
-            var ensamblado = System.Reflection.Assembly.GetCallingAssembly();
-            var fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(ensamblado.Location);
-            FileVersion = fvi.FileVersion;
-            NombreProducto = fvi.ProductName;
-            VersionProducto = fvi.ProductVersion;
-
-            //DirDocumentos = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            FicNotas = Path.Combine(DirDocumentos, $"{fvi.ProductName}.notasUC.txt");
-
-            BackColor = Color.White;
-            cabeceraNotaUC1.LongitudTituloNota = CabeceraNotaUC.LongitudTituloNotaDefault;
-        }
-
         private void NotaUC_Load(object sender, EventArgs e)
         {
-            const int m_AñoActual = 2020;
+            //if(NotaUCBase is null)
+            //{
+            //    const int m_AñoActual = 2020;
 
-            var elGuille = "©Guillermo Som (elGuille), 2020";
-            if (DateTime.Now.Year > m_AñoActual)
-                elGuille += $"-{DateTime.Now.Year}";
-            elGuille += $" - {NombreProducto} v{VersionProducto} ({FileVersion})";
+            //    var elGuille = "©Guillermo Som (elGuille), 2020";
+            //    if (DateTime.Now.Year > m_AñoActual)
+            //        elGuille += $"-{DateTime.Now.Year}";
+            //    elGuille += $" - {NombreProducto} v{VersionProducto} ({FileVersion})";
 
-            statusInfo.Text = elGuille;
-            statusInfoTecla.Text = "...";
-            statusInfoPos.Enabled = false;
-            statusInfoPos.Text = "L: 0 , C: 0";
-            txtEdit.Text = "";
-            cabeceraNotaUC1.ComboGrupos.Text = "";
-            cabeceraNotaUC1.ComboNotas.Text = "";
-            cabeceraNotaUC1.Titulo = "";
+            //    statusInfo.Text = elGuille;
+            //    statusInfoTecla.Text = "...";
+            //    statusInfoPos.Enabled = false;
+            //    statusInfoPos.Text = "L: 0 , C: 0";
+            //    txtEdit.Text = "";
+            //    cabeceraNotaUC1.ComboGrupos.Text = "";
+            //    cabeceraNotaUC1.ComboNotas.Text = "";
+            //    cabeceraNotaUC1.Titulo = "";
+            //}
+        }
+
+        /// <summary>
+        /// Muestra u oculta los controles de selección de grupos y notas.
+        /// </summary>
+        [Browsable(true)]
+        [Description("Muestra u oculta los controles de selección de grupos y notas.")]
+        [Category("NotasUC")]
+        public bool OcultarCabecera
+        {
+            get { return cabeceraNotaUC1.OcultarControles; }
+            set 
+            { 
+                cabeceraNotaUC1.OcultarControles = value;
+                if (value)
+                {
+                    //cabeceraNotaUC1.Height = 21;
+                    foreach (ToolStripItem c in statusInfoTecla.DropDownItems)
+                    {
+                        c.Enabled = false;
+                        c.Visible = false;
+                    }
+                    MnuSustituirNota.Enabled = true;
+                    MnuSustituirNota.Visible = true;
+                }
+                else
+                {
+                    //cabeceraNotaUC1.Height = 42;
+
+                    foreach (ToolStripItem c in statusInfoTecla.DropDownItems)
+                    {
+                        c.Enabled = true;
+                        c.Visible = true;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Asigna el título de la cabecera.
+        /// </summary>
+        [Browsable(true)]
+        [Description("Asigna el título de la cabecera.")]
+        [Category("NotasUC")]
+        public string TituloCabecera
+        {
+            get { return cabeceraNotaUC1.Titulo; }
+            set 
+            {
+                ComboNotas.Items.Add(value);
+                ComboNotas.Text = value;
+                cabeceraNotaUC1.Titulo = cabeceraNotaUC1.TituloNota; 
+            }
         }
 
         /// <summary>
         /// Seleccionar el elemento del grupo con el índice indicado.
         /// </summary>
         /// <param name="index">El índice del combo de los grupos a seleccionar.</param>
+        /// <param name="esNota">
+        /// True si se debe seleccionar una nota, 
+        /// false si se debe seleccioanr un grupo</param>
         [Browsable(false)]
-        public void Seleccionar(int index)
+        public void Seleccionar(int index, bool esNota)
         {
             if (index > -1)
-                cabeceraNotaUC1.ComboNotas.SelectedIndex = index;
+            { 
+                if(esNota)
+                    cabeceraNotaUC1.ComboNotas.SelectedIndex = index;
+                else
+                    cabeceraNotaUC1.ComboGrupos.SelectedIndex = index;
+            }
         }
 
         /// <summary>
@@ -496,7 +601,7 @@ namespace gsNotasNETF
 
         private void NotaUC_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F9)
+            if (e.KeyCode == Keys.F9 && !(NotaUCBase is null))
             {
                 e.Handled = true;
                 e.SuppressKeyPress = true;
