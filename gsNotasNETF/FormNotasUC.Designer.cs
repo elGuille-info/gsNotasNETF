@@ -36,7 +36,6 @@ namespace gsNotasNETF
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.notaUC1 = new gsNotasNETF.NotaUC();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -46,6 +45,7 @@ namespace gsNotasNETF
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.notaUC1 = new gsNotasNETF.NotaUC();
             this.NotasFlowLayoutPanel.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -139,24 +139,6 @@ namespace gsNotasNETF
             this.label3.TabIndex = 3;
             this.label3.Text = "label3";
             this.label3.Click += new System.EventHandler(this.LblNota_Click);
-            // 
-            // notaUC1
-            // 
-            this.notaUC1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.notaUC1.EditorRtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang3082{\\fonttbl{\\f0\\fnil\\fcharset0 " +
-    "Consolas;}}\r\n{\\*\\generator Riched20 10.0.19041}\\viewkind4\\uc1 \r\n\\pard\\f0\\fs20\\pa" +
-    "r\r\n}\r\n";
-            this.notaUC1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.notaUC1.Location = new System.Drawing.Point(12, 223);
-            this.notaUC1.MinimumSize = new System.Drawing.Size(400, 200);
-            this.notaUC1.Name = "notaUC1";
-            this.notaUC1.Notas = ((System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>>)(resources.GetObject("notaUC1.Notas")));
-            this.notaUC1.Padding = new System.Windows.Forms.Padding(2);
-            this.notaUC1.Size = new System.Drawing.Size(776, 303);
-            this.notaUC1.TabIndex = 2;
-            this.notaUC1.NotaCambiada += new gsNotasNETF.TextoModificado(this.notaUC1_NotaCambiada);
-            this.notaUC1.GrupoCambiado += new gsNotasNETF.TextoModificado(this.notaUC1_GrupoCambiado);
             // 
             // tabControl1
             // 
@@ -277,6 +259,52 @@ namespace gsNotasNETF
             this.label8.Size = new System.Drawing.Size(180, 80);
             this.label8.TabIndex = 2;
             this.label8.Text = "label8";
+            // 
+            // notaUC1
+            // 
+            this.notaUC1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.notaUC1.ColoresClaro = new System.Drawing.Color[] {
+        System.Drawing.Color.White,
+        System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))))};
+            this.notaUC1.ColoresOscuro = new System.Drawing.Color[] {
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Gold};
+            this.notaUC1.EditorRtf = resources.GetString("notaUC1.EditorRtf");
+            this.notaUC1.EditorText = "Prueba NotaUC";
+            this.notaUC1.EspCaracteres = new string[] {
+        "\n\r",
+        "\n",
+        "\r",
+        "\"",
+        "<",
+        ">",
+        "&"};
+            this.notaUC1.EspMarcas = new string[] {
+        "|NL|",
+        "|CR|",
+        "|LF|",
+        "|quot|",
+        "|lt|",
+        "|gt|",
+        "|A|"};
+            this.notaUC1.Grupo = "";
+            this.notaUC1.Location = new System.Drawing.Point(12, 223);
+            this.notaUC1.MinimumSize = new System.Drawing.Size(400, 200);
+            this.notaUC1.Name = "notaUC1";
+            this.notaUC1.Nota = "Prueba NotaUC";
+            this.notaUC1.Notas = ((System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>>)(resources.GetObject("notaUC1.Notas")));
+            this.notaUC1.Padding = new System.Windows.Forms.Padding(2);
+            this.notaUC1.Size = new System.Drawing.Size(776, 303);
+            this.notaUC1.TabIndex = 2;
+            this.notaUC1.Tema = gsNotasNETF.Temas.Claro;
+            this.notaUC1.Titulo = "Prueba NotaUC";
+            this.notaUC1.TituloCabecera = "Prueba NotaUC";
+            this.notaUC1.CambioDeTema += new gsNotasNETF.TemaCambiado(this.notaUC1_CambioDeTema);
+            this.notaUC1.MenuCerrar += new gsNotasNETF.MensajeDelegate(this.notaUC1_MenuCerrar);
+            this.notaUC1.NotaReemplazada += new gsNotasNETF.ReemplazarNota(this.notaUC1_NotaReemplazada_1);
+            this.notaUC1.NotaCambiada += new gsNotasNETF.TextoModificado(this.notaUC1_NotaCambiada);
+            this.notaUC1.GrupoCambiado += new gsNotasNETF.TextoModificado(this.notaUC1_GrupoCambiado);
             // 
             // FormNotasUC
             // 

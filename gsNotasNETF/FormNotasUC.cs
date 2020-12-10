@@ -63,16 +63,28 @@ namespace gsNotasNETF
 
         private void FormNotasUC_Load(object sender, EventArgs e)
         {
-            NotasFlowLayoutPanel.FlowDirection = FlowDirection.TopDown;
+            if (Properties.Settings.Default.Tema == "Claro")
+                notaUC1.Tema = Temas.Claro;
+            else
+                notaUC1.Tema = Temas.Oscuro;
 
-            //flowLayoutPanel1.Controls.Clear();
-            
-            CtrlNotas.Clear();
-            foreach (Label c in NotasFlowLayoutPanel.Controls)
-                CtrlNotas.Add(c);
-            
-            // para que la primera etiqueta se ponga más grande
-            LblNota_Click(LblNota, null);
+            this.BackColor = tabPage1.BackColor = tabPage2.BackColor = notaUC1.BackColor;
+            this.ForeColor = tabPage1.ForeColor = tabPage2.ForeColor = notaUC1.ForeColor;
+
+            NotasFlowLayoutPanel.FlowDirection = FlowDirection.TopDown;
+            GruposFlowLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
+
+            NotasFlowLayoutPanel.Controls.Clear();
+            GruposFlowLayoutPanel.Controls.Clear();
+
+            //CtrlNotas.Clear();
+            //foreach (Label c in NotasFlowLayoutPanel.Controls)
+            //    CtrlNotas.Add(c);
+
+            //// para que la primera etiqueta se ponga más grande
+            //LblNota_Click(LblNota, null);
+
+            notaUC1.LeerNotas();
         }
 
         private void FormNotasUC_FormClosing(object sender, FormClosingEventArgs e)
@@ -88,6 +100,11 @@ namespace gsNotasNETF
                     notaUC1.GuardarNotas();
                 }
             }
+            if (notaUC1.Tema == Temas.Claro)
+                Properties.Settings.Default.Tema = "Claro";
+            else
+                Properties.Settings.Default.Tema = "Oscuro";
+            Properties.Settings.Default.Save();
         }
 
         /// <summary>
@@ -138,6 +155,7 @@ namespace gsNotasNETF
                 else
                     AsignarValores(CtrlNotas[i], false, true);
             }
+            
         }
 
         private void AsignarValores(Label lbl, bool esSeleccionado, bool esNota)
@@ -150,19 +168,18 @@ namespace gsNotasNETF
                 if (esNota)
                 {
                     lbl.Font = new Font(LblNota.Font, FontStyle.Bold);
-                    NotasFlowLayoutPanel.SetFlowBreak(lbl, true);
-                    lbl.Width = (int)(NotasFlowLayoutPanel.ClientSize.Width / 2) - 12;
-                    lbl.Height = NotasFlowLayoutPanel.ClientSize.Height - 12;
+                    //NotasFlowLayoutPanel.SetFlowBreak(lbl, true);
+                    //lbl.Width = (int)(NotasFlowLayoutPanel.ClientSize.Width / 2) - 12;
+                    //lbl.Height = NotasFlowLayoutPanel.ClientSize.Height - 12;
+                    lbl.Width = NormalSize.Width * 2;
                 }
                 else
                 {
                     lbl.Font = new Font(LblGrupo.Font, FontStyle.Bold);
-                    //GruposFlowLayoutPanel.SetFlowBreak(lbl, true);
-                    //lbl.Width = (int)(GruposFlowLayoutPanel.ClientSize.Width / 2) - 12;
-                    //lbl.Height =(int)( GruposFlowLayoutPanel.ClientSize.Height/2) - 12;
                     lbl.Size = NormalSize;
                 }
-                lbl.BringToFront();
+                // Est hace que se ponga al principio
+                //lbl.BringToFront();
             }
             else
             {
@@ -172,16 +189,16 @@ namespace gsNotasNETF
                 if (esNota)
                 {
                     lbl.Font = new Font(LblNota.Font, FontStyle.Regular);
-                    NotasFlowLayoutPanel.SetFlowBreak(lbl, false);
+                    //NotasFlowLayoutPanel.SetFlowBreak(lbl, false);
                 }
                 else
                 {
                     lbl.Font = new Font(LblGrupo.Font, FontStyle.Regular);
-                    //GruposFlowLayoutPanel.SetFlowBreak(lbl, false);
                 }
                 lbl.Size = NormalSize;
-                lbl.SendToBack();
+                //lbl.SendToBack();
             }
+            //lbl.Size = NormalSize;
         }
                 
         private void MostrarNotas(string grupo, int index)
@@ -346,13 +363,17 @@ namespace gsNotasNETF
 
         private void LblNota_DoubleClick(object sender, EventArgs e)
         {
-            //NotaUC nuevaNota = new NotaUC(notaUC1, notaUC1.ComboGrupos.Text, notaUC1.ComboNotas.SelectedIndex);
-            //frmEditUC = new FormEditarNotaUC(notaUC1);
             FormEditarNotaUC frmEditUC;
             frmEditUC = new FormEditarNotaUC(notaUC1, notaUC1.ComboNotas.Text, notaUC1.ComboNotas.SelectedIndex);
-            //frmEditUC = new FormEditarNotaUC(notaUC1);
+            frmEditUC.NotaReemplazada += NotaUC1_NotaReemplazada;
 
             frmEditUC.Show();
+        }
+
+        private void NotaUC1_NotaReemplazada(string grupo, string texto, int index)
+        {
+            // Se ha remplazado desde el editor externo
+            notaUC1.AsignarNota(grupo, texto, index);
         }
 
         private void LblGrupo_Click(object sender, EventArgs e)
@@ -371,6 +392,23 @@ namespace gsNotasNETF
         private void LblGrupo_DoubleClick(object sender, EventArgs e)
         {
 
+        }
+
+        private void notaUC1_NotaReemplazada_1(string grupo, string texto, int index)
+        {
+            // Se ha reemplazado en esta ventana
+            notaUC1.Seleccionar(index, true);
+        }
+
+        private void notaUC1_CambioDeTema(Temas tema)
+        {
+            this.BackColor = tabPage1.BackColor = tabPage2.BackColor = notaUC1.BackColor;
+            this.ForeColor = tabPage1.ForeColor = tabPage2.ForeColor = notaUC1.ForeColor;
+        }
+
+        private void notaUC1_MenuCerrar(string mensaje)
+        {
+            this.Close();
         }
     }
 }
