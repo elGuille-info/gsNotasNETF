@@ -46,11 +46,14 @@ namespace gsNotasNETF
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.notaUC1 = new gsNotasNETF.NotaUC();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.NotasFlowLayoutPanel.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.GruposFlowLayoutPanel.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // NotasFlowLayoutPanel
@@ -66,7 +69,7 @@ namespace gsNotasNETF
             this.NotasFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.NotasFlowLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.NotasFlowLayoutPanel.Name = "NotasFlowLayoutPanel";
-            this.NotasFlowLayoutPanel.Size = new System.Drawing.Size(762, 173);
+            this.NotasFlowLayoutPanel.Size = new System.Drawing.Size(762, 169);
             this.NotasFlowLayoutPanel.TabIndex = 0;
             // 
             // LblNota
@@ -147,19 +150,23 @@ namespace gsNotasNETF
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(5, 10);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(776, 205);
+            this.tabControl1.Size = new System.Drawing.Size(789, 247);
             this.tabControl1.TabIndex = 3;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.NotasFlowLayoutPanel);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(768, 179);
+            this.tabPage1.Size = new System.Drawing.Size(768, 175);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Notas";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -167,10 +174,11 @@ namespace gsNotasNETF
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.GruposFlowLayoutPanel);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(768, 179);
+            this.tabPage2.Size = new System.Drawing.Size(781, 217);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Grupos";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -187,7 +195,7 @@ namespace gsNotasNETF
             this.GruposFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GruposFlowLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.GruposFlowLayoutPanel.Name = "GruposFlowLayoutPanel";
-            this.GruposFlowLayoutPanel.Size = new System.Drawing.Size(762, 173);
+            this.GruposFlowLayoutPanel.Size = new System.Drawing.Size(775, 211);
             this.GruposFlowLayoutPanel.TabIndex = 1;
             this.GruposFlowLayoutPanel.Click += new System.EventHandler(this.LblGrupo_Click);
             this.GruposFlowLayoutPanel.DoubleClick += new System.EventHandler(this.LblGrupo_DoubleClick);
@@ -264,6 +272,7 @@ namespace gsNotasNETF
             // 
             this.notaUC1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.notaUC1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.notaUC1.ColoresClaro = new System.Drawing.Color[] {
         System.Drawing.Color.White,
         System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))))};
@@ -289,15 +298,15 @@ namespace gsNotasNETF
         "|gt|",
         "|A|"};
             this.notaUC1.Grupo = "";
-            this.notaUC1.Location = new System.Drawing.Point(12, 223);
+            this.notaUC1.Location = new System.Drawing.Point(4, 259);
+            this.notaUC1.Margin = new System.Windows.Forms.Padding(1);
             this.notaUC1.MinimumSize = new System.Drawing.Size(400, 200);
             this.notaUC1.Name = "notaUC1";
             this.notaUC1.Nota = "Prueba NotaUC";
             this.notaUC1.Notas = ((System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>>)(resources.GetObject("notaUC1.Notas")));
-            this.notaUC1.Padding = new System.Windows.Forms.Padding(2);
-            this.notaUC1.Size = new System.Drawing.Size(776, 303);
+            this.notaUC1.Padding = new System.Windows.Forms.Padding(1);
+            this.notaUC1.Size = new System.Drawing.Size(792, 310);
             this.notaUC1.TabIndex = 2;
-            this.notaUC1.Tema = gsNotasNETF.Temas.Claro;
             this.notaUC1.Titulo = "Prueba NotaUC";
             this.notaUC1.TituloCabecera = "Prueba NotaUC";
             this.notaUC1.CambioDeTema += new gsNotasNETF.TemaCambiado(this.notaUC1_CambioDeTema);
@@ -306,19 +315,42 @@ namespace gsNotasNETF
             this.notaUC1.NotaCambiada += new gsNotasNETF.TextoModificado(this.notaUC1_NotaCambiada);
             this.notaUC1.GrupoCambiado += new gsNotasNETF.TextoModificado(this.notaUC1_GrupoCambiado);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.groupBox1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 26);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(781, 217);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Editar grupo";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Location = new System.Drawing.Point(6, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(769, 205);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Editar Grupo";
+            // 
             // FormNotasUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 538);
+            this.ClientSize = new System.Drawing.Size(800, 574);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.notaUC1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(500, 300);
             this.Name = "FormNotasUC";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Prueba de Notas usando NotaUC y CabeceraNotaUC";
+            this.Text = "gsNotasNETF - Gestionar notas y grupos de notas usando NotaUC";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormNotasUC_FormClosing);
             this.Load += new System.EventHandler(this.FormNotasUC_Load);
             this.NotasFlowLayoutPanel.ResumeLayout(false);
@@ -326,6 +358,7 @@ namespace gsNotasNETF
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.GruposFlowLayoutPanel.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -347,6 +380,8 @@ namespace gsNotasNETF
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

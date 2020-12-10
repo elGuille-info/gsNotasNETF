@@ -827,13 +827,15 @@ namespace gsNotasNETF
             Titulo = $"Notas de '{Grupo}'";
             //    OnGrupoCambiado(nota, index);
 
-            statusInfo.Text = $"Grupo: '{Grupo}' con {ComboNotas.Items.Count} notas";
+            //statusInfo.Text = $"Grupo: '{Grupo}' con {CboNotas.Items.Count} notas";
 
 
             if (CboGrupos.Items.Count > 0 && CboGrupos.SelectedIndex != -1)
                 OnGrupoCambiado(Grupo, CboGrupos.SelectedIndex);
 
             AsignarNotas(Grupo);
+
+            statusInfo.Text = $"Grupo: '{Grupo}' con {CboNotas.Items.Count} nota{(CboNotas.Items.Count==1 ? "" : "s")}";
         }
 
         private void CboGrupos_Validating(object sender, CancelEventArgs e)

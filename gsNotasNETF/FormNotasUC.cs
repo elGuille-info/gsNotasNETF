@@ -141,7 +141,8 @@ namespace gsNotasNETF
             }
             notaUC1.ComboGrupos.Text = ElGrupo;
 
-            MostrarNotas(grupo, index);
+            // mostrar la primera nota
+            MostrarNotas(grupo, 0);
         }
 
         private void notaUC1_NotaCambiada(string nota, int index)
@@ -168,9 +169,13 @@ namespace gsNotasNETF
                 if (esNota)
                 {
                     lbl.Font = new Font(LblNota.Font, FontStyle.Bold);
+                    // Si queremos que se separe del resto de etiquetas
                     //NotasFlowLayoutPanel.SetFlowBreak(lbl, true);
+                    // Asignar el tamaño grande de la nota seleccionada
                     //lbl.Width = (int)(NotasFlowLayoutPanel.ClientSize.Width / 2) - 12;
                     //lbl.Height = NotasFlowLayoutPanel.ClientSize.Height - 12;
+
+                    // lo dejo al doble de ancho
                     lbl.Width = NormalSize.Width * 2;
                 }
                 else
@@ -178,7 +183,7 @@ namespace gsNotasNETF
                     lbl.Font = new Font(LblGrupo.Font, FontStyle.Bold);
                     lbl.Size = NormalSize;
                 }
-                // Est hace que se ponga al principio
+                // Esto hace que se ponga al principio
                 //lbl.BringToFront();
             }
             else
@@ -198,6 +203,7 @@ namespace gsNotasNETF
                 lbl.Size = NormalSize;
                 //lbl.SendToBack();
             }
+            // Por si se quiere que todos tengan el tamaño normal
             //lbl.Size = NormalSize;
         }
                 
@@ -352,6 +358,9 @@ namespace gsNotasNETF
                 AsignarValores(l, false, true);
             }
             var lbl = sender as Label;
+            if (lbl is null)
+                return;
+
             AsignarValores(lbl, true, true);
 
             if (!(lbl.Tag is null))
@@ -383,10 +392,18 @@ namespace gsNotasNETF
                 AsignarValores(l, false, false);
             }
             var lbl = sender as Label;
+            if (lbl is null)
+                return;
+
             AsignarValores(lbl, true, false);
 
             if (!(lbl.Tag is null))
                 notaUC1.Seleccionar((int)lbl.Tag, false);
+
+            // Activar la ficha de notas
+            tabControl1.SelectedIndex = 0;
+
+            notaUC1.Seleccionar(0, true);
         }
 
         private void LblGrupo_DoubleClick(object sender, EventArgs e)
