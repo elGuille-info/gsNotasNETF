@@ -61,6 +61,11 @@ namespace gsNotasNETF
             statusInfoPos.Enabled = false;
             statusInfoPos.Text = "L: 0 , C: 0";
             txtEdit.Text = "";
+            // Esta propiedad no aparece en la ventana de propiedades
+            // ni los eventos relacionados
+            txtEdit.AllowDrop = true;
+            txtEdit.DragEnter += NotaUC_DragEnter;
+            txtEdit.DragDrop += NotaUC_DragDrop;
 
             iniciando = false;
         }
@@ -121,6 +126,15 @@ namespace gsNotasNETF
         public event MensajeDelegate DatosModificados;
 
         protected virtual void OnDatosModificados(string mensaje)
+        {
+            DatosModificados?.Invoke(mensaje);
+        }
+
+        /// <summary>
+        /// Para avisar de cuando cambia el texto del editor.
+        /// </summary>
+        /// <param name="mensaje"></param>
+        protected virtual void OnTextoModificado(string mensaje)
         {
             DatosModificados?.Invoke(mensaje);
         }
@@ -1313,11 +1327,12 @@ namespace gsNotasNETF
 
         private void MnuGuardar_Click(object sender, EventArgs e)
         {
-            statusInfoTecla.Text = "Ctrl+Shift+S";
+            statusInfoTecla.Text = "F9";
 
             if (string.IsNullOrEmpty(FicNotas))
             {
                 statusInfo.Text = "No se ha indicado un nombre fichero para guardar.";
+                OnDatosErrorEnNotasUC("No se ha indicado un nombre fichero para guardar.");
                 return;
             }
             GuardarNotas();
@@ -1374,24 +1389,28 @@ namespace gsNotasNETF
             Modificado = true;
         }
 
-        private void NotaUC_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F9)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
+        //
+        // Cambio en el menú el Ctrl+Shift+S por F9
+        //
+        //private void NotaUC_KeyUp(object sender, KeyEventArgs e)
+        //{
+        //    // No lo detecta ni con KeyUp ni con KeyDown
+        //    if (e.KeyCode == Keys.F9)
+        //    {
+        //        e.Handled = true;
+        //        e.SuppressKeyPress = true;
 
-                statusInfoTecla.Text = "F9";
+        //        statusInfoTecla.Text = "F9";
 
-                if (string.IsNullOrEmpty(FicNotas))
-                {
-                    statusInfo.Text = "No se ha indicado un nombre de fichero para guardar.";
-                    return;
-                }
-                GuardarNotas();
-                MostrarInfoNotas();
-            }
-        }
+        //        if (string.IsNullOrEmpty(FicNotas))
+        //        {
+        //            statusInfo.Text = "No se ha indicado un nombre de fichero para guardar.";
+        //            return;
+        //        }
+        //        GuardarNotas();
+        //        MostrarInfoNotas();
+        //    }
+        //}
 
         private void MnuAcercaDe_Click(object sender, EventArgs e)
         {
@@ -1451,6 +1470,71 @@ No se guardan los grupos y notas en blanco.",
         private void MnuCerrar_Click(object sender, EventArgs e)
         {
             OnMenuCerrar("Cerrar la aplicación.");
+        }
+
+        private void NotaUC_DragOver(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) ||
+                    e.Data.GetDataPresent(DataFormats.StringFormat) ||
+                    e.Data.GetDataPresent(DataFormats.CommaSeparatedValue) ||
+                    e.Data.GetDataPresent(DataFormats.Html) ||
+                    e.Data.GetDataPresent(DataFormats.OemText) ||
+                    e.Data.GetDataPresent(DataFormats.Rtf) ||
+                    e.Data.GetDataPresent(DataFormats.Text))
+                e.Effect = DragDropEffects.Copy;
+        }
+
+        private void NotaUC_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var fics = (string[])(e.Data.GetData(DataFormats.FileDrop));
+                if (fics is null || fics.Length == 0)
+                    return;
+
+                var fic = fics[0];
+                var s = "";
+                using (var sr = new StreamReader(fic, Encoding.UTF8, true))
+                {
+                    s = sr.ReadToEnd();
+                    sr.Close();
+                }
+
+                // abrir el fichero y asignar el contenido
+                txtEdit.Text = s;
+            }
+            // Creo que comparando con Text sería suficiente...
+            else if (e.Data.GetDataPresent(DataFormats.StringFormat) ||
+                     e.Data.GetDataPresent(DataFormats.CommaSeparatedValue) ||
+                     e.Data.GetDataPresent(DataFormats.Html) ||
+                     e.Data.GetDataPresent(DataFormats.OemText) ||
+                     e.Data.GetDataPresent(DataFormats.Rtf) ||
+                     e.Data.GetDataPresent(DataFormats.Text))
+            {
+                int i;
+                String s;
+
+                // Get start position to drop the text.  
+                i = txtEdit.SelectionStart;
+                s = txtEdit.Text.Substring(i);
+                txtEdit.Text = txtEdit.Text.Substring(0, i);
+
+                // Drop the text on to the RichTextBox.  
+                txtEdit.Text = txtEdit.Text + e.Data.GetData(DataFormats.Text).ToString();
+                txtEdit.Text = txtEdit.Text + s;
+            }
+        }
+
+        private void NotaUC_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent("FileDrop"))
+                e.Effect = DragDropEffects.Copy;
+        }
+
+        private void txtEdit_TextChanged(object sender, EventArgs e)
+        {
+            //Modificado = true;
+            OnTextoModificado("El texto se ha modificado.");
         }
     }
 }

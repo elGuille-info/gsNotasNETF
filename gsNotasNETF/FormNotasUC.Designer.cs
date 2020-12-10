@@ -29,6 +29,7 @@ namespace gsNotasNETF
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNotasUC));
             this.NotasFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.LblNota = new System.Windows.Forms.Label();
@@ -45,23 +46,37 @@ namespace gsNotasNETF
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.notaUC1 = new gsNotasNETF.NotaUC();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblEdSeleccionar = new System.Windows.Forms.Label();
-            this.cboEdGrupos = new System.Windows.Forms.ComboBox();
-            this.lblEdCambiar = new System.Windows.Forms.Label();
-            this.txtEdNombreGrupo = new System.Windows.Forms.TextBox();
-            this.btnCambiarNombre = new System.Windows.Forms.Button();
-            this.btnBorrar = new System.Windows.Forms.Button();
-            this.lblEdInfo = new System.Windows.Forms.Label();
+            this.btnClasificarGrupos = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cboEdGrupoDestino = new System.Windows.Forms.ComboBox();
+            this.cboEdGrupoNotas = new System.Windows.Forms.ComboBox();
             this.btnMoverNota = new System.Windows.Forms.Button();
             this.cboEdNotas = new System.Windows.Forms.ComboBox();
             this.lblEdSeleccionarNota = new System.Windows.Forms.Label();
-            this.cboEdGrupoNotas = new System.Windows.Forms.ComboBox();
-            this.cboEdGrupoDestino = new System.Windows.Forms.ComboBox();
-            this.btnClasificarGrupos = new System.Windows.Forms.Button();
+            this.lblEdInfo = new System.Windows.Forms.Label();
+            this.btnBorrar = new System.Windows.Forms.Button();
+            this.btnCambiarNombre = new System.Windows.Forms.Button();
+            this.txtEdNombreGrupo = new System.Windows.Forms.TextBox();
+            this.lblEdCambiar = new System.Windows.Forms.Label();
+            this.cboEdGrupos = new System.Windows.Forms.ComboBox();
+            this.lblEdSeleccionar = new System.Windows.Forms.Label();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextNotify = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.MnuNotifyRestaurar = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.MnuNotifyCerrar = new System.Windows.Forms.ToolStripMenuItem();
+            this.notaUC1 = new gsNotasNETF.NotaUC();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.lblBuscar = new System.Windows.Forms.Label();
+            this.chkBuscarEnGrupoActual = new System.Windows.Forms.CheckBox();
+            this.lstResultadoBuscar = new System.Windows.Forms.ListBox();
+            this.lblBuscando = new System.Windows.Forms.Label();
+            this.lblResultadoBuscar = new System.Windows.Forms.Label();
             this.NotasFlowLayoutPanel.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -70,6 +85,9 @@ namespace gsNotasNETF
             this.tabPage3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.contextNotify.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // NotasFlowLayoutPanel
@@ -167,6 +185,7 @@ namespace gsNotasNETF
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(5, 10);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(1);
@@ -285,6 +304,242 @@ namespace gsNotasNETF
             this.label8.TabIndex = 2;
             this.label8.Text = "label8";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.groupBox1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 26);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(788, 217);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Editar grupos y notas";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.btnClasificarGrupos);
+            this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.Controls.Add(this.lblEdInfo);
+            this.groupBox1.Controls.Add(this.btnBorrar);
+            this.groupBox1.Controls.Add(this.btnCambiarNombre);
+            this.groupBox1.Controls.Add(this.txtEdNombreGrupo);
+            this.groupBox1.Controls.Add(this.lblEdCambiar);
+            this.groupBox1.Controls.Add(this.cboEdGrupos);
+            this.groupBox1.Controls.Add(this.lblEdSeleccionar);
+            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.groupBox1.Location = new System.Drawing.Point(6, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(776, 205);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            // 
+            // btnClasificarGrupos
+            // 
+            this.btnClasificarGrupos.AutoSize = true;
+            this.btnClasificarGrupos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.btnClasificarGrupos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClasificarGrupos.ForeColor = System.Drawing.Color.White;
+            this.btnClasificarGrupos.Location = new System.Drawing.Point(184, 52);
+            this.btnClasificarGrupos.Name = "btnClasificarGrupos";
+            this.btnClasificarGrupos.Size = new System.Drawing.Size(139, 29);
+            this.btnClasificarGrupos.TabIndex = 7;
+            this.btnClasificarGrupos.Text = "Clasificar los grupos";
+            this.btnClasificarGrupos.UseVisualStyleBackColor = false;
+            this.btnClasificarGrupos.Click += new System.EventHandler(this.btnClasificarGrupos_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.cboEdGrupoDestino);
+            this.groupBox2.Controls.Add(this.cboEdGrupoNotas);
+            this.groupBox2.Controls.Add(this.btnMoverNota);
+            this.groupBox2.Controls.Add(this.cboEdNotas);
+            this.groupBox2.Controls.Add(this.lblEdSeleccionarNota);
+            this.groupBox2.Location = new System.Drawing.Point(6, 128);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(757, 71);
+            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Editar las notas";
+            // 
+            // cboEdGrupoDestino
+            // 
+            this.cboEdGrupoDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboEdGrupoDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEdGrupoDestino.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cboEdGrupoDestino.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.cboEdGrupoDestino.FormattingEnabled = true;
+            this.cboEdGrupoDestino.Location = new System.Drawing.Point(630, 21);
+            this.cboEdGrupoDestino.Name = "cboEdGrupoDestino";
+            this.cboEdGrupoDestino.Size = new System.Drawing.Size(121, 25);
+            this.cboEdGrupoDestino.TabIndex = 4;
+            // 
+            // cboEdGrupoNotas
+            // 
+            this.cboEdGrupoNotas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEdGrupoNotas.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cboEdGrupoNotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.cboEdGrupoNotas.FormattingEnabled = true;
+            this.cboEdGrupoNotas.Location = new System.Drawing.Point(202, 21);
+            this.cboEdGrupoNotas.Name = "cboEdGrupoNotas";
+            this.cboEdGrupoNotas.Size = new System.Drawing.Size(121, 25);
+            this.cboEdGrupoNotas.TabIndex = 1;
+            this.cboEdGrupoNotas.SelectedIndexChanged += new System.EventHandler(this.cboEdGrupoNotas_SelectedIndexChanged);
+            // 
+            // btnMoverNota
+            // 
+            this.btnMoverNota.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMoverNota.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.btnMoverNota.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMoverNota.ForeColor = System.Drawing.Color.White;
+            this.btnMoverNota.Location = new System.Drawing.Point(540, 17);
+            this.btnMoverNota.Name = "btnMoverNota";
+            this.btnMoverNota.Size = new System.Drawing.Size(84, 29);
+            this.btnMoverNota.TabIndex = 3;
+            this.btnMoverNota.Text = "Mover a";
+            this.btnMoverNota.UseVisualStyleBackColor = false;
+            this.btnMoverNota.Click += new System.EventHandler(this.btnMoverNota_Click);
+            // 
+            // cboEdNotas
+            // 
+            this.cboEdNotas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboEdNotas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEdNotas.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cboEdNotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.cboEdNotas.FormattingEnabled = true;
+            this.cboEdNotas.Location = new System.Drawing.Point(329, 21);
+            this.cboEdNotas.Name = "cboEdNotas";
+            this.cboEdNotas.Size = new System.Drawing.Size(205, 25);
+            this.cboEdNotas.TabIndex = 2;
+            // 
+            // lblEdSeleccionarNota
+            // 
+            this.lblEdSeleccionarNota.Location = new System.Drawing.Point(6, 24);
+            this.lblEdSeleccionarNota.Margin = new System.Windows.Forms.Padding(3);
+            this.lblEdSeleccionarNota.Name = "lblEdSeleccionarNota";
+            this.lblEdSeleccionarNota.Size = new System.Drawing.Size(190, 23);
+            this.lblEdSeleccionarNota.TabIndex = 0;
+            this.lblEdSeleccionarNota.Text = "Selecciona la nota a mover:";
+            // 
+            // lblEdInfo
+            // 
+            this.lblEdInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEdInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.lblEdInfo.ForeColor = System.Drawing.Color.White;
+            this.lblEdInfo.Location = new System.Drawing.Point(437, 58);
+            this.lblEdInfo.Margin = new System.Windows.Forms.Padding(3);
+            this.lblEdInfo.Name = "lblEdInfo";
+            this.lblEdInfo.Size = new System.Drawing.Size(326, 23);
+            this.lblEdInfo.TabIndex = 6;
+            this.lblEdInfo.Text = "Si indicas un nombre existente, se moverán las notas.";
+            // 
+            // btnBorrar
+            // 
+            this.btnBorrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBorrar.ForeColor = System.Drawing.Color.White;
+            this.btnBorrar.Location = new System.Drawing.Point(329, 18);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(84, 29);
+            this.btnBorrar.TabIndex = 2;
+            this.btnBorrar.Text = "Borrar";
+            this.btnBorrar.UseVisualStyleBackColor = false;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            // 
+            // btnCambiarNombre
+            // 
+            this.btnCambiarNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCambiarNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.btnCambiarNombre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCambiarNombre.ForeColor = System.Drawing.Color.White;
+            this.btnCambiarNombre.Location = new System.Drawing.Point(679, 18);
+            this.btnCambiarNombre.Name = "btnCambiarNombre";
+            this.btnCambiarNombre.Size = new System.Drawing.Size(84, 29);
+            this.btnCambiarNombre.TabIndex = 5;
+            this.btnCambiarNombre.Text = "Cambiar";
+            this.btnCambiarNombre.UseVisualStyleBackColor = false;
+            this.btnCambiarNombre.Click += new System.EventHandler(this.btnCambiarNombre_Click);
+            // 
+            // txtEdNombreGrupo
+            // 
+            this.txtEdNombreGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEdNombreGrupo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.txtEdNombreGrupo.Location = new System.Drawing.Point(573, 21);
+            this.txtEdNombreGrupo.Name = "txtEdNombreGrupo";
+            this.txtEdNombreGrupo.Size = new System.Drawing.Size(100, 25);
+            this.txtEdNombreGrupo.TabIndex = 4;
+            // 
+            // lblEdCambiar
+            // 
+            this.lblEdCambiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEdCambiar.Location = new System.Drawing.Point(434, 24);
+            this.lblEdCambiar.Margin = new System.Windows.Forms.Padding(3);
+            this.lblEdCambiar.Name = "lblEdCambiar";
+            this.lblEdCambiar.Size = new System.Drawing.Size(133, 23);
+            this.lblEdCambiar.TabIndex = 3;
+            this.lblEdCambiar.Text = "Cambiar nombre a:";
+            // 
+            // cboEdGrupos
+            // 
+            this.cboEdGrupos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEdGrupos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cboEdGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.cboEdGrupos.FormattingEnabled = true;
+            this.cboEdGrupos.Location = new System.Drawing.Point(202, 21);
+            this.cboEdGrupos.Name = "cboEdGrupos";
+            this.cboEdGrupos.Size = new System.Drawing.Size(121, 25);
+            this.cboEdGrupos.TabIndex = 1;
+            // 
+            // lblEdSeleccionar
+            // 
+            this.lblEdSeleccionar.Location = new System.Drawing.Point(6, 24);
+            this.lblEdSeleccionar.Margin = new System.Windows.Forms.Padding(3);
+            this.lblEdSeleccionar.Name = "lblEdSeleccionar";
+            this.lblEdSeleccionar.Size = new System.Drawing.Size(190, 23);
+            this.lblEdSeleccionar.TabIndex = 0;
+            this.lblEdSeleccionar.Text = "Selecciona el grupo a editar:";
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.ContextMenuStrip = this.contextNotify;
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.DoubleClick += new System.EventHandler(this.MnuNotifyRestaurar_Click);
+            // 
+            // contextNotify
+            // 
+            this.contextNotify.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MnuNotifyRestaurar,
+            this.toolStripSeparator1,
+            this.MnuNotifyCerrar});
+            this.contextNotify.Name = "contextNotify";
+            this.contextNotify.Size = new System.Drawing.Size(124, 54);
+            // 
+            // MnuNotifyRestaurar
+            // 
+            this.MnuNotifyRestaurar.Image = ((System.Drawing.Image)(resources.GetObject("MnuNotifyRestaurar.Image")));
+            this.MnuNotifyRestaurar.Name = "MnuNotifyRestaurar";
+            this.MnuNotifyRestaurar.Size = new System.Drawing.Size(123, 22);
+            this.MnuNotifyRestaurar.Text = "Restaurar";
+            this.MnuNotifyRestaurar.Click += new System.EventHandler(this.MnuNotifyRestaurar_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(120, 6);
+            // 
+            // MnuNotifyCerrar
+            // 
+            this.MnuNotifyCerrar.Image = ((System.Drawing.Image)(resources.GetObject("MnuNotifyCerrar.Image")));
+            this.MnuNotifyCerrar.Name = "MnuNotifyCerrar";
+            this.MnuNotifyCerrar.Size = new System.Drawing.Size(123, 22);
+            this.MnuNotifyCerrar.Text = "Cerrar";
+            this.MnuNotifyCerrar.Click += new System.EventHandler(this.MnuNotifyCerrar_Click);
+            // 
             // notaUC1
             // 
             this.notaUC1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -333,203 +588,115 @@ namespace gsNotasNETF
             this.notaUC1.NotaCambiada += new gsNotasNETF.TextoModificado(this.notaUC1_NotaCambiada);
             this.notaUC1.GrupoCambiado += new gsNotasNETF.TextoModificado(this.notaUC1_GrupoCambiado);
             // 
-            // tabPage3
+            // tabPage4
             // 
-            this.tabPage3.Controls.Add(this.groupBox1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 26);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(788, 217);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Editar grupos y notas";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage4.Controls.Add(this.groupBox3);
+            this.tabPage4.Location = new System.Drawing.Point(4, 26);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(788, 217);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Buscar texto";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // groupBox3
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox3.Controls.Add(this.lblResultadoBuscar);
+            this.groupBox3.Controls.Add(this.lblBuscando);
+            this.groupBox3.Controls.Add(this.lstResultadoBuscar);
+            this.groupBox3.Controls.Add(this.chkBuscarEnGrupoActual);
+            this.groupBox3.Controls.Add(this.btnBuscar);
+            this.groupBox3.Controls.Add(this.txtBuscar);
+            this.groupBox3.Controls.Add(this.lblBuscar);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.groupBox3.Location = new System.Drawing.Point(3, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(782, 211);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.ForeColor = System.Drawing.Color.White;
+            this.btnBuscar.Location = new System.Drawing.Point(231, 18);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(84, 29);
+            this.btnBuscar.TabIndex = 2;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.txtBuscar.Location = new System.Drawing.Point(75, 21);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(150, 25);
+            this.txtBuscar.TabIndex = 1;
+            // 
+            // lblBuscar
+            // 
+            this.lblBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.lblBuscar.Location = new System.Drawing.Point(6, 24);
+            this.lblBuscar.Margin = new System.Windows.Forms.Padding(3);
+            this.lblBuscar.Name = "lblBuscar";
+            this.lblBuscar.Size = new System.Drawing.Size(63, 23);
+            this.lblBuscar.TabIndex = 0;
+            this.lblBuscar.Text = "Buscar:";
+            // 
+            // chkBuscarEnGrupoActual
+            // 
+            this.chkBuscarEnGrupoActual.AutoSize = true;
+            this.chkBuscarEnGrupoActual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.chkBuscarEnGrupoActual.Location = new System.Drawing.Point(75, 52);
+            this.chkBuscarEnGrupoActual.Name = "chkBuscarEnGrupoActual";
+            this.chkBuscarEnGrupoActual.Size = new System.Drawing.Size(268, 21);
+            this.chkBuscarEnGrupoActual.TabIndex = 3;
+            this.chkBuscarEnGrupoActual.Text = "Buscar solo en las notas del grupo actual";
+            this.chkBuscarEnGrupoActual.UseVisualStyleBackColor = true;
+            // 
+            // lstResultadoBuscar
+            // 
+            this.lstResultadoBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.btnClasificarGrupos);
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.lblEdInfo);
-            this.groupBox1.Controls.Add(this.btnBorrar);
-            this.groupBox1.Controls.Add(this.btnCambiarNombre);
-            this.groupBox1.Controls.Add(this.txtEdNombreGrupo);
-            this.groupBox1.Controls.Add(this.lblEdCambiar);
-            this.groupBox1.Controls.Add(this.cboEdGrupos);
-            this.groupBox1.Controls.Add(this.lblEdSeleccionar);
-            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.groupBox1.Location = new System.Drawing.Point(6, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(776, 205);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
+            this.lstResultadoBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.lstResultadoBuscar.FormattingEnabled = true;
+            this.lstResultadoBuscar.ItemHeight = 17;
+            this.lstResultadoBuscar.Location = new System.Drawing.Point(492, 48);
+            this.lstResultadoBuscar.Name = "lstResultadoBuscar";
+            this.lstResultadoBuscar.Size = new System.Drawing.Size(284, 157);
+            this.lstResultadoBuscar.TabIndex = 6;
+            this.lstResultadoBuscar.DoubleClick += new System.EventHandler(this.lstResultadoBuscar_DoubleClick);
             // 
-            // lblEdSeleccionar
+            // lblBuscando
             // 
-            this.lblEdSeleccionar.Location = new System.Drawing.Point(6, 24);
-            this.lblEdSeleccionar.Margin = new System.Windows.Forms.Padding(3);
-            this.lblEdSeleccionar.Name = "lblEdSeleccionar";
-            this.lblEdSeleccionar.Size = new System.Drawing.Size(190, 23);
-            this.lblEdSeleccionar.TabIndex = 0;
-            this.lblEdSeleccionar.Text = "Selecciona el grupo a editar:";
-            // 
-            // cboEdGrupos
-            // 
-            this.cboEdGrupos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboEdGrupos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cboEdGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.cboEdGrupos.FormattingEnabled = true;
-            this.cboEdGrupos.Location = new System.Drawing.Point(202, 21);
-            this.cboEdGrupos.Name = "cboEdGrupos";
-            this.cboEdGrupos.Size = new System.Drawing.Size(121, 25);
-            this.cboEdGrupos.TabIndex = 1;
-            // 
-            // lblEdCambiar
-            // 
-            this.lblEdCambiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEdCambiar.Location = new System.Drawing.Point(434, 24);
-            this.lblEdCambiar.Margin = new System.Windows.Forms.Padding(3);
-            this.lblEdCambiar.Name = "lblEdCambiar";
-            this.lblEdCambiar.Size = new System.Drawing.Size(133, 23);
-            this.lblEdCambiar.TabIndex = 3;
-            this.lblEdCambiar.Text = "Cambiar nombre a:";
-            // 
-            // txtEdNombreGrupo
-            // 
-            this.txtEdNombreGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEdNombreGrupo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.txtEdNombreGrupo.Location = new System.Drawing.Point(573, 21);
-            this.txtEdNombreGrupo.Name = "txtEdNombreGrupo";
-            this.txtEdNombreGrupo.Size = new System.Drawing.Size(100, 25);
-            this.txtEdNombreGrupo.TabIndex = 4;
-            // 
-            // btnCambiarNombre
-            // 
-            this.btnCambiarNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCambiarNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.btnCambiarNombre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCambiarNombre.ForeColor = System.Drawing.Color.White;
-            this.btnCambiarNombre.Location = new System.Drawing.Point(679, 18);
-            this.btnCambiarNombre.Name = "btnCambiarNombre";
-            this.btnCambiarNombre.Size = new System.Drawing.Size(84, 29);
-            this.btnCambiarNombre.TabIndex = 5;
-            this.btnCambiarNombre.Text = "Cambiar";
-            this.btnCambiarNombre.UseVisualStyleBackColor = false;
-            this.btnCambiarNombre.Click += new System.EventHandler(this.btnCambiarNombre_Click);
-            // 
-            // btnBorrar
-            // 
-            this.btnBorrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBorrar.ForeColor = System.Drawing.Color.White;
-            this.btnBorrar.Location = new System.Drawing.Point(329, 18);
-            this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(84, 29);
-            this.btnBorrar.TabIndex = 2;
-            this.btnBorrar.Text = "Borrar";
-            this.btnBorrar.UseVisualStyleBackColor = false;
-            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
-            // 
-            // lblEdInfo
-            // 
-            this.lblEdInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEdInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.lblEdInfo.ForeColor = System.Drawing.Color.White;
-            this.lblEdInfo.Location = new System.Drawing.Point(437, 58);
-            this.lblEdInfo.Margin = new System.Windows.Forms.Padding(3);
-            this.lblEdInfo.Name = "lblEdInfo";
-            this.lblEdInfo.Size = new System.Drawing.Size(326, 23);
-            this.lblEdInfo.TabIndex = 6;
-            this.lblEdInfo.Text = "Si indicas un nombre existente, se moverán las notas.";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.cboEdGrupoDestino);
-            this.groupBox2.Controls.Add(this.cboEdGrupoNotas);
-            this.groupBox2.Controls.Add(this.btnMoverNota);
-            this.groupBox2.Controls.Add(this.cboEdNotas);
-            this.groupBox2.Controls.Add(this.lblEdSeleccionarNota);
-            this.groupBox2.Location = new System.Drawing.Point(6, 128);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(757, 71);
-            this.groupBox2.TabIndex = 8;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Editar las notas";
-            // 
-            // btnMoverNota
-            // 
-            this.btnMoverNota.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMoverNota.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.btnMoverNota.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMoverNota.ForeColor = System.Drawing.Color.White;
-            this.btnMoverNota.Location = new System.Drawing.Point(540, 17);
-            this.btnMoverNota.Name = "btnMoverNota";
-            this.btnMoverNota.Size = new System.Drawing.Size(84, 29);
-            this.btnMoverNota.TabIndex = 3;
-            this.btnMoverNota.Text = "Mover a";
-            this.btnMoverNota.UseVisualStyleBackColor = false;
-            this.btnMoverNota.Click += new System.EventHandler(this.btnMoverNota_Click);
-            // 
-            // cboEdNotas
-            // 
-            this.cboEdNotas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblBuscando.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboEdNotas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboEdNotas.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cboEdNotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.cboEdNotas.FormattingEnabled = true;
-            this.cboEdNotas.Location = new System.Drawing.Point(329, 21);
-            this.cboEdNotas.Name = "cboEdNotas";
-            this.cboEdNotas.Size = new System.Drawing.Size(205, 25);
-            this.cboEdNotas.TabIndex = 2;
+            this.lblBuscando.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.lblBuscando.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBuscando.ForeColor = System.Drawing.Color.White;
+            this.lblBuscando.Location = new System.Drawing.Point(6, 182);
+            this.lblBuscando.Margin = new System.Windows.Forms.Padding(3);
+            this.lblBuscando.Name = "lblBuscando";
+            this.lblBuscando.Size = new System.Drawing.Size(480, 23);
+            this.lblBuscando.TabIndex = 4;
+            this.lblBuscando.Text = "Buscando...";
             // 
-            // lblEdSeleccionarNota
+            // lblResultadoBuscar
             // 
-            this.lblEdSeleccionarNota.Location = new System.Drawing.Point(6, 24);
-            this.lblEdSeleccionarNota.Margin = new System.Windows.Forms.Padding(3);
-            this.lblEdSeleccionarNota.Name = "lblEdSeleccionarNota";
-            this.lblEdSeleccionarNota.Size = new System.Drawing.Size(190, 23);
-            this.lblEdSeleccionarNota.TabIndex = 0;
-            this.lblEdSeleccionarNota.Text = "Selecciona la nota a mover:";
-            // 
-            // cboEdGrupoNotas
-            // 
-            this.cboEdGrupoNotas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboEdGrupoNotas.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cboEdGrupoNotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.cboEdGrupoNotas.FormattingEnabled = true;
-            this.cboEdGrupoNotas.Location = new System.Drawing.Point(202, 21);
-            this.cboEdGrupoNotas.Name = "cboEdGrupoNotas";
-            this.cboEdGrupoNotas.Size = new System.Drawing.Size(121, 25);
-            this.cboEdGrupoNotas.TabIndex = 1;
-            this.cboEdGrupoNotas.SelectedIndexChanged += new System.EventHandler(this.cboEdGrupoNotas_SelectedIndexChanged);
-            // 
-            // cboEdGrupoDestino
-            // 
-            this.cboEdGrupoDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboEdGrupoDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboEdGrupoDestino.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cboEdGrupoDestino.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.cboEdGrupoDestino.FormattingEnabled = true;
-            this.cboEdGrupoDestino.Location = new System.Drawing.Point(630, 21);
-            this.cboEdGrupoDestino.Name = "cboEdGrupoDestino";
-            this.cboEdGrupoDestino.Size = new System.Drawing.Size(121, 25);
-            this.cboEdGrupoDestino.TabIndex = 4;
-            // 
-            // btnClasificarGrupos
-            // 
-            this.btnClasificarGrupos.AutoSize = true;
-            this.btnClasificarGrupos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.btnClasificarGrupos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClasificarGrupos.ForeColor = System.Drawing.Color.White;
-            this.btnClasificarGrupos.Location = new System.Drawing.Point(184, 52);
-            this.btnClasificarGrupos.Name = "btnClasificarGrupos";
-            this.btnClasificarGrupos.Size = new System.Drawing.Size(139, 29);
-            this.btnClasificarGrupos.TabIndex = 7;
-            this.btnClasificarGrupos.Text = "Clasificar los grupos";
-            this.btnClasificarGrupos.UseVisualStyleBackColor = false;
-            this.btnClasificarGrupos.Click += new System.EventHandler(this.btnClasificarGrupos_Click);
+            this.lblResultadoBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblResultadoBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.lblResultadoBuscar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResultadoBuscar.ForeColor = System.Drawing.Color.White;
+            this.lblResultadoBuscar.Location = new System.Drawing.Point(492, 18);
+            this.lblResultadoBuscar.Margin = new System.Windows.Forms.Padding(3);
+            this.lblResultadoBuscar.Name = "lblResultadoBuscar";
+            this.lblResultadoBuscar.Size = new System.Drawing.Size(284, 23);
+            this.lblResultadoBuscar.TabIndex = 5;
+            this.lblResultadoBuscar.Text = "Resultado de la búsqueda:";
             // 
             // FormNotasUC
             // 
@@ -546,6 +713,7 @@ namespace gsNotasNETF
             this.Text = "gsNotasNETF - Gestionar notas y grupos de notas usando NotaUC";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormNotasUC_FormClosing);
             this.Load += new System.EventHandler(this.FormNotasUC_Load);
+            this.Resize += new System.EventHandler(this.FormNotasUC_Resize);
             this.NotasFlowLayoutPanel.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -555,6 +723,10 @@ namespace gsNotasNETF
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.contextNotify.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -592,6 +764,20 @@ namespace gsNotasNETF
         private System.Windows.Forms.Label lblEdSeleccionarNota;
         private System.Windows.Forms.Label lblEdInfo;
         private System.Windows.Forms.Button btnClasificarGrupos;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ContextMenuStrip contextNotify;
+        private System.Windows.Forms.ToolStripMenuItem MnuNotifyRestaurar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem MnuNotifyCerrar;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.TextBox txtBuscar;
+        private System.Windows.Forms.Label lblBuscar;
+        private System.Windows.Forms.ListBox lstResultadoBuscar;
+        private System.Windows.Forms.CheckBox chkBuscarEnGrupoActual;
+        private System.Windows.Forms.Label lblBuscando;
+        private System.Windows.Forms.Label lblResultadoBuscar;
     }
 }
 

@@ -205,7 +205,7 @@ namespace gsNotasNETF
             this.MnuLeer.Name = "MnuLeer";
             this.MnuLeer.ShortcutKeyDisplayString = "Ctrl+L";
             this.MnuLeer.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-            this.MnuLeer.Size = new System.Drawing.Size(220, 22);
+            this.MnuLeer.Size = new System.Drawing.Size(195, 22);
             this.MnuLeer.Text = "Leer notas";
             this.MnuLeer.Click += new System.EventHandler(this.MnuLeer_Click);
             // 
@@ -213,10 +213,9 @@ namespace gsNotasNETF
             // 
             this.MnuGuardar.Image = ((System.Drawing.Image)(resources.GetObject("MnuGuardar.Image")));
             this.MnuGuardar.Name = "MnuGuardar";
-            this.MnuGuardar.ShortcutKeyDisplayString = "Ctrl+Shift+S";
-            this.MnuGuardar.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.S)));
-            this.MnuGuardar.Size = new System.Drawing.Size(220, 22);
+            this.MnuGuardar.ShortcutKeyDisplayString = "F9";
+            this.MnuGuardar.ShortcutKeys = System.Windows.Forms.Keys.F9;
+            this.MnuGuardar.Size = new System.Drawing.Size(195, 22);
             this.MnuGuardar.Text = "Guardar notas";
             this.MnuGuardar.ToolTipText = "Guarda las notas\r\nTambién pulsando F9";
             this.MnuGuardar.Click += new System.EventHandler(this.MnuGuardar_Click);
@@ -378,12 +377,14 @@ namespace gsNotasNETF
             this.txtEdit.TabIndex = 0;
             this.txtEdit.Text = "";
             this.txtEdit.SelectionChanged += new System.EventHandler(this.txtEdit_SelectionChanged);
+            this.txtEdit.TextChanged += new System.EventHandler(this.txtEdit_TextChanged);
             this.txtEdit.Enter += new System.EventHandler(this.txtEdit_Enter);
             this.txtEdit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEdit_KeyDown);
             this.txtEdit.Leave += new System.EventHandler(this.txtEdit_Leave);
             // 
             // NotaUC
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
@@ -395,7 +396,9 @@ namespace gsNotasNETF
             this.Padding = new System.Windows.Forms.Padding(2);
             this.Size = new System.Drawing.Size(500, 300);
             this.Load += new System.EventHandler(this.NotaUC_Load);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.NotaUC_KeyUp);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.NotaUC_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.NotaUC_DragEnter);
+            this.DragOver += new System.Windows.Forms.DragEventHandler(this.NotaUC_DragOver);
             this.panelCabecera.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

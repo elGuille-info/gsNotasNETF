@@ -63,6 +63,12 @@ namespace gsNotasNETF
 
         private void FormNotasUC_Load(object sender, EventArgs e)
         {
+            // Usar un icono de notificación en la barra de tarea
+            notifyIcon1.Text = Application.ProductName;
+            MnuNotifyRestaurar.Text = "Minimizar";
+            notifyIcon1.Icon = this.Icon;
+            notifyIcon1.Visible = true;
+
             if (Properties.Settings.Default.Tema == "Claro")
                 notaUC1.Tema = Temas.Claro;
             else
@@ -83,6 +89,9 @@ namespace gsNotasNETF
 
             //// para que la primera etiqueta se ponga más grande
             //LblNota_Click(LblNota, null);
+
+            lblBuscando.Text = "";
+            lstResultadoBuscar.Items.Clear();
 
             notaUC1.LeerNotas();
         }
@@ -216,6 +225,9 @@ namespace gsNotasNETF
 
             // Esto se dará cuando se cree un nuevo grupo
             if (ElGrupoIndex < 0)
+                return;
+
+            if (!notaUC1.Notas.ContainsKey(grupo))
                 return;
 
             // Poner color aleatorio a cada grupo
@@ -419,15 +431,19 @@ namespace gsNotasNETF
 
         private void notaUC1_CambioDeTema(Temas tema)
         {
-            this.BackColor = tabPage1.BackColor = tabPage2.BackColor = tabPage3.BackColor = notaUC1.BackColor;
-            this.ForeColor = tabPage1.ForeColor = tabPage2.ForeColor = tabPage3.ForeColor = notaUC1.ForeColor;
+            // Esta forma de asignación múltiple de un valor me gusta :-)
+            this.BackColor = tabPage1.BackColor = tabPage2.BackColor = tabPage3.BackColor = tabPage4.BackColor = notaUC1.BackColor;
+            this.ForeColor = tabPage1.ForeColor = tabPage2.ForeColor = tabPage3.ForeColor = tabPage4.ForeColor = notaUC1.ForeColor;
             // Los colores de la tercera ficha
             lblEdSeleccionar.BackColor = lblEdCambiar.BackColor = lblEdSeleccionarNota.BackColor = notaUC1.BackColor;
             lblEdSeleccionar.ForeColor = lblEdCambiar.ForeColor = lblEdSeleccionarNota.ForeColor = notaUC1.ForeColor;
             cboEdGrupoDestino.BackColor = txtEdNombreGrupo.BackColor = cboEdGrupoNotas.BackColor = cboEdGrupos.BackColor = cboEdNotas.BackColor = notaUC1.BackColor;
             cboEdGrupoDestino.ForeColor = txtEdNombreGrupo.ForeColor = cboEdGrupoNotas.ForeColor = cboEdGrupos.ForeColor = cboEdNotas.ForeColor = notaUC1.ForeColor;
-            lblEdInfo.BackColor = btnClasificarGrupos.BackColor = btnBorrar.BackColor = btnCambiarNombre.BackColor = btnMoverNota.BackColor = notaUC1.ForeColor;
-            lblEdInfo.ForeColor = btnClasificarGrupos.ForeColor = btnBorrar.ForeColor = btnCambiarNombre.ForeColor = btnMoverNota.ForeColor = notaUC1.BackColor;
+            lblBuscar.BackColor = txtBuscar.BackColor = chkBuscarEnGrupoActual.BackColor = lstResultadoBuscar.BackColor = notaUC1.BackColor;
+            lblBuscar.ForeColor = txtBuscar.ForeColor = chkBuscarEnGrupoActual.ForeColor = lstResultadoBuscar.ForeColor = notaUC1.ForeColor;
+            // Colores invertidos
+            lblEdInfo.BackColor = lblResultadoBuscar.BackColor = lblBuscando.BackColor = btnBuscar.BackColor = btnClasificarGrupos.BackColor = btnBorrar.BackColor = btnCambiarNombre.BackColor = btnMoverNota.BackColor = notaUC1.ForeColor;
+            lblEdInfo.ForeColor = lblResultadoBuscar.ForeColor = lblBuscando.ForeColor = btnBuscar.ForeColor = btnClasificarGrupos.ForeColor = btnBorrar.ForeColor = btnCambiarNombre.ForeColor = btnMoverNota.ForeColor = notaUC1.BackColor;
         }
 
         private void notaUC1_MenuCerrar(string mensaje)
@@ -558,6 +574,103 @@ namespace gsNotasNETF
             notaUC1.AsignarGrupos();
             iniciando = false;
             tabControl1_SelectedIndexChanged(null, null);
+        }
+
+        private void MnuNotifyRestaurar_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                MnuNotifyRestaurar.Text = "Restaurar";
+                this.WindowState = FormWindowState.Minimized;
+            }
+            else
+            {
+                MnuNotifyRestaurar.Text = "Minimizar";
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void MnuNotifyCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void FormNotasUC_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+                MnuNotifyRestaurar.Text = "Minimizar";
+            else
+                MnuNotifyRestaurar.Text = "Restaurar";
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            var buscar = txtBuscar.Text;
+            if (string.IsNullOrWhiteSpace(buscar))
+            {
+                lblBuscando.Text = "Debes indicar un texto válido a buscar.";
+                txtBuscar.Focus();
+                return;
+            }
+            bool hallado = false;
+
+            btnBuscar.Enabled = false;
+            lblBuscando.Text = "Buscando...";
+            Application.DoEvents();
+            var grupo = notaUC1.ComboGrupos.Text;
+            lstResultadoBuscar.Items.Clear();
+            if (chkBuscarEnGrupoActual.Checked)
+            {
+                for (var i = 0; i < notaUC1.Notas[grupo].Count; i++)
+                {
+                    if (notaUC1.Notas[grupo][i].IndexOf(buscar, StringComparison.InvariantCultureIgnoreCase) > -1)
+                    {
+                        var index = lstResultadoBuscar.Items.Add(notaUC1.Notas[grupo][i]);
+                        lstResultadoBuscar.Items[index] = $"{grupo} @ {i}";
+                        hallado = true;
+                    }
+                }
+            }
+            else
+            {
+                foreach (var g in notaUC1.Notas.Keys)
+                {
+                    for (var i = 0; i < notaUC1.Notas[g].Count; i++)
+                    {
+                        if (notaUC1.Notas[g][i].IndexOf(buscar, StringComparison.InvariantCultureIgnoreCase) > -1)
+                        {
+                            var index = lstResultadoBuscar.Items.Add(notaUC1.Notas[g][i]);
+                            lstResultadoBuscar.Items[index] = $"{g} @ {i}";
+                            hallado = true;
+                        }
+                    }
+                }
+            }
+            if (!hallado)
+                lblBuscando.Text = "No se ha encontrado lo que se buscaba.";
+            else
+                lblBuscando.Text = $"Halladas {lstResultadoBuscar.Items.Count} coincidencias.";
+            btnBuscar.Enabled = true;
+            Application.DoEvents();
+        }
+
+        private void lstResultadoBuscar_DoubleClick(object sender, EventArgs e)
+        {
+            // al hacer doble-click en el listbox, mostrar esa nota
+            if (lstResultadoBuscar.Items.Count == 0)
+                return;
+
+            var s = lstResultadoBuscar.SelectedItem.ToString();
+            // el formato es: grupo @ índice
+            var i = s.IndexOf("@");
+            if (i == -1) return;
+            var grupo = s.Substring(0, i - 1);
+            var index =-1;
+            int.TryParse(s.Substring(i + 2), out index);
+            if (index == -1) return;
+
+            notaUC1.ComboGrupos.Text = grupo;
+            notaUC1.Seleccionar(index, true);
         }
     }
 }
