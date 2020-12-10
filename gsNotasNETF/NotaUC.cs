@@ -1014,11 +1014,17 @@ namespace gsNotasNETF
         public void Seleccionar(int index, bool esNota)
         {
             if (index > -1)
-            { 
-                if(esNota)
-                    ComboNotas.SelectedIndex = index;
+            {
+                if (esNota)
+                {
+                    if (ComboNotas.Items.Count > 0)
+                        ComboNotas.SelectedIndex = index;
+                }
                 else
-                    ComboGrupos.SelectedIndex = index;
+                {
+                    if (ComboGrupos.Items.Count > 0)
+                        ComboGrupos.SelectedIndex = index;
+                }
             }
         }
 

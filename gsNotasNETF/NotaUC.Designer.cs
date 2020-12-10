@@ -56,10 +56,10 @@ namespace gsNotasNETF
             this.MnuAñadirNota = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.MnuAcercaDE = new System.Windows.Forms.ToolStripMenuItem();
-            this.panelEditor = new System.Windows.Forms.Panel();
-            this.txtEdit = new System.Windows.Forms.RichTextBox();
             this.MnuCerrarSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.MnuCerrar = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelEditor = new System.Windows.Forms.Panel();
+            this.txtEdit = new System.Windows.Forms.RichTextBox();
             this.panelCabecera.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -156,7 +156,7 @@ namespace gsNotasNETF
             // 
             this.statusInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.statusInfo.Name = "statusInfo";
-            this.statusInfo.Size = new System.Drawing.Size(349, 17);
+            this.statusInfo.Size = new System.Drawing.Size(308, 17);
             this.statusInfo.Spring = true;
             this.statusInfo.Text = "ToolStripStatusLabel1";
             this.statusInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -195,7 +195,7 @@ namespace gsNotasNETF
             this.statusInfoTecla.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.statusInfoTecla.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.statusInfoTecla.Name = "statusInfoTecla";
-            this.statusInfoTecla.Size = new System.Drawing.Size(60, 20);
+            this.statusInfoTecla.Size = new System.Drawing.Size(70, 20);
             this.statusInfoTecla.Text = "Shift+F8";
             this.statusInfoTecla.ToolTipText = "Opciones rápidas";
             // 
@@ -242,7 +242,7 @@ namespace gsNotasNETF
             this.MnuTemaClaro.CheckOnClick = true;
             this.MnuTemaClaro.Image = ((System.Drawing.Image)(resources.GetObject("MnuTemaClaro.Image")));
             this.MnuTemaClaro.Name = "MnuTemaClaro";
-            this.MnuTemaClaro.Size = new System.Drawing.Size(180, 22);
+            this.MnuTemaClaro.Size = new System.Drawing.Size(112, 22);
             this.MnuTemaClaro.Text = "Claro";
             this.MnuTemaClaro.Click += new System.EventHandler(this.MnuTemaClaro_Click);
             // 
@@ -251,7 +251,7 @@ namespace gsNotasNETF
             this.MnuTemaOscuro.CheckOnClick = true;
             this.MnuTemaOscuro.Image = ((System.Drawing.Image)(resources.GetObject("MnuTemaOscuro.Image")));
             this.MnuTemaOscuro.Name = "MnuTemaOscuro";
-            this.MnuTemaOscuro.Size = new System.Drawing.Size(180, 22);
+            this.MnuTemaOscuro.Size = new System.Drawing.Size(112, 22);
             this.MnuTemaOscuro.Text = "Oscuro";
             this.MnuTemaOscuro.Click += new System.EventHandler(this.MnuTemaOscuro_Click);
             // 
@@ -345,6 +345,19 @@ namespace gsNotasNETF
             this.MnuAcercaDE.Text = "Acerca de...";
             this.MnuAcercaDE.Click += new System.EventHandler(this.MnuAcercaDe_Click);
             // 
+            // MnuCerrarSeparator
+            // 
+            this.MnuCerrarSeparator.Name = "MnuCerrarSeparator";
+            this.MnuCerrarSeparator.Size = new System.Drawing.Size(217, 6);
+            // 
+            // MnuCerrar
+            // 
+            this.MnuCerrar.Image = ((System.Drawing.Image)(resources.GetObject("MnuCerrar.Image")));
+            this.MnuCerrar.Name = "MnuCerrar";
+            this.MnuCerrar.Size = new System.Drawing.Size(220, 22);
+            this.MnuCerrar.Text = "Cerrar";
+            this.MnuCerrar.Click += new System.EventHandler(this.MnuCerrar_Click);
+            // 
             // panelEditor
             // 
             this.panelEditor.BackColor = System.Drawing.Color.White;
@@ -368,19 +381,6 @@ namespace gsNotasNETF
             this.txtEdit.Enter += new System.EventHandler(this.txtEdit_Enter);
             this.txtEdit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEdit_KeyDown);
             this.txtEdit.Leave += new System.EventHandler(this.txtEdit_Leave);
-            // 
-            // MnuCerrarSeparator
-            // 
-            this.MnuCerrarSeparator.Name = "MnuCerrarSeparator";
-            this.MnuCerrarSeparator.Size = new System.Drawing.Size(217, 6);
-            // 
-            // MnuCerrar
-            // 
-            this.MnuCerrar.Image = ((System.Drawing.Image)(resources.GetObject("MnuCerrar.Image")));
-            this.MnuCerrar.Name = "MnuCerrar";
-            this.MnuCerrar.Size = new System.Drawing.Size(220, 22);
-            this.MnuCerrar.Text = "Cerrar";
-            this.MnuCerrar.Click += new System.EventHandler(this.MnuCerrar_Click);
             // 
             // NotaUC
             // 

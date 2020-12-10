@@ -419,13 +419,145 @@ namespace gsNotasNETF
 
         private void notaUC1_CambioDeTema(Temas tema)
         {
-            this.BackColor = tabPage1.BackColor = tabPage2.BackColor = notaUC1.BackColor;
-            this.ForeColor = tabPage1.ForeColor = tabPage2.ForeColor = notaUC1.ForeColor;
+            this.BackColor = tabPage1.BackColor = tabPage2.BackColor = tabPage3.BackColor = notaUC1.BackColor;
+            this.ForeColor = tabPage1.ForeColor = tabPage2.ForeColor = tabPage3.ForeColor = notaUC1.ForeColor;
+            // Los colores de la tercera ficha
+            lblEdSeleccionar.BackColor = lblEdCambiar.BackColor = lblEdSeleccionarNota.BackColor = notaUC1.BackColor;
+            lblEdSeleccionar.ForeColor = lblEdCambiar.ForeColor = lblEdSeleccionarNota.ForeColor = notaUC1.ForeColor;
+            cboEdGrupoDestino.BackColor = txtEdNombreGrupo.BackColor = cboEdGrupoNotas.BackColor = cboEdGrupos.BackColor = cboEdNotas.BackColor = notaUC1.BackColor;
+            cboEdGrupoDestino.ForeColor = txtEdNombreGrupo.ForeColor = cboEdGrupoNotas.ForeColor = cboEdGrupos.ForeColor = cboEdNotas.ForeColor = notaUC1.ForeColor;
+            lblEdInfo.BackColor = btnClasificarGrupos.BackColor = btnBorrar.BackColor = btnCambiarNombre.BackColor = btnMoverNota.BackColor = notaUC1.ForeColor;
+            lblEdInfo.ForeColor = btnClasificarGrupos.ForeColor = btnBorrar.ForeColor = btnCambiarNombre.ForeColor = btnMoverNota.ForeColor = notaUC1.BackColor;
         }
 
         private void notaUC1_MenuCerrar(string mensaje)
         {
             this.Close();
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            // Eliminar el grupo seleccionado
+            var grupo = cboEdGrupos.Text;
+            if (MessageBox.Show($"¿Quieres eliminar el grupo '{grupo}' y todo su contenido?", "Eliminar grupo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+            iniciando = true;
+            //notaUC1.Notas[grupo].RemoveRange(0, notaUC1.Notas[grupo].Count);
+            notaUC1.Notas.Remove(grupo);
+            cboEdGrupos.Items.Clear();
+            foreach (var g in notaUC1.Notas.Keys)
+            {
+                cboEdGrupos.Items.Add(g);
+            }
+            iniciando = false;
+
+            notaUC1.AsignarGrupos();
+            tabControl1_SelectedIndexChanged(null, null);
+        }
+
+        private void btnCambiarNombre_Click(object sender, EventArgs e)
+        {
+            iniciando = true;
+
+            // Cambiar el nombre del grupo
+            var grupo = cboEdGrupos.Text;
+            var nuevoGrupo = txtEdNombreGrupo.Text;
+            // Si ese nombre existe, se copiarán los datos y se eliminará el seleccionado
+            // si no existe, se crea el grupo y se copian los datos
+            // después se eliminan las notas del grupo de origen
+            if (!notaUC1.Notas.ContainsKey(nuevoGrupo))
+                notaUC1.Notas.Add(nuevoGrupo, new List<string>());
+
+            notaUC1.Notas[nuevoGrupo].AddRange(notaUC1.Notas[grupo]);
+            //notaUC1.Notas[grupo].RemoveRange(0, notaUC1.Notas[grupo].Count);
+            notaUC1.Notas.Remove(grupo);
+
+            cboEdGrupos.Items.Clear();
+            foreach (var g in notaUC1.Notas.Keys)
+            {
+                cboEdGrupos.Items.Add(g);
+            }
+            iniciando = false;
+            notaUC1.AsignarGrupos();
+            tabControl1_SelectedIndexChanged(null, null);
+        }
+
+        private void btnMoverNota_Click(object sender, EventArgs e)
+        {
+            iniciando = true;
+            var laNota = cboEdNotas.Text;
+            var index = cboEdNotas.SelectedIndex;
+            var grupoDestino = cboEdGrupoDestino.Text;
+            var grupo = cboEdGrupoNotas.Text;
+            notaUC1.Notas[grupoDestino].Add(laNota);
+            notaUC1.Notas[grupo].RemoveAt(index);
+            iniciando = false;
+            notaUC1.AsignarGrupos();
+            
+            tabControl1_SelectedIndexChanged(null, null);
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex != 2) return;
+            if (!notaUC1.Notas.Keys.Any()) return;
+
+            // Llenar los grupos
+            iniciando = true;
+            cboEdGrupoDestino.Items.Clear();
+            cboEdGrupoNotas.Items.Clear();
+            cboEdGrupos.Items.Clear();
+            cboEdNotas.Items.Clear();
+            foreach(var g in notaUC1.Notas.Keys)
+            {
+                cboEdGrupoDestino.Items.Add(g);
+                cboEdGrupoNotas.Items.Add(g);
+                cboEdGrupos.Items.Add(g);
+            }
+            iniciando = false;
+            cboEdGrupoDestino.SelectedIndex = 0;
+            cboEdGrupoNotas.SelectedIndex = 0;
+            cboEdGrupos.SelectedIndex = 0;
+        }
+
+        private bool iniciando;
+
+        private void cboEdGrupoNotas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (iniciando) return;
+
+            iniciando = true;
+
+            cboEdNotas.Items.Clear();
+            var g = cboEdGrupoNotas.SelectedItem.ToString();
+            for (var i = 0; i < notaUC1.Notas[g].Count; i++)
+                cboEdNotas.Items.Add(notaUC1.Notas[g][i]);
+
+            iniciando = false;
+
+            if (cboEdNotas.Items.Count > 0)
+                cboEdNotas.SelectedIndex = 0;
+        }
+
+        private void btnClasificarGrupos_Click(object sender, EventArgs e)
+        {
+            iniciando = true;
+
+            var col = new List<string>();
+            foreach (var g in notaUC1.Notas.Keys)
+                col.Add(g);
+
+            col.Sort();
+            var dic = new Dictionary<string,List<string>>();
+            for (var i = 0; i < col.Count; i++)
+                dic.Add(col[i], notaUC1.Notas[col[i]]);
+
+            notaUC1.Notas.Clear();
+            notaUC1.Notas = dic;
+
+            notaUC1.AsignarGrupos();
+            iniciando = false;
+            tabControl1_SelectedIndexChanged(null, null);
         }
     }
 }
