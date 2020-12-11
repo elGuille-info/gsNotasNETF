@@ -5,13 +5,13 @@
  >El **NETF** del nombre es para indicar que está compilado con .NET Framework y no con .NET (Core)
  
  Si quieres ir a la página en mi blog: [gsNotasNETF](http://www.elguillemola.com/utilidades-net/utilidades-para-net-framework-4-8/gsnotasnetf/)
- 
  <br>
+ 
  ## Actualizaciones
  Hay varias actualizaciones desde que publiqué esto por primera vez.
  Ahora estoy haciendo **releases** con cada nueva versión, incluyendo tanto el ejecutable como el código fuente (aparte del código fuente aquí publicado).
- 
  <br>
+  
   ## Nota sobre la versión de C# usada y cómo configurar los proyectos de .NET Framework para que use la última
  
  Código escrito con C# 9.0 y Visual Studio 2019 copn .NET Framework 4.8
