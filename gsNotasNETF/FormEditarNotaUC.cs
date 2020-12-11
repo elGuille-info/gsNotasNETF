@@ -2,7 +2,7 @@
 // <Nombre>                                                         (09/Dic/20)
 // <descripción>
 //
-// (c) Guillermo (elGuille) Som, 2020
+// (c) Guillermo Som (elGuille), 2020
 //-----------------------------------------------------------------------------
 
 using System;

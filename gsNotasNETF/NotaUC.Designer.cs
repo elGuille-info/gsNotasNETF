@@ -156,7 +156,7 @@ namespace gsNotasNETF
             // 
             this.statusInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.statusInfo.Name = "statusInfo";
-            this.statusInfo.Size = new System.Drawing.Size(308, 17);
+            this.statusInfo.Size = new System.Drawing.Size(339, 17);
             this.statusInfo.Spring = true;
             this.statusInfo.Text = "ToolStripStatusLabel1";
             this.statusInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -223,7 +223,7 @@ namespace gsNotasNETF
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(217, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(192, 6);
             // 
             // MnuTemas
             // 
@@ -232,7 +232,7 @@ namespace gsNotasNETF
             this.MnuTemaOscuro});
             this.MnuTemas.Image = ((System.Drawing.Image)(resources.GetObject("MnuTemas.Image")));
             this.MnuTemas.Name = "MnuTemas";
-            this.MnuTemas.Size = new System.Drawing.Size(220, 22);
+            this.MnuTemas.Size = new System.Drawing.Size(195, 22);
             this.MnuTemas.Text = "Tema";
             this.MnuTemas.DropDownOpening += new System.EventHandler(this.MnuTemas_DropDownOpening);
             // 
@@ -257,7 +257,7 @@ namespace gsNotasNETF
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(217, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(192, 6);
             // 
             // MnuNuevoGrupo
             // 
@@ -265,7 +265,7 @@ namespace gsNotasNETF
             this.MnuNuevoGrupo.Name = "MnuNuevoGrupo";
             this.MnuNuevoGrupo.ShortcutKeyDisplayString = "Ctrl+G";
             this.MnuNuevoGrupo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
-            this.MnuNuevoGrupo.Size = new System.Drawing.Size(220, 22);
+            this.MnuNuevoGrupo.Size = new System.Drawing.Size(195, 22);
             this.MnuNuevoGrupo.Text = "Nuevo Grupo";
             this.MnuNuevoGrupo.ToolTipText = "Escribe el nuevo nombre del grupo y pulsa ENTER";
             this.MnuNuevoGrupo.Click += new System.EventHandler(this.MnuNuevoGrupo_Click);
@@ -273,7 +273,7 @@ namespace gsNotasNETF
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(217, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(192, 6);
             // 
             // MnuClasificar
             // 
@@ -281,7 +281,7 @@ namespace gsNotasNETF
             this.MnuClasificar.Name = "MnuClasificar";
             this.MnuClasificar.ShortcutKeyDisplayString = "F5";
             this.MnuClasificar.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.MnuClasificar.Size = new System.Drawing.Size(220, 22);
+            this.MnuClasificar.Size = new System.Drawing.Size(195, 22);
             this.MnuClasificar.Text = "Clasificar las notas";
             this.MnuClasificar.ToolTipText = "Clasifica las notas del grupo seleccionado";
             this.MnuClasificar.Click += new System.EventHandler(this.MnuClasificar_Click);
@@ -289,7 +289,7 @@ namespace gsNotasNETF
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(217, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(192, 6);
             // 
             // MnuEliminarNota
             // 
@@ -297,7 +297,7 @@ namespace gsNotasNETF
             this.MnuEliminarNota.Name = "MnuEliminarNota";
             this.MnuEliminarNota.ShortcutKeyDisplayString = "F6";
             this.MnuEliminarNota.ShortcutKeys = System.Windows.Forms.Keys.F6;
-            this.MnuEliminarNota.Size = new System.Drawing.Size(220, 22);
+            this.MnuEliminarNota.Size = new System.Drawing.Size(195, 22);
             this.MnuEliminarNota.Text = "Eliminar nota";
             this.MnuEliminarNota.ToolTipText = "Elimina la nota actual";
             this.MnuEliminarNota.Click += new System.EventHandler(this.MnuEliminarNota_Click);
@@ -305,7 +305,7 @@ namespace gsNotasNETF
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(217, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(192, 6);
             // 
             // MnuSustituirNota
             // 
@@ -313,7 +313,7 @@ namespace gsNotasNETF
             this.MnuSustituirNota.Name = "MnuSustituirNota";
             this.MnuSustituirNota.ShortcutKeyDisplayString = "Shift+F8";
             this.MnuSustituirNota.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.F8)));
-            this.MnuSustituirNota.Size = new System.Drawing.Size(220, 22);
+            this.MnuSustituirNota.Size = new System.Drawing.Size(195, 22);
             this.MnuSustituirNota.Text = "Sustituir nota";
             this.MnuSustituirNota.ToolTipText = "Sustituye la nota seleccionada con el texto actual";
             this.MnuSustituirNota.Click += new System.EventHandler(this.MnuSustituirNota_Click);
@@ -324,7 +324,7 @@ namespace gsNotasNETF
             this.MnuAñadirNota.Name = "MnuAñadirNota";
             this.MnuAñadirNota.ShortcutKeyDisplayString = "F8";
             this.MnuAñadirNota.ShortcutKeys = System.Windows.Forms.Keys.F8;
-            this.MnuAñadirNota.Size = new System.Drawing.Size(220, 22);
+            this.MnuAñadirNota.Size = new System.Drawing.Size(195, 22);
             this.MnuAñadirNota.Text = "Añadir nota";
             this.MnuAñadirNota.ToolTipText = "Añade el texto actual como nueva nota";
             this.MnuAñadirNota.Click += new System.EventHandler(this.MnuAñadirNota_Click);
@@ -332,7 +332,7 @@ namespace gsNotasNETF
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(217, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(192, 6);
             // 
             // MnuAcercaDE
             // 
@@ -340,20 +340,20 @@ namespace gsNotasNETF
             this.MnuAcercaDE.Name = "MnuAcercaDE";
             this.MnuAcercaDE.ShortcutKeyDisplayString = "F1";
             this.MnuAcercaDE.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.MnuAcercaDE.Size = new System.Drawing.Size(220, 22);
+            this.MnuAcercaDE.Size = new System.Drawing.Size(195, 22);
             this.MnuAcercaDE.Text = "Acerca de...";
             this.MnuAcercaDE.Click += new System.EventHandler(this.MnuAcercaDe_Click);
             // 
             // MnuCerrarSeparator
             // 
             this.MnuCerrarSeparator.Name = "MnuCerrarSeparator";
-            this.MnuCerrarSeparator.Size = new System.Drawing.Size(217, 6);
+            this.MnuCerrarSeparator.Size = new System.Drawing.Size(192, 6);
             // 
             // MnuCerrar
             // 
             this.MnuCerrar.Image = ((System.Drawing.Image)(resources.GetObject("MnuCerrar.Image")));
             this.MnuCerrar.Name = "MnuCerrar";
-            this.MnuCerrar.Size = new System.Drawing.Size(220, 22);
+            this.MnuCerrar.Size = new System.Drawing.Size(195, 22);
             this.MnuCerrar.Text = "Cerrar";
             this.MnuCerrar.Click += new System.EventHandler(this.MnuCerrar_Click);
             // 
@@ -418,7 +418,6 @@ namespace gsNotasNETF
         private System.Windows.Forms.ToolStripStatusLabel statusInfoPos;
         private System.Windows.Forms.ToolStripSplitButton statusInfoTecla;
         private System.Windows.Forms.Panel panelEditor;
-        private System.Windows.Forms.RichTextBox txtEdit;
         private System.Windows.Forms.ToolStripMenuItem MnuGuardar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem MnuClasificar;
@@ -441,5 +440,6 @@ namespace gsNotasNETF
         private System.Windows.Forms.ToolStripMenuItem MnuTemaOscuro;
         private System.Windows.Forms.ToolStripSeparator MnuCerrarSeparator;
         private System.Windows.Forms.ToolStripMenuItem MnuCerrar;
+        internal System.Windows.Forms.RichTextBox txtEdit;
     }
 }

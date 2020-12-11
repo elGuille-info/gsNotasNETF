@@ -1,8 +1,27 @@
 ﻿//-----------------------------------------------------------------------------
 // Para definir los delegados                                       (09/Dic/20)
+// Y otras cosas, como enumeraciones, métodos de extensión, etc.
 //
+/* 
+    Para poder usar el C# 9.0 (por defecto en .NET Framework se usa el 7.3)
+    hay que añadir esto en el fichero del proyecto:
+    <PropertyGroup>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+
+    Y para usar init en las propiedades, añadir esto después del espacio de nombres normal
+    o mejor en clase aparte.
+    Si se añade antes de la definición del namespace del formulario,
+    el diseñador de Windows Forms se hace un lío y define ese espacio de nombres en Form1.Designer.cs
+    en lugar del espacio de nombres del proyecto.
+
+    namespace System.Runtime.CompilerServices
+    {
+        public class IsExternalInit { }
+    }
+*/
 //
-// (c) Guillermo (elGuille) Som, 2020
+// (c) Guillermo Som (elGuille), 2020
 //-----------------------------------------------------------------------------
 
 using System;

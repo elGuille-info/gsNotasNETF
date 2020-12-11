@@ -2,26 +2,23 @@
 // FormNotaUC                                                       (05/Dic/20)
 // Formulario para manejar las notas
 //
-// (c) Guillermo (elGuille) Som, 2020
+// (c) Guillermo Som (elGuille), 2020
 //-----------------------------------------------------------------------------
+/* Versiones y cambios
+v1.0.0.0    05-dic-20   Primera versión.
+v1.0.0.40   09-dic-20   Última versión con los dos controles de usuario.
+                        Ver: https://github.com/elGuille-info/gsNotasNETF/releases/tag/1.0.0.40
+v1.0.0.78   10-dic-20   Quito el control CabeceraNotaUC y otras opciones
+                        Ver: https://github.com/elGuille-info/gsNotasNETF/releases/tag/v1.0.0.78
+v1.0.0.98   10-dic-20   Editar notas y grupos.
+                        Ver: https://github.com/elGuille-info/gsNotasNETF/releases/tag/v1.0.0.98
+v1.0.0.109  10-dic-20   Drag & drop, buscar texto, icono de notificación
+                        Ver: https://github.com/elGuille-info/gsNotasNETF/releases/tag/v1.0.0.109
+v1.0.0.111  11-dic-20   Opciones de configuración
+v1.0.0.112              Las opciones de configuración están efectivas
+                        Salvo las de AutoGuardar y NoGuardarEnBlanco
 
-/* 
-    Para poder usar el C# 9.0 (por defecto en .NET Framework se usa el 7.3)
-    hay que añadir esto en el fichero del proyecto:
-    <PropertyGroup>
-        <LangVersion>latest</LangVersion>
-    </PropertyGroup>
-    Y para usar init en las propiedades, añadir esto después del espacio de nombres normal
-    o mejor en clase aparte.
-    Si se añade antes de la definición del namespace del formulario,
-    el diseñador de Windows Forms se hace un lío y define ese espacio de nombres en Form1.Designer.cs
-    en lugar del espacio de nombres del proyecto.
-    namespace System.Runtime.CompilerServices
-    {
-        public class IsExternalInit { }
-    }
 */
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,7 +36,46 @@ namespace gsNotasNETF
 {
     public partial class FormNotasUC : Form
     {
-        private readonly string[] noAsignar;
+        /// <summary>
+        /// Acceso a los datos de configuración.
+        /// </summary>
+        private Properties.Settings MySetting = Properties.Settings.Default;
+        /// <summary>
+        /// Array con los controles a no asignar cuando se permite cambiar el tamaño y posición.
+        /// </summary>
+        private readonly string[] NoAsignar;
+        /// <summary>
+        /// Para controlar que no re-entre en un método de evento.
+        /// </summary>
+        private bool iniciando = true;
+        /// <summary>
+        /// Colección con las notas del grupo seleccionado. 
+        /// A mostrar en la ficha Notas.
+        /// </summary>
+        private readonly List<Label> CtrlNotas = new List<Label>();
+        /// <summary>
+        /// Colección con los grupos mostrados en la ficha de Grupos.
+        /// </summary>
+        private readonly List<Label> CtrlGrupos = new List<Label>();
+        /// <summary>
+        /// El grupo seleccionado del combo.
+        /// </summary>
+        private string ElGrupo;
+        /// <summary>
+        /// El índice del grupo seleccionado.
+        /// </summary>
+        private int ElGrupoIndex;
+        /// <summary>
+        /// Colección con los colores a mostrar en cada grupo y notas de cada grupo.
+        /// </summary>
+        private List<Color> ColoresGrupo = new List<Color>() {
+                    Color.FromArgb(0,99,177), Color.Gold, Color.PaleGreen, Color.Pink, Color.Yellow,
+                    Color.LightGray,Color.AliceBlue, Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow 
+                    };
+        /// <summary>
+        /// El tamaño normal de las notas y grupos en el panel.
+        /// </summary>
+        private readonly Size NormalSize = new Size(180, 80);
 
         public FormNotasUC()
         {
@@ -58,7 +94,7 @@ namespace gsNotasNETF
                 ColoresGrupo = new List<Color>() {Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow, Color.Gold, Color.DeepPink,
                                                   Color.PaleGreen, Color.Yellow, Color.LightGray,Color.AliceBlue,Color.FromArgb(0,99,177) };
 
-            noAsignar = new string[] { notaUC1.Name };
+            NoAsignar = new string[] { notaUC1.Name };
         }
 
         private void FormNotasUC_Load(object sender, EventArgs e)
@@ -69,13 +105,9 @@ namespace gsNotasNETF
             notifyIcon1.Icon = this.Icon;
             notifyIcon1.Visible = true;
 
-            if (Properties.Settings.Default.Tema == "Claro")
-                notaUC1.Tema = Temas.Claro;
-            else
-                notaUC1.Tema = Temas.Oscuro;
+            AsignarSettings();
 
-            this.BackColor = tabPage1.BackColor = tabPage2.BackColor = notaUC1.BackColor;
-            this.ForeColor = tabPage1.ForeColor = tabPage2.ForeColor = notaUC1.ForeColor;
+            AsignarColores();
 
             NotasFlowLayoutPanel.FlowDirection = FlowDirection.TopDown;
             GruposFlowLayoutPanel.FlowDirection = FlowDirection.LeftToRight;
@@ -83,18 +115,19 @@ namespace gsNotasNETF
             NotasFlowLayoutPanel.Controls.Clear();
             GruposFlowLayoutPanel.Controls.Clear();
 
-            //CtrlNotas.Clear();
-            //foreach (Label c in NotasFlowLayoutPanel.Controls)
-            //    CtrlNotas.Add(c);
-
-            //// para que la primera etiqueta se ponga más grande
-            //LblNota_Click(LblNota, null);
-
             lblBuscando.Text = "";
             lstResultadoBuscar.Items.Clear();
 
             notaUC1.LeerNotas();
+
+            iniciando = false;
         }
+
+        /// <summary>
+        /// Solo asignar true cuando se cierre desde el menú cerrar.
+        /// Ya que al cerrar desde la X del formulario puede que queramos minimizar.
+        /// </summary>
+        private bool NoCerrar = true;
 
         private void FormNotasUC_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -110,28 +143,71 @@ namespace gsNotasNETF
                 }
             }
             if (notaUC1.Tema == Temas.Claro)
-                Properties.Settings.Default.Tema = "Claro";
+                MySetting.Tema = "Claro";
             else
-                Properties.Settings.Default.Tema = "Oscuro";
-            Properties.Settings.Default.Save();
+                MySetting.Tema = "Oscuro";
+            // No hace falta asignarlos, tienen los mismos valores
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                MySetting.Left = this.Left;
+                MySetting.Top = this.Top;
+                MySetting.Heigh = this.Height;
+                MySetting.Width = this.Width;
+                MySetting.Save();
+            }
+            //MySetting.Left = TamApp.Left;
+            //MySetting.Top = TamApp.Top;
+            //MySetting.Heigh = TamApp.Height;
+            //MySetting.Width = TamApp.Width;
+            MySetting.Save();
+
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                // Solo minimizar si así se indica en MinimizarAlCerrar
+                // y no se está cerrando desde el menú cerrar.
+                if (NoCerrar && MySetting.MinimizarAlCerrar)
+                {
+                    // no cerrar, sólo minimizar
+                    e.Cancel = true;
+                    WindowState = FormWindowState.Minimized;
+                }
+            }
+            else
+            {
+                try { notifyIcon1.Visible = false; }
+                catch { }
+            }
         }
 
-        /// <summary>
-        /// Colección con las etiquetas a mostrar con el contenido de las notas
-        /// del grupo seleccionado.
-        /// </summary>
-        private readonly List<Label> CtrlNotas = new List<Label>();
-        
-        private readonly List<Label> CtrlGrupos = new List<Label>();
+        private void FormNotasUC_Resize(object sender, EventArgs e)
+        {
+            if (iniciando) return;
 
-        private string ElGrupo;
-        private int ElGrupoIndex;
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                MnuNotifyRestaurar.Text = "Minimizar";
+                MySetting.Left = this.Left;
+                MySetting.Top = this.Top;
+                MySetting.Width = this.Width;
+                MySetting.Heigh = this.Height;
+                TamApp = (this.Left, this.Top, this.Width, this.Height);
+            }
+            else
+                MnuNotifyRestaurar.Text = "Restaurar";
+        }
 
-        private List<Color> ColoresGrupo = new List<Color>() {
-            Color.FromArgb(0,99,177), Color.Gold, Color.PaleGreen, Color.Pink, Color.Yellow, 
-            Color.LightGray,Color.AliceBlue, Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow };
+        private void FormNotasUC_LocationChanged(object sender, EventArgs e)
+        {
+            if (iniciando) return;
 
-        private readonly Size NormalSize = new Size(180, 80);
+            if (WindowState == FormWindowState.Normal)
+            {
+                MySetting.Left = this.Left;
+                MySetting.Top = this.Top;
+                TamApp.Left = this.Left;
+                TamApp.Top = this.Top;
+            }
+        }
 
         private void notaUC1_GrupoCambiado(string grupo, int index)
         {
@@ -328,7 +404,6 @@ namespace gsNotasNETF
                     ColoresGrupo.Add(col);
                 }
             }
-
             return col;
         }
 
@@ -431,24 +506,79 @@ namespace gsNotasNETF
 
         private void notaUC1_CambioDeTema(Temas tema)
         {
+            AsignarColores();
+        }
+
+        /// <summary>
+        /// Asigna los colores de los controles según el tema.
+        /// En realidad según los valores de BackColor y ForeColor del control NotasUC.
+        /// </summary>
+        private void AsignarColores()
+        {
             // Esta forma de asignación múltiple de un valor me gusta :-)
-            this.BackColor = tabPage1.BackColor = tabPage2.BackColor = tabPage3.BackColor = tabPage4.BackColor = notaUC1.BackColor;
-            this.ForeColor = tabPage1.ForeColor = tabPage2.ForeColor = tabPage3.ForeColor = tabPage4.ForeColor = notaUC1.ForeColor;
-            // Los colores de la tercera ficha
-            lblEdSeleccionar.BackColor = lblEdCambiar.BackColor = lblEdSeleccionarNota.BackColor = notaUC1.BackColor;
-            lblEdSeleccionar.ForeColor = lblEdCambiar.ForeColor = lblEdSeleccionarNota.ForeColor = notaUC1.ForeColor;
-            cboEdGrupoDestino.BackColor = txtEdNombreGrupo.BackColor = cboEdGrupoNotas.BackColor = cboEdGrupos.BackColor = cboEdNotas.BackColor = notaUC1.BackColor;
-            cboEdGrupoDestino.ForeColor = txtEdNombreGrupo.ForeColor = cboEdGrupoNotas.ForeColor = cboEdGrupos.ForeColor = cboEdNotas.ForeColor = notaUC1.ForeColor;
-            lblBuscar.BackColor = txtBuscar.BackColor = chkBuscarEnGrupoActual.BackColor = lstResultadoBuscar.BackColor = notaUC1.BackColor;
-            lblBuscar.ForeColor = txtBuscar.ForeColor = chkBuscarEnGrupoActual.ForeColor = lstResultadoBuscar.ForeColor = notaUC1.ForeColor;
-            // Colores invertidos
+            this.BackColor =  notaUC1.BackColor;
+            this.ForeColor = notaUC1.ForeColor;
+            AsignarColores(tabControl1);
+
+            // Los colores invertidos de las etiquetas.
             lblEdInfo.BackColor = lblResultadoBuscar.BackColor = lblBuscando.BackColor = btnBuscar.BackColor = btnClasificarGrupos.BackColor = btnBorrar.BackColor = btnCambiarNombre.BackColor = btnMoverNota.BackColor = notaUC1.ForeColor;
             lblEdInfo.ForeColor = lblResultadoBuscar.ForeColor = lblBuscando.ForeColor = btnBuscar.ForeColor = btnClasificarGrupos.ForeColor = btnBorrar.ForeColor = btnCambiarNombre.ForeColor = btnMoverNota.ForeColor = notaUC1.BackColor;
         }
 
+        /// <summary>
+        /// Asignar recursivamente los colores. Se asignan los colores de NotaUC.
+        /// </summary>
+        /// <param name="ctr">El control y controles contenidos al que aplicar los colores.</param>
+        /// <param name="invertir">Si se debe invertir la asignación de BackColor y ForeColor.</param>
+        /// <remarks>Los botones tienen los colores invertidos.</remarks>
+        private void AsignarColores(Control ctr, bool invertir = false)
+        {
+            if (invertir)
+            {
+                ctr.ForeColor = notaUC1.BackColor;
+                ctr.BackColor = notaUC1.ForeColor;
+            }
+            else
+            {
+                ctr.BackColor = notaUC1.BackColor;
+                ctr.ForeColor = notaUC1.ForeColor;
+            }
+
+            if (ctr.Controls is null) return;
+
+            foreach (Control c in ctr.Controls)
+            {
+                AsignarColores(c, c is Button);
+            }
+        }
+
+        /// <summary>
+        /// Asigna los valores de la configuración.
+        /// </summary>
+        private void AsignarSettings()
+        {
+            if (MySetting.Tema == "Claro")
+                notaUC1.Tema = Temas.Claro;
+            else
+                notaUC1.Tema = Temas.Oscuro;
+
+            notaUC1.txtEdit.WordWrap = MySetting.AjusteLineas;
+            notaUC1.AutoGuardar = MySetting.Autoguardar;
+            notaUC1.NoGuardarEnBlanco = MySetting.NoGuardarEnBlanco;
+
+            TamApp = TamAppOriginal;
+            if (MySetting.RecordarTam)
+            {
+                TamApp = (MySetting.Left, MySetting.Top, MySetting.Width, MySetting.Heigh);
+            }
+            AsignarTamañoVentana(TamApp);
+            if (MySetting.IniciarMinimizada)
+                this.WindowState = FormWindowState.Minimized;
+        }
+
         private void notaUC1_MenuCerrar(string mensaje)
         {
-            this.Close();
+            MnuNotifyCerrar_Click(null, null);
         }
 
         private void btnBorrar_Click(object sender, EventArgs e)
@@ -515,6 +645,12 @@ namespace gsNotasNETF
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (tabControl1.SelectedIndex == 4)
+            {
+                OpcDeshacerCambios();
+                return;
+            }
+
             if (tabControl1.SelectedIndex != 2) return;
             if (!notaUC1.Notas.Keys.Any()) return;
 
@@ -535,8 +671,6 @@ namespace gsNotasNETF
             cboEdGrupoNotas.SelectedIndex = 0;
             cboEdGrupos.SelectedIndex = 0;
         }
-
-        private bool iniciando;
 
         private void cboEdGrupoNotas_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -592,15 +726,10 @@ namespace gsNotasNETF
 
         private void MnuNotifyCerrar_Click(object sender, EventArgs e)
         {
+            // Indicar que se está cerrando desde las opciones de cerrar el programa
+            // no desde la X del formulario.
+            NoCerrar = false;
             this.Close();
-        }
-
-        private void FormNotasUC_Resize(object sender, EventArgs e)
-        {
-            if (this.WindowState == FormWindowState.Normal)
-                MnuNotifyRestaurar.Text = "Minimizar";
-            else
-                MnuNotifyRestaurar.Text = "Restaurar";
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -671,6 +800,128 @@ namespace gsNotasNETF
 
             notaUC1.ComboGrupos.Text = grupo;
             notaUC1.Seleccionar(index, true);
+        }
+
+        //
+        // Para las opciones de configuración.
+        //
+
+        private bool OpcConfigurando = false;
+
+        /// <summary>
+        /// Deshace los cambios en el panel de configuración.
+        /// Llamarla cuando se entra en la ficha de opciones (si no se está ya configurando).
+        /// </summary>
+        private void OpcDeshacerCambios()
+        {
+            if (OpcConfigurando) return;
+
+            OpcChkAutoGuardar.Checked = MySetting.Autoguardar;
+            OpcChkRecordarTam.Checked = MySetting.RecordarTam;
+            OpcChkAjusteLineas.Checked = MySetting.AjusteLineas;
+            OpChkNoGuardarEnBlanco.Checked = MySetting.NoGuardarEnBlanco;
+            OpcChkIniciarMinimizada.Checked = MySetting.IniciarMinimizada;
+            OpcChkMinimizarAlCerrar.Checked = MySetting.MinimizarAlCerrar;
+            OpcBtnDeshacer.Enabled = false;
+        }
+
+        /// <summary>
+        /// Comprueba si se han modificado las opciones.
+        /// </summary>
+        /// <returns>True si se han modificado las opciones.</returns>
+        private void OpcDatosModificados()
+        {
+            var modificado = false;
+
+            if (OpcChkAutoGuardar.Checked != MySetting.Autoguardar)
+                modificado = true;
+            else if (OpcChkRecordarTam.Checked != MySetting.RecordarTam)
+                modificado = true;
+            else if (OpcChkAjusteLineas.Checked != MySetting.AjusteLineas)
+                modificado = true;
+            else if (OpChkNoGuardarEnBlanco.Checked != MySetting.NoGuardarEnBlanco)
+                modificado = true;
+            else if (OpcChkIniciarMinimizada.Checked != MySetting.IniciarMinimizada)
+                modificado = true;
+            else if (OpcChkMinimizarAlCerrar.Checked != MySetting.MinimizarAlCerrar)
+                modificado = true;
+
+            OpcBtnDeshacer.Enabled = modificado;
+        }
+
+        private void OpcBtnRestablecerTam_Click(object sender, EventArgs e)
+        {
+            // Restablecer el tamaño y posición de la ventana de la aplicación.
+            AsignarTamañoVentana(TamAppOriginal);
+        }
+
+        /// <summary>
+        /// Asignar el tamaño y posición a la ventana.
+        /// </summary>
+        /// <param name="nuevoTam"></param>
+        private void AsignarTamañoVentana((int Left, int Top, int Width, int Height) nuevoTam)
+        {
+            var iniTmp = iniciando;
+            iniciando = true;
+
+            if (nuevoTam.Left == -2)
+            {
+                this.CenterToScreen();
+                if (nuevoTam.Width != -1)
+                    this.Width = nuevoTam.Width;
+                if (nuevoTam.Height != -1)
+                    this.Height = nuevoTam.Height;
+            }
+            else
+            {
+                if (nuevoTam.Left != -1)
+                    this.Left = nuevoTam.Left;
+                if (nuevoTam.Top != -1)
+                    this.Top = nuevoTam.Top;
+                if (nuevoTam.Width != -1)
+                    this.Width = nuevoTam.Width;
+                if (nuevoTam.Height != -1)
+                    this.Height = nuevoTam.Height;
+            }
+            iniciando = iniTmp;
+        }
+
+        /// <summary>
+        /// La posición y tamaño original de la ventana.
+        /// </summary>
+        private (int Left, int Top, int Width, int Height) TamAppOriginal = (-2, -1, 823, 613);
+
+        /// <summary>
+        /// La posición y tamaño actual de la ventana.
+        /// </summary>
+        private (int Left, int Top, int Width, int Height) TamApp;
+
+        private void OpcBtnGuardar_Click(object sender, EventArgs e)
+        {
+            MySetting.Autoguardar = OpcChkAutoGuardar.Checked;
+            MySetting.RecordarTam = OpcChkRecordarTam.Checked;
+            MySetting.AjusteLineas = OpcChkAjusteLineas.Checked;
+            MySetting.NoGuardarEnBlanco = OpChkNoGuardarEnBlanco.Checked;
+            MySetting.IniciarMinimizada = OpcChkIniciarMinimizada.Checked;
+            MySetting.MinimizarAlCerrar = OpcChkMinimizarAlCerrar.Checked;
+            OpcBtnDeshacer.Enabled = false;
+            
+            MySetting.Save();
+            OpcConfigurando = false;
+
+            AsignarSettings();
+        }
+
+        private void OpcBtnDeshacer_Click(object sender, EventArgs e)
+        {
+            OpcConfigurando = false;
+            OpcDeshacerCambios();
+        }
+
+        private void Opciones_CheckedChanged(object sender, EventArgs e)
+        {
+            OpcConfigurando = true;
+            OpcDatosModificados();
         }
     }
 }

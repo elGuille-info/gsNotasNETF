@@ -3,7 +3,7 @@
 // Editor de notas (y grupos)
 // Unifico CabeceraNotaUC y NotaUC en este fichero                  (09/Dic/20)
 //
-// (c) Guillermo (elGuille) Som, 2020
+// (c) Guillermo Som (elGuille), 2020
 //-----------------------------------------------------------------------------
 
 using System;
@@ -27,6 +27,14 @@ namespace gsNotasNETF
     public partial class NotaUC : UserControl
     {
         private bool iniciando = true;
+
+        /// <summary>
+        /// La versión del fichero no la de Application.ProductVersion
+        /// </summary>
+        private string FileVersion { get; init; }
+
+        private string NombreProducto { get; init; }
+        private string VersionProducto { get; init; }
 
         public NotaUC()
         {
@@ -69,6 +77,10 @@ namespace gsNotasNETF
 
             iniciando = false;
         }
+
+        //
+        // Los eventos y métodos On asociados.
+        //
 
         [Browsable(true)]
         [Description("Este evento se produce cuando se cambia el tema.")]
@@ -165,6 +177,20 @@ namespace gsNotasNETF
             GrupoCambiado?.Invoke(texto, index);
         }
 
+        //
+        // Las propiedades públicas.
+        //
+
+        /// <summary>
+        /// Si el valor es true guardar automáticamente al cambiar la selección de la nota o el grupo.
+        /// </summary>
+        public bool AutoGuardar { get; set; } = false;
+
+        /// <summary>
+        /// No guardar notas que estén en blanco.
+        /// </summary>
+        public bool NoGuardarEnBlanco { get; set; } = true;
+
         private bool _ModoEdicionNota = false;
 
         /// <summary>
@@ -222,7 +248,7 @@ namespace gsNotasNETF
         [Description("Colores a usar en el tema Oscuro. Fondo negro, letras Gold.")]
         [DefaultValue(typeof(Color[]),"Black, Gold")]
         [Category("NotasUC")]
-        public Color[] ColoresOscuro { get; set; } = new Color[] { Color.Black, Color.Gold};
+        public Color[] ColoresOscuro { get; set; } = new Color[] { Color.DimGray, Color.Gold};
 
         /// <summary>
         /// Colores a usar en el tema Claro.
@@ -261,12 +287,6 @@ namespace gsNotasNETF
                 }
             }
         }
-
-        //
-        // El código que había en CabeceraNotaUC
-        //
-
-        #region  El código que había en CabeceraNotaUC
 
         /// <summary>
         /// El título a mostrar.
@@ -321,48 +341,6 @@ namespace gsNotasNETF
         }
 
         /// <summary>
-        /// Asignar los grupos.
-        /// No asigna las notas hasta que se seleccione un grupo.
-        /// </summary>
-        [Browsable(false)]
-        public void AsignarGrupos()
-        {
-            iniciando = true;
-
-            CboGrupos.Items.Clear();
-            CboNotas.Items.Clear();
-            CboGrupos.Text = "";
-            CboNotas.Text = "";
-
-            if (ComprobarNotasEsNulo())
-                return;
-
-            foreach (var k in _notas.Keys)
-                CboGrupos.Items.Add(k);
-
-            iniciando = false;
-
-            if (CboGrupos.Items.Count > 0)
-                CboGrupos.SelectedIndex = 0;
-        }
-
-        /// <summary>
-        /// Comprueba si _notas es nulo o las claves del dictionary es nulo
-        /// en ese caso crea un nuevo objeto en _notas y devuelve true.
-        /// </summary>
-        /// <returns>True si _notas es nulo o _notas.Keys es nulo (pero crea la colección _notas),
-        /// False si _notas no era nulo.</returns>
-        private bool ComprobarNotasEsNulo()
-        {
-            if (_notas is null || _notas.Keys is null)
-            {
-                _notas = new Dictionary<string, List<string>>();
-                return true;
-            }
-            return false;
-        }
-
-        /// <summary>
         /// Devuelve la nota que se ha seleccionado (el texto del combo de notas).
         /// Cuando se asigna, se asigna al editor.
         /// </summary>
@@ -398,15 +376,6 @@ namespace gsNotasNETF
         public const int LongitudTituloNotaDefault = 70;
 
         /// <summary>
-        /// Resetea el control.
-        /// En realidad la longitud del título.
-        /// </summary>
-        public void Reset()
-        {
-            LongitudTituloNota = LongitudTituloNotaDefault;
-        }
-
-        /// <summary>
         /// Longitud del título de la nota.
         /// </summary>
         [Browsable(true)]
@@ -435,6 +404,340 @@ namespace gsNotasNETF
 
                 return s[0].Substring(0, LongitudTituloNota);
             }
+        }
+
+        /// <summary>
+        /// Array con los caracteres especiales que se sustituirán al guardar.
+        /// </summary>
+        [Browsable(true)]
+        [Description("Array con los caracteres especiales que se sustituirán al guardar.")]
+        [DefaultValue(typeof(string[]), "\n\r, \n, \r, \", <, >, &")]
+        [Category("NotasUC")]
+        public string[] EspCaracteres { get; set; } = { "\n\r", "\n", "\r", "\"", "<", ">", "&" };
+
+        /// <summary>
+        /// Array con las marcas a reemplazar según el caracter especial.
+        /// </summary>
+        [Browsable(true)]
+        [Description("Array con las marcas a reemplazar según el caracter especial.")]
+        [DefaultValue(typeof(string[]), "|NL|, |CR|, |LF|, |quot|, |lt|, |gt|, |A|")]
+        [Category("NotasUC")]
+        public string[] EspMarcas { get; set; } = { "|NL|", "|CR|", "|LF|", "|quot|", "|lt|", "|gt|", "|A|" };
+
+        /// <summary>
+        /// Guarda las notas en el fichero indicado.
+        /// </summary>
+        /// <param name="path">El path completo donde se guardarán las notas.</param>
+        /// <returns>true si se guardaron correctamente las notas, en otro caso, false.</returns>
+        [Browsable(false)]
+        public bool GuardarNotas(string path = "")
+        {
+            if (string.IsNullOrWhiteSpace(path))
+                path = FicNotas;
+
+            try
+            {
+                using (var sw = new StreamWriter(path, false, Encoding.UTF8))
+                {
+                    sw.WriteLine("#Formato NotasUC - v1.0.0.0 - 05-dic-2020");
+                    sw.WriteLine("#");
+                    sw.WriteLine("# Fichero de Notas con formato NotasUC");
+                    sw.WriteLine("#");
+                    sw.WriteLine($"# Contenido de {Path.GetFileName(path)}");
+                    sw.WriteLine("#");
+                    sw.WriteLine("# Formato:");
+                    sw.WriteLine("#    G:Nombre del grupo");
+                    sw.WriteLine("#       Lista de notas del grupo 1, una en cada línea");
+                    sw.WriteLine("#    GFin: # Fin de las notas del grupo");
+                    sw.WriteLine("#");
+                    sw.WriteLine("# Notas:");
+                    sw.WriteLine("#     No se guardan los grupos y notas que estén en blanco.");
+                    sw.WriteLine("#     Las líneas que empiecen por # no se procesan.");
+                    sw.WriteLine("#         No usar # después de la nota o el grupo, ya que se asignarán como si fuesen parte del texto.");
+                    sw.WriteLine("#     Si la nota tiene estos caracteres, se hará un cambio al guardar el texto:");
+                    sw.WriteLine("#         Las comillas dobles se guardan como |quot|.");
+                    sw.WriteLine("#         El signo mayor > se guarda como |gt|.");
+                    sw.WriteLine("#         El signo mayor < se guarda como |lt|.");
+                    sw.WriteLine("#         El ampersand & se guarda como |A|.");
+                    sw.WriteLine("#         Si la cadena empieza con un espacio, se sustituye por |sp|.");
+                    sw.WriteLine(@"#         Los cambios de línea  '\n\r' (CrLf) se guardan como |NL|.");
+                    sw.WriteLine(@"#         Los cambios de línea  '\n'   (Cr)   se guardan como |CR|.");
+                    sw.WriteLine(@"#         Los retornos de carro '\r'   (Lf)   se guardan como |LF|.");
+                    sw.WriteLine("#             La comprobación se hace en este orden: CrLf, Cr, Lf");
+                    sw.WriteLine("#             Es para los casos que haya distintos cambios de línea (según el formato del fichero)");
+                    sw.WriteLine("#");
+
+                    foreach (var g in _notas.Keys)
+                    {
+                        if (g.Any())
+                        {
+                            sw.WriteLine($"G:{g}");
+                            foreach (var n in _notas[g])
+                                if (n.Any())
+                                    sw.WriteLine(espQuitar(n));
+                            sw.WriteLine($"GFin:{g}");
+                        }
+                    }
+                    sw.Flush();
+                    sw.Close();
+                }
+                return true;
+            }
+            catch { return false; };
+        }
+
+        /// <summary>
+        /// Lee las notas del fichero indicado y las asigna a la colección <see cref="Notas"/>.
+        /// </summary>
+        /// <param name="path">El path completo donde están las notas guardadas.</param>
+        [Browsable(false)]
+        public void LeerNotas(string path = "")
+        {
+            if (string.IsNullOrWhiteSpace(path))
+                path = FicNotas;
+
+            var colNotas = new Dictionary<string, List<string>>();
+
+            try
+            {
+                if (!File.Exists(path))
+                {
+                    _notas = colNotas;
+                    return;
+                }
+
+                using var sr = new StreamReader(path, Encoding.UTF8, true);
+                while (!sr.EndOfStream)
+                {
+                    var s = sr.ReadLine();
+                    if (!string.IsNullOrEmpty(s))
+                    {
+                        var s1 = s.TrimStart();
+                        // Ignorar los comentarios #
+                        if (s1.StartsWith("#"))
+                            continue;
+
+                        // Si es un grupo
+                        if (s1.StartsWith("g:", StringComparison.OrdinalIgnoreCase))
+                        {
+                            var i = s.IndexOf("g:", StringComparison.OrdinalIgnoreCase);
+                            if (i == -1) continue;
+
+                            var g = s.Substring(i + 2).Trim();
+                            // Es un grupo
+                            // si ya existe, se ignora, pero se leen las notas y se continúa
+                            var existe = false;
+                            if (colNotas.ContainsKey(g))
+                                existe = true;
+                            else
+                                colNotas.Add(g, new List<string>());
+
+                            // Leer las notas
+                            while (!sr.EndOfStream)
+                            {
+                                s = sr.ReadLine();
+                                if (string.IsNullOrEmpty(s))
+                                    continue;
+
+                                s1 = s.TrimStart();
+                                if (!s1.StartsWith("gfin:", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    if (!existe)
+                                        colNotas[g].Add(espPoner(s));
+                                }
+                                else
+                                    break;
+                            }
+                        }
+                    }
+                }
+                sr.Close();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            };
+
+            _notas = colNotas;
+            AsignarGrupos();
+        }
+
+        private bool _Modificado;
+
+        /// <summary>
+        /// Indica si los datos se han modificado.
+        /// </summary>
+        [Browsable(true)]
+        [Description("Indica si los datos se han modificado.")]
+        [Category("NotasUC")]
+        public bool Modificado
+        {
+            get { return _Modificado; }
+            private set
+            {
+                _Modificado = value;
+                if (_Modificado)
+                    OnDatosModificados("Los datos se han modificado.");
+            }
+        }
+
+        /// <summary>
+        /// El fichero donde se guardarán o se leerán las notas.
+        /// </summary>
+        [Browsable(true)]
+        [Description("El fichero con las notas.")]
+        [DefaultValue("Notas.notasUC.txt")]
+        [Category("NotasUC")]
+        public string FicNotas { get; private set; }
+
+        /// <summary>
+        /// El path al directorio de documentos.
+        /// </summary>
+        [Browsable(true)]
+        [Description("El directorio de documentos.")]
+        [Category("NotasUC")]
+        public string DirDocumentos
+        {
+            get { return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); }
+        }
+
+        /// <summary>
+        /// Asigna el título de la cabecera.
+        /// </summary>
+        [Browsable(false)]
+        [Description("Asigna el título de la cabecera.")]
+        [Category("NotasUC")]
+        public string TituloCabecera
+        {
+            get { return Titulo; }
+            set
+            {
+                ComboNotas.Items.Add(value);
+                ComboNotas.Text = value;
+                Titulo = TituloNota;
+            }
+        }
+
+        /// <summary>
+        /// El color de fondo del control, del control de las notas y del color del texto del título.
+        /// </summary>
+        [Browsable(true)]
+        [Description("El color de fondo del control, del control de las notas y del color del texto del título.")]
+        [DefaultValue(typeof(Color), "White")]
+        [Category("NotasUC")]
+        public override Color BackColor
+        {
+            get => base.BackColor;
+            set
+            {
+                base.BackColor = value;
+                LabelTitulo.ForeColor = value;
+                CboGrupos.BackColor = value;
+                CboNotas.BackColor = value;
+                panelCabecera.BackColor = value;
+                panelEditor.BackColor = value;
+                txtEdit.BackColor = value;
+                statusStrip1.BackColor = value;
+                statusInfo.BackColor = value;
+                statusInfoPos.BackColor = value;
+                statusInfoTecla.BackColor = value;
+            }
+        }
+
+        /// <summary>
+        /// El color del texto y del fondo del título.
+        /// </summary>
+        [Browsable(true)]
+        [Description("El color del texto y del fondo del título.")]
+        [DefaultValue(typeof(Color), "0,99,177")]
+        [Category("NotasUC")]
+        public override Color ForeColor
+        {
+            get => base.ForeColor;
+            set
+            {
+                base.ForeColor = value;
+                LabelTitulo.BackColor = value;
+                CboGrupos.ForeColor = value;
+                CboNotas.ForeColor = value;
+                panelCabecera.ForeColor = value;
+                panelEditor.ForeColor = value;
+                txtEdit.ForeColor = value;
+                statusStrip1.ForeColor = value;
+                statusInfo.ForeColor = value;
+                statusInfoPos.ForeColor = value;
+                statusInfoTecla.ForeColor = value;
+            }
+        }
+
+        /// <summary>
+        /// El texto del editor.
+        /// </summary>
+        [Browsable(true)]
+        [Description("El texto del editor.")]
+        [DefaultValue("")]
+        [Category("NotasUC")]
+        public string EditorText
+        {
+            get { return txtEdit.Text; }
+            set { txtEdit.Text = value; }
+        }
+
+        /// <summary>
+        /// El texto enriquecido (Rtf) del editor.
+        /// </summary>
+        [Browsable(true)]
+        [Description("El texto enriquecido (Rtf) del editor.")]
+        [DefaultValue("")]
+        [Category("NotasUC")]
+        public string EditorRtf
+        {
+            get { return txtEdit.Rtf; }
+            set { txtEdit.Rtf = value; }
+        }
+
+        //
+        // Fin de las propiedades públicas.
+        //
+
+        //
+        // Los métodos públicos.
+        //
+
+
+        /// <summary>
+        /// Asignar los grupos.
+        /// No asigna las notas hasta que se seleccione un grupo.
+        /// </summary>
+        [Browsable(false)]
+        public void AsignarGrupos()
+        {
+            iniciando = true;
+
+            CboGrupos.Items.Clear();
+            CboNotas.Items.Clear();
+            CboGrupos.Text = "";
+            CboNotas.Text = "";
+
+            if (ComprobarNotasEsNulo())
+                return;
+
+            foreach (var k in _notas.Keys)
+                CboGrupos.Items.Add(k);
+
+            iniciando = false;
+
+            if (CboGrupos.Items.Count > 0)
+                CboGrupos.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// Resetea el control.
+        /// En realidad la longitud del título.
+        /// </summary>
+        public void Reset()
+        {
+            LongitudTituloNota = LongitudTituloNotaDefault;
         }
 
         /// <summary>
@@ -552,208 +855,17 @@ namespace gsNotasNETF
 
             iniciando = true;
 
-            if(!_ModoEdicionNota)
+            if (!_ModoEdicionNota)
             {
                 _notas[grupo][CboNotas.SelectedIndex] = nota;
                 CboNotas.Items[CboNotas.SelectedIndex] = nota;
 
                 OnNotaCambiada(nota, CboNotas.SelectedIndex);
             }
-                        
+
             OnNotaReemplazada(grupo, nota, CboNotas.SelectedIndex);
 
             iniciando = false;
-        }
-
-
-        /// <summary>
-        /// Array con los caracteres especiales que se sustituirán al guardar.
-        /// </summary>
-        [Browsable(true)]
-        [Description("Array con los caracteres especiales que se sustituirán al guardar.")]
-        [DefaultValue(typeof(string[]), "\n\r, \n, \r, \", <, >, &" )]
-        [Category("NotasUC")]
-        public string[] EspCaracteres { get; set; } = { "\n\r", "\n", "\r", "\"", "<", ">", "&" };
-
-        /// <summary>
-        /// Array con las marcas a reemplazar según el caracter especial.
-        /// </summary>
-        [Browsable(true)]
-        [Description("Array con las marcas a reemplazar según el caracter especial.")]
-        [DefaultValue(typeof(string[]), "|NL|, |CR|, |LF|, |quot|, |lt|, |gt|, |A|")]
-        [Category("NotasUC")]
-        public string[] EspMarcas { get; set; } = { "|NL|", "|CR|", "|LF|", "|quot|", "|lt|", "|gt|", "|A|" };
-
-        /// <summary>
-        /// Cambia los caracteres normales en marcas para guardar.
-        /// </summary>
-        /// <param name="s">La cadena donde se harán los cambios.</param>
-        /// <returns>Una nueva cadena con los caracteres sustituidos por las marcas.</returns>
-        /// <remarks>Usar esta función para guardarlos en el fichero.</remarks>
-        private string espQuitar(string s)
-        {
-            // sustituir los caracteres especiales
-            // usar esta función para guardarlo en la colección
-            if (s.StartsWith(" "))
-                s = "|sp|" + s;
-            for (int j = 0; j < EspCaracteres.Length; j++)
-                s = s.Replace(EspCaracteres[j], EspMarcas[j]);
-            return s;
-        }
-
-        /// <summary>
-        /// Cambia las marcas especiales por los caracteres normales.
-        /// </summary>
-        /// <param name="s">La cadena donde se harán los cambios.</param>
-        /// <returns>Una nueva cadena con las marcas sustituidas por los caracteres.</returns>
-        /// <remarks>Usar esta función al leer del fichero y mostrarlos correctamente.</remarks>
-        private string espPoner(string s)
-        {
-            // restablecer los caracteres especiales
-            // usar esta función para mostrarlos correctamente
-            if (s.StartsWith("|sp|"))
-                s = s.Substring(4);
-            for (int j = 0; j < EspCaracteres.Length; j++)
-                s = s.Replace(EspMarcas[j], EspCaracteres[j]);
-            return s;
-        }
-
-        /// <summary>
-        /// Guarda las notas en el fichero indicado.
-        /// </summary>
-        /// <param name="path">El path completo donde se guardarán las notas.</param>
-        /// <returns>true si se guardaron correctamente las notas, en otro caso, false.</returns>
-        [Browsable(false)]
-        public bool GuardarNotas(string path = "")
-        {
-            if (string.IsNullOrWhiteSpace(path))
-                path = FicNotas;
-
-            try
-            {
-                using (var sw = new StreamWriter(path, false, Encoding.UTF8))
-                {
-                    sw.WriteLine("#Formato NotasUC - v1.0.0.0 - 05-dic-2020");
-                    sw.WriteLine("#");
-                    sw.WriteLine("# Fichero de Notas con formato NotasUC");
-                    sw.WriteLine("#");
-                    sw.WriteLine($"# Contenido de {Path.GetFileName(path)}");
-                    sw.WriteLine("#");
-                    sw.WriteLine("# Formato:");
-                    sw.WriteLine("#    G:Nombre del grupo");
-                    sw.WriteLine("#       Lista de notas del grupo 1, una en cada línea");
-                    sw.WriteLine("#    GFin: # Fin de las notas del grupo");
-                    sw.WriteLine("#");
-                    sw.WriteLine("# Notas:");
-                    sw.WriteLine("#     No se guardan los grupos y notas que estén en blanco.");
-                    sw.WriteLine("#     Las líneas que empiecen por # no se procesan.");
-                    sw.WriteLine("#         No usar # después de la nota o el grupo, ya que se asignarán como si fuesen parte del texto.");
-                    sw.WriteLine("#     Si la nota tiene estos caracteres, se hará un cambio al guardar el texto:");
-                    sw.WriteLine("#         Las comillas dobles se guardan como |quot|.");
-                    sw.WriteLine("#         El signo mayor > se guarda como |gt|.");
-                    sw.WriteLine("#         El signo mayor < se guarda como |lt|.");
-                    sw.WriteLine("#         El ampersand & se guarda como |A|.");
-                    sw.WriteLine("#         Si la cadena empieza con un espacio, se sustituye por |sp|.");
-                    sw.WriteLine(@"#         Los cambios de línea  '\n\r' (CrLf) se guardan como |NL|.");
-                    sw.WriteLine(@"#         Los cambios de línea  '\n'   (Cr)   se guardan como |CR|.");
-                    sw.WriteLine(@"#         Los retornos de carro '\r'   (Lf)   se guardan como |LF|.");
-                    sw.WriteLine("#             La comprobación se hace en este orden: CrLf, Cr, Lf");
-                    sw.WriteLine("#             Es para los casos que haya distintos cambios de línea (según el formato del fichero)");
-                    sw.WriteLine("#");
-
-                    foreach (var g in _notas.Keys)
-                    {
-                        if (g.Any())
-                        {
-                            sw.WriteLine($"G:{g}");
-                            foreach (var n in _notas[g])
-                                if (n.Any())
-                                    sw.WriteLine(espQuitar(n));
-                            sw.WriteLine($"GFin:{g}");
-                        }
-                    }
-                    sw.Flush();
-                    sw.Close();
-                }
-                return true;
-            }
-            catch { return false; };
-        }
-
-        /// <summary>
-        /// Lee las notas del fichero indicado y las asigna a la colección <see cref="Notas"/>.
-        /// </summary>
-        /// <param name="path">El path completo donde están las notas guardadas.</param>
-        [Browsable(false)]
-        public void LeerNotas(string path ="")
-        {
-            if (string.IsNullOrWhiteSpace(path))
-                path = FicNotas;
-
-            var colNotas = new Dictionary<string, List<string>>();
-
-            try
-            {
-                if (!File.Exists(path))
-                {
-                    _notas = colNotas;
-                    return;
-                }
-
-                using var sr = new StreamReader(path, Encoding.UTF8, true);
-                while (!sr.EndOfStream)
-                {
-                    var s = sr.ReadLine();
-                    if (!string.IsNullOrEmpty(s))
-                    {
-                        var s1 = s.TrimStart();
-                        // Ignorar los comentarios #
-                        if (s1.StartsWith("#"))
-                            continue;
-
-                        // Si es un grupo
-                        if (s1.StartsWith("g:", StringComparison.OrdinalIgnoreCase))
-                        {
-                            var i = s.IndexOf("g:", StringComparison.OrdinalIgnoreCase);
-                            if (i == -1) continue;
-
-                            var g = s.Substring(i + 2).Trim();
-                            // Es un grupo
-                            // si ya existe, se ignora, pero se leen las notas y se continúa
-                            var existe = false;
-                            if (colNotas.ContainsKey(g))
-                                existe = true;
-                            else
-                                colNotas.Add(g, new List<string>());
-
-                            // Leer las notas
-                            while (!sr.EndOfStream)
-                            {
-                                s = sr.ReadLine();
-                                if (string.IsNullOrEmpty(s))
-                                    continue;
-
-                                s1 = s.TrimStart();
-                                if (!s1.StartsWith("gfin:", StringComparison.OrdinalIgnoreCase))
-                                {
-                                    if (!existe)
-                                        colNotas[g].Add(espPoner(s));
-                                }
-                                else
-                                    break;
-                            }
-                        }
-                    }
-                }
-                sr.Close();
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            };
-
-            _notas = colNotas;
-            AsignarGrupos();
         }
 
         /// <summary>
@@ -791,7 +903,7 @@ namespace gsNotasNETF
                 iniciando = false;
                 return;
             }
-            if((string)CboNotas.Items[index] != nota)
+            if ((string)CboNotas.Items[index] != nota)
                 Modificado = true;
 
             CboNotas.Items[index] = nota;
@@ -832,6 +944,144 @@ namespace gsNotasNETF
             OnGrupoCambiado(CboGrupos.Text, CboGrupos.SelectedIndex);
         }
 
+        /// <summary>
+        /// Seleccionar el elemento del grupo con el índice indicado.
+        /// </summary>
+        /// <param name="index">El índice del combo de los grupos a seleccionar.</param>
+        /// <param name="esNota">
+        /// True si se debe seleccionar una nota, 
+        /// false si se debe seleccioanr un grupo</param>
+        [Browsable(false)]
+        public void Seleccionar(int index, bool esNota)
+        {
+            if (index > -1)
+            {
+                if (esNota)
+                {
+                    if (ComboNotas.Items.Count > 0)
+                        ComboNotas.SelectedIndex = index;
+                }
+                else
+                {
+                    if (ComboGrupos.Items.Count > 0)
+                        ComboGrupos.SelectedIndex = index;
+                }
+            }
+        }
+
+
+        //
+        // Fin de los métodos públicos.
+        //
+
+        //
+        // Las propiedades privadas.
+        //
+
+        /// <summary>
+        /// Cambia los caracteres normales en marcas para guardar.
+        /// </summary>
+        /// <param name="s">La cadena donde se harán los cambios.</param>
+        /// <returns>Una nueva cadena con los caracteres sustituidos por las marcas.</returns>
+        /// <remarks>Usar esta función para guardarlos en el fichero.</remarks>
+        private string espQuitar(string s)
+        {
+            // sustituir los caracteres especiales
+            // usar esta función para guardarlo en la colección
+            if (s.StartsWith(" "))
+                s = "|sp|" + s;
+            for (int j = 0; j < EspCaracteres.Length; j++)
+                s = s.Replace(EspCaracteres[j], EspMarcas[j]);
+            return s;
+        }
+
+        /// <summary>
+        /// Cambia las marcas especiales por los caracteres normales.
+        /// </summary>
+        /// <param name="s">La cadena donde se harán los cambios.</param>
+        /// <returns>Una nueva cadena con las marcas sustituidas por los caracteres.</returns>
+        /// <remarks>Usar esta función al leer del fichero y mostrarlos correctamente.</remarks>
+        private string espPoner(string s)
+        {
+            // restablecer los caracteres especiales
+            // usar esta función para mostrarlos correctamente
+            if (s.StartsWith("|sp|"))
+                s = s.Substring(4);
+            for (int j = 0; j < EspCaracteres.Length; j++)
+                s = s.Replace(EspMarcas[j], EspCaracteres[j]);
+            return s;
+        }
+
+        /// <summary>
+        /// Comprueba si existe el grupo indicado.
+        /// </summary>
+        /// <param name="g">El nombre del grupo.</param>
+        /// <returns>True si el grupo existe, false si no existe.</returns>
+        private bool ExisteGrupo(string g)
+        {
+            if (!Notas.ContainsKey(g))
+            {
+                statusInfo.Text = $"No existe el grupo {g}";
+                return false;
+            }
+            return true;
+        }
+
+        //
+        // Fin de las propiedades privadas.
+        //
+
+        //
+        // Los métodos privados.
+        //
+
+        /// <summary>
+        /// Comprueba si _notas es nulo o las claves del dictionary es nulo
+        /// en ese caso crea un nuevo objeto en _notas y devuelve true.
+        /// </summary>
+        /// <returns>True si _notas es nulo o _notas.Keys es nulo (pero crea la colección _notas),
+        /// False si _notas no era nulo.</returns>
+        private bool ComprobarNotasEsNulo()
+        {
+            if (_notas is null || _notas.Keys is null)
+            {
+                _notas = new Dictionary<string, List<string>>();
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Muestra la posición en la que se está en el editor.
+        /// </summary>
+        /// <param name="e">
+        /// Un objeto de tipo <see cref="KeyEventArgs"/> o nulo.
+        /// Si se llama desde KeyUp o KeyDown pasar el valor de e.
+        /// </param>
+        private void mostrarPosicion(KeyEventArgs e)
+        {
+            // Saber la línea y columna de la posición del cursor
+            int pos = txtEdit.SelectionStart + 1;
+            int lin = txtEdit.GetLineFromCharIndex(pos) + 1;
+            int col = pos - txtEdit.GetFirstCharIndexOfCurrentLine();
+            if (e != null)
+            {
+                if (e.KeyCode == Keys.Tab && e.Modifiers == Keys.Shift)
+                    col = 1;
+                else if (e.KeyCode == Keys.Home)
+                    col = 1;
+            }
+            statusInfoPos.Text = $"L: {lin} , C: {col}";
+        }
+
+        //
+        // Fin de los métodos privados.
+        //
+
+        //
+        // Los métodos de evento.
+        //
+
         private void CboGrupos_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (iniciando) return;
@@ -839,10 +1089,6 @@ namespace gsNotasNETF
             Titulo = $"'{Grupo} - {TituloNota}'";
 
             Titulo = $"Notas de '{Grupo}'";
-            //    OnGrupoCambiado(nota, index);
-
-            //statusInfo.Text = $"Grupo: '{Grupo}' con {CboNotas.Items.Count} notas";
-
 
             if (CboGrupos.Items.Count > 0 && CboGrupos.SelectedIndex != -1)
                 OnGrupoCambiado(Grupo, CboGrupos.SelectedIndex);
@@ -938,303 +1184,11 @@ namespace gsNotasNETF
                 SendKeys.Send("{TAB}");
             }
         }
-
-
-        #endregion
-
-        //
-        // Fin del código de CabeceraNotaUC
-        //
-
-        private bool _Modificado;
-
-        //internal NotaUC NotaUCBase = null;
-
-        /// <summary>
-        /// La versión del fichero no la de Application.ProductVersion
-        /// </summary>
-        private string FileVersion;
-
-        private string NombreProducto;
-        private string VersionProducto;
-
-        /// <summary>
-        /// Indica si los datos se han modificado.
-        /// </summary>
-        [Browsable(true)]
-        [Description("Indica si los datos se han modificado.")]
-        [Category("NotasUC")]
-        public bool Modificado
-        {
-            get { return _Modificado; }
-            private set 
-            {
-                _Modificado = value;
-                if (_Modificado)
-                    OnDatosModificados("Los datos se han modificado.");
-            }
-        }
-
-        /// <summary>
-        /// El fichero donde se guardarán o se leerán las notas.
-        /// </summary>
-        [Browsable(true)]
-        [Description("El fichero con las notas.")]
-        [DefaultValue("Notas.notasUC.txt")]
-        [Category("NotasUC")]
-        public string FicNotas { get; private set; }
-
-        /// <summary>
-        /// El path al directorio de documentos.
-        /// </summary>
-        [Browsable(true)]
-        [Description("El directorio de documentos.")]
-        [Category("NotasUC")]
-        public string DirDocumentos 
-        { 
-            get {return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); } 
-        }
-
+                
         private void NotaUC_Load(object sender, EventArgs e)
         {
             // No poner nada aquí
-        }
-
-        /// <summary>
-        /// Asigna el título de la cabecera.
-        /// </summary>
-        [Browsable(false)]
-        [Description("Asigna el título de la cabecera.")]
-        [Category("NotasUC")]
-        public string TituloCabecera
-        {
-            get { return Titulo; }
-            set 
-            {
-                ComboNotas.Items.Add(value);
-                ComboNotas.Text = value;
-                Titulo = TituloNota; 
-            }
-        }
-
-        /// <summary>
-        /// Seleccionar el elemento del grupo con el índice indicado.
-        /// </summary>
-        /// <param name="index">El índice del combo de los grupos a seleccionar.</param>
-        /// <param name="esNota">
-        /// True si se debe seleccionar una nota, 
-        /// false si se debe seleccioanr un grupo</param>
-        [Browsable(false)]
-        public void Seleccionar(int index, bool esNota)
-        {
-            if (index > -1)
-            {
-                if (esNota)
-                {
-                    if (ComboNotas.Items.Count > 0)
-                        ComboNotas.SelectedIndex = index;
-                }
-                else
-                {
-                    if (ComboGrupos.Items.Count > 0)
-                        ComboGrupos.SelectedIndex = index;
-                }
-            }
-        }
-
-        /// <summary>
-        /// El color de fondo del control, del control de las notas y del color del texto del título.
-        /// </summary>
-        [Browsable(true)]
-        [Description("El color de fondo del control, del control de las notas y del color del texto del título.")]
-        [DefaultValue( typeof(Color), "White")]
-        [Category("NotasUC")]
-        public override Color BackColor 
-        { 
-            get => base.BackColor;
-            set 
-            { 
-                base.BackColor = value;
-                LabelTitulo.ForeColor = value;
-                CboGrupos.BackColor = value;
-                CboNotas.BackColor = value;
-                panelCabecera.BackColor = value;
-                panelEditor.BackColor = value;
-                txtEdit.BackColor = value;
-                statusStrip1.BackColor = value;
-                statusInfo.BackColor = value;
-                statusInfoPos.BackColor = value;
-                statusInfoTecla.BackColor = value;
-            }
-        }
-
-        /// <summary>
-        /// El color del texto y del fondo del título.
-        /// </summary>
-        [Browsable(true)]
-        [Description("El color del texto y del fondo del título.")]
-        [DefaultValue(typeof(Color),"0,99,177")]
-        [Category("NotasUC")]
-        public override Color ForeColor
-        {
-            get => base.ForeColor;
-            set
-            {
-                base.ForeColor = value;
-                LabelTitulo.BackColor = value;
-                CboGrupos.ForeColor = value;
-                CboNotas.ForeColor = value;
-                panelCabecera.ForeColor = value;
-                panelEditor.ForeColor = value;
-                txtEdit.ForeColor = value;
-                statusStrip1.ForeColor = value;
-                statusInfo.ForeColor = value;
-                statusInfoPos.ForeColor = value;
-                statusInfoTecla.ForeColor = value;
-            }
-        }
-
-        /// <summary>
-        /// El texto del editor.
-        /// </summary>
-        [Browsable(true)]
-        [Description("El texto del editor.")]
-        [DefaultValue("")]
-        [Category("NotasUC")]
-        public string EditorText
-        {
-            get { return txtEdit.Text; }
-            set { txtEdit.Text = value; }
-        }
-
-        /// <summary>
-        /// El texto enriquecido (Rtf) del editor.
-        /// </summary>
-        [Browsable(true)]
-        [Description("El texto enriquecido (Rtf) del editor.")]
-        [DefaultValue("")]
-        [Category("NotasUC")]
-        public string EditorRtf
-        {
-            get { return txtEdit.Rtf; }
-            set { txtEdit.Rtf = value; }
-        }
-
-        //
-        // Las propiedades y métodos para acceder a los expuestos por CabceraNotaUC
-        // Lo suyo es derivar este control de SeleccionarNotaUC pero se solapan los controles.
-        //
-
-        ///// <summary>
-        ///// Las notas a asignar.
-        ///// </summary>
-        //[Browsable(false)]
-        //[Description("Colección con los grupos y notas.")]
-        //[Category("NotasUC")]
-        //public Dictionary<string, List<string>> Notas
-        //{
-        //    get { return Notas; }
-        //    set { Notas = value; }
-        //}
-
-        ///// <summary>
-        ///// Añadir notas al grupo indicado.
-        ///// Si el grupo existe, se agregan las notas indicadas.
-        ///// </summary>
-        ///// <param name="grupo">El nombre grupo.</param>
-        ///// <param name="notas">Colección con las notas a asignar al grupo.</param>
-        //public void GruposAdd(string grupo, List<string> notas)
-        //{
-        //    GruposAdd(grupo, notas);
-        //}
-
-        ///// <summary>
-        ///// Añade un grupo (si no existe previamente) y 
-        ///// opcionalmente añade una nota.
-        ///// </summary>
-        ///// <param name="grupo">El nombre del grupo.</param>
-        ///// <param name="nota">Una nota a añadir al grupo. 
-        ///// Si es una cadena vacía, solo se crea el grupo si no existe previamente.</param>
-        //public void GruposAdd(string grupo, string nota = "")
-        //{
-        //    if (string.IsNullOrEmpty(nota))
-        //        GruposAdd(grupo);
-        //    else
-        //        GruposAdd(grupo, nota);
-        //}
-
-        ///// <summary>
-        ///// Guardar las notas en el fichero indicado, si se deja en blanco, se usar <see cref="FicNotas"/>.
-        ///// </summary>
-        ///// <param name="nuevoNombre">Si se indica, se usará este nombre para guardar el fichero.</param>
-        //public void GuardarNotas(string nuevoNombre="")
-        //{
-        //    if(string.IsNullOrWhiteSpace(nuevoNombre))
-        //        GuardarNotas(FicNotas);
-        //    else
-        //        GuardarNotas(nuevoNombre);
-
-        //    Modificado = false;
-        //}
-
-        ///// <summary>
-        ///// Leer las notas del fichero indicado, si se deja en blanco, se usar <see cref="FicNotas"/>.
-        ///// </summary>
-        ///// <param name="nuevoNombre">Si se indica, se usará este nombre para leer el fichero.</param>
-        //public void LeerNotas(string nuevoNombre = "")
-        //{
-        //    if (string.IsNullOrWhiteSpace(nuevoNombre))
-        //        LeerNotas(FicNotas);
-        //    else
-        //        LeerNotas(nuevoNombre);
-
-        //    Modificado = false;
-        //}
-
-        //
-        // Los métodos de evento de CabeceraNotaUC
-        // 
-
-        //private void cabeceraNotaUC1_NotaCambiada(string nota, int index)
-        //{
-        //    txtEdit.Text = nota;
-            
-        //    OnNotaCambiada(nota, index);
-        //}
-
-        //private void cabeceraNotaUC1_GrupoCambiado(string nota, int index)
-        //{
-        //    Titulo = $"Notas de '{Grupo}'";
-        //    OnGrupoCambiado(nota, index);
-
-        //    statusInfo.Text = $"Grupo: '{Grupo}' con {ComboNotas.Items.Count} notas";
-        //}
-
-        //
-        // Los métodos de evento normales 
-        //
-
-        /// <summary>
-        /// Muestra la posición en la que se está en el editor.
-        /// </summary>
-        /// <param name="e">
-        /// Un objeto de tipo <see cref="KeyEventArgs"/> o nulo.
-        /// Si se llama desde KeyUp o KeyDown pasar el valor de e.
-        /// </param>
-        private void mostrarPosicion(KeyEventArgs e)
-        {
-            // Saber la línea y columna de la posición del cursor
-            int pos = txtEdit.SelectionStart + 1;
-            int lin = txtEdit.GetLineFromCharIndex(pos) + 1;
-            int col = pos - txtEdit.GetFirstCharIndexOfCurrentLine();
-            if (e != null)
-            {
-                if (e.KeyCode == Keys.Tab && e.Modifiers == Keys.Shift)
-                    col = 1;
-                else if (e.KeyCode == Keys.Home)
-                    col = 1;
-            }
-            statusInfoPos.Text = $"L: {lin} , C: {col}";
+            return;
         }
 
         private void txtEdit_SelectionChanged(object sender, EventArgs e)
@@ -1310,21 +1264,6 @@ namespace gsNotasNETF
             Modificado = true;
         }
 
-        /// <summary>
-        /// Comprueba si existe el grupo indicado.
-        /// </summary>
-        /// <param name="g">El nombre del grupo.</param>
-        /// <returns>True si el grupo existe, false si no existe.</returns>
-        private bool ExisteGrupo(string g)
-        {
-            if (!Notas.ContainsKey(g))
-            {
-                statusInfo.Text = $"No existe el grupo {g}";
-                return false;
-            }
-            return true;
-        }
-
         private void MnuGuardar_Click(object sender, EventArgs e)
         {
             statusInfoTecla.Text = "F9";
@@ -1388,29 +1327,6 @@ namespace gsNotasNETF
 
             Modificado = true;
         }
-
-        //
-        // Cambio en el menú el Ctrl+Shift+S por F9
-        //
-        //private void NotaUC_KeyUp(object sender, KeyEventArgs e)
-        //{
-        //    // No lo detecta ni con KeyUp ni con KeyDown
-        //    if (e.KeyCode == Keys.F9)
-        //    {
-        //        e.Handled = true;
-        //        e.SuppressKeyPress = true;
-
-        //        statusInfoTecla.Text = "F9";
-
-        //        if (string.IsNullOrEmpty(FicNotas))
-        //        {
-        //            statusInfo.Text = "No se ha indicado un nombre de fichero para guardar.";
-        //            return;
-        //        }
-        //        GuardarNotas();
-        //        MostrarInfoNotas();
-        //    }
-        //}
 
         private void MnuAcercaDe_Click(object sender, EventArgs e)
         {
