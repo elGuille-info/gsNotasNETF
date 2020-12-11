@@ -10,7 +10,7 @@
  
  ## Actualizaciones
  Hay varias actualizaciones desde que publiqué esto por primera vez.
- Ahora estoy haciendo **releases** con cada nueva versión, incluyendo tanto el ejecutable como el código fuente (aparte del código fuente aquí publicado).
+ Ahora estoy haciendo [**releases**](https://github.com/elGuille-info/gsNotasNETF/releases) con cada nueva versión, incluyendo tanto el ejecutable como el código fuente (aparte del código fuente aquí publicado).
  <br>
  <br>
   
