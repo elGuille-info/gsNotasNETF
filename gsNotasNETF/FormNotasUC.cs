@@ -17,6 +17,7 @@ v1.0.0.109  10-dic-20   Drag & drop, buscar texto, icono de notificación
 v1.0.0.111  11-dic-20   Opciones de configuración
 v1.0.0.112              Las opciones de configuración están efectivas
                         Salvo las de AutoGuardar y NoGuardarEnBlanco
+                        Ver: https://github.com/elGuille-info/gsNotasNETF/releases/tag/v1.0.0.112
 v1.0.0.113              Se comprueba en NotaUC las asignaciones de notas teniendo en cuenta NoGuardarEnBlanco
                         Otras mejoras o comprobaciones en el código de NotaUC
 v1.0.0.114              Se comprueba el grupo a mostrar en la lista 
@@ -31,6 +32,8 @@ v1.0.0.119              También se asignan las notas cuando en un mismo grupo s
 v1.0.0.120              Nuevas comprobaciones para mostrar el texto en la barra de estado y
                         asignar false a TextoModificado
 v1.0.0.121              Al iniciar se puede mostrar el último grupo que estaba mostrado al cerrar.
+                        Ver: https://github.com/elGuille-info/gsNotasNETF/releases/tag/v1.0.0.121
+
 
 */
 using System;
