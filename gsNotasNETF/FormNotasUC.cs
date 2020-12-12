@@ -17,6 +17,20 @@ v1.0.0.109  10-dic-20   Drag & drop, buscar texto, icono de notificación
 v1.0.0.111  11-dic-20   Opciones de configuración
 v1.0.0.112              Las opciones de configuración están efectivas
                         Salvo las de AutoGuardar y NoGuardarEnBlanco
+v1.0.0.113              Se comprueba en NotaUC las asignaciones de notas teniendo en cuenta NoGuardarEnBlanco
+                        Otras mejoras o comprobaciones en el código de NotaUC
+v1.0.0.114              Se comprueba el grupo a mostrar en la lista 
+                        cuando se añade uno nuevo o se cambia de nombre, etc.
+                        Para mostrar el que había seleccionado.
+v1.0.0.115              Al guardar las notas no asignaba Modificado a false
+v1.0.0.116              En cambiar nombre de los grupos aviso que distinguen mayúsculas de minúsculas
+v1.0.0.117              Creo que la comprobación de si se cambia el texto del editor está controlada
+v1.0.0.118  12-dic-20   Ya va lo de asignar al cambiar de grupo (aún no al cambiar de nota)
+                        Aunque lo añade como nueva nota.
+v1.0.0.119              También se asignan las notas cuando en un mismo grupo se cambia de nota.
+v1.0.0.120              Nuevas comprobaciones para mostrar el texto en la barra de estado y
+                        asignar false a TextoModificado
+v1.0.0.121              Al iniciar se puede mostrar el último grupo que estaba mostrado al cerrar.
 
 */
 using System;
@@ -105,6 +119,8 @@ namespace gsNotasNETF
             notifyIcon1.Icon = this.Icon;
             notifyIcon1.Visible = true;
 
+            var grupoTmp = MySetting.UltimoGrupo;
+
             AsignarSettings();
 
             AsignarColores();
@@ -119,6 +135,12 @@ namespace gsNotasNETF
             lstResultadoBuscar.Items.Clear();
 
             notaUC1.LeerNotas();
+
+            if (MySetting.MostrarMismoGrupo)
+                if (notaUC1.Notas.ContainsKey(grupoTmp))
+                    notaUC1.ComboGrupos.Text = grupoTmp;
+
+            MySetting.UltimoGrupo = grupoTmp;
 
             iniciando = false;
         }
@@ -220,18 +242,22 @@ namespace gsNotasNETF
             for (var i = 0; i < CtrlGrupos.Count; i++)
             {
                 if (i == index)
-                    AsignarValores(CtrlGrupos[i], true, esNota:false);
+                    AsignarValores(CtrlGrupos[i], true, esNota: false);
                 else
                     AsignarValores(CtrlGrupos[i], false, esNota: false);
             }
-            notaUC1.ComboGrupos.Text = ElGrupo;
+            if (notaUC1.ComboGrupos.Text != ElGrupo)
+                notaUC1.ComboGrupos.Text = ElGrupo;
 
             // mostrar la primera nota
             MostrarNotas(grupo, 0);
+
+            MySetting.UltimoGrupo = ElGrupo;
         }
 
         private void notaUC1_NotaCambiada(string nota, int index)
         {
+            MostrarGrupos(ElGrupo, ElGrupoIndex);
             MostrarNotas(ElGrupo, ElGrupoIndex);
 
             for (var i = 0; i < CtrlNotas.Count; i++)
@@ -241,7 +267,6 @@ namespace gsNotasNETF
                 else
                     AsignarValores(CtrlNotas[i], false, true);
             }
-            
         }
 
         private void AsignarValores(Label lbl, bool esSeleccionado, bool esNota)
@@ -597,7 +622,7 @@ namespace gsNotasNETF
             }
             iniciando = false;
 
-            notaUC1.AsignarGrupos();
+            notaUC1.AsignarGrupos(false);
             tabControl1_SelectedIndexChanged(null, null);
         }
 
@@ -615,7 +640,6 @@ namespace gsNotasNETF
                 notaUC1.Notas.Add(nuevoGrupo, new List<string>());
 
             notaUC1.Notas[nuevoGrupo].AddRange(notaUC1.Notas[grupo]);
-            //notaUC1.Notas[grupo].RemoveRange(0, notaUC1.Notas[grupo].Count);
             notaUC1.Notas.Remove(grupo);
 
             cboEdGrupos.Items.Clear();
@@ -624,7 +648,7 @@ namespace gsNotasNETF
                 cboEdGrupos.Items.Add(g);
             }
             iniciando = false;
-            notaUC1.AsignarGrupos();
+            notaUC1.AsignarGrupos(grupo: nuevoGrupo);
             tabControl1_SelectedIndexChanged(null, null);
         }
 
@@ -638,7 +662,7 @@ namespace gsNotasNETF
             notaUC1.Notas[grupoDestino].Add(laNota);
             notaUC1.Notas[grupo].RemoveAt(index);
             iniciando = false;
-            notaUC1.AsignarGrupos();
+            notaUC1.AsignarGrupos(grupo: grupoDestino);
             
             tabControl1_SelectedIndexChanged(null, null);
         }
@@ -705,7 +729,7 @@ namespace gsNotasNETF
             notaUC1.Notas.Clear();
             notaUC1.Notas = dic;
 
-            notaUC1.AsignarGrupos();
+            notaUC1.AsignarGrupos(false);
             iniciando = false;
             tabControl1_SelectedIndexChanged(null, null);
         }
@@ -822,6 +846,7 @@ namespace gsNotasNETF
             OpChkNoGuardarEnBlanco.Checked = MySetting.NoGuardarEnBlanco;
             OpcChkIniciarMinimizada.Checked = MySetting.IniciarMinimizada;
             OpcChkMinimizarAlCerrar.Checked = MySetting.MinimizarAlCerrar;
+            OpcChkMostrarMismoGrupo.Checked = MySetting.MostrarMismoGrupo;
             OpcBtnDeshacer.Enabled = false;
         }
 
@@ -844,6 +869,8 @@ namespace gsNotasNETF
             else if (OpcChkIniciarMinimizada.Checked != MySetting.IniciarMinimizada)
                 modificado = true;
             else if (OpcChkMinimizarAlCerrar.Checked != MySetting.MinimizarAlCerrar)
+                modificado = true;
+            else if (OpcChkMostrarMismoGrupo.Checked != MySetting.MostrarMismoGrupo)
                 modificado = true;
 
             OpcBtnDeshacer.Enabled = modificado;
@@ -904,6 +931,7 @@ namespace gsNotasNETF
             MySetting.NoGuardarEnBlanco = OpChkNoGuardarEnBlanco.Checked;
             MySetting.IniciarMinimizada = OpcChkIniciarMinimizada.Checked;
             MySetting.MinimizarAlCerrar = OpcChkMinimizarAlCerrar.Checked;
+            MySetting.MostrarMismoGrupo = OpcChkMostrarMismoGrupo.Checked;
             OpcBtnDeshacer.Enabled = false;
             
             MySetting.Save();
@@ -920,7 +948,11 @@ namespace gsNotasNETF
 
         private void Opciones_CheckedChanged(object sender, EventArgs e)
         {
+            if (iniciando) return;
+
             OpcConfigurando = true;
+            // Esta opción siempre debe ser TRUE
+            OpChkNoGuardarEnBlanco.Checked = true;
             OpcDatosModificados();
         }
     }

@@ -154,5 +154,29 @@ namespace gsNotasNETF.Properties {
                 this["IniciarMinimizada"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool MostrarMismoGrupo {
+            get {
+                return ((bool)(this["MostrarMismoGrupo"]));
+            }
+            set {
+                this["MostrarMismoGrupo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UltimoGrupo {
+            get {
+                return ((string)(this["UltimoGrupo"]));
+            }
+            set {
+                this["UltimoGrupo"] = value;
+            }
+        }
     }
 }

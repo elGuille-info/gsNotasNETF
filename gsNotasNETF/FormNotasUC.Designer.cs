@@ -89,6 +89,7 @@ namespace gsNotasNETF
             this.MnuNotifyCerrar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.notaUC1 = new gsNotasNETF.NotaUC();
+            this.OpcChkMostrarMismoGrupo = new System.Windows.Forms.CheckBox();
             this.NotasFlowLayoutPanel.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -350,16 +351,16 @@ namespace gsNotasNETF
             this.groupBox1.Size = new System.Drawing.Size(776, 205);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Editar los grupos";
             // 
             // btnClasificarGrupos
             // 
-            this.btnClasificarGrupos.AutoSize = true;
             this.btnClasificarGrupos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.btnClasificarGrupos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClasificarGrupos.ForeColor = System.Drawing.Color.White;
-            this.btnClasificarGrupos.Location = new System.Drawing.Point(184, 52);
+            this.btnClasificarGrupos.Location = new System.Drawing.Point(153, 52);
             this.btnClasificarGrupos.Name = "btnClasificarGrupos";
-            this.btnClasificarGrupos.Size = new System.Drawing.Size(139, 29);
+            this.btnClasificarGrupos.Size = new System.Drawing.Size(191, 29);
             this.btnClasificarGrupos.TabIndex = 7;
             this.btnClasificarGrupos.Text = "Clasificar los grupos";
             this.btnClasificarGrupos.UseVisualStyleBackColor = false;
@@ -372,6 +373,7 @@ namespace gsNotasNETF
             this.groupBox2.Controls.Add(this.btnMoverNota);
             this.groupBox2.Controls.Add(this.cboEdNotas);
             this.groupBox2.Controls.Add(this.lblEdSeleccionarNota);
+            this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.groupBox2.Location = new System.Drawing.Point(6, 128);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(757, 71);
@@ -447,16 +449,17 @@ namespace gsNotasNETF
             this.lblEdInfo.Location = new System.Drawing.Point(437, 58);
             this.lblEdInfo.Margin = new System.Windows.Forms.Padding(3);
             this.lblEdInfo.Name = "lblEdInfo";
-            this.lblEdInfo.Size = new System.Drawing.Size(326, 23);
+            this.lblEdInfo.Size = new System.Drawing.Size(326, 81);
             this.lblEdInfo.TabIndex = 6;
-            this.lblEdInfo.Text = "Si indicas un nombre existente, se moverán las notas.";
+            this.lblEdInfo.Text = "Si indicas un nombre existente, las notas se moverán a ese grupo.\r\nEn los nombres" +
+    " de los grupos se distinguen mayúsculas de minúsculas.";
             // 
             // btnBorrar
             // 
             this.btnBorrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrar.ForeColor = System.Drawing.Color.White;
-            this.btnBorrar.Location = new System.Drawing.Point(329, 18);
+            this.btnBorrar.Location = new System.Drawing.Point(350, 18);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(84, 29);
             this.btnBorrar.TabIndex = 2;
@@ -490,12 +493,12 @@ namespace gsNotasNETF
             // lblEdCambiar
             // 
             this.lblEdCambiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEdCambiar.Location = new System.Drawing.Point(434, 24);
+            this.lblEdCambiar.Location = new System.Drawing.Point(440, 24);
             this.lblEdCambiar.Margin = new System.Windows.Forms.Padding(3);
             this.lblEdCambiar.Name = "lblEdCambiar";
-            this.lblEdCambiar.Size = new System.Drawing.Size(133, 23);
+            this.lblEdCambiar.Size = new System.Drawing.Size(127, 23);
             this.lblEdCambiar.TabIndex = 3;
-            this.lblEdCambiar.Text = "Cambiar nombre a:";
+            this.lblEdCambiar.Text = "Nuevo nombre:";
             // 
             // cboEdGrupos
             // 
@@ -503,9 +506,9 @@ namespace gsNotasNETF
             this.cboEdGrupos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboEdGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.cboEdGrupos.FormattingEnabled = true;
-            this.cboEdGrupos.Location = new System.Drawing.Point(202, 21);
+            this.cboEdGrupos.Location = new System.Drawing.Point(153, 21);
             this.cboEdGrupos.Name = "cboEdGrupos";
-            this.cboEdGrupos.Size = new System.Drawing.Size(121, 25);
+            this.cboEdGrupos.Size = new System.Drawing.Size(191, 25);
             this.cboEdGrupos.TabIndex = 1;
             // 
             // lblEdSeleccionar
@@ -513,9 +516,9 @@ namespace gsNotasNETF
             this.lblEdSeleccionar.Location = new System.Drawing.Point(6, 24);
             this.lblEdSeleccionar.Margin = new System.Windows.Forms.Padding(3);
             this.lblEdSeleccionar.Name = "lblEdSeleccionar";
-            this.lblEdSeleccionar.Size = new System.Drawing.Size(190, 23);
+            this.lblEdSeleccionar.Size = new System.Drawing.Size(141, 23);
             this.lblEdSeleccionar.TabIndex = 0;
-            this.lblEdSeleccionar.Text = "Selecciona el grupo a editar:";
+            this.lblEdSeleccionar.Text = "Selecciona el grupo:";
             // 
             // tabPage4
             // 
@@ -641,6 +644,7 @@ namespace gsNotasNETF
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.OpcChkMostrarMismoGrupo);
             this.groupBox4.Controls.Add(this.OpcChkIniciarMinimizada);
             this.groupBox4.Controls.Add(this.OpcBtnDeshacer);
             this.groupBox4.Controls.Add(this.OpcBtnGuardar);
@@ -758,6 +762,8 @@ namespace gsNotasNETF
             this.OpChkNoGuardarEnBlanco.Size = new System.Drawing.Size(193, 21);
             this.OpChkNoGuardarEnBlanco.TabIndex = 1;
             this.OpChkNoGuardarEnBlanco.Text = "No guardar notas en blanco";
+            this.toolTip1.SetToolTip(this.OpChkNoGuardarEnBlanco, "Aunque en NotaUC se hace esta comprobación,\r\nesta opción no está habilitada para " +
+        "comprobar siempre \r\nque la nota  a añadir no esté en blanco.");
             this.OpChkNoGuardarEnBlanco.UseVisualStyleBackColor = true;
             this.OpChkNoGuardarEnBlanco.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
             // 
@@ -769,6 +775,8 @@ namespace gsNotasNETF
             this.OpcChkAutoGuardar.Size = new System.Drawing.Size(510, 21);
             this.OpcChkAutoGuardar.TabIndex = 0;
             this.OpcChkAutoGuardar.Text = "Auto guardar las notas (se actualiza automáticamente al cambiar de nota o grupo)";
+            this.toolTip1.SetToolTip(this.OpcChkAutoGuardar, "Por ahora se crea una nueva nota en el grupo actual \r\n(cuando se cambia de grupo)" +
+        " si el texto está modificado.");
             this.OpcChkAutoGuardar.UseVisualStyleBackColor = true;
             this.OpcChkAutoGuardar.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
             // 
@@ -860,6 +868,17 @@ namespace gsNotasNETF
             this.notaUC1.NotaReemplazada += new gsNotasNETF.ReemplazarNota(this.notaUC1_NotaReemplazada_1);
             this.notaUC1.NotaCambiada += new gsNotasNETF.TextoModificado(this.notaUC1_NotaCambiada);
             this.notaUC1.GrupoCambiado += new gsNotasNETF.TextoModificado(this.notaUC1_GrupoCambiado);
+            // 
+            // OpcChkMostrarMismoGrupo
+            // 
+            this.OpcChkMostrarMismoGrupo.AutoSize = true;
+            this.OpcChkMostrarMismoGrupo.Location = new System.Drawing.Point(6, 186);
+            this.OpcChkMostrarMismoGrupo.Name = "OpcChkMostrarMismoGrupo";
+            this.OpcChkMostrarMismoGrupo.Size = new System.Drawing.Size(361, 21);
+            this.OpcChkMostrarMismoGrupo.TabIndex = 9;
+            this.OpcChkMostrarMismoGrupo.Text = "Al iniciar la aplicación mostrar el mismo grupo que había";
+            this.OpcChkMostrarMismoGrupo.UseVisualStyleBackColor = true;
+            this.OpcChkMostrarMismoGrupo.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
             // 
             // FormNotasUC
             // 
@@ -957,6 +976,7 @@ namespace gsNotasNETF
         private System.Windows.Forms.CheckBox OpcChkAutoGuardar;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox OpcChkIniciarMinimizada;
+        private System.Windows.Forms.CheckBox OpcChkMostrarMismoGrupo;
     }
 }
 

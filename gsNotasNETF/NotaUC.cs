@@ -69,6 +69,7 @@ namespace gsNotasNETF
             statusInfoPos.Enabled = false;
             statusInfoPos.Text = "L: 0 , C: 0";
             txtEdit.Text = "";
+            TextoModificado = false;
             // Esta propiedad no aparece en la ventana de propiedades
             // ni los eventos relacionados
             txtEdit.AllowDrop = true;
@@ -184,11 +185,19 @@ namespace gsNotasNETF
         /// <summary>
         /// Si el valor es true guardar automáticamente al cambiar la selección de la nota o el grupo.
         /// </summary>
+        [Browsable(true)]
+        [Description("Si el valor es true guardar automáticamente al cambiar la selección de la nota o el grupo.")]
+        [DefaultValue(false)]
+        [Category("NotasUC")]
         public bool AutoGuardar { get; set; } = false;
 
         /// <summary>
         /// No guardar notas que estén en blanco.
         /// </summary>
+        [Browsable(true)]
+        [Description("No guardar notas que estén en blanco.")]
+        [DefaultValue(true)]
+        [Category("NotasUC")]
         public bool NoGuardarEnBlanco { get; set; } = true;
 
         private bool _ModoEdicionNota = false;
@@ -336,7 +345,7 @@ namespace gsNotasNETF
             set
             {
                 _notas = value;
-                AsignarGrupos();
+                AsignarGrupos(false);
             }
         }
 
@@ -350,8 +359,18 @@ namespace gsNotasNETF
         public string Nota
         {
             get { return CboNotas.Text; }
-            set { txtEdit.Text = value; }
+            set { txtEdit.Text = value; TextoModificado = false; }
         }
+
+        /// <summary>
+        /// El nombre anterior del grupo antes de cambiarlo.
+        /// </summary>
+        private string NombreGrupoAnterior = "";
+
+        /// <summary>
+        /// Valor separado de Grupo para poder saber qué valor asignar a NombreGrupoAnterior.
+        /// </summary>
+        private string NombreGrupo = "";
 
         /// <summary>
         /// Lee o asigna el nombre del grupo seleccionado (del texto del combo de grupos).
@@ -361,8 +380,23 @@ namespace gsNotasNETF
         [Category("NotasUC")]
         public string Grupo
         {
-            get { return CboGrupos.Text; }
-            set { CboGrupos.Text = value; }
+            get 
+            {
+                // Aquí no se puede asignar...
+                //if (string.IsNullOrEmpty(NombreGrupo))
+                //    NombreGrupo = CboGrupos.Text;
+                //NombreGrupoAnterior = NombreGrupo;
+                //NombreGrupo = CboGrupos.Text;
+                return CboGrupos.Text; 
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(NombreGrupo))
+                    NombreGrupo = CboGrupos.Text;
+                NombreGrupoAnterior = NombreGrupo;
+                CboGrupos.Text = value;
+                NombreGrupo = value;
+            }
         }
 
         /// <summary>
@@ -559,7 +593,7 @@ namespace gsNotasNETF
             };
 
             _notas = colNotas;
-            AsignarGrupos();
+            AsignarGrupos(false);
         }
 
         private bool _Modificado;
@@ -569,6 +603,7 @@ namespace gsNotasNETF
         /// </summary>
         [Browsable(true)]
         [Description("Indica si los datos se han modificado.")]
+        [DefaultValue(false)]
         [Category("NotasUC")]
         public bool Modificado
         {
@@ -603,17 +638,18 @@ namespace gsNotasNETF
 
         /// <summary>
         /// Asigna el título de la cabecera.
+        /// Al asignar se asigna el texto a las notas.
         /// </summary>
         [Browsable(false)]
-        [Description("Asigna el título de la cabecera.")]
+        [Description("Asigna el título de la cabecera. Al asignar se asigna el texto a las notas.")]
         [Category("NotasUC")]
         public string TituloCabecera
         {
             get { return Titulo; }
             set
             {
-                ComboNotas.Items.Add(value);
-                ComboNotas.Text = value;
+                CboNotas.Items.Add(value);
+                CboNotas.Text = value;
                 Titulo = TituloNota;
             }
         }
@@ -709,8 +745,10 @@ namespace gsNotasNETF
         /// Asignar los grupos.
         /// No asigna las notas hasta que se seleccione un grupo.
         /// </summary>
+        /// <param name="mostrarUltimo">True para mostrar el último grupo, false para mostrar el primero.</param>
+        /// <param name="grupo">Mostrar el grupo con este nombre (se ignora el valor de mostrarUltimo).</param>
         [Browsable(false)]
-        public void AsignarGrupos()
+        public void AsignarGrupos(bool mostrarUltimo = false, string grupo = "")
         {
             iniciando = true;
 
@@ -720,24 +758,44 @@ namespace gsNotasNETF
             CboNotas.Text = "";
 
             if (ComprobarNotasEsNulo())
+            {
+                iniciando = false;
                 return;
+            }
+
+            var indexGrupo = -1;
 
             foreach (var k in _notas.Keys)
-                CboGrupos.Items.Add(k);
+            {
+                var j = CboGrupos.Items.Add(k);
+                if (grupo.Any() && grupo.Equals(k))
+                    indexGrupo = j;
+            }
 
             iniciando = false;
 
             if (CboGrupos.Items.Count > 0)
-                CboGrupos.SelectedIndex = 0;
+            {
+                if (grupo.Any() && indexGrupo > -1)
+                    CboGrupos.SelectedIndex = indexGrupo;
+                else if (mostrarUltimo)
+                    CboGrupos.SelectedIndex = CboGrupos.Items.Count - 1;
+                else
+                    CboGrupos.SelectedIndex = 0;
+            }
+            TextoModificado = false;
         }
 
         /// <summary>
-        /// Resetea el control.
-        /// En realidad la longitud del título.
+        /// Resetea la longitud del título, el tema y los colores.
         /// </summary>
         public void Reset()
         {
             LongitudTituloNota = LongitudTituloNotaDefault;
+            Tema = Temas.Claro;
+            BackColor = ColoresClaro[0];
+            ForeColor = ColoresClaro[1];
+            TextoModificado = false;
         }
 
         /// <summary>
@@ -749,13 +807,17 @@ namespace gsNotasNETF
         [Browsable(false)]
         public void GruposAdd(string grupo)
         {
+            // no asignar grupos en blanco
+            if (string.IsNullOrWhiteSpace(grupo))
+                return;
+
             _ = ComprobarNotasEsNulo();
 
             if (!_notas.ContainsKey(grupo))
-            {
                 _notas.Add(grupo, new List<string>());
-                AsignarGrupos();
-            }
+                
+            AsignarGrupos(grupo: grupo);
+            TextoModificado = false;
         }
 
         /// <summary>
@@ -767,14 +829,26 @@ namespace gsNotasNETF
         [Browsable(false)]
         public void GruposAdd(string grupo, List<string> notas)
         {
+            // no asignar grupos en blanco
+            if (string.IsNullOrWhiteSpace(grupo))
+                return;
+
             _ = ComprobarNotasEsNulo();
+
+            // No añadir las notas vacías
+            if (NoGuardarEnBlanco)
+            {
+                var sinVacias = notas.TakeWhile((s) => s.Any());
+                notas = sinVacias.ToList<string>();
+            }
 
             if (!_notas.ContainsKey(grupo))
                 _notas.Add(grupo, notas);
+            else
+                _notas[grupo].AddRange(notas);
 
-            _notas[grupo].AddRange(notas);
-
-            AsignarGrupos();
+            AsignarGrupos(grupo: grupo);
+            TextoModificado = false;
         }
 
         /// <summary>
@@ -787,7 +861,16 @@ namespace gsNotasNETF
         [Browsable(false)]
         public void GruposAdd(string grupo, string nota)
         {
+            // no asignar grupos en blanco
+            if (string.IsNullOrWhiteSpace(grupo))
+                return;
+
+            // No añadir notas en blanco, si así se indica
+            if (NoGuardarEnBlanco && string.IsNullOrWhiteSpace(nota))
+                return;
+
             _ = ComprobarNotasEsNulo();
+
 
             if (_notas.ContainsKey(grupo))
             {
@@ -797,7 +880,8 @@ namespace gsNotasNETF
             else
                 _notas.Add(grupo, new List<string> { nota });
 
-            AsignarGrupos();
+            AsignarGrupos(true);
+            TextoModificado = false;
         }
 
         /// <summary>
@@ -809,6 +893,14 @@ namespace gsNotasNETF
         [Browsable(false)]
         public void NotasAdd(string grupo, string nota)
         {
+            // no asignar grupos en blanco
+            if (string.IsNullOrWhiteSpace(grupo))
+                return;
+
+            // No añadir notas en blanco, si así se indica
+            if (NoGuardarEnBlanco && string.IsNullOrWhiteSpace(nota))
+                return;
+
             _ = ComprobarNotasEsNulo();
 
             if (_notas.ContainsKey(grupo))
@@ -820,6 +912,8 @@ namespace gsNotasNETF
                 _notas.Add(grupo, new List<string> { nota });
 
             CboNotas.Items.Add(nota);
+            statusInfo.Text = "Se ha añadido una nota.";
+            TextoModificado = false;
         }
 
         /// <summary>
@@ -831,7 +925,20 @@ namespace gsNotasNETF
         [Browsable(false)]
         public void NotasAdd(string grupo, List<string> notas)
         {
+            //GruposAdd(grupo, notas);
+
+            // no asignar grupos en blanco
+            if (string.IsNullOrWhiteSpace(grupo))
+                return;
+                        
             _ = ComprobarNotasEsNulo();
+
+            // No añadir las notas vacías
+            if (NoGuardarEnBlanco)
+            {
+                var sinVacias = notas.TakeWhile((s) => s.Any());
+                notas = sinVacias.ToList<string>();
+            }
 
             if (!_notas.ContainsKey(grupo))
                 _notas.Add(grupo, notas);
@@ -839,6 +946,8 @@ namespace gsNotasNETF
                 _notas[grupo].AddRange(notas);
 
             AsignarNotas(grupo);
+            statusInfo.Text = $"Se han añadido notas al grupo {grupo}.";
+            TextoModificado = false;
         }
 
         /// <summary>
@@ -865,7 +974,10 @@ namespace gsNotasNETF
 
             OnNotaReemplazada(grupo, nota, CboNotas.SelectedIndex);
 
+            statusInfo.Text = $"Se ha reemplazado la nota con índice {CboNotas.SelectedIndex} en el grupo {grupo}.";
+
             iniciando = false;
+            TextoModificado = false;
         }
 
         /// <summary>
@@ -878,13 +990,18 @@ namespace gsNotasNETF
         /// <remarks>Usar esto solo para asignar notas existentes.</remarks>
         public void AsignarNota(string grupo, string nota, int index)
         {
+            if(string.IsNullOrWhiteSpace(grupo))
+                return;
+
+            if (NoGuardarEnBlanco && string.IsNullOrWhiteSpace(nota))
+                return;
+
             if (index < 0)
             {
                 OnDatosErrorEnNotasUC("El índice no puede ser menor de cero. En: 'AsignarNota'.");
+                statusInfo.Text = "El índice no puede ser menor de cero. En: 'AsignarNota'.";
                 return;
             }
-
-            iniciando = true;
 
             // Si está en modo edición no asignarlo a la colección ???
             //if(!_ModoEdicionNota)
@@ -893,16 +1010,17 @@ namespace gsNotasNETF
             if (!_notas.ContainsKey(grupo))
             {
                 OnDatosErrorEnNotasUC($"El grupo '{grupo}' no existe. En: 'AsignarNota'.");
-                iniciando = false;
+                statusInfo.Text = $"El grupo '{grupo}' no existe. En: 'AsignarNota'.";
                 return;
             }
+            
+            if (index >=_notas[grupo].Count)
+                index = _notas[grupo].Count - 1;
+
             _notas[grupo][index] = nota;
-            if (_notas[grupo].Count <= index)
-            {
-                OnDatosErrorEnNotasUC($"El índice '{index}' no es válido, valor máximo: {_notas[grupo].Count - 1}. En: 'AsignarNota'.");
-                iniciando = false;
-                return;
-            }
+
+            iniciando = true;
+
             if ((string)CboNotas.Items[index] != nota)
                 Modificado = true;
 
@@ -911,7 +1029,9 @@ namespace gsNotasNETF
             OnNotaCambiada(nota, index);
             OnNotaReemplazada(grupo, nota, index);
 
+            statusInfo.Text = $"Se han asignado la nota con índice {index} del grupo {grupo}.";
             iniciando = false;
+            TextoModificado = false;
         }
 
         /// <summary>
@@ -925,11 +1045,11 @@ namespace gsNotasNETF
 
             if (string.IsNullOrEmpty(grupo) || !_notas.ContainsKey(grupo))
                 return;
-
-            iniciando = true;
-
+                        
             if (_notas.TryGetValue(grupo, out List<string> colNotas))
             {
+                iniciando = true;
+
                 // Rellenar el grupo de notas
                 for (var i = 0; i < colNotas.Count; i++)
                 {
@@ -942,6 +1062,8 @@ namespace gsNotasNETF
                     CboNotas.SelectedIndex = 0;
             }
             OnGrupoCambiado(CboGrupos.Text, CboGrupos.SelectedIndex);
+            statusInfo.Text = $"Se han asignado las notas al grupo {grupo}.";
+            TextoModificado = false;
         }
 
         /// <summary>
@@ -958,13 +1080,19 @@ namespace gsNotasNETF
             {
                 if (esNota)
                 {
-                    if (ComboNotas.Items.Count > 0)
-                        ComboNotas.SelectedIndex = index;
+                    if (CboNotas.Items.Count > 0 && index < CboNotas.Items.Count)
+                    {
+                        CboNotas.SelectedIndex = index;
+                        statusInfo.Text = $"Se ha seleccionado la nota {index} del grupo {Grupo}.";
+                    }
                 }
                 else
                 {
-                    if (ComboGrupos.Items.Count > 0)
-                        ComboGrupos.SelectedIndex = index;
+                    if (CboGrupos.Items.Count > 0 && index < CboGrupos.Items.Count)
+                    {
+                        CboGrupos.SelectedIndex = index;
+                        statusInfo.Text = $"Se ha seleccionado el grupo con índice {index}.";
+                    }
                 }
             }
         }
@@ -1021,7 +1149,7 @@ namespace gsNotasNETF
         {
             if (!Notas.ContainsKey(g))
             {
-                statusInfo.Text = $"No existe el grupo {g}";
+                statusInfo.Text = $"No existe el grupo {g}.";
                 return false;
             }
             return true;
@@ -1086,6 +1214,11 @@ namespace gsNotasNETF
         {
             if (iniciando) return;
 
+            if (string.IsNullOrEmpty(NombreGrupo))
+                NombreGrupo = CboGrupos.Text;
+            NombreGrupoAnterior = NombreGrupo;
+            NombreGrupo = CboGrupos.Text;
+
             Titulo = $"'{Grupo} - {TituloNota}'";
 
             Titulo = $"Notas de '{Grupo}'";
@@ -1093,7 +1226,22 @@ namespace gsNotasNETF
             if (CboGrupos.Items.Count > 0 && CboGrupos.SelectedIndex != -1)
                 OnGrupoCambiado(Grupo, CboGrupos.SelectedIndex);
 
+            // Si es autoguardar y se cambia de grupo
+            // asignar el texto actual a una nueva nota del grupo anterior
+            // si el texto ha cambiado
+
+            // esto no debería darse
+            if (string.IsNullOrEmpty(NombreGrupoAnterior))
+                NombreGrupoAnterior = Grupo;
+
+            if (AutoGuardar && NombreGrupoAnterior != Grupo && TextoModificado)
+            {
+                if (_notas.Keys.Contains(NombreGrupoAnterior))
+                    _notas[NombreGrupoAnterior].Add(txtEdit.Text);
+            }
             AsignarNotas(Grupo);
+
+            TextoModificado = false;
 
             statusInfo.Text = $"Grupo: '{Grupo}' con {CboNotas.Items.Count} nota{(CboNotas.Items.Count==1 ? "" : "s")}";
         }
@@ -1108,20 +1256,47 @@ namespace gsNotasNETF
                 OnGrupoCambiado(Grupo, CboGrupos.SelectedIndex);
 
             if (!_notas.ContainsKey(Grupo))
-                GruposAdd(Grupo, "");
+            {
+                GruposAdd(Grupo, "nota-en-blanco");
+                statusInfo.Text = $"Se ha añadido el grupo {Grupo}.";
+            }
             else
+            {
                 AsignarNotas(Grupo);
+                statusInfo.Text = $"Se han asignado las notas al grupo {Grupo}.";
+            }
+
+            TextoModificado = false;
         }
 
         private void CboNotas_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (iniciando) return;
 
+            if (string.IsNullOrEmpty(NombreGrupo))
+                NombreGrupo = CboGrupos.Text;
+            NombreGrupoAnterior = NombreGrupo;
+            NombreGrupo = CboGrupos.Text;
+
             Titulo = $"'{Grupo} - {TituloNota}'";
-            
+
+            if (AutoGuardar && TextoModificado)
+            {
+                if (_notas.Keys.Contains(NombreGrupo))
+                {
+                    var notaAnt = CboNotas.Text;
+                    _notas[NombreGrupo].Add(txtEdit.Text);
+                    iniciando = true;
+                    CboNotas.Items.Add(txtEdit.Text);
+                    CboNotas.Text = notaAnt;
+                    iniciando = false;
+                }
+            }
             txtEdit.Text = Nota;
+            TextoModificado = false;
 
             OnNotaCambiada(Nota, CboNotas.SelectedIndex);
+            statusInfo.Text = $"Grupo: '{Grupo}' con {CboNotas.Items.Count} nota{(CboNotas.Items.Count == 1 ? "" : "s")}";
         }
 
         private void CboNotas_Validating(object sender, CancelEventArgs e)
@@ -1135,6 +1310,8 @@ namespace gsNotasNETF
 
             if (_notas.ContainsKey(Grupo) && !_notas[Grupo].Contains(Nota))
                 NotasAdd(Grupo, Nota);
+            
+            TextoModificado = false;
         }
 
         private void CboGrupos_KeyUp(object sender, KeyEventArgs e)
@@ -1148,6 +1325,8 @@ namespace gsNotasNETF
                 SendKeys.Send("{TAB}");
 
                 OnGrupoCambiado(Grupo, CboGrupos.SelectedIndex);
+
+                statusInfo.Text = $"Grupo: '{Grupo}' con {CboNotas.Items.Count} nota{(CboNotas.Items.Count == 1 ? "" : "s")}";
             }
         }
 
@@ -1165,24 +1344,25 @@ namespace gsNotasNETF
 
         private void CboGrupos_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (iniciando) return;
+            // El ENTER / INTRO no llega aquí
+            //if (iniciando) return;
 
-            if (e.KeyChar == '\n')
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
+            //if (e.KeyChar == '\n')
+            //{
+            //    e.Handled = true;
+            //    SendKeys.Send("{TAB}");
+            //}
         }
 
         private void CboNotas_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (iniciando) return;
+            //if (iniciando) return;
 
-            if (e.KeyChar == '\n')
-            {
-                e.Handled = true;
-                SendKeys.Send("{TAB}");
-            }
+            //if (e.KeyChar == '\n')
+            //{
+            //    e.Handled = true;
+            //    SendKeys.Send("{TAB}");
+            //}
         }
                 
         private void NotaUC_Load(object sender, EventArgs e)
@@ -1215,20 +1395,27 @@ namespace gsNotasNETF
         {
             statusInfoTecla.Text = "F8";
 
-            var g = ComboGrupos.Text;
+            var g = CboGrupos.Text;
+            if (string.IsNullOrWhiteSpace(g))
+            {
+                CboGrupos.Focus();
+                return;
+            }
+
             if (!ExisteGrupo(g))
             {
                 // Añadir el grupo
-                Notas.Add(g, new List<string>());
-                GruposAdd(g, txtEdit.Text);
-                OnGrupoCambiado(g, ComboGrupos.SelectedIndex);
+                _notas.Add(g, new List<string>() { txtEdit.Text });
+                GruposAdd(g);
+                OnGrupoCambiado(g, CboGrupos.SelectedIndex);
             }
             else
             {
                 NotasAdd(g, txtEdit.Text);
-                OnNotaCambiada(txtEdit.Text, ComboNotas.SelectedIndex);
+                TextoModificado = false;
+                OnNotaCambiada(txtEdit.Text, CboNotas.SelectedIndex);
             }
-
+            statusInfo.Text = "Se ha añadido una nota.";
             Modificado = true;
         }
 
@@ -1236,16 +1423,22 @@ namespace gsNotasNETF
         {
             statusInfoTecla.Text = "Shift+F8";
 
-            var g = ComboGrupos.Text;
+            var g = CboGrupos.Text;
+            if (string.IsNullOrWhiteSpace(g))
+            {
+                CboGrupos.Focus();
+                return;
+            }
 
             if (!ModoEdicionNota && !ExisteGrupo(g))
                 return;
 
-            if(!ModoEdicionNota)
+            if (!ModoEdicionNota)
                 NotaReplace(g, txtEdit.Text);
 
-            OnNotaReemplazada(g, txtEdit.Text, ComboNotas.SelectedIndex);
-
+            OnNotaReemplazada(g, txtEdit.Text, CboNotas.SelectedIndex);
+            statusInfo.Text = "Se ha reemplazado la nota.";
+            TextoModificado = false;
             Modificado = true;
         }
 
@@ -1253,14 +1446,19 @@ namespace gsNotasNETF
         {
             statusInfoTecla.Text = "F5";
 
-            var g = ComboGrupos.Text;
+            var g = CboGrupos.Text;
+            if (string.IsNullOrWhiteSpace(g))
+            {
+                CboGrupos.Focus();
+                return;
+            }
 
             if (!ExisteGrupo(g))
                 return;
 
             Notas[g].Sort();
             AsignarNotas(g);
-
+            statusInfo.Text = $"Se han clasificado las notas del grupo {g}.";
             Modificado = true;
         }
 
@@ -1270,11 +1468,13 @@ namespace gsNotasNETF
 
             if (string.IsNullOrEmpty(FicNotas))
             {
-                statusInfo.Text = "No se ha indicado un nombre fichero para guardar.";
-                OnDatosErrorEnNotasUC("No se ha indicado un nombre fichero para guardar.");
+                statusInfo.Text = "No se ha indicado un nombre fichero para el fichero de notas.";
+                OnDatosErrorEnNotasUC("No se ha indicado un nombre fichero para el fichero de notas.");
                 return;
             }
             GuardarNotas();
+            TextoModificado = false;
+            Modificado = false;
 
             MostrarInfoNotas();
         }
@@ -1282,7 +1482,16 @@ namespace gsNotasNETF
         private void MnuLeer_Click(object sender, EventArgs e)
         {
             statusInfoTecla.Text = "Ctrl+L";
+
+            if (string.IsNullOrEmpty(FicNotas))
+            {
+                statusInfo.Text = "No se ha indicado un nombre fichero para el fichero de notas.";
+                OnDatosErrorEnNotasUC("No se ha indicado un nombre fichero para el fichero de notas.");
+                return;
+            }
             LeerNotas();
+            TextoModificado = false;
+            Modificado = false;
 
             MostrarInfoNotas();
         }
@@ -1298,16 +1507,23 @@ namespace gsNotasNETF
             {
                 notas += Notas[g].Count;
             }
-            statusInfo.Text = $"Hay {grupos} grupos y {notas} notas en total.";
+            if (grupos == 1 && notas == 1)
+                statusInfo.Text = "Hay 1 grupo y 1 nota en total.";
+            else if (grupos == 1)
+                statusInfo.Text = $"Hay 1 grupo y {notas} notas en total.";
+            else if (notas == 1)
+                statusInfo.Text = $"Hay {grupos} grupos y 1 nota en total. (Esto no es posible)";
+            else
+                statusInfo.Text = $"Hay {grupos} grupos y {notas} notas en total.";
         }
 
         private void MnuNuevoGrupo_Click(object sender, EventArgs e)
         {
             statusInfoTecla.Text = "Ctrl+G";
 
-            ComboNotas.Text = "";
-            ComboGrupos.Text = "Nuevo-grupo";
-            ComboGrupos.Focus();
+            CboNotas.Text = "";
+            CboGrupos.Text = "Nuevo-grupo";
+            CboGrupos.Focus();
 
             statusInfo.Text = "Nuevo grupo, indica el nombre y pulsa ENTER para crearlo.";
         }
@@ -1316,15 +1532,15 @@ namespace gsNotasNETF
         {
             statusInfoTecla.Text = "F6";
 
-            var i = ComboNotas.SelectedIndex;
+            var i = CboNotas.SelectedIndex;
             if (i == -1)
                 return;
 
-            Notas[ComboGrupos.Text].Remove(ComboNotas.Text);
-            ComboNotas.Items.RemoveAt(i);
+            Notas[CboGrupos.Text].Remove(CboNotas.Text);
+            CboNotas.Items.RemoveAt(i);
 
             statusInfo.Text = "Se ha eliminado la nota, el texto se deja en el editor.";
-
+            TextoModificado = false;
             Modificado = true;
         }
 
@@ -1418,6 +1634,7 @@ No se guardan los grupos y notas en blanco.",
 
                 // abrir el fichero y asignar el contenido
                 txtEdit.Text = s;
+                TextoModificado = false;
             }
             // Creo que comparando con Text sería suficiente...
             else if (e.Data.GetDataPresent(DataFormats.StringFormat) ||
@@ -1438,6 +1655,8 @@ No se guardan los grupos y notas en blanco.",
                 // Drop the text on to the RichTextBox.  
                 txtEdit.Text = txtEdit.Text + e.Data.GetData(DataFormats.Text).ToString();
                 txtEdit.Text = txtEdit.Text + s;
+
+                TextoModificado = false;
             }
         }
 
@@ -1447,9 +1666,11 @@ No se guardan los grupos y notas en blanco.",
                 e.Effect = DragDropEffects.Copy;
         }
 
+        private bool TextoModificado = false;
+
         private void txtEdit_TextChanged(object sender, EventArgs e)
         {
-            //Modificado = true;
+            TextoModificado = true;
             OnTextoModificado("El texto se ha modificado.");
         }
     }
