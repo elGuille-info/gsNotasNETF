@@ -73,6 +73,7 @@ namespace gsNotasNETF
             this.lblBuscar = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.OpcChkMostrarMismoGrupo = new System.Windows.Forms.CheckBox();
             this.OpcChkIniciarMinimizada = new System.Windows.Forms.CheckBox();
             this.OpcBtnDeshacer = new System.Windows.Forms.Button();
             this.OpcBtnGuardar = new System.Windows.Forms.Button();
@@ -84,12 +85,11 @@ namespace gsNotasNETF
             this.OpcChkAutoGuardar = new System.Windows.Forms.CheckBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextNotify = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.MnuNotifyRestaurar = new System.Windows.Forms.ToolStripMenuItem();
+            this.NotifyMenuRestaurar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.MnuNotifyCerrar = new System.Windows.Forms.ToolStripMenuItem();
+            this.NotifyMenuCerrar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.notaUC1 = new gsNotasNETF.NotaUC();
-            this.OpcChkMostrarMismoGrupo = new System.Windows.Forms.CheckBox();
             this.NotasFlowLayoutPanel.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -662,6 +662,17 @@ namespace gsNotasNETF
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             // 
+            // OpcChkMostrarMismoGrupo
+            // 
+            this.OpcChkMostrarMismoGrupo.AutoSize = true;
+            this.OpcChkMostrarMismoGrupo.Location = new System.Drawing.Point(6, 186);
+            this.OpcChkMostrarMismoGrupo.Name = "OpcChkMostrarMismoGrupo";
+            this.OpcChkMostrarMismoGrupo.Size = new System.Drawing.Size(361, 21);
+            this.OpcChkMostrarMismoGrupo.TabIndex = 9;
+            this.OpcChkMostrarMismoGrupo.Text = "Al iniciar la aplicación mostrar el mismo grupo que había";
+            this.OpcChkMostrarMismoGrupo.UseVisualStyleBackColor = true;
+            this.OpcChkMostrarMismoGrupo.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
+            // 
             // OpcChkIniciarMinimizada
             // 
             this.OpcChkIniciarMinimizada.AutoSize = true;
@@ -791,39 +802,38 @@ namespace gsNotasNETF
             // contextNotify
             // 
             this.contextNotify.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MnuNotifyRestaurar,
+            this.NotifyMenuRestaurar,
             this.toolStripSeparator1,
-            this.MnuNotifyCerrar});
+            this.NotifyMenuCerrar});
             this.contextNotify.Name = "contextNotify";
             this.contextNotify.Size = new System.Drawing.Size(124, 54);
             // 
-            // MnuNotifyRestaurar
+            // NotifyMenuRestaurar
             // 
-            this.MnuNotifyRestaurar.Image = ((System.Drawing.Image)(resources.GetObject("MnuNotifyRestaurar.Image")));
-            this.MnuNotifyRestaurar.Name = "MnuNotifyRestaurar";
-            this.MnuNotifyRestaurar.Size = new System.Drawing.Size(123, 22);
-            this.MnuNotifyRestaurar.Text = "Restaurar";
-            this.MnuNotifyRestaurar.Click += new System.EventHandler(this.MnuNotifyRestaurar_Click);
+            this.NotifyMenuRestaurar.Image = ((System.Drawing.Image)(resources.GetObject("NotifyMenuRestaurar.Image")));
+            this.NotifyMenuRestaurar.Name = "NotifyMenuRestaurar";
+            this.NotifyMenuRestaurar.Size = new System.Drawing.Size(123, 22);
+            this.NotifyMenuRestaurar.Text = "Restaurar";
+            this.NotifyMenuRestaurar.Click += new System.EventHandler(this.MnuNotifyRestaurar_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(120, 6);
             // 
-            // MnuNotifyCerrar
+            // NotifyMenuCerrar
             // 
-            this.MnuNotifyCerrar.Image = ((System.Drawing.Image)(resources.GetObject("MnuNotifyCerrar.Image")));
-            this.MnuNotifyCerrar.Name = "MnuNotifyCerrar";
-            this.MnuNotifyCerrar.Size = new System.Drawing.Size(123, 22);
-            this.MnuNotifyCerrar.Text = "Cerrar";
-            this.MnuNotifyCerrar.Click += new System.EventHandler(this.MnuNotifyCerrar_Click);
+            this.NotifyMenuCerrar.Image = ((System.Drawing.Image)(resources.GetObject("NotifyMenuCerrar.Image")));
+            this.NotifyMenuCerrar.Name = "NotifyMenuCerrar";
+            this.NotifyMenuCerrar.Size = new System.Drawing.Size(123, 22);
+            this.NotifyMenuCerrar.Text = "Cerrar";
+            this.NotifyMenuCerrar.Click += new System.EventHandler(this.MnuNotifyCerrar_Click);
             // 
             // notaUC1
             // 
             this.notaUC1.AllowDrop = true;
             this.notaUC1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.notaUC1.AutoGuardar = false;
             this.notaUC1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.notaUC1.ColoresClaro = new System.Drawing.Color[] {
         System.Drawing.Color.White,
@@ -855,7 +865,6 @@ namespace gsNotasNETF
             this.notaUC1.Margin = new System.Windows.Forms.Padding(1);
             this.notaUC1.MinimumSize = new System.Drawing.Size(400, 200);
             this.notaUC1.Name = "notaUC1";
-            this.notaUC1.NoGuardarEnBlanco = true;
             this.notaUC1.Nota = "Prueba NotaUC";
             this.notaUC1.Notas = ((System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>>)(resources.GetObject("notaUC1.Notas")));
             this.notaUC1.Padding = new System.Windows.Forms.Padding(1);
@@ -868,17 +877,6 @@ namespace gsNotasNETF
             this.notaUC1.NotaReemplazada += new gsNotasNETF.ReemplazarNota(this.notaUC1_NotaReemplazada_1);
             this.notaUC1.NotaCambiada += new gsNotasNETF.TextoModificado(this.notaUC1_NotaCambiada);
             this.notaUC1.GrupoCambiado += new gsNotasNETF.TextoModificado(this.notaUC1_GrupoCambiado);
-            // 
-            // OpcChkMostrarMismoGrupo
-            // 
-            this.OpcChkMostrarMismoGrupo.AutoSize = true;
-            this.OpcChkMostrarMismoGrupo.Location = new System.Drawing.Point(6, 186);
-            this.OpcChkMostrarMismoGrupo.Name = "OpcChkMostrarMismoGrupo";
-            this.OpcChkMostrarMismoGrupo.Size = new System.Drawing.Size(361, 21);
-            this.OpcChkMostrarMismoGrupo.TabIndex = 9;
-            this.OpcChkMostrarMismoGrupo.Text = "Al iniciar la aplicación mostrar el mismo grupo que había";
-            this.OpcChkMostrarMismoGrupo.UseVisualStyleBackColor = true;
-            this.OpcChkMostrarMismoGrupo.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
             // 
             // FormNotasUC
             // 
@@ -952,9 +950,9 @@ namespace gsNotasNETF
         private System.Windows.Forms.Button btnClasificarGrupos;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip contextNotify;
-        private System.Windows.Forms.ToolStripMenuItem MnuNotifyRestaurar;
+        private System.Windows.Forms.ToolStripMenuItem NotifyMenuRestaurar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem MnuNotifyCerrar;
+        private System.Windows.Forms.ToolStripMenuItem NotifyMenuCerrar;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnBuscar;

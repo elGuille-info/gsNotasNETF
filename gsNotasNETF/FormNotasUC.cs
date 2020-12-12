@@ -118,7 +118,7 @@ namespace gsNotasNETF
         {
             // Usar un icono de notificación en la barra de tarea
             notifyIcon1.Text = Application.ProductName;
-            MnuNotifyRestaurar.Text = "Minimizar";
+            NotifyMenuRestaurar.Text = "Minimizar";
             notifyIcon1.Icon = this.Icon;
             notifyIcon1.Visible = true;
 
@@ -210,7 +210,7 @@ namespace gsNotasNETF
 
             if (this.WindowState == FormWindowState.Normal)
             {
-                MnuNotifyRestaurar.Text = "Minimizar";
+                NotifyMenuRestaurar.Text = "Minimizar";
                 MySetting.Left = this.Left;
                 MySetting.Top = this.Top;
                 MySetting.Width = this.Width;
@@ -218,7 +218,7 @@ namespace gsNotasNETF
                 TamApp = (this.Left, this.Top, this.Width, this.Height);
             }
             else
-                MnuNotifyRestaurar.Text = "Restaurar";
+                NotifyMenuRestaurar.Text = "Restaurar";
         }
 
         private void FormNotasUC_LocationChanged(object sender, EventArgs e)
@@ -741,12 +741,12 @@ namespace gsNotasNETF
         {
             if (this.WindowState == FormWindowState.Normal)
             {
-                MnuNotifyRestaurar.Text = "Restaurar";
+                NotifyMenuRestaurar.Text = "Restaurar";
                 this.WindowState = FormWindowState.Minimized;
             }
             else
             {
-                MnuNotifyRestaurar.Text = "Minimizar";
+                NotifyMenuRestaurar.Text = "Minimizar";
                 this.WindowState = FormWindowState.Normal;
             }
         }
