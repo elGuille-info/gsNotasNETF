@@ -1,4 +1,4 @@
-Del post de mi sitio:
+[Copiado y pegado del post de mi sitio](http://www.elguillemola.com/2020/12/te-gustaria-obtener-mas-prestaciones-de-gsnotasnet/).
 
 # ¿Te gustaría obtener más prestaciones de gsNotasNET?
 
@@ -22,10 +22,12 @@ Porque si un usuario (cuenta de gmail) no está registrado en el proyecto, no po
 
 El mensaje de error es el mostrado en la figura 1.
 
+![alt text](http://www.elguillemola.com/img/img2020/Google-API-no-configurado.jpg "Figura 1. Error al intentar acceder con una cuenta de gmail no configurada.")
 
 Figura 1. Error al intentar acceder con una cuenta de gmail no configurada.
-Nota:
-Repito lo de «cuenta de GMAIL» porque solo se pueden usar cuentas de gmail, al menos a mi no me ha dejado definir otra cuenta de otro servidor, por ejemplo Outlook.com.
+
+> ** Nota: **
+> Repito lo de «cuenta de GMAIL» porque solo se pueden usar cuentas de gmail, al menos a mi no me ha dejado definir otra cuenta de otro servidor, por ejemplo Outlook.com.
 
 Otras opciones para tener las notas en la nube
 
