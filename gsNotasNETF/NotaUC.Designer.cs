@@ -217,7 +217,6 @@ namespace gsNotasNETF
             this.MnuGuardar.ShortcutKeys = System.Windows.Forms.Keys.F9;
             this.MnuGuardar.Size = new System.Drawing.Size(195, 22);
             this.MnuGuardar.Text = "Guardar notas";
-            this.MnuGuardar.ToolTipText = "Guarda las notas\r\nTambién pulsando F9";
             this.MnuGuardar.Click += new System.EventHandler(this.MnuGuardar_Click);
             // 
             // toolStripSeparator6

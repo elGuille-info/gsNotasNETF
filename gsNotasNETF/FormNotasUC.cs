@@ -33,7 +33,17 @@ v1.0.0.120              Nuevas comprobaciones para mostrar el texto en la barra 
                         asignar false a TextoModificado
 v1.0.0.121              Al iniciar se puede mostrar el último grupo que estaba mostrado al cerrar.
                         Ver: https://github.com/elGuille-info/gsNotasNETF/releases/tag/v1.0.0.121
-
+v1.0.0.122  15-dic-20   Cambio los GroupBox a Panel para añadir Autoscroll
+                        Añado el panel Vista
+                        Añado la opción para mostrar las notas horizontalmente (más estrechas y largas)
+                        NotasFlowLayoutPanel.FlowDirection = TopDown
+                        Tamaño de las etiquetas: Normal: 180, 80; Horizontal: ancho del FlowPanel y 35 de alto
+                        Nuevas opciones para mostrar en la barra de tareas de Windows y guardar en Drive
+                        Por ahora solo se guardan las notas en Drive, no se leen desde allí.
+v1.0.0.123              Utilizo la biblioteca gsGoogleDriveDocsAPINET para guardar (si así se indica) las notas en Google Drive.
+v1.0.0.124              Ajustes a la hora de leer los valores (y asignarlos) de la configuración.
+v1.0.0.125              Asignado los valores de guardar en drive y borrar anteriores en el control NotaUC.
+v1.0.0.126              Se capturan los eventos de la DLL para cuando inicia, termina y está creando los documentos.
 
 */
 using System;
@@ -93,6 +103,17 @@ namespace gsNotasNETF
         /// El tamaño normal de las notas y grupos en el panel.
         /// </summary>
         private readonly Size NormalSize = new Size(180, 80);
+
+        /// <summary>
+        /// El tamaño de las notas si se elige mostrar en horizontal.
+        /// El ancho se asignará al de NotasFlowLayoutPanel.Client.Width - 12
+        /// </summary>
+        private Size HorizontalSize = new Size(250, 35);
+
+        /// <summary>
+        /// El tamaño a usar en las notas
+        /// </summary>
+        private Size NotasSize = new Size(180, 80);
 
         public FormNotasUC()
         {
@@ -283,13 +304,20 @@ namespace gsNotasNETF
                 {
                     lbl.Font = new Font(LblNota.Font, FontStyle.Bold);
                     // Si queremos que se separe del resto de etiquetas
-                    //NotasFlowLayoutPanel.SetFlowBreak(lbl, true);
+                    //if(MySetting.VistaNotasHorizontal)
+                    //    NotasFlowLayoutPanel.SetFlowBreak(lbl, true);
+                    //else
+                    //    NotasFlowLayoutPanel.SetFlowBreak(lbl, false);
+
                     // Asignar el tamaño grande de la nota seleccionada
                     //lbl.Width = (int)(NotasFlowLayoutPanel.ClientSize.Width / 2) - 12;
                     //lbl.Height = NotasFlowLayoutPanel.ClientSize.Height - 12;
 
-                    // lo dejo al doble de ancho
-                    lbl.Width = NormalSize.Width * 2;
+                    // lo dejo al doble de ancho cuando no se muestra horizontal
+                    if (MySetting.VistaNotasHorizontal)
+                        lbl.Width = NotasSize.Width;
+                    else
+                        lbl.Width = NormalSize.Width * 2;
                 }
                 else
                 {
@@ -307,19 +335,31 @@ namespace gsNotasNETF
                 if (esNota)
                 {
                     lbl.Font = new Font(LblNota.Font, FontStyle.Regular);
-                    //NotasFlowLayoutPanel.SetFlowBreak(lbl, false);
+
+                    //if (MySetting.VistaNotasHorizontal)
+                    //    NotasFlowLayoutPanel.SetFlowBreak(lbl, true);
+                    //else
+                    //    NotasFlowLayoutPanel.SetFlowBreak(lbl, false);
+
+                    lbl.Size = NotasSize;
                 }
                 else
                 {
                     lbl.Font = new Font(LblGrupo.Font, FontStyle.Regular);
+                    lbl.Size = NormalSize;
                 }
-                lbl.Size = NormalSize;
                 //lbl.SendToBack();
             }
             // Por si se quiere que todos tengan el tamaño normal
+            // Nota: Los grupos usan NormalSize y las notas NotasSize
             //lbl.Size = NormalSize;
         }
-                
+
+        /// <summary>
+        /// Mostrar las notas en el flowPanel.
+        /// </summary>
+        /// <param name="grupo">El grupo a mostrar.</param>
+        /// <param name="index">Indica la nota a marcar como seleccionada.</param>
         private void MostrarNotas(string grupo, int index)
         {
             Color col = AsignarColoresGrupos();
@@ -339,7 +379,7 @@ namespace gsNotasNETF
             for (var j = 0; j < notaUC1.Notas[grupo].Count; j++)
             {
                 var n = notaUC1.Notas[grupo][j];
-                var lbl = CrearNota(n, col);
+                var lbl = CrearNota(n, col, true);
                 lbl.Click += LblNota_Click;
                 lbl.DoubleClick += LblNota_DoubleClick;
                 CtrlNotas.Add(lbl);
@@ -352,6 +392,11 @@ namespace gsNotasNETF
             }
         }
 
+        /// <summary>
+        /// Mostrar los grupos en el flowPanel
+        /// </summary>
+        /// <param name="grupo"></param>
+        /// <param name="index"></param>
         private void MostrarGrupos(string grupo, int index)
         {
             Color col = AsignarColoresGrupos();
@@ -370,7 +415,7 @@ namespace gsNotasNETF
             {
                 col = ColoresGrupo[ind];
                 var s = $"{n}\n\rGrupo con {notaUC1.Notas[n].Count} notas.";
-                var lbl = CrearNota(s, col);
+                var lbl = CrearNota(s, col, false);
                 lbl.Click += LblGrupo_Click;
                 lbl.DoubleClick += LblGrupo_DoubleClick;
                 CtrlGrupos.Add(lbl);
@@ -435,11 +480,11 @@ namespace gsNotasNETF
             return col;
         }
 
-        private Label CrearNota(string nota, Color col)
+        private Label CrearNota(string nota, Color col, bool esNota)
         {
             var lbl = new Label();
             
-            AsignarValores(lbl, false, true);
+            AsignarValores(lbl, false, esNota);
             // Los valores fijos
             lbl.Margin = new Padding(3);
             SetBackColor(lbl, col);
@@ -516,7 +561,7 @@ namespace gsNotasNETF
                 notaUC1.Seleccionar((int)lbl.Tag, false);
 
             // Activar la ficha de notas
-            tabControl1.SelectedIndex = 0;
+            tabOpciones.SelectedIndex = 0;
 
             notaUC1.Seleccionar(0, true);
         }
@@ -546,7 +591,7 @@ namespace gsNotasNETF
             // Esta forma de asignación múltiple de un valor me gusta :-)
             this.BackColor =  notaUC1.BackColor;
             this.ForeColor = notaUC1.ForeColor;
-            AsignarColores(tabControl1);
+            AsignarColores(tabOpciones);
 
             // Los colores invertidos de las etiquetas.
             lblEdInfo.BackColor = lblResultadoBuscar.BackColor = lblBuscando.BackColor = btnBuscar.BackColor = btnClasificarGrupos.BackColor = btnBorrar.BackColor = btnCambiarNombre.BackColor = btnMoverNota.BackColor = notaUC1.ForeColor;
@@ -585,14 +630,30 @@ namespace gsNotasNETF
         /// </summary>
         private void AsignarSettings()
         {
+            OpcDeshacerCambios();
+
             if (MySetting.Tema == "Claro")
                 notaUC1.Tema = Temas.Claro;
             else
                 notaUC1.Tema = Temas.Oscuro;
 
+            if (MySetting.VistaNotasHorizontal)
+            {
+                HorizontalSize.Width = NotasFlowLayoutPanel.ClientSize.Width - 12;
+                NotasSize = HorizontalSize;
+            }
+            else
+                NotasSize = NormalSize;
+
+            NotasFlowLayoutPanel.WrapContents = MySetting.VistaNotasHorizontal;
+
+            this.ShowInTaskbar = MySetting.ShowInTaskBar;
+
             notaUC1.txtEdit.WordWrap = MySetting.AjusteLineas;
             notaUC1.AutoGuardar = MySetting.Autoguardar;
             notaUC1.NoGuardarEnBlanco = MySetting.NoGuardarEnBlanco;
+            notaUC1.GuardarEnDrive = MySetting.GuardarEnDrive;
+            notaUC1.BorrarNotasAnterioresDeDrive = MySetting.BorrarNotasAnterioresDeDrive;
 
             TamApp = TamAppOriginal;
             if (MySetting.RecordarTam)
@@ -602,6 +663,8 @@ namespace gsNotasNETF
             AsignarTamañoVentana(TamApp);
             if (MySetting.IniciarMinimizada)
                 this.WindowState = FormWindowState.Minimized;
+
+            MostrarNotas(notaUC1.Grupo, notaUC1.ComboNotas.SelectedIndex);
         }
 
         private void notaUC1_MenuCerrar(string mensaje)
@@ -672,13 +735,15 @@ namespace gsNotasNETF
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 4)
+            if (tabOpciones.SelectedTab.Name == "tabOpciones")// .SelectedIndex == 4)
             {
                 OpcDeshacerCambios();
                 return;
             }
 
-            if (tabControl1.SelectedIndex != 2) return;
+            //if (tabOpciones.SelectedIndex != 2) return;
+            if (tabOpciones.SelectedTab.Name != "tabEditarGrupos") return;
+            
             if (!notaUC1.Notas.Keys.Any()) return;
 
             // Llenar los grupos
@@ -850,6 +915,11 @@ namespace gsNotasNETF
             OpcChkIniciarMinimizada.Checked = MySetting.IniciarMinimizada;
             OpcChkMinimizarAlCerrar.Checked = MySetting.MinimizarAlCerrar;
             OpcChkMostrarMismoGrupo.Checked = MySetting.MostrarMismoGrupo;
+            OpcChkMostrarHorizontal.Checked = MySetting.VistaNotasHorizontal;
+            OpcChkShowInTaskBar.Checked = MySetting.ShowInTaskBar;
+            OpcChkGuardarEnDrive.Checked = MySetting.GuardarEnDrive;
+            OpcChkBorrarNotasAnterioresDrive.Checked = MySetting.BorrarNotasAnterioresDeDrive;
+
             OpcBtnDeshacer.Enabled = false;
         }
 
@@ -874,6 +944,14 @@ namespace gsNotasNETF
             else if (OpcChkMinimizarAlCerrar.Checked != MySetting.MinimizarAlCerrar)
                 modificado = true;
             else if (OpcChkMostrarMismoGrupo.Checked != MySetting.MostrarMismoGrupo)
+                modificado = true;
+            else if (OpcChkMostrarHorizontal.Checked != MySetting.VistaNotasHorizontal)
+                modificado = true;
+            else if (OpcChkShowInTaskBar.Checked != MySetting.ShowInTaskBar)
+                modificado = true;
+            else if (OpcChkGuardarEnDrive.Checked != MySetting.GuardarEnDrive)
+                modificado = true;
+            else if (OpcChkBorrarNotasAnterioresDrive.Checked != MySetting.BorrarNotasAnterioresDeDrive)
                 modificado = true;
 
             OpcBtnDeshacer.Enabled = modificado;
@@ -935,12 +1013,21 @@ namespace gsNotasNETF
             MySetting.IniciarMinimizada = OpcChkIniciarMinimizada.Checked;
             MySetting.MinimizarAlCerrar = OpcChkMinimizarAlCerrar.Checked;
             MySetting.MostrarMismoGrupo = OpcChkMostrarMismoGrupo.Checked;
+            var vistaAnt = MySetting.VistaNotasHorizontal;
+            MySetting.VistaNotasHorizontal = OpcChkMostrarHorizontal.Checked;
+            MySetting.ShowInTaskBar = OpcChkShowInTaskBar.Checked;
+            MySetting.GuardarEnDrive = OpcChkGuardarEnDrive.Checked;
+            MySetting.BorrarNotasAnterioresDeDrive = OpcChkBorrarNotasAnterioresDrive.Checked;
+
             OpcBtnDeshacer.Enabled = false;
             
             MySetting.Save();
             OpcConfigurando = false;
 
             AsignarSettings();
+
+            if (vistaAnt != MySetting.VistaNotasHorizontal)
+                APlicarVista();
         }
 
         private void OpcBtnDeshacer_Click(object sender, EventArgs e)
@@ -957,6 +1044,32 @@ namespace gsNotasNETF
             // Esta opción siempre debe ser TRUE
             OpChkNoGuardarEnBlanco.Checked = true;
             OpcDatosModificados();
+        }
+
+        private void NotasFlowLayoutPanel_Resize(object sender, EventArgs e)
+        {
+            if (OpcChkMostrarHorizontal.Checked)
+            {
+                HorizontalSize.Width = NotasFlowLayoutPanel.ClientSize.Width - 12;
+            }
+        }
+
+        private void APlicarVista()
+        {
+            if (OpcChkMostrarHorizontal.Checked)
+            {
+                HorizontalSize.Width = NotasFlowLayoutPanel.ClientSize.Width - 12;
+                NotasFlowLayoutPanel.WrapContents = true;
+            }
+            else
+                NotasFlowLayoutPanel.WrapContents = false;
+
+            MostrarNotas(notaUC1.Grupo, notaUC1.ComboNotas.SelectedIndex);
+        }
+
+        private void OpcLinkSolicitarAutorización_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.elguillemola.com/2020/12/te-gustaria-obtener-mas-prestaciones-de-gsnotasnet/#comments");
         }
     }
 }

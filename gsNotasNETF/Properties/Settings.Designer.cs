@@ -178,5 +178,53 @@ namespace gsNotasNETF.Properties {
                 this["UltimoGrupo"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool VistaNotasHorizontal {
+            get {
+                return ((bool)(this["VistaNotasHorizontal"]));
+            }
+            set {
+                this["VistaNotasHorizontal"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowInTaskBar {
+            get {
+                return ((bool)(this["ShowInTaskBar"]));
+            }
+            set {
+                this["ShowInTaskBar"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool GuardarEnDrive {
+            get {
+                return ((bool)(this["GuardarEnDrive"]));
+            }
+            set {
+                this["GuardarEnDrive"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool BorrarNotasAnterioresDeDrive {
+            get {
+                return ((bool)(this["BorrarNotasAnterioresDeDrive"]));
+            }
+            set {
+                this["BorrarNotasAnterioresDeDrive"] = value;
+            }
+        }
     }
 }

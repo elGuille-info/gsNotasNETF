@@ -40,6 +40,10 @@ namespace gsNotasNETF
         {
             InitializeComponent();
 
+            gsGoogleDriveDocsAPINET.ApisDriveDocs.IniciadoGuardarNotasEnDrive += ApisDriveDocs_IniciadoGuardarNotasEnDrive;
+            gsGoogleDriveDocsAPINET.ApisDriveDocs.FinalizadoGuardarNotasEnDrive += ApisDriveDocs_FinalizadoGuardarNotasEnDrive;
+            gsGoogleDriveDocsAPINET.ApisDriveDocs.GuardandoNotas += ApisDriveDocs_GuardandoNotas;
+
             CboGrupos.Text = "";
             CboNotas.Text = "";
             LabelTitulo.Text = "";
@@ -79,9 +83,56 @@ namespace gsNotasNETF
             iniciando = false;
         }
 
+        private void ApisDriveDocs_IniciadoGuardarNotasEnDrive()
+        {
+            statusInfo.BackColor = Color.Firebrick;
+            statusInfo.ForeColor = Color.White;
+        }
+
+        private void ApisDriveDocs_GuardandoNotas(string mensaje)
+        {
+            statusInfo.Text = mensaje;
+            Application.DoEvents();
+        }
+
+        private void ApisDriveDocs_FinalizadoGuardarNotasEnDrive()
+        {
+            statusInfo.Text = "Finalizada la operación de guardar las notas en Google Drive.";
+            if (Tema == Temas.Claro)
+            {
+                statusInfo.BackColor = ColoresClaro[0];
+                statusInfo.ForeColor = ColoresClaro[1];
+            }
+            else
+            {
+                statusInfo.BackColor = ColoresOscuro[0];
+                statusInfo.ForeColor = ColoresOscuro[1];
+            }
+        }
+
         //
         // Los eventos y métodos On asociados.
         //
+
+        [Browsable(true)]
+        [Description("Este evento se produce cuando se guardan las notas.")]
+        [Category("NotasUC")]
+        public event MensajeDelegate NotasGuardadas;
+
+        protected virtual void OnNotasGuardadas(string mensaje)
+        {
+            NotasGuardadas?.Invoke(mensaje);
+        }
+
+        [Browsable(true)]
+        [Description("Este evento se produce cuando se leen las notas.")]
+        [Category("NotasUC")]
+        public event MensajeDelegate NotasLeidas;
+
+        protected virtual void OnNotasLeidas(string mensaje)
+        {
+            NotasLeidas?.Invoke(mensaje);
+        }
 
         [Browsable(true)]
         [Description("Este evento se produce cuando se cambia el tema.")]
@@ -181,6 +232,35 @@ namespace gsNotasNETF
         //
         // Las propiedades públicas.
         //
+
+        /// <summary>
+        /// Si se deben guardar las notas como documentos en Google Drive.
+        /// Para hacerlo debes tener tu correo de GMail autorizado.
+        /// Los docuemntos se crean con el tipo de letra 'Roboto Mono'.
+        /// </summary>
+        /// <remarks>
+        /// Para solicitar autorización visita esta página:
+        /// http://www.elguillemola.com/2020/12/te-gustaria-obtener-mas-prestaciones-de-gsnotasnet/#comments
+        /// </remarks>
+        [Browsable(true)]
+        [Description("Si se deben guardar las notas como documentos en Google Drive.")]
+        [DefaultValue(false)]
+        [Category("NotasUC")]
+        public bool GuardarEnDrive { get; set; } = false;
+
+        /// <summary>
+        /// Si al guardar los documentos en Drive se borran definitivamente las notas anteriores.
+        /// </summary>
+        /// <remarks>
+        /// Si asignas un valor true los documentos anteriores se eliminan DEFINITIVAMENTE y solo se dejan las notas actuales.
+        /// No te preocupes por tener documentos repetidos, siempre puedes acceder  a ellos por fecha de modificación.
+        /// </remarks>
+        [Browsable(true)]
+        [Description("Si se deben guardar las notas como documentos en Google Drive.")]
+        [DefaultValue(false)]
+        [Category("NotasUC")]
+        public bool BorrarNotasAnterioresDeDrive { get; set; } = false;
+
 
         /// <summary>
         /// Si el valor es true guardar automáticamente al cambiar la selección de la nota o el grupo.
@@ -464,7 +544,7 @@ namespace gsNotasNETF
         /// <param name="path">El path completo donde se guardarán las notas.</param>
         /// <returns>true si se guardaron correctamente las notas, en otro caso, false.</returns>
         [Browsable(false)]
-        public bool GuardarNotas(string path = "")
+        private bool GuardarNotasEnFichero(string path = "")
         {
             if (string.IsNullOrWhiteSpace(path))
                 path = FicNotas;
@@ -1466,17 +1546,34 @@ namespace gsNotasNETF
         {
             statusInfoTecla.Text = "F9";
 
+            GuardarNotas();
+
+            //MostrarInfoNotas();
+        }
+
+        /// <summary>
+        /// Guardar las notas en el fichero de texto y si así se ha indicado en el Google Drive.
+        /// </summary>
+        public void GuardarNotas()
+        {
             if (string.IsNullOrEmpty(FicNotas))
             {
                 statusInfo.Text = "No se ha indicado un nombre fichero para el fichero de notas.";
                 OnDatosErrorEnNotasUC("No se ha indicado un nombre fichero para el fichero de notas.");
                 return;
             }
-            GuardarNotas();
+            GuardarNotasEnFichero();
+            OnNotasGuardadas($"Se han guardado las notas en el fichero de notas '{FicNotas}'.");
+            statusInfo.Text = $"Se han guardado las notas en el fichero de notas '{FicNotas}'.";
+            if (GuardarEnDrive)
+            {
+                var sBorrar = BorrarNotasAnterioresDeDrive ? "SI" : "NO";
+                var total = gsGoogleDriveDocsAPINET.ApisDriveDocs.GuardarNotasDrive(FicNotas, sBorrar);
+                OnNotasGuardadas($"Se han guardado {total} notas en Google Drive y {sBorrar} se han eliminado las anteriores.");
+                statusInfo.Text = $"Se han guardado {total} notas en Google Drive y {sBorrar} se han eliminado las anteriores.";
+            }
             TextoModificado = false;
             Modificado = false;
-
-            MostrarInfoNotas();
         }
 
         private void MnuLeer_Click(object sender, EventArgs e)
@@ -1490,6 +1587,8 @@ namespace gsNotasNETF
                 return;
             }
             LeerNotas();
+            OnNotasLeidas($"Se han leído las notas del fichero '{FicNotas}'.");
+            statusInfo.Text = $"Se han leído las notas del fichero '{FicNotas}'.";
             TextoModificado = false;
             Modificado = false;
 

@@ -37,17 +37,17 @@ namespace gsNotasNETF
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabOpciones = new System.Windows.Forms.TabControl();
+            this.tabNotas = new System.Windows.Forms.TabPage();
+            this.tabGrupos = new System.Windows.Forms.TabPage();
             this.GruposFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.LblGrupo = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tabEditarGrupos = new System.Windows.Forms.TabPage();
+            this.panelEditarGrupos = new System.Windows.Forms.Panel();
             this.btnClasificarGrupos = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cboEdGrupoDestino = new System.Windows.Forms.ComboBox();
@@ -62,8 +62,8 @@ namespace gsNotasNETF
             this.lblEdCambiar = new System.Windows.Forms.Label();
             this.cboEdGrupos = new System.Windows.Forms.ComboBox();
             this.lblEdSeleccionar = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tabBuscarTexto = new System.Windows.Forms.TabPage();
+            this.panelBuscarTexto = new System.Windows.Forms.Panel();
             this.lblResultadoBuscar = new System.Windows.Forms.Label();
             this.lblBuscando = new System.Windows.Forms.Label();
             this.lstResultadoBuscar = new System.Windows.Forms.ListBox();
@@ -72,7 +72,11 @@ namespace gsNotasNETF
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.lblBuscar = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.panelOpciones = new System.Windows.Forms.Panel();
+            this.OpcLinkSolicitarAutorización = new System.Windows.Forms.LinkLabel();
+            this.OpcChkGuardarEnDrive = new System.Windows.Forms.CheckBox();
+            this.OpcChkMostrarHorizontal = new System.Windows.Forms.CheckBox();
+            this.OpcChkShowInTaskBar = new System.Windows.Forms.CheckBox();
             this.OpcChkMostrarMismoGrupo = new System.Windows.Forms.CheckBox();
             this.OpcChkIniciarMinimizada = new System.Windows.Forms.CheckBox();
             this.OpcBtnDeshacer = new System.Windows.Forms.Button();
@@ -90,25 +94,25 @@ namespace gsNotasNETF
             this.NotifyMenuCerrar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.notaUC1 = new gsNotasNETF.NotaUC();
+            this.OpcChkBorrarNotasAnterioresDrive = new System.Windows.Forms.CheckBox();
             this.NotasFlowLayoutPanel.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabOpciones.SuspendLayout();
+            this.tabNotas.SuspendLayout();
+            this.tabGrupos.SuspendLayout();
             this.GruposFlowLayoutPanel.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.tabEditarGrupos.SuspendLayout();
+            this.panelEditarGrupos.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.tabBuscarTexto.SuspendLayout();
+            this.panelBuscarTexto.SuspendLayout();
             this.tabPage5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.panelOpciones.SuspendLayout();
             this.contextNotify.SuspendLayout();
             this.SuspendLayout();
             // 
             // NotasFlowLayoutPanel
             // 
             this.NotasFlowLayoutPanel.AutoScroll = true;
-            this.NotasFlowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.NotasFlowLayoutPanel.Controls.Add(this.LblNota);
             this.NotasFlowLayoutPanel.Controls.Add(this.label4);
             this.NotasFlowLayoutPanel.Controls.Add(this.label1);
@@ -118,8 +122,10 @@ namespace gsNotasNETF
             this.NotasFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.NotasFlowLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.NotasFlowLayoutPanel.Name = "NotasFlowLayoutPanel";
-            this.NotasFlowLayoutPanel.Size = new System.Drawing.Size(782, 211);
+            this.NotasFlowLayoutPanel.Size = new System.Drawing.Size(782, 247);
             this.NotasFlowLayoutPanel.TabIndex = 0;
+            this.NotasFlowLayoutPanel.WrapContents = false;
+            this.NotasFlowLayoutPanel.Resize += new System.EventHandler(this.NotasFlowLayoutPanel_Resize);
             // 
             // LblNota
             // 
@@ -130,7 +136,7 @@ namespace gsNotasNETF
             this.LblNota.Location = new System.Drawing.Point(3, 3);
             this.LblNota.Margin = new System.Windows.Forms.Padding(3);
             this.LblNota.Name = "LblNota";
-            this.LblNota.Size = new System.Drawing.Size(201, 87);
+            this.LblNota.Size = new System.Drawing.Size(752, 87);
             this.LblNota.TabIndex = 0;
             this.LblNota.Text = "LblNota\r\nPulsando en una etiqueta la pondrás la primera y con mayor tamaño.\r\nEl r" +
     "esto de etiquetas se pondrán en un tamaño más pequeño.";
@@ -156,7 +162,7 @@ namespace gsNotasNETF
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(210, 3);
+            this.label1.Location = new System.Drawing.Point(3, 182);
             this.label1.Margin = new System.Windows.Forms.Padding(3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(180, 87);
@@ -170,7 +176,7 @@ namespace gsNotasNETF
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(210, 96);
+            this.label2.Location = new System.Drawing.Point(3, 275);
             this.label2.Margin = new System.Windows.Forms.Padding(3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(180, 80);
@@ -184,7 +190,7 @@ namespace gsNotasNETF
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(396, 3);
+            this.label3.Location = new System.Drawing.Point(3, 361);
             this.label3.Margin = new System.Windows.Forms.Padding(3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(180, 80);
@@ -192,48 +198,50 @@ namespace gsNotasNETF
             this.label3.Text = "label3";
             this.label3.Click += new System.EventHandler(this.LblNota_Click);
             // 
-            // tabControl1
+            // tabOpciones
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tabOpciones.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(5, 10);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(1);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(796, 247);
-            this.tabControl1.TabIndex = 0;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabOpciones.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.tabOpciones.Controls.Add(this.tabNotas);
+            this.tabOpciones.Controls.Add(this.tabGrupos);
+            this.tabOpciones.Controls.Add(this.tabEditarGrupos);
+            this.tabOpciones.Controls.Add(this.tabBuscarTexto);
+            this.tabOpciones.Controls.Add(this.tabPage5);
+            this.tabOpciones.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabOpciones.Location = new System.Drawing.Point(5, 10);
+            this.tabOpciones.Margin = new System.Windows.Forms.Padding(1);
+            this.tabOpciones.Multiline = true;
+            this.tabOpciones.Name = "tabOpciones";
+            this.tabOpciones.SelectedIndex = 0;
+            this.tabOpciones.Size = new System.Drawing.Size(796, 286);
+            this.tabOpciones.TabIndex = 0;
+            this.tabOpciones.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // tabPage1
+            // tabNotas
             // 
-            this.tabPage1.Controls.Add(this.NotasFlowLayoutPanel);
-            this.tabPage1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.tabPage1.Location = new System.Drawing.Point(4, 26);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(788, 217);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Notas";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabNotas.BackColor = System.Drawing.Color.White;
+            this.tabNotas.Controls.Add(this.NotasFlowLayoutPanel);
+            this.tabNotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.tabNotas.Location = new System.Drawing.Point(4, 29);
+            this.tabNotas.Name = "tabNotas";
+            this.tabNotas.Padding = new System.Windows.Forms.Padding(3);
+            this.tabNotas.Size = new System.Drawing.Size(788, 253);
+            this.tabNotas.TabIndex = 0;
+            this.tabNotas.Text = "Notas";
             // 
-            // tabPage2
+            // tabGrupos
             // 
-            this.tabPage2.Controls.Add(this.GruposFlowLayoutPanel);
-            this.tabPage2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.tabPage2.Location = new System.Drawing.Point(4, 26);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(788, 217);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Grupos";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabGrupos.BackColor = System.Drawing.Color.White;
+            this.tabGrupos.Controls.Add(this.GruposFlowLayoutPanel);
+            this.tabGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.tabGrupos.Location = new System.Drawing.Point(4, 29);
+            this.tabGrupos.Name = "tabGrupos";
+            this.tabGrupos.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGrupos.Size = new System.Drawing.Size(788, 253);
+            this.tabGrupos.TabIndex = 1;
+            this.tabGrupos.Text = "Grupos";
             // 
             // GruposFlowLayoutPanel
             // 
@@ -247,7 +255,7 @@ namespace gsNotasNETF
             this.GruposFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GruposFlowLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.GruposFlowLayoutPanel.Name = "GruposFlowLayoutPanel";
-            this.GruposFlowLayoutPanel.Size = new System.Drawing.Size(782, 211);
+            this.GruposFlowLayoutPanel.Size = new System.Drawing.Size(782, 247);
             this.GruposFlowLayoutPanel.TabIndex = 1;
             this.GruposFlowLayoutPanel.Click += new System.EventHandler(this.LblGrupo_Click);
             this.GruposFlowLayoutPanel.DoubleClick += new System.EventHandler(this.LblGrupo_DoubleClick);
@@ -320,38 +328,39 @@ namespace gsNotasNETF
             this.label8.TabIndex = 2;
             this.label8.Text = "label8";
             // 
-            // tabPage3
+            // tabEditarGrupos
             // 
-            this.tabPage3.Controls.Add(this.groupBox1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 26);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(788, 217);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Editar grupos y notas";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabEditarGrupos.BackColor = System.Drawing.Color.White;
+            this.tabEditarGrupos.Controls.Add(this.panelEditarGrupos);
+            this.tabEditarGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.tabEditarGrupos.Location = new System.Drawing.Point(4, 29);
+            this.tabEditarGrupos.Name = "tabEditarGrupos";
+            this.tabEditarGrupos.Padding = new System.Windows.Forms.Padding(3);
+            this.tabEditarGrupos.Size = new System.Drawing.Size(788, 253);
+            this.tabEditarGrupos.TabIndex = 2;
+            this.tabEditarGrupos.Text = "Editar grupos y notas";
             // 
-            // groupBox1
+            // panelEditarGrupos
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.btnClasificarGrupos);
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.lblEdInfo);
-            this.groupBox1.Controls.Add(this.btnBorrar);
-            this.groupBox1.Controls.Add(this.btnCambiarNombre);
-            this.groupBox1.Controls.Add(this.txtEdNombreGrupo);
-            this.groupBox1.Controls.Add(this.lblEdCambiar);
-            this.groupBox1.Controls.Add(this.cboEdGrupos);
-            this.groupBox1.Controls.Add(this.lblEdSeleccionar);
-            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.groupBox1.Location = new System.Drawing.Point(6, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(776, 205);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Editar los grupos";
+            this.panelEditarGrupos.AutoScroll = true;
+            this.panelEditarGrupos.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelEditarGrupos.Controls.Add(this.btnClasificarGrupos);
+            this.panelEditarGrupos.Controls.Add(this.groupBox2);
+            this.panelEditarGrupos.Controls.Add(this.lblEdInfo);
+            this.panelEditarGrupos.Controls.Add(this.btnBorrar);
+            this.panelEditarGrupos.Controls.Add(this.btnCambiarNombre);
+            this.panelEditarGrupos.Controls.Add(this.txtEdNombreGrupo);
+            this.panelEditarGrupos.Controls.Add(this.lblEdCambiar);
+            this.panelEditarGrupos.Controls.Add(this.cboEdGrupos);
+            this.panelEditarGrupos.Controls.Add(this.lblEdSeleccionar);
+            this.panelEditarGrupos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelEditarGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.panelEditarGrupos.Location = new System.Drawing.Point(3, 3);
+            this.panelEditarGrupos.Name = "panelEditarGrupos";
+            this.panelEditarGrupos.Padding = new System.Windows.Forms.Padding(3);
+            this.panelEditarGrupos.Size = new System.Drawing.Size(782, 247);
+            this.panelEditarGrupos.TabIndex = 0;
+            this.panelEditarGrupos.Text = "Editar los grupos";
             // 
             // btnClasificarGrupos
             // 
@@ -446,7 +455,7 @@ namespace gsNotasNETF
             this.lblEdInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEdInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.lblEdInfo.ForeColor = System.Drawing.Color.White;
-            this.lblEdInfo.Location = new System.Drawing.Point(437, 58);
+            this.lblEdInfo.Location = new System.Drawing.Point(440, 61);
             this.lblEdInfo.Margin = new System.Windows.Forms.Padding(3);
             this.lblEdInfo.Name = "lblEdInfo";
             this.lblEdInfo.Size = new System.Drawing.Size(326, 81);
@@ -473,7 +482,7 @@ namespace gsNotasNETF
             this.btnCambiarNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.btnCambiarNombre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCambiarNombre.ForeColor = System.Drawing.Color.White;
-            this.btnCambiarNombre.Location = new System.Drawing.Point(679, 18);
+            this.btnCambiarNombre.Location = new System.Drawing.Point(682, 21);
             this.btnCambiarNombre.Name = "btnCambiarNombre";
             this.btnCambiarNombre.Size = new System.Drawing.Size(84, 29);
             this.btnCambiarNombre.TabIndex = 5;
@@ -485,7 +494,7 @@ namespace gsNotasNETF
             // 
             this.txtEdNombreGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEdNombreGrupo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.txtEdNombreGrupo.Location = new System.Drawing.Point(573, 21);
+            this.txtEdNombreGrupo.Location = new System.Drawing.Point(576, 24);
             this.txtEdNombreGrupo.Name = "txtEdNombreGrupo";
             this.txtEdNombreGrupo.Size = new System.Drawing.Size(100, 25);
             this.txtEdNombreGrupo.TabIndex = 4;
@@ -493,7 +502,7 @@ namespace gsNotasNETF
             // lblEdCambiar
             // 
             this.lblEdCambiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEdCambiar.Location = new System.Drawing.Point(440, 24);
+            this.lblEdCambiar.Location = new System.Drawing.Point(443, 27);
             this.lblEdCambiar.Margin = new System.Windows.Forms.Padding(3);
             this.lblEdCambiar.Name = "lblEdCambiar";
             this.lblEdCambiar.Size = new System.Drawing.Size(127, 23);
@@ -520,33 +529,36 @@ namespace gsNotasNETF
             this.lblEdSeleccionar.TabIndex = 0;
             this.lblEdSeleccionar.Text = "Selecciona el grupo:";
             // 
-            // tabPage4
+            // tabBuscarTexto
             // 
-            this.tabPage4.Controls.Add(this.groupBox3);
-            this.tabPage4.Location = new System.Drawing.Point(4, 26);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(788, 217);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Buscar texto";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabBuscarTexto.BackColor = System.Drawing.Color.White;
+            this.tabBuscarTexto.Controls.Add(this.panelBuscarTexto);
+            this.tabBuscarTexto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.tabBuscarTexto.Location = new System.Drawing.Point(4, 29);
+            this.tabBuscarTexto.Name = "tabBuscarTexto";
+            this.tabBuscarTexto.Padding = new System.Windows.Forms.Padding(3);
+            this.tabBuscarTexto.Size = new System.Drawing.Size(788, 253);
+            this.tabBuscarTexto.TabIndex = 3;
+            this.tabBuscarTexto.Text = "Buscar texto";
             // 
-            // groupBox3
+            // panelBuscarTexto
             // 
-            this.groupBox3.Controls.Add(this.lblResultadoBuscar);
-            this.groupBox3.Controls.Add(this.lblBuscando);
-            this.groupBox3.Controls.Add(this.lstResultadoBuscar);
-            this.groupBox3.Controls.Add(this.chkBuscarEnGrupoActual);
-            this.groupBox3.Controls.Add(this.btnBuscar);
-            this.groupBox3.Controls.Add(this.txtBuscar);
-            this.groupBox3.Controls.Add(this.lblBuscar);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.groupBox3.Location = new System.Drawing.Point(3, 3);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(782, 211);
-            this.groupBox3.TabIndex = 0;
-            this.groupBox3.TabStop = false;
+            this.panelBuscarTexto.AutoScroll = true;
+            this.panelBuscarTexto.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelBuscarTexto.Controls.Add(this.lblResultadoBuscar);
+            this.panelBuscarTexto.Controls.Add(this.lblBuscando);
+            this.panelBuscarTexto.Controls.Add(this.lstResultadoBuscar);
+            this.panelBuscarTexto.Controls.Add(this.chkBuscarEnGrupoActual);
+            this.panelBuscarTexto.Controls.Add(this.btnBuscar);
+            this.panelBuscarTexto.Controls.Add(this.txtBuscar);
+            this.panelBuscarTexto.Controls.Add(this.lblBuscar);
+            this.panelBuscarTexto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelBuscarTexto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.panelBuscarTexto.Location = new System.Drawing.Point(3, 3);
+            this.panelBuscarTexto.Name = "panelBuscarTexto";
+            this.panelBuscarTexto.Padding = new System.Windows.Forms.Padding(3);
+            this.panelBuscarTexto.Size = new System.Drawing.Size(782, 247);
+            this.panelBuscarTexto.TabIndex = 0;
             // 
             // lblResultadoBuscar
             // 
@@ -554,7 +566,7 @@ namespace gsNotasNETF
             this.lblResultadoBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.lblResultadoBuscar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblResultadoBuscar.ForeColor = System.Drawing.Color.White;
-            this.lblResultadoBuscar.Location = new System.Drawing.Point(492, 18);
+            this.lblResultadoBuscar.Location = new System.Drawing.Point(489, 21);
             this.lblResultadoBuscar.Margin = new System.Windows.Forms.Padding(3);
             this.lblResultadoBuscar.Name = "lblResultadoBuscar";
             this.lblResultadoBuscar.Size = new System.Drawing.Size(284, 23);
@@ -568,10 +580,10 @@ namespace gsNotasNETF
             this.lblBuscando.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.lblBuscando.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBuscando.ForeColor = System.Drawing.Color.White;
-            this.lblBuscando.Location = new System.Drawing.Point(6, 182);
+            this.lblBuscando.Location = new System.Drawing.Point(9, 215);
             this.lblBuscando.Margin = new System.Windows.Forms.Padding(3);
             this.lblBuscando.Name = "lblBuscando";
-            this.lblBuscando.Size = new System.Drawing.Size(480, 23);
+            this.lblBuscando.Size = new System.Drawing.Size(474, 23);
             this.lblBuscando.TabIndex = 4;
             this.lblBuscando.Text = "Buscando...";
             // 
@@ -582,7 +594,7 @@ namespace gsNotasNETF
             this.lstResultadoBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.lstResultadoBuscar.FormattingEnabled = true;
             this.lstResultadoBuscar.ItemHeight = 17;
-            this.lstResultadoBuscar.Location = new System.Drawing.Point(492, 48);
+            this.lstResultadoBuscar.Location = new System.Drawing.Point(489, 51);
             this.lstResultadoBuscar.Name = "lstResultadoBuscar";
             this.lstResultadoBuscar.Size = new System.Drawing.Size(284, 157);
             this.lstResultadoBuscar.Sorted = true;
@@ -593,7 +605,7 @@ namespace gsNotasNETF
             // 
             this.chkBuscarEnGrupoActual.AutoSize = true;
             this.chkBuscarEnGrupoActual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.chkBuscarEnGrupoActual.Location = new System.Drawing.Point(75, 52);
+            this.chkBuscarEnGrupoActual.Location = new System.Drawing.Point(78, 55);
             this.chkBuscarEnGrupoActual.Name = "chkBuscarEnGrupoActual";
             this.chkBuscarEnGrupoActual.Size = new System.Drawing.Size(268, 21);
             this.chkBuscarEnGrupoActual.TabIndex = 3;
@@ -633,42 +645,102 @@ namespace gsNotasNETF
             // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.groupBox4);
-            this.tabPage5.Location = new System.Drawing.Point(4, 26);
+            this.tabPage5.BackColor = System.Drawing.Color.White;
+            this.tabPage5.Controls.Add(this.panelOpciones);
+            this.tabPage5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.tabPage5.Location = new System.Drawing.Point(4, 29);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(788, 217);
+            this.tabPage5.Size = new System.Drawing.Size(788, 253);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Opciones";
-            this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
+            // panelOpciones
             // 
-            this.groupBox4.Controls.Add(this.OpcChkMostrarMismoGrupo);
-            this.groupBox4.Controls.Add(this.OpcChkIniciarMinimizada);
-            this.groupBox4.Controls.Add(this.OpcBtnDeshacer);
-            this.groupBox4.Controls.Add(this.OpcBtnGuardar);
-            this.groupBox4.Controls.Add(this.OpcChkMinimizarAlCerrar);
-            this.groupBox4.Controls.Add(this.OpcChkAjusteLineas);
-            this.groupBox4.Controls.Add(this.OpcBtnRestablecerTam);
-            this.groupBox4.Controls.Add(this.OpcChkRecordarTam);
-            this.groupBox4.Controls.Add(this.OpChkNoGuardarEnBlanco);
-            this.groupBox4.Controls.Add(this.OpcChkAutoGuardar);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.groupBox4.Location = new System.Drawing.Point(3, 3);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(782, 211);
-            this.groupBox4.TabIndex = 0;
-            this.groupBox4.TabStop = false;
+            this.panelOpciones.AutoScroll = true;
+            this.panelOpciones.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelOpciones.Controls.Add(this.OpcChkBorrarNotasAnterioresDrive);
+            this.panelOpciones.Controls.Add(this.OpcLinkSolicitarAutorización);
+            this.panelOpciones.Controls.Add(this.OpcChkGuardarEnDrive);
+            this.panelOpciones.Controls.Add(this.OpcChkMostrarHorizontal);
+            this.panelOpciones.Controls.Add(this.OpcChkShowInTaskBar);
+            this.panelOpciones.Controls.Add(this.OpcChkMostrarMismoGrupo);
+            this.panelOpciones.Controls.Add(this.OpcChkIniciarMinimizada);
+            this.panelOpciones.Controls.Add(this.OpcBtnDeshacer);
+            this.panelOpciones.Controls.Add(this.OpcBtnGuardar);
+            this.panelOpciones.Controls.Add(this.OpcChkMinimizarAlCerrar);
+            this.panelOpciones.Controls.Add(this.OpcChkAjusteLineas);
+            this.panelOpciones.Controls.Add(this.OpcBtnRestablecerTam);
+            this.panelOpciones.Controls.Add(this.OpcChkRecordarTam);
+            this.panelOpciones.Controls.Add(this.OpChkNoGuardarEnBlanco);
+            this.panelOpciones.Controls.Add(this.OpcChkAutoGuardar);
+            this.panelOpciones.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelOpciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.panelOpciones.Location = new System.Drawing.Point(3, 3);
+            this.panelOpciones.Name = "panelOpciones";
+            this.panelOpciones.Padding = new System.Windows.Forms.Padding(3);
+            this.panelOpciones.Size = new System.Drawing.Size(782, 247);
+            this.panelOpciones.TabIndex = 0;
+            // 
+            // OpcLinkSolicitarAutorización
+            // 
+            this.OpcLinkSolicitarAutorización.AutoSize = true;
+            this.OpcLinkSolicitarAutorización.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.OpcLinkSolicitarAutorización.Location = new System.Drawing.Point(293, 250);
+            this.OpcLinkSolicitarAutorización.Name = "OpcLinkSolicitarAutorización";
+            this.OpcLinkSolicitarAutorización.Size = new System.Drawing.Size(129, 17);
+            this.OpcLinkSolicitarAutorización.TabIndex = 11;
+            this.OpcLinkSolicitarAutorización.TabStop = true;
+            this.OpcLinkSolicitarAutorización.Text = "Solicitar autorización";
+            this.OpcLinkSolicitarAutorización.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolTip1.SetToolTip(this.OpcLinkSolicitarAutorización, "Pide al Guille que te incluya en las cuentas autorizadas");
+            this.OpcLinkSolicitarAutorización.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(177)))));
+            this.OpcLinkSolicitarAutorización.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpcLinkSolicitarAutorización_LinkClicked);
+            // 
+            // OpcChkGuardarEnDrive
+            // 
+            this.OpcChkGuardarEnDrive.AutoSize = true;
+            this.OpcChkGuardarEnDrive.Location = new System.Drawing.Point(6, 249);
+            this.OpcChkGuardarEnDrive.Name = "OpcChkGuardarEnDrive";
+            this.OpcChkGuardarEnDrive.Size = new System.Drawing.Size(281, 21);
+            this.OpcChkGuardarEnDrive.TabIndex = 10;
+            this.OpcChkGuardarEnDrive.Text = "Guardar las notas también en Google Drive";
+            this.toolTip1.SetToolTip(this.OpcChkGuardarEnDrive, "Si quieres que las notas se guarden en el fichero de notas y en Google Drive \r\n(p" +
+        "ara guardar en Google Drive debes tener tu correo de Gmail autorizado)");
+            this.OpcChkGuardarEnDrive.UseVisualStyleBackColor = true;
+            this.OpcChkGuardarEnDrive.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
+            // 
+            // OpcChkMostrarHorizontal
+            // 
+            this.OpcChkMostrarHorizontal.AutoSize = true;
+            this.OpcChkMostrarHorizontal.Location = new System.Drawing.Point(6, 168);
+            this.OpcChkMostrarHorizontal.Name = "OpcChkMostrarHorizontal";
+            this.OpcChkMostrarHorizontal.Size = new System.Drawing.Size(228, 21);
+            this.OpcChkMostrarHorizontal.TabIndex = 7;
+            this.OpcChkMostrarHorizontal.Text = "Mostrar las notas horizontalmente";
+            this.OpcChkMostrarHorizontal.UseVisualStyleBackColor = true;
+            this.OpcChkMostrarHorizontal.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
+            // 
+            // OpcChkShowInTaskBar
+            // 
+            this.OpcChkShowInTaskBar.AutoSize = true;
+            this.OpcChkShowInTaskBar.Checked = true;
+            this.OpcChkShowInTaskBar.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.OpcChkShowInTaskBar.Location = new System.Drawing.Point(6, 195);
+            this.OpcChkShowInTaskBar.Name = "OpcChkShowInTaskBar";
+            this.OpcChkShowInTaskBar.Size = new System.Drawing.Size(353, 21);
+            this.OpcChkShowInTaskBar.TabIndex = 8;
+            this.OpcChkShowInTaskBar.Text = "Mostrar la aplicación en la barra de tareas de Windows";
+            this.OpcChkShowInTaskBar.UseVisualStyleBackColor = true;
+            this.OpcChkShowInTaskBar.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
             // 
             // OpcChkMostrarMismoGrupo
             // 
             this.OpcChkMostrarMismoGrupo.AutoSize = true;
-            this.OpcChkMostrarMismoGrupo.Location = new System.Drawing.Point(6, 186);
+            this.OpcChkMostrarMismoGrupo.Location = new System.Drawing.Point(6, 114);
             this.OpcChkMostrarMismoGrupo.Name = "OpcChkMostrarMismoGrupo";
             this.OpcChkMostrarMismoGrupo.Size = new System.Drawing.Size(361, 21);
-            this.OpcChkMostrarMismoGrupo.TabIndex = 9;
+            this.OpcChkMostrarMismoGrupo.TabIndex = 5;
             this.OpcChkMostrarMismoGrupo.Text = "Al iniciar la aplicación mostrar el mismo grupo que había";
             this.OpcChkMostrarMismoGrupo.UseVisualStyleBackColor = true;
             this.OpcChkMostrarMismoGrupo.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
@@ -676,25 +748,25 @@ namespace gsNotasNETF
             // OpcChkIniciarMinimizada
             // 
             this.OpcChkIniciarMinimizada.AutoSize = true;
-            this.OpcChkIniciarMinimizada.Location = new System.Drawing.Point(6, 159);
+            this.OpcChkIniciarMinimizada.Location = new System.Drawing.Point(6, 87);
             this.OpcChkIniciarMinimizada.Name = "OpcChkIniciarMinimizada";
-            this.OpcChkIniciarMinimizada.Size = new System.Drawing.Size(270, 21);
-            this.OpcChkIniciarMinimizada.TabIndex = 8;
-            this.OpcChkIniciarMinimizada.Text = "Al inicar la aplicación, hacerlo minimizado";
+            this.OpcChkIniciarMinimizada.Size = new System.Drawing.Size(267, 21);
+            this.OpcChkIniciarMinimizada.TabIndex = 4;
+            this.OpcChkIniciarMinimizada.Text = "Al inicar la aplicación hacerlo minimizado";
             this.OpcChkIniciarMinimizada.UseVisualStyleBackColor = true;
             this.OpcChkIniciarMinimizada.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
             // 
             // OpcBtnDeshacer
             // 
-            this.OpcBtnDeshacer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.OpcBtnDeshacer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OpcBtnDeshacer.AutoSize = true;
             this.OpcBtnDeshacer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnDeshacer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnDeshacer.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnDeshacer.Location = new System.Drawing.Point(594, 176);
+            this.OpcBtnDeshacer.Location = new System.Drawing.Point(577, 6);
             this.OpcBtnDeshacer.Name = "OpcBtnDeshacer";
             this.OpcBtnDeshacer.Size = new System.Drawing.Size(88, 29);
-            this.OpcBtnDeshacer.TabIndex = 7;
+            this.OpcBtnDeshacer.TabIndex = 14;
             this.OpcBtnDeshacer.Text = "Deshacer";
             this.toolTip1.SetToolTip(this.OpcBtnDeshacer, "Deshacer los cambios actuales");
             this.OpcBtnDeshacer.UseVisualStyleBackColor = false;
@@ -702,15 +774,15 @@ namespace gsNotasNETF
             // 
             // OpcBtnGuardar
             // 
-            this.OpcBtnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.OpcBtnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OpcBtnGuardar.AutoSize = true;
             this.OpcBtnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnGuardar.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnGuardar.Location = new System.Drawing.Point(688, 176);
+            this.OpcBtnGuardar.Location = new System.Drawing.Point(671, 6);
             this.OpcBtnGuardar.Name = "OpcBtnGuardar";
             this.OpcBtnGuardar.Size = new System.Drawing.Size(88, 29);
-            this.OpcBtnGuardar.TabIndex = 6;
+            this.OpcBtnGuardar.TabIndex = 13;
             this.OpcBtnGuardar.Text = "Guardar";
             this.OpcBtnGuardar.UseVisualStyleBackColor = false;
             this.OpcBtnGuardar.Click += new System.EventHandler(this.OpcBtnGuardar_Click);
@@ -718,10 +790,10 @@ namespace gsNotasNETF
             // OpcChkMinimizarAlCerrar
             // 
             this.OpcChkMinimizarAlCerrar.AutoSize = true;
-            this.OpcChkMinimizarAlCerrar.Location = new System.Drawing.Point(6, 132);
+            this.OpcChkMinimizarAlCerrar.Location = new System.Drawing.Point(6, 222);
             this.OpcChkMinimizarAlCerrar.Name = "OpcChkMinimizarAlCerrar";
             this.OpcChkMinimizarAlCerrar.Size = new System.Drawing.Size(400, 21);
-            this.OpcChkMinimizarAlCerrar.TabIndex = 5;
+            this.OpcChkMinimizarAlCerrar.TabIndex = 9;
             this.OpcChkMinimizarAlCerrar.Text = "Al cerrar (desde X de la ventana) minimizar en el área de tareas";
             this.OpcChkMinimizarAlCerrar.UseVisualStyleBackColor = true;
             this.OpcChkMinimizarAlCerrar.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
@@ -729,10 +801,10 @@ namespace gsNotasNETF
             // OpcChkAjusteLineas
             // 
             this.OpcChkAjusteLineas.AutoSize = true;
-            this.OpcChkAjusteLineas.Location = new System.Drawing.Point(6, 105);
+            this.OpcChkAjusteLineas.Location = new System.Drawing.Point(6, 141);
             this.OpcChkAjusteLineas.Name = "OpcChkAjusteLineas";
             this.OpcChkAjusteLineas.Size = new System.Drawing.Size(194, 21);
-            this.OpcChkAjusteLineas.TabIndex = 4;
+            this.OpcChkAjusteLineas.TabIndex = 6;
             this.OpcChkAjusteLineas.Text = "Ajuste de líneas (WordWrap)";
             this.OpcChkAjusteLineas.UseVisualStyleBackColor = true;
             this.OpcChkAjusteLineas.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
@@ -743,7 +815,7 @@ namespace gsNotasNETF
             this.OpcBtnRestablecerTam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnRestablecerTam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnRestablecerTam.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnRestablecerTam.Location = new System.Drawing.Point(286, 73);
+            this.OpcBtnRestablecerTam.Location = new System.Drawing.Point(412, 55);
             this.OpcBtnRestablecerTam.Name = "OpcBtnRestablecerTam";
             this.OpcBtnRestablecerTam.Size = new System.Drawing.Size(199, 29);
             this.OpcBtnRestablecerTam.TabIndex = 3;
@@ -755,11 +827,11 @@ namespace gsNotasNETF
             // OpcChkRecordarTam
             // 
             this.OpcChkRecordarTam.AutoSize = true;
-            this.OpcChkRecordarTam.Location = new System.Drawing.Point(6, 78);
+            this.OpcChkRecordarTam.Location = new System.Drawing.Point(6, 60);
             this.OpcChkRecordarTam.Name = "OpcChkRecordarTam";
-            this.OpcChkRecordarTam.Size = new System.Drawing.Size(274, 21);
+            this.OpcChkRecordarTam.Size = new System.Drawing.Size(400, 21);
             this.OpcChkRecordarTam.TabIndex = 2;
-            this.OpcChkRecordarTam.Text = "Recordar posición y tamaño de la ventana";
+            this.OpcChkRecordarTam.Text = "Al iniciar la aplicación recordar posición y tamaño de la ventana";
             this.OpcChkRecordarTam.UseVisualStyleBackColor = true;
             this.OpcChkRecordarTam.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
             // 
@@ -768,7 +840,7 @@ namespace gsNotasNETF
             this.OpChkNoGuardarEnBlanco.AutoSize = true;
             this.OpChkNoGuardarEnBlanco.Checked = true;
             this.OpChkNoGuardarEnBlanco.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.OpChkNoGuardarEnBlanco.Location = new System.Drawing.Point(6, 51);
+            this.OpChkNoGuardarEnBlanco.Location = new System.Drawing.Point(6, 33);
             this.OpChkNoGuardarEnBlanco.Name = "OpChkNoGuardarEnBlanco";
             this.OpChkNoGuardarEnBlanco.Size = new System.Drawing.Size(193, 21);
             this.OpChkNoGuardarEnBlanco.TabIndex = 1;
@@ -781,7 +853,7 @@ namespace gsNotasNETF
             // OpcChkAutoGuardar
             // 
             this.OpcChkAutoGuardar.AutoSize = true;
-            this.OpcChkAutoGuardar.Location = new System.Drawing.Point(6, 24);
+            this.OpcChkAutoGuardar.Location = new System.Drawing.Point(6, 6);
             this.OpcChkAutoGuardar.Name = "OpcChkAutoGuardar";
             this.OpcChkAutoGuardar.Size = new System.Drawing.Size(510, 21);
             this.OpcChkAutoGuardar.TabIndex = 0;
@@ -861,7 +933,7 @@ namespace gsNotasNETF
         "|A|"};
             this.notaUC1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notaUC1.Grupo = "";
-            this.notaUC1.Location = new System.Drawing.Point(4, 259);
+            this.notaUC1.Location = new System.Drawing.Point(4, 298);
             this.notaUC1.Margin = new System.Windows.Forms.Padding(1);
             this.notaUC1.MinimumSize = new System.Drawing.Size(400, 200);
             this.notaUC1.Name = "notaUC1";
@@ -878,13 +950,24 @@ namespace gsNotasNETF
             this.notaUC1.NotaCambiada += new gsNotasNETF.TextoModificado(this.notaUC1_NotaCambiada);
             this.notaUC1.GrupoCambiado += new gsNotasNETF.TextoModificado(this.notaUC1_GrupoCambiado);
             // 
+            // OpcChkBorrarNotasAnterioresDrive
+            // 
+            this.OpcChkBorrarNotasAnterioresDrive.AutoSize = true;
+            this.OpcChkBorrarNotasAnterioresDrive.Location = new System.Drawing.Point(6, 276);
+            this.OpcChkBorrarNotasAnterioresDrive.Name = "OpcChkBorrarNotasAnterioresDrive";
+            this.OpcChkBorrarNotasAnterioresDrive.Size = new System.Drawing.Size(413, 21);
+            this.OpcChkBorrarNotasAnterioresDrive.TabIndex = 12;
+            this.OpcChkBorrarNotasAnterioresDrive.Text = "Al guardar las notas en Google Drive eliminar las notas anteriores";
+            this.OpcChkBorrarNotasAnterioresDrive.UseVisualStyleBackColor = true;
+            this.OpcChkBorrarNotasAnterioresDrive.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
+            // 
             // FormNotasUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(807, 574);
-            this.Controls.Add(this.tabControl1);
+            this.ClientSize = new System.Drawing.Size(807, 613);
+            this.Controls.Add(this.tabOpciones);
             this.Controls.Add(this.notaUC1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(500, 300);
@@ -896,26 +979,27 @@ namespace gsNotasNETF
             this.LocationChanged += new System.EventHandler(this.FormNotasUC_LocationChanged);
             this.Resize += new System.EventHandler(this.FormNotasUC_Resize);
             this.NotasFlowLayoutPanel.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
+            this.tabOpciones.ResumeLayout(false);
+            this.tabNotas.ResumeLayout(false);
+            this.tabGrupos.ResumeLayout(false);
             this.GruposFlowLayoutPanel.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.tabEditarGrupos.ResumeLayout(false);
+            this.panelEditarGrupos.ResumeLayout(false);
+            this.panelEditarGrupos.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.tabBuscarTexto.ResumeLayout(false);
+            this.panelBuscarTexto.ResumeLayout(false);
+            this.panelBuscarTexto.PerformLayout();
             this.tabPage5.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.panelOpciones.ResumeLayout(false);
+            this.panelOpciones.PerformLayout();
             this.contextNotify.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
         private System.Windows.Forms.FlowLayoutPanel NotasFlowLayoutPanel;
         private NotaUC notaUC1;
         private System.Windows.Forms.Label LblNota;
@@ -923,17 +1007,17 @@ namespace gsNotasNETF
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabControl tabOpciones;
+        private System.Windows.Forms.TabPage tabNotas;
+        private System.Windows.Forms.TabPage tabGrupos;
         private System.Windows.Forms.FlowLayoutPanel GruposFlowLayoutPanel;
         private System.Windows.Forms.Label LblGrupo;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TabPage tabEditarGrupos;
+        private System.Windows.Forms.Panel panelEditarGrupos;
         private System.Windows.Forms.TextBox txtEdNombreGrupo;
         private System.Windows.Forms.Label lblEdCambiar;
         private System.Windows.Forms.ComboBox cboEdGrupos;
@@ -953,8 +1037,8 @@ namespace gsNotasNETF
         private System.Windows.Forms.ToolStripMenuItem NotifyMenuRestaurar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem NotifyMenuCerrar;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TabPage tabBuscarTexto;
+        private System.Windows.Forms.Panel panelBuscarTexto;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Label lblBuscar;
@@ -963,7 +1047,7 @@ namespace gsNotasNETF
         private System.Windows.Forms.Label lblBuscando;
         private System.Windows.Forms.Label lblResultadoBuscar;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Panel panelOpciones;
         private System.Windows.Forms.Button OpcBtnDeshacer;
         private System.Windows.Forms.Button OpcBtnGuardar;
         private System.Windows.Forms.CheckBox OpcChkMinimizarAlCerrar;
@@ -975,6 +1059,11 @@ namespace gsNotasNETF
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox OpcChkIniciarMinimizada;
         private System.Windows.Forms.CheckBox OpcChkMostrarMismoGrupo;
+        private System.Windows.Forms.CheckBox OpcChkMostrarHorizontal;
+        private System.Windows.Forms.CheckBox OpcChkShowInTaskBar;
+        private System.Windows.Forms.LinkLabel OpcLinkSolicitarAutorización;
+        private System.Windows.Forms.CheckBox OpcChkGuardarEnDrive;
+        private System.Windows.Forms.CheckBox OpcChkBorrarNotasAnterioresDrive;
     }
 }
 
