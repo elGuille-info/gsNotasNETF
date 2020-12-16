@@ -44,6 +44,9 @@ v1.0.0.123              Utilizo la biblioteca gsGoogleDriveDocsAPINET para guard
 v1.0.0.124              Ajustes a la hora de leer los valores (y asignarlos) de la configuración.
 v1.0.0.125              Asignado los valores de guardar en drive y borrar anteriores en el control NotaUC.
 v1.0.0.126              Se capturan los eventos de la DLL para cuando inicia, termina y está creando los documentos.
+                        Ver: https://github.com/elGuille-info/gsNotasNETF/releases/tag/v1.0.0.126
+v1.0.0.127  16-dic-20   Cambio el alto de las notas horizontales de 35 a 23
+
 
 */
 using System;
@@ -108,7 +111,7 @@ namespace gsNotasNETF
         /// El tamaño de las notas si se elige mostrar en horizontal.
         /// El ancho se asignará al de NotasFlowLayoutPanel.Client.Width - 12
         /// </summary>
-        private Size HorizontalSize = new Size(250, 35);
+        private Size HorizontalSize = new Size(250, 23);
 
         /// <summary>
         /// El tamaño a usar en las notas
