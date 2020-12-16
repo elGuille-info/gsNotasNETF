@@ -46,7 +46,13 @@ v1.0.0.125              Asignado los valores de guardar en drive y borrar anteri
 v1.0.0.126              Se capturan los eventos de la DLL para cuando inicia, termina y está creando los documentos.
                         Ver: https://github.com/elGuille-info/gsNotasNETF/releases/tag/v1.0.0.126
 v1.0.0.127  16-dic-20   Cambio el alto de las notas horizontales de 35 a 23
-
+v1.0.0.128              Arreglado que al cerrar con la X se oculte al minimizar 
+                        (antes no se quitaba de la barra de tareas de Windows)
+                        Al abrir el diseñador de formularios da 2 errores sin lógica (compila bien)
+                        Que no se encuentra la DLL del API Docs en el otro proyecto y 
+                        que notaUC1 o no está declarada o nunca se ha asignado.
+                        He quitado la DLL y puesto el código en gsNotasNETF y ya se han quitado los errores.
+v1.0.0.129              Incluyo la clase ApisDriveDocs y las referencias al Google.API en gsNotasNETF
 
 */
 using System;
@@ -241,8 +247,12 @@ namespace gsNotasNETF
                 MySetting.Heigh = this.Height;
                 TamApp = (this.Left, this.Top, this.Width, this.Height);
             }
-            else
+            else if (this.WindowState == FormWindowState.Minimized)
+            {
                 NotifyMenuRestaurar.Text = "Restaurar";
+                // al minimizar, ocultar el formulario
+                this.Hide();
+            }
         }
 
         private void FormNotasUC_LocationChanged(object sender, EventArgs e)
@@ -661,6 +671,10 @@ namespace gsNotasNETF
             TamApp = TamAppOriginal;
             if (MySetting.RecordarTam)
             {
+                // Si Left tiene un valor pequeño y solo hay una pantalla, ponerlo a cero.
+                if (MySetting.Left < 0 && Screen.AllScreens.Length < 2)
+                    MySetting.Left = 0;
+
                 TamApp = (MySetting.Left, MySetting.Top, MySetting.Width, MySetting.Heigh);
             }
             AsignarTamañoVentana(TamApp);
@@ -807,15 +821,17 @@ namespace gsNotasNETF
 
         private void MnuNotifyRestaurar_Click(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Normal)
+            if (this.WindowState == FormWindowState.Minimized)
             {
-                NotifyMenuRestaurar.Text = "Restaurar";
-                this.WindowState = FormWindowState.Minimized;
+                NotifyMenuRestaurar.Text = "Minimizar";
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+                this.BringToFront();
             }
             else
             {
-                NotifyMenuRestaurar.Text = "Minimizar";
-                this.WindowState = FormWindowState.Normal;
+                NotifyMenuRestaurar.Text = "Restaurar";
+                this.WindowState = FormWindowState.Minimized;
             }
         }
 
