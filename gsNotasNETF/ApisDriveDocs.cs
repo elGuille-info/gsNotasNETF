@@ -156,7 +156,7 @@ namespace gsGoogleDriveDocsAPINET
                 {
                     subFolderId = CrearSubFolder(folderId, folderNotas);
                     //OnGuardandoNotas($"Se ha creado la subcarpeta con el ID: {subFolderId}");
-                    OnGuardandoNotas($"Se ha creado la subcarpeta {folderNotas}");
+                    OnGuardandoNotas($"Se ha creado la subcarpeta '{folderNotas}'.");
                 }
                 //else
                 //    OnGuardandoNotas($"Ya existe la subcarpeta {folderNotas}, tiene el ID: {subFolderId}");
@@ -222,7 +222,7 @@ namespace gsGoogleDriveDocsAPINET
                     var response = docService.Documents.BatchUpdate(body, gDoc.DocumentId).Execute();
 
                     //OnGuardandoNotas($"Documento creado con el ID: {response.DocumentId}");
-                    OnGuardandoNotas($"Documento {gDoc.Title} creado.");
+                    OnGuardandoNotas($"Se ha creado el documento '{gDoc.Title}'.");
                 }
             }
             OnGuardandoNotas($"Se han guardado {total} notas/documentos en Google Drive.");

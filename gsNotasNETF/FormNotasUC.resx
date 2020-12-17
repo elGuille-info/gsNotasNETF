@@ -127,6 +127,25 @@
     <value>141, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="NotifyMenuRestaurar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAOJJREFUOE9jAIH3798LfPv27TyYQyr4/v27AkgzEP9Hpr9+/RoAVYIfABW/j5mw
+        7/+J60//29Vs/s8QPAdMg/hAQwqgynADkI0gTfyxi/7rFa39P2vnFTAtn74c5JL3UGW4AcwAEAZpBPF3
+        nn0A5oPlCAGYBhB+/uYDWFPX+vNwAwhhUCA6gDDIvyABUHiANIO8kp+f/9/JyQknBhsAAl++fDEAcsCB
+        CdPc1taGVRMyxjAgZ9ZhcOinpKT8//D+I16MYgAIwAwBCYIksWlCxhgGwMAwMoAYjNMAUjBUG7mAgQEA
+        f1wShU74A8cAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="NotifyMenuCerrar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        xAAADsQBlSsOGwAAALZJREFUOE9jQAbfvn0zgDJxApxqgBIVQPwfiDOhQhgAJAdVUwEVggCQwKubV/9v
+        i3T///b+HayGgMRAcltCHP4/v3gWYQiQYQDEYM0L1Xj/r3XWxTAEphkkB1IDMgSkB6QXqwJkQ/DJgTXD
+        AC6FRGmGAWyGEK0ZBtANIUkzCFBkALpmEI3MxmsINs0gPjYxDENwaQaJ45ODaaZKQiI/KcMASACIsWqG
+        AZAcVA2qZhgASpCYnRkYAKjTuVoFkX4yAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="notifyIcon1.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAkAAAAAAAEACABdBwAAlgAAADAwAAABAAgAqA4AAPMHAAAgIAAAAQAIAKgIAACbFgAAEBAAAAEA
@@ -854,25 +873,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAP//AADAAwAAwAMAAMADAADAAwAAwAMAAMADAADAAwAAwAMAAMADAADAAwAAwAMAAMADAADA
         BwAAwA8AAP//AAA=
-</value>
-  </data>
-  <data name="NotifyMenuRestaurar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAOJJREFUOE9jAIH3798LfPv27TyYQyr4/v27AkgzEP9Hpr9+/RoAVYIfABW/j5mw
-        7/+J60//29Vs/s8QPAdMg/hAQwqgynADkI0gTfyxi/7rFa39P2vnFTAtn74c5JL3UGW4AcwAEAZpBPF3
-        nn0A5oPlCAGYBhB+/uYDWFPX+vNwAwhhUCA6gDDIvyABUHiANIO8kp+f/9/JyQknBhsAAl++fDEAcsCB
-        CdPc1taGVRMyxjAgZ9ZhcOinpKT8//D+I16MYgAIwAwBCYIksWlCxhgGwMAwMoAYjNMAUjBUG7mAgQEA
-        f1wShU74A8cAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="NotifyMenuCerrar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        xAAADsQBlSsOGwAAALZJREFUOE9jQAbfvn0zgDJxApxqgBIVQPwfiDOhQhgAJAdVUwEVggCQwKubV/9v
-        i3T///b+HayGgMRAcltCHP4/v3gWYQiQYQDEYM0L1Xj/r3XWxTAEphkkB1IDMgSkB6QXqwJkQ/DJgTXD
-        AC6FRGmGAWyGEK0ZBtANIUkzCFBkALpmEI3MxmsINs0gPjYxDENwaQaJ45ODaaZKQiI/KcMASACIsWqG
-        AZAcVA2qZhgASpCYnRkYAKjTuVoFkX4yAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="notaUC1.EditorRtf" xml:space="preserve">

@@ -923,7 +923,7 @@ namespace gsNotasNETF
         System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))))};
             this.notaUC1.ColoresOscuro = new System.Drawing.Color[] {
         System.Drawing.Color.DimGray,
-        System.Drawing.Color.Gold};
+        System.Drawing.Color.Lime};
             this.notaUC1.EditorRtf = resources.GetString("notaUC1.EditorRtf");
             this.notaUC1.EditorText = "Prueba NotaUC";
             this.notaUC1.EspCaracteres = new string[] {

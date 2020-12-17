@@ -59,6 +59,9 @@ v1.0.0.130  17-dic-20   Cambio la forma de usar GuardarNotasDrive para que acept
                         Pongo la opción de ocultar/mostrar el panel superior al inicio.
                         Durante la ejecución del programa también se podrá ocultar, pero no afecta al valor del inicio.
 v1.0.0.131              Comprobado el correcto funcionamiento de mostrar/ocultar el panel de configuración
+v1.0.0.132              Cambio los colores oscuros y pongo comillas simple en la info de los documentos copiados.
+v1.0.0.133              Añado opción de invertir los colores del tema actual.
+v1.0.0.134              Guardo el estado de invertir colores en la configuración.
 
 
 */
@@ -614,11 +617,13 @@ namespace gsNotasNETF
         /// </summary>
         private void AsignarColores()
         {
-            // Esta forma de asignación múltiple de un valor me gusta :-)
+            MySetting.InvertirColores = notaUC1.InvertirColores;
+
             this.BackColor =  notaUC1.BackColor;
             this.ForeColor = notaUC1.ForeColor;
             AsignarColores(tabsConfig);
 
+            // Esta forma de asignación múltiple de un valor me gusta :-)
             // Los colores invertidos de las etiquetas.
             lblEdInfo.BackColor = lblResultadoBuscar.BackColor = lblBuscando.BackColor = btnBuscar.BackColor = btnClasificarGrupos.BackColor = btnBorrar.BackColor = btnCambiarNombre.BackColor = btnMoverNota.BackColor = notaUC1.ForeColor;
             lblEdInfo.ForeColor = lblResultadoBuscar.ForeColor = lblBuscando.ForeColor = btnBuscar.ForeColor = btnClasificarGrupos.ForeColor = btnBorrar.ForeColor = btnCambiarNombre.ForeColor = btnMoverNota.ForeColor = notaUC1.BackColor;
@@ -645,6 +650,10 @@ namespace gsNotasNETF
 
             if (ctr.Controls is null) return;
 
+            // no cambiar los colores delcontenido de los flowLayout
+            if (ctr.Name.IndexOf("FlowLayout") > -1)
+                return;
+
             foreach (Control c in ctr.Controls)
             {
                 AsignarColores(c, c is Button);
@@ -658,11 +667,6 @@ namespace gsNotasNETF
         {
             OpcDeshacerCambios();
 
-            if (MySetting.Tema == "Claro")
-                notaUC1.Tema = Temas.Claro;
-            else
-                notaUC1.Tema = Temas.Oscuro;
-
             if (MySetting.VistaNotasHorizontal)
             {
                 HorizontalSize.Width = NotasFlowLayoutPanel.ClientSize.Width - 12;
@@ -675,11 +679,17 @@ namespace gsNotasNETF
 
             OcultarPanelSuperior(MySetting.OcultarPanelSuperior);
 
+            // los valores a asignar a NotaUC
+            if (MySetting.Tema == "Claro")
+                notaUC1.Tema = Temas.Claro;
+            else
+                notaUC1.Tema = Temas.Oscuro;
             notaUC1.txtEdit.WordWrap = MySetting.AjusteLineas;
             notaUC1.AutoGuardar = MySetting.Autoguardar;
             notaUC1.NoGuardarEnBlanco = MySetting.NoGuardarEnBlanco;
             notaUC1.GuardarEnDrive = MySetting.GuardarEnDrive;
             notaUC1.BorrarNotasAnterioresDeDrive = MySetting.BorrarNotasAnterioresDeDrive;
+            notaUC1.InvertirColores = MySetting.InvertirColores;
 
             TamApp = TamAppOriginal;
             if (MySetting.RecordarTam)

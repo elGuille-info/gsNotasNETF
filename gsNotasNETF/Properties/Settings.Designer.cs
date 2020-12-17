@@ -226,5 +226,17 @@ namespace gsNotasNETF.Properties {
                 this["BorrarNotasAnterioresDeDrive"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool InvertirColores {
+            get {
+                return ((bool)(this["InvertirColores"]));
+            }
+            set {
+                this["InvertirColores"] = value;
+            }
+        }
     }
 }

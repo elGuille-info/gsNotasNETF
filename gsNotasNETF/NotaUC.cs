@@ -337,7 +337,9 @@ namespace gsNotasNETF
         [Description("Colores a usar en el tema Oscuro. Fondo negro, letras Gold.")]
         [DefaultValue(typeof(Color[]),"Black, Gold")]
         [Category("NotasUC")]
-        public Color[] ColoresOscuro { get; set; } = new Color[] { Color.DimGray, Color.Gold};
+        public Color[] ColoresOscuro { get; set; } = new Color[] { Color.DimGray, Color.Lime};
+
+        //public Color[] ColoresOscuro { get; set; } = new Color[] { Color.DimGray, Color.Gold};
 
         /// <summary>
         /// Colores a usar en el tema Claro.
@@ -366,16 +368,51 @@ namespace gsNotasNETF
                 _Tema = value;
                 if (_Tema == Temas.Claro)
                 {
-                    BackColor = ColoresClaro[0];
-                    ForeColor = ColoresClaro[1];
+                    if (_invertirColores)
+                    {
+                        BackColor = ColoresClaro[1];
+                        ForeColor = ColoresClaro[0];
+                    }
+                    else
+                    {
+                        BackColor = ColoresClaro[0];
+                        ForeColor = ColoresClaro[1];
+                    }
                 }
                 else
                 {
-                    BackColor = ColoresOscuro[0];
-                    ForeColor = ColoresOscuro[1];
+                    if (_invertirColores)
+                    {
+                        BackColor = ColoresOscuro[1];
+                        ForeColor = ColoresOscuro[0];
+                    }
+                    else
+                    {
+                        BackColor = ColoresOscuro[0];
+                        ForeColor = ColoresOscuro[1];
+                    }
                 }
             }
         }
+
+        /// <summary>
+        /// Si se invierten los colores del tema actual.
+        /// </summary>
+        [Browsable(true)]
+        [Description("Si se invierten los colores del tema actual.")]
+        [DefaultValue("false")]
+        [Category("NotasUC")]
+        public bool InvertirColores 
+        {
+            get { return _invertirColores; }
+            set 
+            {
+                _invertirColores = value;
+                MnuTemaInvertir.Checked = value;
+                Tema = _Tema; 
+            }
+        }
+
 
         /// <summary>
         /// El título a mostrar.
@@ -1771,6 +1808,17 @@ No se guardan los grupos y notas en blanco.",
         {
             TextoModificado = true;
             OnTextoModificado("El texto se ha modificado.");
+        }
+
+        private bool _invertirColores = false;
+
+        private void MnuTemaInvertir_Click(object sender, EventArgs e)
+        {
+            // invertir los colores del tema
+            InvertirColores = !InvertirColores;
+            MnuTemaInvertir.Checked = _invertirColores;
+
+            OnCambioDeTema(Tema);
         }
     }
 }

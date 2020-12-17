@@ -60,6 +60,8 @@ namespace gsNotasNETF
             this.MnuCerrar = new System.Windows.Forms.ToolStripMenuItem();
             this.panelEditor = new System.Windows.Forms.Panel();
             this.txtEdit = new System.Windows.Forms.RichTextBox();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.MnuTemaInvertir = new System.Windows.Forms.ToolStripMenuItem();
             this.panelCabecera.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -156,7 +158,7 @@ namespace gsNotasNETF
             // 
             this.statusInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.statusInfo.Name = "statusInfo";
-            this.statusInfo.Size = new System.Drawing.Size(339, 17);
+            this.statusInfo.Size = new System.Drawing.Size(308, 17);
             this.statusInfo.Spring = true;
             this.statusInfo.Text = "ToolStripStatusLabel1";
             this.statusInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -228,7 +230,9 @@ namespace gsNotasNETF
             // 
             this.MnuTemas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MnuTemaClaro,
-            this.MnuTemaOscuro});
+            this.MnuTemaOscuro,
+            this.toolStripMenuItem1,
+            this.MnuTemaInvertir});
             this.MnuTemas.Image = ((System.Drawing.Image)(resources.GetObject("MnuTemas.Image")));
             this.MnuTemas.Name = "MnuTemas";
             this.MnuTemas.Size = new System.Drawing.Size(195, 22);
@@ -240,7 +244,7 @@ namespace gsNotasNETF
             this.MnuTemaClaro.CheckOnClick = true;
             this.MnuTemaClaro.Image = ((System.Drawing.Image)(resources.GetObject("MnuTemaClaro.Image")));
             this.MnuTemaClaro.Name = "MnuTemaClaro";
-            this.MnuTemaClaro.Size = new System.Drawing.Size(112, 22);
+            this.MnuTemaClaro.Size = new System.Drawing.Size(180, 22);
             this.MnuTemaClaro.Text = "Claro";
             this.MnuTemaClaro.Click += new System.EventHandler(this.MnuTemaClaro_Click);
             // 
@@ -249,7 +253,7 @@ namespace gsNotasNETF
             this.MnuTemaOscuro.CheckOnClick = true;
             this.MnuTemaOscuro.Image = ((System.Drawing.Image)(resources.GetObject("MnuTemaOscuro.Image")));
             this.MnuTemaOscuro.Name = "MnuTemaOscuro";
-            this.MnuTemaOscuro.Size = new System.Drawing.Size(112, 22);
+            this.MnuTemaOscuro.Size = new System.Drawing.Size(180, 22);
             this.MnuTemaOscuro.Text = "Oscuro";
             this.MnuTemaOscuro.Click += new System.EventHandler(this.MnuTemaOscuro_Click);
             // 
@@ -381,6 +385,18 @@ namespace gsNotasNETF
             this.txtEdit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEdit_KeyDown);
             this.txtEdit.Leave += new System.EventHandler(this.txtEdit_Leave);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // MnuTemaInvertir
+            // 
+            this.MnuTemaInvertir.Name = "MnuTemaInvertir";
+            this.MnuTemaInvertir.Size = new System.Drawing.Size(180, 22);
+            this.MnuTemaInvertir.Text = "Invertir colores";
+            this.MnuTemaInvertir.Click += new System.EventHandler(this.MnuTemaInvertir_Click);
+            // 
             // NotaUC
             // 
             this.AllowDrop = true;
@@ -440,5 +456,7 @@ namespace gsNotasNETF
         private System.Windows.Forms.ToolStripSeparator MnuCerrarSeparator;
         private System.Windows.Forms.ToolStripMenuItem MnuCerrar;
         internal System.Windows.Forms.RichTextBox txtEdit;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem MnuTemaInvertir;
     }
 }
