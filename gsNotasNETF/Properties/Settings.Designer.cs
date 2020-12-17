@@ -134,12 +134,12 @@ namespace gsNotasNETF.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int Heigh {
+        public int Height {
             get {
-                return ((int)(this["Heigh"]));
+                return ((int)(this["Height"]));
             }
             set {
-                this["Heigh"] = value;
+                this["Height"] = value;
             }
         }
         
@@ -193,13 +193,13 @@ namespace gsNotasNETF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool ShowInTaskBar {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OcultarPanelSuperior {
             get {
-                return ((bool)(this["ShowInTaskBar"]));
+                return ((bool)(this["OcultarPanelSuperior"]));
             }
             set {
-                this["ShowInTaskBar"] = value;
+                this["OcultarPanelSuperior"] = value;
             }
         }
         

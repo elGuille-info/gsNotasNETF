@@ -91,17 +91,25 @@ namespace gsGoogleDriveDocsAPINET
         /// </summary>
         /// <param name="ficNotas">El path de las notas usadas por la aplicación.</param>
         /// <param name="borrarAnt">SI para borrar PERMANENTEMENTE los ficheros existentes o NO para no eliminarlos.</param>
+        /// <param name="lasNotas">
+        /// Si se indica, será la colección de grupos y notas.
+        /// En ese caso, no se leen las notas del fichero.
+        /// </param>
         /// <returns>Devuelve el número de documentos (notas) creados.</returns>
         /// <remarks>Si se indica SI, los documentos se eliminarán permanentemente (no van a la papelera).</remarks>
-        public static int GuardarNotasDrive(string ficNotas, string borrarAnt = "NO")
+        public static int GuardarNotasDrive(string ficNotas,
+                                            string borrarAnt = "NO",
+                                            Dictionary<string, List<string>> lasNotas = null)
         {
             OnIniciadoGuardarNotasEnDrive();
 
             FicNotas = ficNotas;
 
             UserCredential credential;
-
-            var credPath = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            //var credPath = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            // En Android usar:
+            //Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "gsNotasNET.db3"
+            var credPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             credPath = System.IO.Path.Combine(credPath, ".credentials/gsNotasNET-2.0");
 
             credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
@@ -130,7 +138,15 @@ namespace gsGoogleDriveDocsAPINET
             if (string.IsNullOrEmpty(folderId))
                 folderId = CrearFolder(nombreFolderPred);
 
-            var colNotas = LeerNotas();
+            var colNotas = new Dictionary<string, List<string>>();
+
+            // Si no se indican las notas a guardar en Drive
+            // se leerán las del fichero.
+            if (lasNotas is null)
+                colNotas = LeerNotas();
+            else
+                colNotas = lasNotas;
+
             var total = 0;
             foreach (var folderNotas in colNotas.Keys)
             {
@@ -139,10 +155,11 @@ namespace gsGoogleDriveDocsAPINET
                 if (string.IsNullOrEmpty(subFolderId))
                 {
                     subFolderId = CrearSubFolder(folderId, folderNotas);
-                    OnGuardandoNotas($"Se ha creado la subcarpeta con el ID: {subFolderId}");
+                    //OnGuardandoNotas($"Se ha creado la subcarpeta con el ID: {subFolderId}");
+                    OnGuardandoNotas($"Se ha creado la subcarpeta {folderNotas}");
                 }
-                else
-                    OnGuardandoNotas($"Ya existe la subcarpeta {folderNotas}, tiene el ID: {subFolderId}");
+                //else
+                //    OnGuardandoNotas($"Ya existe la subcarpeta {folderNotas}, tiene el ID: {subFolderId}");
                 //Console.WriteLine();
                 if (borrarAnt == "SI")
                 {
@@ -204,11 +221,13 @@ namespace gsGoogleDriveDocsAPINET
                     body.Requests = requests;
                     var response = docService.Documents.BatchUpdate(body, gDoc.DocumentId).Execute();
 
-                    OnGuardandoNotas($"Documento creado con el ID: {response.DocumentId}");
+                    //OnGuardandoNotas($"Documento creado con el ID: {response.DocumentId}");
+                    OnGuardandoNotas($"Documento {gDoc.Title} creado.");
                 }
             }
             OnGuardandoNotas($"Se han guardado {total} notas/documentos en Google Drive.");
             OnFinalizadoGuardarNotasEnDrive();
+
             return total;
         }
 

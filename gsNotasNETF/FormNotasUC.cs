@@ -53,6 +53,13 @@ v1.0.0.128              Arreglado que al cerrar con la X se oculte al minimizar
                         que notaUC1 o no está declarada o nunca se ha asignado.
                         He quitado la DLL y puesto el código en gsNotasNETF y ya se han quitado los errores.
 v1.0.0.129              Incluyo la clase ApisDriveDocs y las referencias al Google.API en gsNotasNETF
+                        Ver: https://github.com/elGuille-info/gsNotasNETF/releases/tag/v1.0.0.129
+v1.0.0.130  17-dic-20   Cambio la forma de usar GuardarNotasDrive para que acepte también una colección con las notas.
+                        Quito la opción Mostrar en la barra de tareas de Windows y la dejo siempre a true.
+                        Pongo la opción de ocultar/mostrar el panel superior al inicio.
+                        Durante la ejecución del programa también se podrá ocultar, pero no afecta al valor del inicio.
+v1.0.0.131              Comprobado el correcto funcionamiento de mostrar/ocultar el panel de configuración
+
 
 */
 using System;
@@ -153,6 +160,8 @@ namespace gsNotasNETF
             notifyIcon1.Visible = true;
 
             var grupoTmp = MySetting.UltimoGrupo;
+            
+            TabsConfigHeightNormal = tabsConfig.Height;
 
             AsignarSettings();
 
@@ -201,19 +210,18 @@ namespace gsNotasNETF
                 MySetting.Tema = "Claro";
             else
                 MySetting.Tema = "Oscuro";
+
             // No hace falta asignarlos, tienen los mismos valores
             if (this.WindowState == FormWindowState.Normal)
             {
                 MySetting.Left = this.Left;
                 MySetting.Top = this.Top;
-                MySetting.Heigh = this.Height;
-                MySetting.Width = this.Width;
-                MySetting.Save();
+                if(!OcultarPanelExpanded)
+                {
+                    MySetting.Height = this.Height;
+                    MySetting.Width = this.Width;
+                }
             }
-            //MySetting.Left = TamApp.Left;
-            //MySetting.Top = TamApp.Top;
-            //MySetting.Heigh = TamApp.Height;
-            //MySetting.Width = TamApp.Width;
             MySetting.Save();
 
             if (e.CloseReason == CloseReason.UserClosing)
@@ -243,9 +251,14 @@ namespace gsNotasNETF
                 NotifyMenuRestaurar.Text = "Minimizar";
                 MySetting.Left = this.Left;
                 MySetting.Top = this.Top;
-                MySetting.Width = this.Width;
-                MySetting.Heigh = this.Height;
-                TamApp = (this.Left, this.Top, this.Width, this.Height);
+                if(!OcultarPanelExpanded)
+                {
+                    MySetting.Width = this.Width;
+                    MySetting.Height = this.Height;
+
+                    TabsConfigHeightNormal = tabsConfig.Height;
+                }
+                TamApp = (MySetting.Left, MySetting.Top, MySetting.Width, MySetting.Height);
             }
             else if (this.WindowState == FormWindowState.Minimized)
             {
@@ -574,7 +587,7 @@ namespace gsNotasNETF
                 notaUC1.Seleccionar((int)lbl.Tag, false);
 
             // Activar la ficha de notas
-            tabOpciones.SelectedIndex = 0;
+            tabsConfig.SelectedIndex = 0;
 
             notaUC1.Seleccionar(0, true);
         }
@@ -604,7 +617,7 @@ namespace gsNotasNETF
             // Esta forma de asignación múltiple de un valor me gusta :-)
             this.BackColor =  notaUC1.BackColor;
             this.ForeColor = notaUC1.ForeColor;
-            AsignarColores(tabOpciones);
+            AsignarColores(tabsConfig);
 
             // Los colores invertidos de las etiquetas.
             lblEdInfo.BackColor = lblResultadoBuscar.BackColor = lblBuscando.BackColor = btnBuscar.BackColor = btnClasificarGrupos.BackColor = btnBorrar.BackColor = btnCambiarNombre.BackColor = btnMoverNota.BackColor = notaUC1.ForeColor;
@@ -660,7 +673,7 @@ namespace gsNotasNETF
 
             NotasFlowLayoutPanel.WrapContents = MySetting.VistaNotasHorizontal;
 
-            this.ShowInTaskbar = MySetting.ShowInTaskBar;
+            OcultarPanelSuperior(MySetting.OcultarPanelSuperior);
 
             notaUC1.txtEdit.WordWrap = MySetting.AjusteLineas;
             notaUC1.AutoGuardar = MySetting.Autoguardar;
@@ -675,7 +688,7 @@ namespace gsNotasNETF
                 if (MySetting.Left < 0 && Screen.AllScreens.Length < 2)
                     MySetting.Left = 0;
 
-                TamApp = (MySetting.Left, MySetting.Top, MySetting.Width, MySetting.Heigh);
+                TamApp = (MySetting.Left, MySetting.Top, MySetting.Width, MySetting.Height);
             }
             AsignarTamañoVentana(TamApp);
             if (MySetting.IniciarMinimizada)
@@ -706,7 +719,7 @@ namespace gsNotasNETF
             iniciando = false;
 
             notaUC1.AsignarGrupos(false);
-            tabControl1_SelectedIndexChanged(null, null);
+            tabsConfig_SelectedIndexChanged(null, null);
         }
 
         private void btnCambiarNombre_Click(object sender, EventArgs e)
@@ -732,7 +745,7 @@ namespace gsNotasNETF
             }
             iniciando = false;
             notaUC1.AsignarGrupos(grupo: nuevoGrupo);
-            tabControl1_SelectedIndexChanged(null, null);
+            tabsConfig_SelectedIndexChanged(null, null);
         }
 
         private void btnMoverNota_Click(object sender, EventArgs e)
@@ -747,19 +760,23 @@ namespace gsNotasNETF
             iniciando = false;
             notaUC1.AsignarGrupos(grupo: grupoDestino);
             
-            tabControl1_SelectedIndexChanged(null, null);
+            tabsConfig_SelectedIndexChanged(null, null);
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void tabsConfig_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabOpciones.SelectedTab.Name == "tabOpciones")// .SelectedIndex == 4)
+            // Mostrar todo el formulario cuando se pulsa en una ficha
+            if(OcultarPanelExpanded)
+                OcultarPanelSuperior(false);
+
+            if (tabsConfig.SelectedTab.Name == "tabOpciones")
             {
                 OpcDeshacerCambios();
                 return;
             }
 
             //if (tabOpciones.SelectedIndex != 2) return;
-            if (tabOpciones.SelectedTab.Name != "tabEditarGrupos") return;
+            if (tabsConfig.SelectedTab.Name != "tabEditarGrupos") return;
             
             if (!notaUC1.Notas.Keys.Any()) return;
 
@@ -816,7 +833,7 @@ namespace gsNotasNETF
 
             notaUC1.AsignarGrupos(false);
             iniciando = false;
-            tabControl1_SelectedIndexChanged(null, null);
+            tabsConfig_SelectedIndexChanged(null, null);
         }
 
         private void MnuNotifyRestaurar_Click(object sender, EventArgs e)
@@ -935,7 +952,7 @@ namespace gsNotasNETF
             OpcChkMinimizarAlCerrar.Checked = MySetting.MinimizarAlCerrar;
             OpcChkMostrarMismoGrupo.Checked = MySetting.MostrarMismoGrupo;
             OpcChkMostrarHorizontal.Checked = MySetting.VistaNotasHorizontal;
-            OpcChkShowInTaskBar.Checked = MySetting.ShowInTaskBar;
+            OpcChkOcultarPanelSuperior.Checked = MySetting.OcultarPanelSuperior;
             OpcChkGuardarEnDrive.Checked = MySetting.GuardarEnDrive;
             OpcChkBorrarNotasAnterioresDrive.Checked = MySetting.BorrarNotasAnterioresDeDrive;
 
@@ -966,7 +983,7 @@ namespace gsNotasNETF
                 modificado = true;
             else if (OpcChkMostrarHorizontal.Checked != MySetting.VistaNotasHorizontal)
                 modificado = true;
-            else if (OpcChkShowInTaskBar.Checked != MySetting.ShowInTaskBar)
+            else if (OpcChkOcultarPanelSuperior.Checked != MySetting.OcultarPanelSuperior)
                 modificado = true;
             else if (OpcChkGuardarEnDrive.Checked != MySetting.GuardarEnDrive)
                 modificado = true;
@@ -1034,7 +1051,7 @@ namespace gsNotasNETF
             MySetting.MostrarMismoGrupo = OpcChkMostrarMismoGrupo.Checked;
             var vistaAnt = MySetting.VistaNotasHorizontal;
             MySetting.VistaNotasHorizontal = OpcChkMostrarHorizontal.Checked;
-            MySetting.ShowInTaskBar = OpcChkShowInTaskBar.Checked;
+            MySetting.OcultarPanelSuperior = OpcChkOcultarPanelSuperior.Checked;
             MySetting.GuardarEnDrive = OpcChkGuardarEnDrive.Checked;
             MySetting.BorrarNotasAnterioresDeDrive = OpcChkBorrarNotasAnterioresDrive.Checked;
 
@@ -1089,6 +1106,48 @@ namespace gsNotasNETF
         private void OpcLinkSolicitarAutorización_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://www.elguillemola.com/2020/12/te-gustaria-obtener-mas-prestaciones-de-gsnotasnet/#comments");
+        }
+
+        /// <summary>
+        /// Ocultar o mostrar el panel superior.
+        /// </summary>
+        /// <param name="ocultar">true para ocultarlo, false para mostrarlo.</param>
+        private void OcultarPanelSuperior(bool ocultar)
+        {
+            OcultarPanelExpanded = ocultar;
+
+            // El tamaño de las notas hacerlo fijo
+            if (notaUC1.Height != 310)
+                notaUC1.Height = 310;
+
+            tabsConfig.Anchor = AnchorStyles.Left | AnchorStyles.Top;
+            notaUC1.Anchor = AnchorStyles.Left | AnchorStyles.Bottom;
+
+            if (ocultar)
+            {
+                picOcultarPanel1.Image = Properties.Resources.ExpanderDown;
+                tabsConfig.Height = 25;
+            }
+            else
+            {
+                picOcultarPanel1.Image = Properties.Resources.ExpanderUp;
+                tabsConfig.Height = TabsConfigHeightNormal;
+            }
+
+            // Actualizar el tamaño del formulario
+            this.Height = tabsConfig.Height + notaUC1.Height + picOcultarPanel1.Height + 35;
+            tabsConfig.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom;
+            notaUC1.Anchor = AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
+        }
+
+        private bool OcultarPanelExpanded = false;
+        private int TabsConfigHeightNormal;
+
+        private void picOcultarPanel1_Click(object sender, EventArgs e)
+        {
+            if (iniciando) return;
+
+            OcultarPanelSuperior(!OcultarPanelExpanded);
         }
     }
 }

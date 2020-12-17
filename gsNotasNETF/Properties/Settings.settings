@@ -29,7 +29,7 @@
     <Setting Name="Width" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">-1</Value>
     </Setting>
-    <Setting Name="Heigh" Type="System.Int32" Scope="User">
+    <Setting Name="Height" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">-1</Value>
     </Setting>
     <Setting Name="IniciarMinimizada" Type="System.Boolean" Scope="User">
@@ -44,8 +44,8 @@
     <Setting Name="VistaNotasHorizontal" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="ShowInTaskBar" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+    <Setting Name="OcultarPanelSuperior" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="GuardarEnDrive" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
