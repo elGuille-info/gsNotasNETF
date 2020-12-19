@@ -62,6 +62,17 @@ v1.0.0.131              Comprobado el correcto funcionamiento de mostrar/ocultar
 v1.0.0.132              Cambio los colores oscuros y pongo comillas simple en la info de los documentos copiados.
 v1.0.0.133              Añado opción de invertir los colores del tema actual.
 v1.0.0.134              Guardo el estado de invertir colores en la configuración.
+v1.0.0.135  18-dic-20   Hago comprobación de error cuando se guardan las notas en Drive.
+v1.0.0.136              Quito las opciones de guardar automáticamente en Drive y borrar las notas anteriores.
+                        Ya no se borrarán las notas desde el programa. Me ha dado error de muchos accesos.
+                        Pongo un botón para guardar las notas en Drive (pero ya no es automático).
+v1.0.0.137              Se crearán copias de seguridad del fichero de notas (al iniciar el programa)
+                        No se borrarán las copias de seguiridad, de eso te tendrás que encargar tú,
+                        ya que se hace una copia cada vez que se inicia la aplicación.
+                        Si da error al crear el directorio, se cancela hacer la copia.
+v1.0.0.138  19-dic-20   A ver si consigo que el link se vea bien al invertir el tema claro
+                        Ahora siempre muestra el color asignado a ForeColor
+v1.0.0.139              Al pulsar en el botón del menú, mostrar el menú.
 
 
 */
@@ -178,6 +189,9 @@ namespace gsNotasNETF
 
             lblBuscando.Text = "";
             lstResultadoBuscar.Items.Clear();
+
+            // Hacer la copia antes de llamar a leerNotas
+            notaUC1.HacerCopia();
 
             notaUC1.LeerNotas();
 
@@ -621,7 +635,7 @@ namespace gsNotasNETF
 
             this.BackColor =  notaUC1.BackColor;
             this.ForeColor = notaUC1.ForeColor;
-            AsignarColores(tabsConfig);
+            AsignarColores(tabsConfig, MySetting.InvertirColores);
 
             // Esta forma de asignación múltiple de un valor me gusta :-)
             // Los colores invertidos de las etiquetas.
@@ -639,13 +653,36 @@ namespace gsNotasNETF
         {
             if (invertir)
             {
-                ctr.ForeColor = notaUC1.BackColor;
-                ctr.BackColor = notaUC1.ForeColor;
+                // aquí no llega nunca cuando es linkLabel
+                if (ctr is LinkLabel)
+                {
+                    var lnk = ctr as LinkLabel;
+                    //lnk.LinkColor = notaUC1.ForeColor;
+                    //lnk.VisitedLinkColor = lnk.LinkColor;
+                    //lnk.ActiveLinkColor= lnk.LinkColor;
+                    lnk.LinkColor = Color.Blue;
+                    lnk.VisitedLinkColor = Color.FromArgb(0, 0, 177);
+                    lnk.ActiveLinkColor = Color.Red;
+
+                }
+                else
+                {
+                    ctr.ForeColor = notaUC1.BackColor;
+                    ctr.BackColor = notaUC1.ForeColor;
+                }
             }
             else
             {
                 ctr.BackColor = notaUC1.BackColor;
                 ctr.ForeColor = notaUC1.ForeColor;
+
+                if (ctr is LinkLabel)
+                {
+                    var lnk = ctr as LinkLabel;
+                    lnk.LinkColor = notaUC1.ForeColor;
+                    lnk.VisitedLinkColor = lnk.LinkColor;
+                    lnk.ActiveLinkColor = lnk.LinkColor;
+                }
             }
 
             if (ctr.Controls is null) return;
@@ -687,8 +724,8 @@ namespace gsNotasNETF
             notaUC1.txtEdit.WordWrap = MySetting.AjusteLineas;
             notaUC1.AutoGuardar = MySetting.Autoguardar;
             notaUC1.NoGuardarEnBlanco = MySetting.NoGuardarEnBlanco;
-            notaUC1.GuardarEnDrive = MySetting.GuardarEnDrive;
-            notaUC1.BorrarNotasAnterioresDeDrive = MySetting.BorrarNotasAnterioresDeDrive;
+            notaUC1.GuardarEnDrive = false; // MySetting.GuardarEnDrive;
+            notaUC1.BorrarNotasAnterioresDeDrive = false; // MySetting.BorrarNotasAnterioresDeDrive;
             notaUC1.InvertirColores = MySetting.InvertirColores;
 
             TamApp = TamAppOriginal;
@@ -963,8 +1000,8 @@ namespace gsNotasNETF
             OpcChkMostrarMismoGrupo.Checked = MySetting.MostrarMismoGrupo;
             OpcChkMostrarHorizontal.Checked = MySetting.VistaNotasHorizontal;
             OpcChkOcultarPanelSuperior.Checked = MySetting.OcultarPanelSuperior;
-            OpcChkGuardarEnDrive.Checked = MySetting.GuardarEnDrive;
-            OpcChkBorrarNotasAnterioresDrive.Checked = MySetting.BorrarNotasAnterioresDeDrive;
+            //OpcChkGuardarEnDrive.Checked = MySetting.GuardarEnDrive;
+            //OpcChkBorrarNotasAnterioresDrive.Checked = MySetting.BorrarNotasAnterioresDeDrive;
 
             OpcBtnDeshacer.Enabled = false;
         }
@@ -995,10 +1032,10 @@ namespace gsNotasNETF
                 modificado = true;
             else if (OpcChkOcultarPanelSuperior.Checked != MySetting.OcultarPanelSuperior)
                 modificado = true;
-            else if (OpcChkGuardarEnDrive.Checked != MySetting.GuardarEnDrive)
-                modificado = true;
-            else if (OpcChkBorrarNotasAnterioresDrive.Checked != MySetting.BorrarNotasAnterioresDeDrive)
-                modificado = true;
+            //else if (OpcChkGuardarEnDrive.Checked != MySetting.GuardarEnDrive)
+            //    modificado = true;
+            //else if (OpcChkBorrarNotasAnterioresDrive.Checked != MySetting.BorrarNotasAnterioresDeDrive)
+            //    modificado = true;
 
             OpcBtnDeshacer.Enabled = modificado;
         }
@@ -1062,8 +1099,8 @@ namespace gsNotasNETF
             var vistaAnt = MySetting.VistaNotasHorizontal;
             MySetting.VistaNotasHorizontal = OpcChkMostrarHorizontal.Checked;
             MySetting.OcultarPanelSuperior = OpcChkOcultarPanelSuperior.Checked;
-            MySetting.GuardarEnDrive = OpcChkGuardarEnDrive.Checked;
-            MySetting.BorrarNotasAnterioresDeDrive = OpcChkBorrarNotasAnterioresDrive.Checked;
+            //MySetting.GuardarEnDrive = OpcChkGuardarEnDrive.Checked;
+            //MySetting.BorrarNotasAnterioresDeDrive = OpcChkBorrarNotasAnterioresDrive.Checked;
 
             OpcBtnDeshacer.Enabled = false;
             
@@ -1158,6 +1195,15 @@ namespace gsNotasNETF
             if (iniciando) return;
 
             OcultarPanelSuperior(!OcultarPanelExpanded);
+        }
+
+        private void OpcBtnGuardarEnDrive_Click(object sender, EventArgs e)
+        {
+            notaUC1.GuardarEnDrive = true;
+            notaUC1.BorrarNotasAnterioresDeDrive = false;
+            notaUC1.GuardarNotas();
+            
+            notaUC1.GuardarEnDrive = false;
         }
     }
 }

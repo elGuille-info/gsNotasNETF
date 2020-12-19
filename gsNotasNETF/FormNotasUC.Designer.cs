@@ -73,9 +73,7 @@ namespace gsNotasNETF
             this.lblBuscar = new System.Windows.Forms.Label();
             this.tabOpciones = new System.Windows.Forms.TabPage();
             this.panelOpciones = new System.Windows.Forms.Panel();
-            this.OpcChkBorrarNotasAnterioresDrive = new System.Windows.Forms.CheckBox();
             this.OpcLinkSolicitarAutorización = new System.Windows.Forms.LinkLabel();
-            this.OpcChkGuardarEnDrive = new System.Windows.Forms.CheckBox();
             this.OpcChkMostrarHorizontal = new System.Windows.Forms.CheckBox();
             this.OpcChkOcultarPanelSuperior = new System.Windows.Forms.CheckBox();
             this.OpcChkMostrarMismoGrupo = new System.Windows.Forms.CheckBox();
@@ -94,8 +92,9 @@ namespace gsNotasNETF
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.NotifyMenuCerrar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.notaUC1 = new gsNotasNETF.NotaUC();
             this.picOcultarPanel1 = new System.Windows.Forms.PictureBox();
+            this.OpcBtnGuardarEnDrive = new System.Windows.Forms.Button();
+            this.notaUC1 = new gsNotasNETF.NotaUC();
             this.NotasFlowLayoutPanel.SuspendLayout();
             this.tabsConfig.SuspendLayout();
             this.tabNotas.SuspendLayout();
@@ -124,7 +123,7 @@ namespace gsNotasNETF
             this.NotasFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.NotasFlowLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.NotasFlowLayoutPanel.Name = "NotasFlowLayoutPanel";
-            this.NotasFlowLayoutPanel.Size = new System.Drawing.Size(782, 247);
+            this.NotasFlowLayoutPanel.Size = new System.Drawing.Size(782, 254);
             this.NotasFlowLayoutPanel.TabIndex = 0;
             this.NotasFlowLayoutPanel.WrapContents = false;
             this.NotasFlowLayoutPanel.Resize += new System.EventHandler(this.NotasFlowLayoutPanel_Resize);
@@ -217,7 +216,7 @@ namespace gsNotasNETF
             this.tabsConfig.Multiline = true;
             this.tabsConfig.Name = "tabsConfig";
             this.tabsConfig.SelectedIndex = 0;
-            this.tabsConfig.Size = new System.Drawing.Size(796, 286);
+            this.tabsConfig.Size = new System.Drawing.Size(796, 293);
             this.tabsConfig.TabIndex = 0;
             this.tabsConfig.SelectedIndexChanged += new System.EventHandler(this.tabsConfig_SelectedIndexChanged);
             // 
@@ -229,7 +228,7 @@ namespace gsNotasNETF
             this.tabNotas.Location = new System.Drawing.Point(4, 29);
             this.tabNotas.Name = "tabNotas";
             this.tabNotas.Padding = new System.Windows.Forms.Padding(3);
-            this.tabNotas.Size = new System.Drawing.Size(788, 253);
+            this.tabNotas.Size = new System.Drawing.Size(788, 260);
             this.tabNotas.TabIndex = 0;
             this.tabNotas.Text = "Notas";
             // 
@@ -241,7 +240,7 @@ namespace gsNotasNETF
             this.tabGrupos.Location = new System.Drawing.Point(4, 29);
             this.tabGrupos.Name = "tabGrupos";
             this.tabGrupos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGrupos.Size = new System.Drawing.Size(788, 253);
+            this.tabGrupos.Size = new System.Drawing.Size(788, 260);
             this.tabGrupos.TabIndex = 1;
             this.tabGrupos.Text = "Grupos";
             // 
@@ -257,7 +256,7 @@ namespace gsNotasNETF
             this.GruposFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GruposFlowLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.GruposFlowLayoutPanel.Name = "GruposFlowLayoutPanel";
-            this.GruposFlowLayoutPanel.Size = new System.Drawing.Size(782, 247);
+            this.GruposFlowLayoutPanel.Size = new System.Drawing.Size(782, 254);
             this.GruposFlowLayoutPanel.TabIndex = 1;
             this.GruposFlowLayoutPanel.Click += new System.EventHandler(this.LblGrupo_Click);
             this.GruposFlowLayoutPanel.DoubleClick += new System.EventHandler(this.LblGrupo_DoubleClick);
@@ -338,7 +337,7 @@ namespace gsNotasNETF
             this.tabEditarGrupos.Location = new System.Drawing.Point(4, 29);
             this.tabEditarGrupos.Name = "tabEditarGrupos";
             this.tabEditarGrupos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEditarGrupos.Size = new System.Drawing.Size(788, 253);
+            this.tabEditarGrupos.Size = new System.Drawing.Size(788, 260);
             this.tabEditarGrupos.TabIndex = 2;
             this.tabEditarGrupos.Text = "Editar grupos y notas";
             // 
@@ -360,7 +359,7 @@ namespace gsNotasNETF
             this.panelEditarGrupos.Location = new System.Drawing.Point(3, 3);
             this.panelEditarGrupos.Name = "panelEditarGrupos";
             this.panelEditarGrupos.Padding = new System.Windows.Forms.Padding(3);
-            this.panelEditarGrupos.Size = new System.Drawing.Size(782, 247);
+            this.panelEditarGrupos.Size = new System.Drawing.Size(782, 254);
             this.panelEditarGrupos.TabIndex = 0;
             this.panelEditarGrupos.Text = "Editar los grupos";
             // 
@@ -539,7 +538,7 @@ namespace gsNotasNETF
             this.tabBuscarTexto.Location = new System.Drawing.Point(4, 29);
             this.tabBuscarTexto.Name = "tabBuscarTexto";
             this.tabBuscarTexto.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBuscarTexto.Size = new System.Drawing.Size(788, 253);
+            this.tabBuscarTexto.Size = new System.Drawing.Size(788, 260);
             this.tabBuscarTexto.TabIndex = 3;
             this.tabBuscarTexto.Text = "Buscar texto";
             // 
@@ -559,7 +558,7 @@ namespace gsNotasNETF
             this.panelBuscarTexto.Location = new System.Drawing.Point(3, 3);
             this.panelBuscarTexto.Name = "panelBuscarTexto";
             this.panelBuscarTexto.Padding = new System.Windows.Forms.Padding(3);
-            this.panelBuscarTexto.Size = new System.Drawing.Size(782, 247);
+            this.panelBuscarTexto.Size = new System.Drawing.Size(782, 254);
             this.panelBuscarTexto.TabIndex = 0;
             // 
             // lblResultadoBuscar
@@ -582,7 +581,7 @@ namespace gsNotasNETF
             this.lblBuscando.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.lblBuscando.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBuscando.ForeColor = System.Drawing.Color.White;
-            this.lblBuscando.Location = new System.Drawing.Point(9, 215);
+            this.lblBuscando.Location = new System.Drawing.Point(9, 222);
             this.lblBuscando.Margin = new System.Windows.Forms.Padding(3);
             this.lblBuscando.Name = "lblBuscando";
             this.lblBuscando.Size = new System.Drawing.Size(474, 23);
@@ -653,7 +652,7 @@ namespace gsNotasNETF
             this.tabOpciones.Location = new System.Drawing.Point(4, 29);
             this.tabOpciones.Name = "tabOpciones";
             this.tabOpciones.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOpciones.Size = new System.Drawing.Size(788, 253);
+            this.tabOpciones.Size = new System.Drawing.Size(788, 260);
             this.tabOpciones.TabIndex = 4;
             this.tabOpciones.Text = "Opciones";
             // 
@@ -661,9 +660,8 @@ namespace gsNotasNETF
             // 
             this.panelOpciones.AutoScroll = true;
             this.panelOpciones.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panelOpciones.Controls.Add(this.OpcChkBorrarNotasAnterioresDrive);
+            this.panelOpciones.Controls.Add(this.OpcBtnGuardarEnDrive);
             this.panelOpciones.Controls.Add(this.OpcLinkSolicitarAutorización);
-            this.panelOpciones.Controls.Add(this.OpcChkGuardarEnDrive);
             this.panelOpciones.Controls.Add(this.OpcChkMostrarHorizontal);
             this.panelOpciones.Controls.Add(this.OpcChkOcultarPanelSuperior);
             this.panelOpciones.Controls.Add(this.OpcChkMostrarMismoGrupo);
@@ -681,47 +679,25 @@ namespace gsNotasNETF
             this.panelOpciones.Location = new System.Drawing.Point(3, 3);
             this.panelOpciones.Name = "panelOpciones";
             this.panelOpciones.Padding = new System.Windows.Forms.Padding(3);
-            this.panelOpciones.Size = new System.Drawing.Size(782, 247);
+            this.panelOpciones.Size = new System.Drawing.Size(782, 254);
             this.panelOpciones.TabIndex = 0;
-            // 
-            // OpcChkBorrarNotasAnterioresDrive
-            // 
-            this.OpcChkBorrarNotasAnterioresDrive.AutoSize = true;
-            this.OpcChkBorrarNotasAnterioresDrive.Location = new System.Drawing.Point(6, 276);
-            this.OpcChkBorrarNotasAnterioresDrive.Name = "OpcChkBorrarNotasAnterioresDrive";
-            this.OpcChkBorrarNotasAnterioresDrive.Size = new System.Drawing.Size(413, 21);
-            this.OpcChkBorrarNotasAnterioresDrive.TabIndex = 12;
-            this.OpcChkBorrarNotasAnterioresDrive.Text = "Al guardar las notas en Google Drive eliminar las notas anteriores";
-            this.OpcChkBorrarNotasAnterioresDrive.UseVisualStyleBackColor = true;
-            this.OpcChkBorrarNotasAnterioresDrive.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
             // 
             // OpcLinkSolicitarAutorización
             // 
+            this.OpcLinkSolicitarAutorización.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OpcLinkSolicitarAutorización.AutoSize = true;
             this.OpcLinkSolicitarAutorización.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.OpcLinkSolicitarAutorización.Location = new System.Drawing.Point(293, 250);
+            this.OpcLinkSolicitarAutorización.Location = new System.Drawing.Point(519, 211);
+            this.OpcLinkSolicitarAutorización.Margin = new System.Windows.Forms.Padding(3);
             this.OpcLinkSolicitarAutorización.Name = "OpcLinkSolicitarAutorización";
             this.OpcLinkSolicitarAutorización.Size = new System.Drawing.Size(129, 17);
-            this.OpcLinkSolicitarAutorización.TabIndex = 11;
+            this.OpcLinkSolicitarAutorización.TabIndex = 10;
             this.OpcLinkSolicitarAutorización.TabStop = true;
             this.OpcLinkSolicitarAutorización.Text = "Solicitar autorización";
             this.OpcLinkSolicitarAutorización.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolTip1.SetToolTip(this.OpcLinkSolicitarAutorización, "Pide al Guille que te incluya en las cuentas autorizadas");
             this.OpcLinkSolicitarAutorización.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(177)))));
             this.OpcLinkSolicitarAutorización.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpcLinkSolicitarAutorización_LinkClicked);
-            // 
-            // OpcChkGuardarEnDrive
-            // 
-            this.OpcChkGuardarEnDrive.AutoSize = true;
-            this.OpcChkGuardarEnDrive.Location = new System.Drawing.Point(6, 249);
-            this.OpcChkGuardarEnDrive.Name = "OpcChkGuardarEnDrive";
-            this.OpcChkGuardarEnDrive.Size = new System.Drawing.Size(281, 21);
-            this.OpcChkGuardarEnDrive.TabIndex = 10;
-            this.OpcChkGuardarEnDrive.Text = "Guardar las notas también en Google Drive";
-            this.toolTip1.SetToolTip(this.OpcChkGuardarEnDrive, "Si quieres que las notas se guarden en el fichero de notas y en Google Drive \r\n(p" +
-        "ara guardar en Google Drive debes tener tu correo de Gmail autorizado)");
-            this.OpcChkGuardarEnDrive.UseVisualStyleBackColor = true;
-            this.OpcChkGuardarEnDrive.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
             // 
             // OpcChkMostrarHorizontal
             // 
@@ -774,7 +750,7 @@ namespace gsNotasNETF
             this.OpcBtnDeshacer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnDeshacer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnDeshacer.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnDeshacer.Location = new System.Drawing.Point(577, 6);
+            this.OpcBtnDeshacer.Location = new System.Drawing.Point(560, 6);
             this.OpcBtnDeshacer.Name = "OpcBtnDeshacer";
             this.OpcBtnDeshacer.Size = new System.Drawing.Size(88, 29);
             this.OpcBtnDeshacer.TabIndex = 14;
@@ -790,7 +766,7 @@ namespace gsNotasNETF
             this.OpcBtnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnGuardar.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnGuardar.Location = new System.Drawing.Point(671, 6);
+            this.OpcBtnGuardar.Location = new System.Drawing.Point(654, 6);
             this.OpcBtnGuardar.Name = "OpcBtnGuardar";
             this.OpcBtnGuardar.Size = new System.Drawing.Size(88, 29);
             this.OpcBtnGuardar.TabIndex = 13;
@@ -912,6 +888,35 @@ namespace gsNotasNETF
             this.NotifyMenuCerrar.Text = "Cerrar";
             this.NotifyMenuCerrar.Click += new System.EventHandler(this.MnuNotifyCerrar_Click);
             // 
+            // picOcultarPanel1
+            // 
+            this.picOcultarPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picOcultarPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.picOcultarPanel1.Image = global::gsNotasNETF.Properties.Resources.ExpanderDown;
+            this.picOcultarPanel1.Location = new System.Drawing.Point(780, 3);
+            this.picOcultarPanel1.Name = "picOcultarPanel1";
+            this.picOcultarPanel1.Size = new System.Drawing.Size(21, 21);
+            this.picOcultarPanel1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picOcultarPanel1.TabIndex = 3;
+            this.picOcultarPanel1.TabStop = false;
+            this.toolTip1.SetToolTip(this.picOcultarPanel1, "Muestra / oculta el panel de configuración");
+            this.picOcultarPanel1.Click += new System.EventHandler(this.picOcultarPanel1_Click);
+            // 
+            // OpcBtnGuardarEnDrive
+            // 
+            this.OpcBtnGuardarEnDrive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.OpcBtnGuardarEnDrive.AutoSize = true;
+            this.OpcBtnGuardarEnDrive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.OpcBtnGuardarEnDrive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OpcBtnGuardarEnDrive.ForeColor = System.Drawing.Color.White;
+            this.OpcBtnGuardarEnDrive.Location = new System.Drawing.Point(519, 234);
+            this.OpcBtnGuardarEnDrive.Name = "OpcBtnGuardarEnDrive";
+            this.OpcBtnGuardarEnDrive.Size = new System.Drawing.Size(223, 29);
+            this.OpcBtnGuardarEnDrive.TabIndex = 11;
+            this.OpcBtnGuardarEnDrive.Text = "Guardar las notas en Google Drive";
+            this.OpcBtnGuardarEnDrive.UseVisualStyleBackColor = false;
+            this.OpcBtnGuardarEnDrive.Click += new System.EventHandler(this.OpcBtnGuardarEnDrive_Click);
+            // 
             // notaUC1
             // 
             this.notaUC1.AllowDrop = true;
@@ -944,7 +949,8 @@ namespace gsNotasNETF
         "|A|"};
             this.notaUC1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notaUC1.Grupo = "";
-            this.notaUC1.Location = new System.Drawing.Point(4, 298);
+            this.notaUC1.InvertirColores = false;
+            this.notaUC1.Location = new System.Drawing.Point(4, 305);
             this.notaUC1.Margin = new System.Windows.Forms.Padding(1);
             this.notaUC1.MinimumSize = new System.Drawing.Size(400, 200);
             this.notaUC1.Name = "notaUC1";
@@ -961,26 +967,12 @@ namespace gsNotasNETF
             this.notaUC1.NotaCambiada += new gsNotasNETF.TextoModificado(this.notaUC1_NotaCambiada);
             this.notaUC1.GrupoCambiado += new gsNotasNETF.TextoModificado(this.notaUC1_GrupoCambiado);
             // 
-            // picOcultarPanel1
-            // 
-            this.picOcultarPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picOcultarPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.picOcultarPanel1.Image = global::gsNotasNETF.Properties.Resources.ExpanderDown;
-            this.picOcultarPanel1.Location = new System.Drawing.Point(780, 3);
-            this.picOcultarPanel1.Name = "picOcultarPanel1";
-            this.picOcultarPanel1.Size = new System.Drawing.Size(21, 21);
-            this.picOcultarPanel1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picOcultarPanel1.TabIndex = 3;
-            this.picOcultarPanel1.TabStop = false;
-            this.toolTip1.SetToolTip(this.picOcultarPanel1, "Muestra / oculta el panel de configuración");
-            this.picOcultarPanel1.Click += new System.EventHandler(this.picOcultarPanel1_Click);
-            // 
             // FormNotasUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(807, 613);
+            this.ClientSize = new System.Drawing.Size(807, 620);
             this.Controls.Add(this.picOcultarPanel1);
             this.Controls.Add(this.tabsConfig);
             this.Controls.Add(this.notaUC1);
@@ -1078,10 +1070,9 @@ namespace gsNotasNETF
         private System.Windows.Forms.CheckBox OpcChkMostrarMismoGrupo;
         private System.Windows.Forms.CheckBox OpcChkMostrarHorizontal;
         private System.Windows.Forms.LinkLabel OpcLinkSolicitarAutorización;
-        private System.Windows.Forms.CheckBox OpcChkGuardarEnDrive;
-        private System.Windows.Forms.CheckBox OpcChkBorrarNotasAnterioresDrive;
         private System.Windows.Forms.CheckBox OpcChkOcultarPanelSuperior;
         private System.Windows.Forms.PictureBox picOcultarPanel1;
+        private System.Windows.Forms.Button OpcBtnGuardarEnDrive;
     }
 }
 

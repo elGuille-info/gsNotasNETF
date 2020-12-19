@@ -33,12 +33,33 @@ namespace gsNotasNETF
         /// </summary>
         private string FileVersion { get; init; }
 
+        private string _dirDocumentos;
+        private string _dirNotas;
+        private string _ficNotasSinPath;
+
+        private bool _hacerBackup = true;
+
         private string NombreProducto { get; init; }
         private string VersionProducto { get; init; }
 
         public NotaUC()
         {
             InitializeComponent();
+            
+            _dirDocumentos = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            _dirNotas = Path.Combine(DirDocumentos, "gsNotasNETF");
+            if(! Directory.Exists(_dirNotas))
+            {
+                try
+                {
+                    Directory.CreateDirectory(_dirNotas);
+                }
+                catch 
+                { 
+                    _hacerBackup = false;
+                    statusInfo.Text = "Error al crear el directorio de BackUp, se cancelan los backups.";
+                }
+            }
 
             gsGoogleDriveDocsAPINET.ApisDriveDocs.IniciadoGuardarNotasEnDrive += ApisDriveDocs_IniciadoGuardarNotasEnDrive;
             gsGoogleDriveDocsAPINET.ApisDriveDocs.FinalizadoGuardarNotasEnDrive += ApisDriveDocs_FinalizadoGuardarNotasEnDrive;
@@ -56,7 +77,9 @@ namespace gsNotasNETF
             NombreProducto = fvi.ProductName;
             VersionProducto = fvi.ProductVersion;
 
-            FicNotas = Path.Combine(DirDocumentos, $"{fvi.ProductName}.notasUC.txt");
+            _ficNotasSinPath = $"{fvi.ProductName}.notasUC.txt";
+
+            FicNotas = Path.Combine(DirDocumentos, _ficNotasSinPath);
 
             LongitudTituloNota = LongitudTituloNotaDefault;
 
@@ -69,7 +92,7 @@ namespace gsNotasNETF
             elGuille += $" - {NombreProducto} v{VersionProducto} ({FileVersion})";
 
             statusInfo.Text = elGuille;
-            statusInfoTecla.Text = "...";
+            statusInfoTecla.Text = "Menú";
             statusInfoPos.Enabled = false;
             statusInfoPos.Text = "L: 0 , C: 0";
             txtEdit.Text = "";
@@ -79,6 +102,10 @@ namespace gsNotasNETF
             txtEdit.AllowDrop = true;
             txtEdit.DragEnter += NotaUC_DragEnter;
             txtEdit.DragDrop += NotaUC_DragDrop;
+
+            // Llamar a Hacer la copia desde la aplicación que usa este control
+            // si no, habrá dos copias... una sin notas y otra con notas
+            //HacerCopia();
 
             iniciando = false;
         }
@@ -743,6 +770,18 @@ namespace gsNotasNETF
         public string FicNotas { get; private set; }
 
         /// <summary>
+        /// El Directorio donde se guardarán las copias de seguridad de las notas.
+        /// </summary>
+        [Browsable(false)]
+        [Description("El Directorio donde se guardarán las copias de seguridad de las notas.")]
+        //[DefaultValue("Notas.notasUC.txt")]
+        [Category("NotasUC")]
+        public string DirNotas 
+        {
+            get { return _dirNotas; }
+        }
+
+        /// <summary>
         /// El path al directorio de documentos.
         /// </summary>
         [Browsable(true)]
@@ -750,7 +789,7 @@ namespace gsNotasNETF
         [Category("NotasUC")]
         public string DirDocumentos
         {
-            get { return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); }
+            get { return _dirDocumentos; }
         }
 
         /// <summary>
@@ -1604,10 +1643,23 @@ namespace gsNotasNETF
             statusInfo.Text = $"Se han guardado las notas en el fichero de notas '{FicNotas}'.";
             if (GuardarEnDrive)
             {
-                var sBorrar = BorrarNotasAnterioresDeDrive ? "SI" : "NO";
-                var total = gsGoogleDriveDocsAPINET.ApisDriveDocs.GuardarNotasDrive(FicNotas, sBorrar);
-                OnNotasGuardadas($"Se han guardado {total} notas en Google Drive y {sBorrar} se han eliminado las anteriores.");
-                statusInfo.Text = $"Se han guardado {total} notas en Google Drive y {sBorrar} se han eliminado las anteriores.";
+                try
+                {
+                    var sBorrar = BorrarNotasAnterioresDeDrive ? "SI" : "NO";
+                    var total = gsGoogleDriveDocsAPINET.ApisDriveDocs.GuardarNotasDrive(FicNotas, sBorrar);
+                    OnNotasGuardadas($"Se han guardado {total} notas en Google Drive y {sBorrar} se han eliminado las anteriores.");
+                    statusInfo.Text = $"Se han guardado {total} notas en Google Drive y {sBorrar} se han eliminado las anteriores.";
+                }
+                catch (Exception ex)
+                {
+                    var crlf = "\r\n";
+                    statusInfo.Text = $"Error: {ex.Message}.";
+                    ApisDriveDocs_FinalizadoGuardarNotasEnDrive();
+                    MessageBox.Show($"Error:{crlf}{crlf}{ex.Message}.", 
+                                    "Error al guardar las notas en Drive.", 
+                                    MessageBoxButtons.OK, 
+                                    MessageBoxIcon.Exclamation);
+                }
             }
             TextoModificado = false;
             Modificado = false;
@@ -1819,6 +1871,25 @@ No se guardan los grupos y notas en blanco.",
             MnuTemaInvertir.Checked = _invertirColores;
 
             OnCambioDeTema(Tema);
+        }
+
+        public void HacerCopia()
+        {
+            var sDateTime = DateTime.Now.ToString("yyyy-MM-dd_HH-mm");
+            var nombreBak = $"Backup_{sDateTime}_{_ficNotasSinPath}";
+            var fic = Path.Combine(_dirNotas, nombreBak);
+            try
+            {
+                File.Copy(FicNotas, fic, true);
+            }
+            catch { }
+        }
+
+        private void statusInfoTecla_ButtonClick(object sender, EventArgs e)
+        {
+            // mostrar el menú
+            statusInfoTecla.DropDown.Left = statusStrip1.Right - statusInfoTecla.Width;
+            statusInfoTecla.DropDown.Show();
         }
     }
 }
