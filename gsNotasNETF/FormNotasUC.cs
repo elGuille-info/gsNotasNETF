@@ -62,6 +62,7 @@ v1.0.0.131              Comprobado el correcto funcionamiento de mostrar/ocultar
 v1.0.0.132              Cambio los colores oscuros y pongo comillas simple en la info de los documentos copiados.
 v1.0.0.133              Añado opción de invertir los colores del tema actual.
 v1.0.0.134              Guardo el estado de invertir colores en la configuración.
+                        Ver: https://github.com/elGuille-info/gsNotasNETF/releases/tag/v1.0.0.134
 v1.0.0.135  18-dic-20   Hago comprobación de error cuando se guardan las notas en Drive.
 v1.0.0.136              Quito las opciones de guardar automáticamente en Drive y borrar las notas anteriores.
                         Ya no se borrarán las notas desde el programa. Me ha dado error de muchos accesos.
@@ -73,7 +74,7 @@ v1.0.0.137              Se crearán copias de seguridad del fichero de notas (al
 v1.0.0.138  19-dic-20   A ver si consigo que el link se vea bien al invertir el tema claro
                         Ahora siempre muestra el color asignado a ForeColor
 v1.0.0.139              Al pulsar en el botón del menú, mostrar el menú.
-
+                        Ver: https://github.com/elGuille-info/gsNotasNETF/releases/tag/v1.0.0.139
 
 */
 using System;
