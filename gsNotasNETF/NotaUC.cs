@@ -37,7 +37,7 @@ namespace gsNotasNETF
         private string _dirNotas;
         private string _ficNotasSinPath;
 
-        private bool _hacerBackup = true;
+        //private bool _hacerBackup;
 
         private string NombreProducto { get; init; }
         private string VersionProducto { get; init; }
@@ -53,10 +53,11 @@ namespace gsNotasNETF
                 try
                 {
                     Directory.CreateDirectory(_dirNotas);
+                    //_hacerBackup = true;
                 }
                 catch 
                 { 
-                    _hacerBackup = false;
+                    //_hacerBackup = false;
                     statusInfo.Text = "Error al crear el directorio de BackUp, se cancelan los backups.";
                 }
             }
@@ -1873,6 +1874,9 @@ No se guardan los grupos y notas en blanco.",
             OnCambioDeTema(Tema);
         }
 
+        /// <summary>
+        /// Hacer una copia del fichero de notas.
+        /// </summary>
         public void HacerCopia()
         {
             var sDateTime = DateTime.Now.ToString("yyyy-MM-dd_HH-mm");

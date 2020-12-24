@@ -73,6 +73,7 @@ namespace gsNotasNETF
             this.lblBuscar = new System.Windows.Forms.Label();
             this.tabOpciones = new System.Windows.Forms.TabPage();
             this.panelOpciones = new System.Windows.Forms.Panel();
+            this.OpcBtnGuardarEnDrive = new System.Windows.Forms.Button();
             this.OpcLinkSolicitarAutorización = new System.Windows.Forms.LinkLabel();
             this.OpcChkMostrarHorizontal = new System.Windows.Forms.CheckBox();
             this.OpcChkOcultarPanelSuperior = new System.Windows.Forms.CheckBox();
@@ -93,7 +94,6 @@ namespace gsNotasNETF
             this.NotifyMenuCerrar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.picOcultarPanel1 = new System.Windows.Forms.PictureBox();
-            this.OpcBtnGuardarEnDrive = new System.Windows.Forms.Button();
             this.notaUC1 = new gsNotasNETF.NotaUC();
             this.NotasFlowLayoutPanel.SuspendLayout();
             this.tabsConfig.SuspendLayout();
@@ -682,12 +682,27 @@ namespace gsNotasNETF
             this.panelOpciones.Size = new System.Drawing.Size(782, 254);
             this.panelOpciones.TabIndex = 0;
             // 
+            // OpcBtnGuardarEnDrive
+            // 
+            this.OpcBtnGuardarEnDrive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.OpcBtnGuardarEnDrive.AutoSize = true;
+            this.OpcBtnGuardarEnDrive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.OpcBtnGuardarEnDrive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OpcBtnGuardarEnDrive.ForeColor = System.Drawing.Color.White;
+            this.OpcBtnGuardarEnDrive.Location = new System.Drawing.Point(502, 234);
+            this.OpcBtnGuardarEnDrive.Name = "OpcBtnGuardarEnDrive";
+            this.OpcBtnGuardarEnDrive.Size = new System.Drawing.Size(223, 29);
+            this.OpcBtnGuardarEnDrive.TabIndex = 11;
+            this.OpcBtnGuardarEnDrive.Text = "Guardar las notas en Google Drive";
+            this.OpcBtnGuardarEnDrive.UseVisualStyleBackColor = false;
+            this.OpcBtnGuardarEnDrive.Click += new System.EventHandler(this.OpcBtnGuardarEnDrive_Click);
+            // 
             // OpcLinkSolicitarAutorización
             // 
             this.OpcLinkSolicitarAutorización.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OpcLinkSolicitarAutorización.AutoSize = true;
             this.OpcLinkSolicitarAutorización.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.OpcLinkSolicitarAutorización.Location = new System.Drawing.Point(519, 211);
+            this.OpcLinkSolicitarAutorización.Location = new System.Drawing.Point(502, 211);
             this.OpcLinkSolicitarAutorización.Margin = new System.Windows.Forms.Padding(3);
             this.OpcLinkSolicitarAutorización.Name = "OpcLinkSolicitarAutorización";
             this.OpcLinkSolicitarAutorización.Size = new System.Drawing.Size(129, 17);
@@ -750,7 +765,7 @@ namespace gsNotasNETF
             this.OpcBtnDeshacer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnDeshacer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnDeshacer.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnDeshacer.Location = new System.Drawing.Point(560, 6);
+            this.OpcBtnDeshacer.Location = new System.Drawing.Point(543, 6);
             this.OpcBtnDeshacer.Name = "OpcBtnDeshacer";
             this.OpcBtnDeshacer.Size = new System.Drawing.Size(88, 29);
             this.OpcBtnDeshacer.TabIndex = 14;
@@ -766,7 +781,7 @@ namespace gsNotasNETF
             this.OpcBtnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnGuardar.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnGuardar.Location = new System.Drawing.Point(654, 6);
+            this.OpcBtnGuardar.Location = new System.Drawing.Point(637, 6);
             this.OpcBtnGuardar.Name = "OpcBtnGuardar";
             this.OpcBtnGuardar.Size = new System.Drawing.Size(88, 29);
             this.OpcBtnGuardar.TabIndex = 13;
@@ -901,21 +916,6 @@ namespace gsNotasNETF
             this.picOcultarPanel1.TabStop = false;
             this.toolTip1.SetToolTip(this.picOcultarPanel1, "Muestra / oculta el panel de configuración");
             this.picOcultarPanel1.Click += new System.EventHandler(this.picOcultarPanel1_Click);
-            // 
-            // OpcBtnGuardarEnDrive
-            // 
-            this.OpcBtnGuardarEnDrive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.OpcBtnGuardarEnDrive.AutoSize = true;
-            this.OpcBtnGuardarEnDrive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.OpcBtnGuardarEnDrive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OpcBtnGuardarEnDrive.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnGuardarEnDrive.Location = new System.Drawing.Point(519, 234);
-            this.OpcBtnGuardarEnDrive.Name = "OpcBtnGuardarEnDrive";
-            this.OpcBtnGuardarEnDrive.Size = new System.Drawing.Size(223, 29);
-            this.OpcBtnGuardarEnDrive.TabIndex = 11;
-            this.OpcBtnGuardarEnDrive.Text = "Guardar las notas en Google Drive";
-            this.OpcBtnGuardarEnDrive.UseVisualStyleBackColor = false;
-            this.OpcBtnGuardarEnDrive.Click += new System.EventHandler(this.OpcBtnGuardarEnDrive_Click);
             // 
             // notaUC1
             // 

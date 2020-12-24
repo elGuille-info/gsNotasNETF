@@ -75,6 +75,8 @@ v1.0.0.138  19-dic-20   A ver si consigo que el link se vea bien al invertir el 
                         Ahora siempre muestra el color asignado a ForeColor
 v1.0.0.139              Al pulsar en el botón del menú, mostrar el menú.
                         Ver: https://github.com/elGuille-info/gsNotasNETF/releases/tag/v1.0.0.139
+v1.0.0.140  24-dic-20   Cambio el icono de la aplicación.
+v1.0.0.141              Y el del formulario y por tanto el del icono de notificación.
 
 */
 using System;
