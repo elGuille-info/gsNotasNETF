@@ -95,6 +95,7 @@ namespace gsNotasNETF
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.picOcultarPanel1 = new System.Windows.Forms.PictureBox();
             this.notaUC1 = new gsNotasNETF.NotaUC();
+            this.OpcChkIniciarConWindows = new System.Windows.Forms.CheckBox();
             this.NotasFlowLayoutPanel.SuspendLayout();
             this.tabsConfig.SuspendLayout();
             this.tabNotas.SuspendLayout();
@@ -660,6 +661,7 @@ namespace gsNotasNETF
             // 
             this.panelOpciones.AutoScroll = true;
             this.panelOpciones.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelOpciones.Controls.Add(this.OpcChkIniciarConWindows);
             this.panelOpciones.Controls.Add(this.OpcBtnGuardarEnDrive);
             this.panelOpciones.Controls.Add(this.OpcLinkSolicitarAutorización);
             this.panelOpciones.Controls.Add(this.OpcChkMostrarHorizontal);
@@ -689,7 +691,7 @@ namespace gsNotasNETF
             this.OpcBtnGuardarEnDrive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnGuardarEnDrive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnGuardarEnDrive.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnGuardarEnDrive.Location = new System.Drawing.Point(502, 234);
+            this.OpcBtnGuardarEnDrive.Location = new System.Drawing.Point(485, 234);
             this.OpcBtnGuardarEnDrive.Name = "OpcBtnGuardarEnDrive";
             this.OpcBtnGuardarEnDrive.Size = new System.Drawing.Size(223, 29);
             this.OpcBtnGuardarEnDrive.TabIndex = 11;
@@ -702,7 +704,7 @@ namespace gsNotasNETF
             this.OpcLinkSolicitarAutorización.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OpcLinkSolicitarAutorización.AutoSize = true;
             this.OpcLinkSolicitarAutorización.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.OpcLinkSolicitarAutorización.Location = new System.Drawing.Point(502, 211);
+            this.OpcLinkSolicitarAutorización.Location = new System.Drawing.Point(485, 211);
             this.OpcLinkSolicitarAutorización.Margin = new System.Windows.Forms.Padding(3);
             this.OpcLinkSolicitarAutorización.Name = "OpcLinkSolicitarAutorización";
             this.OpcLinkSolicitarAutorización.Size = new System.Drawing.Size(129, 17);
@@ -765,7 +767,7 @@ namespace gsNotasNETF
             this.OpcBtnDeshacer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnDeshacer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnDeshacer.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnDeshacer.Location = new System.Drawing.Point(543, 6);
+            this.OpcBtnDeshacer.Location = new System.Drawing.Point(526, 6);
             this.OpcBtnDeshacer.Name = "OpcBtnDeshacer";
             this.OpcBtnDeshacer.Size = new System.Drawing.Size(88, 29);
             this.OpcBtnDeshacer.TabIndex = 14;
@@ -781,7 +783,7 @@ namespace gsNotasNETF
             this.OpcBtnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnGuardar.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnGuardar.Location = new System.Drawing.Point(637, 6);
+            this.OpcBtnGuardar.Location = new System.Drawing.Point(620, 6);
             this.OpcBtnGuardar.Name = "OpcBtnGuardar";
             this.OpcBtnGuardar.Size = new System.Drawing.Size(88, 29);
             this.OpcBtnGuardar.TabIndex = 13;
@@ -967,6 +969,19 @@ namespace gsNotasNETF
             this.notaUC1.NotaCambiada += new gsNotasNETF.TextoModificado(this.notaUC1_NotaCambiada);
             this.notaUC1.GrupoCambiado += new gsNotasNETF.TextoModificado(this.notaUC1_GrupoCambiado);
             // 
+            // OpcChkIniciarConWindows
+            // 
+            this.OpcChkIniciarConWindows.AutoSize = true;
+            this.OpcChkIniciarConWindows.Location = new System.Drawing.Point(6, 249);
+            this.OpcChkIniciarConWindows.Name = "OpcChkIniciarConWindows";
+            this.OpcChkIniciarConWindows.Size = new System.Drawing.Size(143, 21);
+            this.OpcChkIniciarConWindows.TabIndex = 15;
+            this.OpcChkIniciarConWindows.Text = "Iniciar con Windows";
+            this.toolTip1.SetToolTip(this.OpcChkIniciarConWindows, "Debes ejecutar la aplicación con provilegios de administrador para que surta efec" +
+        "to.");
+            this.OpcChkIniciarConWindows.UseVisualStyleBackColor = true;
+            this.OpcChkIniciarConWindows.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
+            // 
             // FormNotasUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1073,6 +1088,7 @@ namespace gsNotasNETF
         private System.Windows.Forms.CheckBox OpcChkOcultarPanelSuperior;
         private System.Windows.Forms.PictureBox picOcultarPanel1;
         private System.Windows.Forms.Button OpcBtnGuardarEnDrive;
+        private System.Windows.Forms.CheckBox OpcChkIniciarConWindows;
     }
 }
 

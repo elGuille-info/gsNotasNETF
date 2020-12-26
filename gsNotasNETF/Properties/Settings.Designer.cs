@@ -238,5 +238,17 @@ namespace gsNotasNETF.Properties {
                 this["InvertirColores"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IniciarConWindows {
+            get {
+                return ((bool)(this["IniciarConWindows"]));
+            }
+            set {
+                this["IniciarConWindows"] = value;
+            }
+        }
     }
 }

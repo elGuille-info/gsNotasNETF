@@ -719,6 +719,8 @@ namespace gsNotasNETF
 
             OcultarPanelSuperior(MySetting.OcultarPanelSuperior);
 
+            iniciarConWindows = MySetting.IniciarConWindows;
+
             // los valores a asignar a NotaUC
             if (MySetting.Tema == "Claro")
                 notaUC1.Tema = Temas.Claro;
@@ -1003,6 +1005,8 @@ namespace gsNotasNETF
             OpcChkMostrarMismoGrupo.Checked = MySetting.MostrarMismoGrupo;
             OpcChkMostrarHorizontal.Checked = MySetting.VistaNotasHorizontal;
             OpcChkOcultarPanelSuperior.Checked = MySetting.OcultarPanelSuperior;
+            OpcChkIniciarConWindows.Checked = MySetting.IniciarConWindows;
+
             //OpcChkGuardarEnDrive.Checked = MySetting.GuardarEnDrive;
             //OpcChkBorrarNotasAnterioresDrive.Checked = MySetting.BorrarNotasAnterioresDeDrive;
 
@@ -1035,6 +1039,9 @@ namespace gsNotasNETF
                 modificado = true;
             else if (OpcChkOcultarPanelSuperior.Checked != MySetting.OcultarPanelSuperior)
                 modificado = true;
+            else if (OpcChkIniciarConWindows.Checked != MySetting.IniciarConWindows)
+                modificado = true;
+
             //else if (OpcChkGuardarEnDrive.Checked != MySetting.GuardarEnDrive)
             //    modificado = true;
             //else if (OpcChkBorrarNotasAnterioresDrive.Checked != MySetting.BorrarNotasAnterioresDeDrive)
@@ -1102,6 +1109,7 @@ namespace gsNotasNETF
             var vistaAnt = MySetting.VistaNotasHorizontal;
             MySetting.VistaNotasHorizontal = OpcChkMostrarHorizontal.Checked;
             MySetting.OcultarPanelSuperior = OpcChkOcultarPanelSuperior.Checked;
+            MySetting.IniciarConWindows = OpcChkIniciarConWindows.Checked;
             //MySetting.GuardarEnDrive = OpcChkGuardarEnDrive.Checked;
             //MySetting.BorrarNotasAnterioresDeDrive = OpcChkBorrarNotasAnterioresDrive.Checked;
 
@@ -1208,5 +1216,58 @@ namespace gsNotasNETF
             
             notaUC1.GuardarEnDrive = false;
         }
+
+        /// <summary>
+        /// Indicar si se inicia con Windows.
+        /// Modificando el registro de Windows.
+        /// </summary>
+        /// <remarks>Debes ejecutar la aplicación con permisos de administrador.</remarks>
+        private bool iniciarConWindows
+        {
+            get
+            {
+                return MySetting.IniciarConWindows;
+            }
+            set
+            {
+                //// Avisar si no se ejecuta como administrador            (12/Ago/07)
+                //if (DatosConfiguracion.ComoAdministrador == false)
+                //{
+                //    MessageBox.Show("Sólo puedes modificar el registro de Windows " + "si ejecutas la aplicación como administrador.", "Iniciar con Windows", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //    break;
+                //}
+                
+                MySetting.IniciarConWindows = value;
+                
+                // Guardar la clave en el registro
+                // HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+                try
+                {
+                    Microsoft.Win32.RegistryKey runK = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
+                    if (value)
+                    {
+                        // El ensamblado actual
+                        System.Reflection.Assembly ensamblado = typeof(FormNotasUC).Assembly;
+                        // añadirlo al registro
+                        var appPath = System.IO.Path.GetFullPath(ensamblado.Location);
+
+                        runK.SetValue("gsNotasNETF", $"\"{appPath}\"");
+                    }
+                    else
+                        // quitarlo del registo
+                        runK.DeleteValue("gsNotasNETF", false);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ERROR al guardar en el registro.\r\n"+
+                        "Seguramente no tienes privilegios suficientes.\r\n" + 
+                        ex.Message + "\r\n---xxx---\r\n" + 
+                        ex.StackTrace, 
+                        "Iniciar automáticamente con Windows", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+        }
+
     }
 }
