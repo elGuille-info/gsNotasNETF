@@ -77,6 +77,7 @@ v1.0.0.139              Al pulsar en el botón del menú, mostrar el menú.
                         Ver: https://github.com/elGuille-info/gsNotasNETF/releases/tag/v1.0.0.139
 v1.0.0.140  24-dic-20   Cambio el icono de la aplicación.
 v1.0.0.141              Y el del formulario y por tanto el del icono de notificación.
+v1.0.0.142  26-dic-20   Se puede iniciar con Windows (se debe ejecutar como administrador).
 
 */
 using System;
