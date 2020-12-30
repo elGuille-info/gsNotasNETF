@@ -143,6 +143,17 @@ namespace gsNotasNETF
         //
 
         [Browsable(true)]
+        [Description("Este evento se produce cuando se pulsa en buscar.")]
+        [Category("NotasUC")]
+        public event MensajeDelegate BuscarTexto;
+
+        protected virtual void OnBuscarTexto(string mensaje)
+        {
+            BuscarTexto?.Invoke(mensaje);
+        }
+
+
+        [Browsable(true)]
         [Description("Este evento se produce cuando se guardan las notas.")]
         [Category("NotasUC")]
         public event MensajeDelegate NotasGuardadas;
@@ -1736,6 +1747,19 @@ namespace gsNotasNETF
         private void MnuAcercaDe_Click(object sender, EventArgs e)
         {
             statusInfoTecla.Text = "F1";
+
+            System.Reflection.Assembly ensamblado = typeof(VersionUtilidades).Assembly;
+
+            var versionWeb = "xx";
+            string msgVersion;
+
+            var cualVersion = VersionUtilidades.CompararVersionWeb(ensamblado, ref versionWeb);
+
+            if (cualVersion == 1)
+                msgVersion = $"Existe una versión más reciente de '{Application.ProductName}': v{versionWeb}.";
+            else //if (cualVersion == -1)
+                msgVersion = $"Esta versión de '{Application.ProductName}' es la más reciente.";
+
             // Mostrar acerca de
             var titulo = $"Acerca de {Application.ProductName} v{Application.ProductVersion}";
             MessageBox.Show(@$"Acerca de {titulo}
@@ -1766,7 +1790,9 @@ Al guardar se sustituyen caracteres especiales por marcadores:
     Los retornos de carro '\r'(Lf)   se guardan como | LF |.
     La comprobación se hace en este orden: CrLf, Cr, Lf.
 
-No se guardan los grupos y notas en blanco.",
+No se guardan los grupos y notas en blanco.
+
+{msgVersion}",
                 $"Acerca de {titulo}", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -1894,6 +1920,60 @@ No se guardan los grupos y notas en blanco.",
             // mostrar el menú
             statusInfoTecla.DropDown.Left = statusStrip1.Right - statusInfoTecla.Width;
             statusInfoTecla.DropDown.Show();
+        }
+
+        private void mnuSeleccionarTodo_Click(object sender, EventArgs e)
+        {
+            statusInfoTecla.Text = "Ctrl+A";
+            txtEdit.SelectAll();
+        }
+
+        private void mnuPegar_Click(object sender, EventArgs e)
+        {
+            statusInfoTecla.Text = "Ctrl+V";
+            txtEdit.Paste();
+        }
+
+        private void mnuCopiar_Click(object sender, EventArgs e)
+        {
+            statusInfoTecla.Text = "Ctrl+C";
+            txtEdit.Copy();
+        }
+
+        private void mnuCortar_Click(object sender, EventArgs e)
+        {
+            statusInfoTecla.Text = "Ctrl+X";
+            txtEdit.Paste();
+        }
+                
+        private void mnuBuscar_Click(object sender, EventArgs e)
+        {
+            statusInfoTecla.Text = "F3";
+            var texto = txtEdit.SelectedText;
+            OnBuscarTexto(texto);
+        }
+
+        private void mnuDeshacer_Click(object sender, EventArgs e)
+        {
+            statusInfoTecla.Text = "Ctrl+Z";
+            txtEdit.Undo();
+        }
+
+        private void mnuRehacer_Click(object sender, EventArgs e)
+        {
+            statusInfoTecla.Text = "Ctrl+Y";
+            txtEdit.Redo();
+        }
+
+        private void contextEditor_Opening(object sender, CancelEventArgs e)
+        {
+            mnuPegar.Enabled = txtEdit.CanPaste(DataFormats.GetFormat("Text"));
+            var sLen = txtEdit.SelectionLength;
+            mnuCopiar.Enabled = sLen > 0;
+            mnuCortar.Enabled = mnuCopiar.Enabled;
+            mnuDeshacer.Enabled = txtEdit.CanUndo;
+            mnuRehacer.Enabled = txtEdit.CanRedo;
+            mnuSeleccionarTodo.Enabled = txtEdit.CanSelect;
         }
     }
 }

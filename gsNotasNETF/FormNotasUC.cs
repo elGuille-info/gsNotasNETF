@@ -78,6 +78,8 @@ v1.0.0.139              Al pulsar en el botón del menú, mostrar el menú.
 v1.0.0.140  24-dic-20   Cambio el icono de la aplicación.
 v1.0.0.141              Y el del formulario y por tanto el del icono de notificación.
 v1.0.0.142  26-dic-20   Se puede iniciar con Windows (se debe ejecutar como administrador).
+v1.0.0.143  30-dic-20   Añado un tab para acerca de y hago comprobación de si es la versión más reciente.
+                        Añado menú contextual de edición a la caja de texto.
 
 */
 using System;
@@ -828,6 +830,42 @@ namespace gsNotasNETF
                 return;
             }
 
+            if(tabsConfig.SelectedTab.Name == "tabAcercaDe")
+            {
+                System.Reflection.Assembly ensamblado = typeof(VersionUtilidades).Assembly;
+
+                var versionWeb = "xx";
+                string msgVersion;
+
+                var cualVersion = VersionUtilidades.CompararVersionWeb(ensamblado, ref versionWeb);
+
+                if (cualVersion == 1)
+                    msgVersion = $"Existe una versión más reciente de '{Application.ProductName}': v{versionWeb}.";
+                else //if (cualVersion == -1)
+                    msgVersion = $"Esta versión de '{Application.ProductName}' es la más reciente.";
+
+                var titulo = $"Acerca de {Application.ProductName} v{Application.ProductVersion}";
+                var msg = @$"Acerca de {titulo}
+
+Utilidad para crear notas y grupos de notas.
+Las notas se guardan en el fichero '{notaUC1.FicNotas}'.
+
+Operaciones que puedes hacer:
+    Añadir nuevos grupos y notas.
+    Sustituir una nota con un nuevo texto.
+    Eliminar una nota.
+    Clasificar las notas del grupo seleccionado.
+    Leer y guardar las notas en un fichero de texto.
+    Buscar texto en las notas.
+
+No se guardan los grupos y notas en blanco.
+
+{msgVersion}";
+
+                txtAcercaDe.Text = msg;
+                return;
+            }
+
             //if (tabOpciones.SelectedIndex != 2) return;
             if (tabsConfig.SelectedTab.Name != "tabEditarGrupos") return;
             
@@ -1270,5 +1308,13 @@ namespace gsNotasNETF
             }
         }
 
+        private void notaUC1_BuscarTexto(string mensaje)
+        {
+            // Se ha elegido buscar en el menú contextual
+            // en mensaje estará el texto seleccionado 
+            txtBuscar.Text = mensaje;
+            tabsConfig.SelectedTab = tabBuscarTexto;
+            tabBuscarTexto.Show();
+        }
     }
 }

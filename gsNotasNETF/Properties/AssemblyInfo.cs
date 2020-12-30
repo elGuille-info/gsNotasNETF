@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("gsNotasNETF")]
-[assembly: AssemblyDescription("Gestionar notas y grupos de notas con editor integrado.  Revisión del 26-dic-2020")]
+[assembly: AssemblyDescription("Gestionar notas y grupos de notas con editor integrado.  Revisión del 30-dic-2020")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("elGuille")]
 [assembly: AssemblyProduct("gsNotasNETF")]
@@ -33,4 +33,4 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.142")]
+[assembly: AssemblyFileVersion("1.0.0.143")]
