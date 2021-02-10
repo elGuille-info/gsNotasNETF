@@ -26,6 +26,19 @@ namespace gsNotasNETF
     /// </summary>
     public partial class NotaUC : UserControl
     {
+
+        /// <summary>
+        /// Para acceder al control statusInfo.
+        /// </summary>
+        [Browsable(false)]
+        [Description("Para acceder al control statusInfo.")]
+        [Category("NotasUC")]
+        public string StatusInfo
+        {
+            get { return statusInfo.Text; }
+            set { statusInfo.Text = value; }
+        }
+
         private bool iniciando = true;
 
         /// <summary>

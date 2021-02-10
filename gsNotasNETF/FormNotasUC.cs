@@ -80,6 +80,9 @@ v1.0.0.141              Y el del formulario y por tanto el del icono de notifica
 v1.0.0.142  26-dic-20   Se puede iniciar con Windows (se debe ejecutar como administrador).
 v1.0.0.143  30-dic-20   Añado un tab para acerca de y hago comprobación de si es la versión más reciente.
                         Añado menú contextual de edición a la caja de texto.
+v1.0.0.144  10-feb-21   Quito el aviso cuando se inicia y no puede acceder al registro.
+                        Si se quiere seguir mostrando el aviso, asignar true a mostrarAvisoReg
+                        Añado la propiedad StatusInfo a NotaUC para mostrar un mensaje en la barra de estado.
 
 */
 using System;
@@ -99,6 +102,12 @@ namespace gsNotasNETF
 {
     public partial class FormNotasUC : Form
     {
+        /// <summary>
+        /// Si se quiere o no mostrar el aviso en caso de error al 
+        /// escribir en el registro.
+        /// </summary>
+        private bool mostrarAvisoReg = false;
+
         /// <summary>
         /// Acceso a los datos de configuración.
         /// </summary>
@@ -1298,12 +1307,15 @@ No se guardan los grupos y notas en blanco.
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("ERROR al guardar en el registro.\r\n"+
-                        "Seguramente no tienes privilegios suficientes.\r\n" + 
-                        ex.Message + "\r\n---xxx---\r\n" + 
-                        ex.StackTrace, 
-                        "Iniciar automáticamente con Windows", 
-                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    if (mostrarAvisoReg)
+                        MessageBox.Show("ERROR al guardar en el registro.\r\n" +
+                            "Seguramente no tienes privilegios suficientes.\r\n" +
+                            ex.Message + "\r\n---xxx---\r\n" +
+                            ex.StackTrace,
+                            "Iniciar automáticamente con Windows",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    else
+                        notaUC1.StatusInfo = "Error al guardar en el registro.";
                 }
             }
         }
