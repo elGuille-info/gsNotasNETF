@@ -83,6 +83,10 @@ v1.0.0.143  30-dic-20   Añado un tab para acerca de y hago comprobación de si 
 v1.0.0.144  10-feb-21   Quito el aviso cuando se inicia y no puede acceder al registro.
                         Si se quiere seguir mostrando el aviso, asignar true a mostrarAvisoReg
                         Añado la propiedad StatusInfo a NotaUC para mostrar un mensaje en la barra de estado.
+v1.0.0.145              Se movieron los botones de Guardar/Cancelar en la pestaña de opciones.
+                        Al iniciar la aplicación (o guardar los datos de configuración)
+                        ocultar la aplicación si se inicia minimizada.
+v1.0.0.146              Para que esto funcione bien en el evento Load hay que usar un temporizador.
 
 */
 using System;
@@ -216,7 +220,31 @@ namespace gsNotasNETF
 
             MySetting.UltimoGrupo = grupoTmp;
 
+            //
+            // Antes estaba en AsignarSettings                      (10/Feb/21)
+            // 
+
+            if (MySetting.IniciarMinimizada)
+                this.WindowState = FormWindowState.Minimized;
+
+            // Usar un temporizador para ocultar al minimizar       (10/Feb/21)
+            // cuando se inicia la aplicación.
+            timerInicio.Interval = 300;
+            timerInicio.Start();
+
             iniciando = false;
+        }
+
+        private void timerInicio_Tick(object sender, EventArgs e)
+        {
+            timerInicio.Stop();
+
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                NotifyMenuRestaurar.Text = "Restaurar";
+                // al minimizar, ocultar el formulario
+                this.Hide();
+            }
         }
 
         /// <summary>
@@ -731,7 +759,7 @@ namespace gsNotasNETF
 
             OcultarPanelSuperior(MySetting.OcultarPanelSuperior);
 
-            iniciarConWindows = MySetting.IniciarConWindows;
+            IniciarConWindows = MySetting.IniciarConWindows;
 
             // los valores a asignar a NotaUC
             if (MySetting.Tema == "Claro")
@@ -755,10 +783,24 @@ namespace gsNotasNETF
                 TamApp = (MySetting.Left, MySetting.Top, MySetting.Width, MySetting.Height);
             }
             AsignarTamañoVentana(TamApp);
-            if (MySetting.IniciarMinimizada)
-                this.WindowState = FormWindowState.Minimized;
 
             MostrarNotas(notaUC1.Grupo, notaUC1.ComboNotas.SelectedIndex);
+
+            //
+            // Quitado de AsignarSettings y puesto en el evento Load (10/feb/21)
+            //
+
+            //if (MySetting.IniciarMinimizada)
+            //    this.WindowState = FormWindowState.Minimized;
+
+            //// Aunque esto se puede poner dentro del if anterior,   (10/Feb/21)
+            //// dejarlo así, por separado.
+            //if (this.WindowState == FormWindowState.Minimized)
+            //{
+            //    NotifyMenuRestaurar.Text = "Restaurar";
+            //    // al minimizar, ocultar el formulario
+            //    this.Hide();
+            //}
         }
 
         private void notaUC1_MenuCerrar(string mensaje)
@@ -1270,7 +1312,7 @@ No se guardan los grupos y notas en blanco.
         /// Modificando el registro de Windows.
         /// </summary>
         /// <remarks>Debes ejecutar la aplicación con permisos de administrador.</remarks>
-        private bool iniciarConWindows
+        private bool IniciarConWindows
         {
             get
             {

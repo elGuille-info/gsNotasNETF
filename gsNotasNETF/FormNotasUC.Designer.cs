@@ -99,6 +99,7 @@ namespace gsNotasNETF
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.picOcultarPanel1 = new System.Windows.Forms.PictureBox();
             this.notaUC1 = new gsNotasNETF.NotaUC();
+            this.timerInicio = new System.Windows.Forms.Timer(this.components);
             this.NotasFlowLayoutPanel.SuspendLayout();
             this.tabsConfig.SuspendLayout();
             this.tabNotas.SuspendLayout();
@@ -710,7 +711,7 @@ namespace gsNotasNETF
             this.OpcBtnGuardarEnDrive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnGuardarEnDrive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnGuardarEnDrive.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnGuardarEnDrive.Location = new System.Drawing.Point(451, 234);
+            this.OpcBtnGuardarEnDrive.Location = new System.Drawing.Point(434, 234);
             this.OpcBtnGuardarEnDrive.Name = "OpcBtnGuardarEnDrive";
             this.OpcBtnGuardarEnDrive.Size = new System.Drawing.Size(223, 29);
             this.OpcBtnGuardarEnDrive.TabIndex = 11;
@@ -723,7 +724,7 @@ namespace gsNotasNETF
             this.OpcLinkSolicitarAutorización.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OpcLinkSolicitarAutorización.AutoSize = true;
             this.OpcLinkSolicitarAutorización.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.OpcLinkSolicitarAutorización.Location = new System.Drawing.Point(451, 211);
+            this.OpcLinkSolicitarAutorización.Location = new System.Drawing.Point(434, 211);
             this.OpcLinkSolicitarAutorización.Margin = new System.Windows.Forms.Padding(3);
             this.OpcLinkSolicitarAutorización.Name = "OpcLinkSolicitarAutorización";
             this.OpcLinkSolicitarAutorización.Size = new System.Drawing.Size(129, 17);
@@ -786,7 +787,7 @@ namespace gsNotasNETF
             this.OpcBtnDeshacer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnDeshacer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnDeshacer.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnDeshacer.Location = new System.Drawing.Point(492, 6);
+            this.OpcBtnDeshacer.Location = new System.Drawing.Point(577, 6);
             this.OpcBtnDeshacer.Name = "OpcBtnDeshacer";
             this.OpcBtnDeshacer.Size = new System.Drawing.Size(88, 29);
             this.OpcBtnDeshacer.TabIndex = 14;
@@ -802,7 +803,7 @@ namespace gsNotasNETF
             this.OpcBtnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnGuardar.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnGuardar.Location = new System.Drawing.Point(586, 6);
+            this.OpcBtnGuardar.Location = new System.Drawing.Point(671, 6);
             this.OpcBtnGuardar.Name = "OpcBtnGuardar";
             this.OpcBtnGuardar.Size = new System.Drawing.Size(88, 29);
             this.OpcBtnGuardar.TabIndex = 13;
@@ -1010,6 +1011,7 @@ namespace gsNotasNETF
             this.notaUC1.Notas = ((System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>>)(resources.GetObject("notaUC1.Notas")));
             this.notaUC1.Padding = new System.Windows.Forms.Padding(1);
             this.notaUC1.Size = new System.Drawing.Size(799, 310);
+            this.notaUC1.StatusInfo = "Grupo: \'\' con 1 nota";
             this.notaUC1.TabIndex = 1;
             this.notaUC1.Titulo = "Prueba NotaUC";
             this.notaUC1.TituloCabecera = "Prueba NotaUC";
@@ -1019,6 +1021,10 @@ namespace gsNotasNETF
             this.notaUC1.NotaReemplazada += new gsNotasNETF.ReemplazarNota(this.notaUC1_NotaReemplazada_1);
             this.notaUC1.NotaCambiada += new gsNotasNETF.TextoModificado(this.notaUC1_NotaCambiada);
             this.notaUC1.GrupoCambiado += new gsNotasNETF.TextoModificado(this.notaUC1_GrupoCambiado);
+            // 
+            // timerInicio
+            // 
+            this.timerInicio.Tick += new System.EventHandler(this.timerInicio_Tick);
             // 
             // FormNotasUC
             // 
@@ -1133,6 +1139,7 @@ namespace gsNotasNETF
         private System.Windows.Forms.TabPage tabAcercaDe;
         private System.Windows.Forms.Panel panelAcercaDe;
         private System.Windows.Forms.TextBox txtAcercaDe;
+        private System.Windows.Forms.Timer timerInicio;
     }
 }
 
