@@ -128,9 +128,10 @@ namespace gsNotasNETF
             this.NotasFlowLayoutPanel.Controls.Add(this.label3);
             this.NotasFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NotasFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.NotasFlowLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.NotasFlowLayoutPanel.Location = new System.Drawing.Point(4, 5);
+            this.NotasFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.NotasFlowLayoutPanel.Name = "NotasFlowLayoutPanel";
-            this.NotasFlowLayoutPanel.Size = new System.Drawing.Size(782, 254);
+            this.NotasFlowLayoutPanel.Size = new System.Drawing.Size(1178, 397);
             this.NotasFlowLayoutPanel.TabIndex = 0;
             this.NotasFlowLayoutPanel.WrapContents = false;
             this.NotasFlowLayoutPanel.Resize += new System.EventHandler(this.NotasFlowLayoutPanel_Resize);
@@ -141,10 +142,10 @@ namespace gsNotasNETF
             this.LblNota.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.LblNota.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LblNota.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblNota.Location = new System.Drawing.Point(3, 3);
-            this.LblNota.Margin = new System.Windows.Forms.Padding(3);
+            this.LblNota.Location = new System.Drawing.Point(4, 5);
+            this.LblNota.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LblNota.Name = "LblNota";
-            this.LblNota.Size = new System.Drawing.Size(752, 87);
+            this.LblNota.Size = new System.Drawing.Size(1128, 134);
             this.LblNota.TabIndex = 0;
             this.LblNota.Text = "LblNota\r\nPulsando en una etiqueta la pondrás la primera y con mayor tamaño.\r\nEl r" +
     "esto de etiquetas se pondrán en un tamaño más pequeño.";
@@ -156,10 +157,10 @@ namespace gsNotasNETF
             this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 96);
-            this.label4.Margin = new System.Windows.Forms.Padding(3);
+            this.label4.Location = new System.Drawing.Point(4, 149);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(201, 80);
+            this.label4.Size = new System.Drawing.Size(302, 123);
             this.label4.TabIndex = 4;
             this.label4.Text = "label4";
             this.label4.Click += new System.EventHandler(this.LblNota_Click);
@@ -170,10 +171,10 @@ namespace gsNotasNETF
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 182);
-            this.label1.Margin = new System.Windows.Forms.Padding(3);
+            this.label1.Location = new System.Drawing.Point(4, 282);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(180, 87);
+            this.label1.Size = new System.Drawing.Size(270, 134);
             this.label1.TabIndex = 1;
             this.label1.Text = "label1\r\nPrueba con estas etiquetas para moverlas.";
             this.label1.Click += new System.EventHandler(this.LblNota_Click);
@@ -184,10 +185,10 @@ namespace gsNotasNETF
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 275);
-            this.label2.Margin = new System.Windows.Forms.Padding(3);
+            this.label2.Location = new System.Drawing.Point(4, 426);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(180, 80);
+            this.label2.Size = new System.Drawing.Size(270, 123);
             this.label2.TabIndex = 2;
             this.label2.Text = "label2";
             this.label2.Click += new System.EventHandler(this.LblNota_Click);
@@ -198,10 +199,10 @@ namespace gsNotasNETF
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 361);
-            this.label3.Margin = new System.Windows.Forms.Padding(3);
+            this.label3.Location = new System.Drawing.Point(4, 559);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(180, 80);
+            this.label3.Size = new System.Drawing.Size(270, 123);
             this.label3.TabIndex = 3;
             this.label3.Text = "label3";
             this.label3.Click += new System.EventHandler(this.LblNota_Click);
@@ -219,12 +220,12 @@ namespace gsNotasNETF
             this.tabsConfig.Controls.Add(this.tabOpciones);
             this.tabsConfig.Controls.Add(this.tabAcercaDe);
             this.tabsConfig.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabsConfig.Location = new System.Drawing.Point(5, 10);
-            this.tabsConfig.Margin = new System.Windows.Forms.Padding(1);
+            this.tabsConfig.Location = new System.Drawing.Point(8, 15);
+            this.tabsConfig.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabsConfig.Multiline = true;
             this.tabsConfig.Name = "tabsConfig";
             this.tabsConfig.SelectedIndex = 0;
-            this.tabsConfig.Size = new System.Drawing.Size(796, 293);
+            this.tabsConfig.Size = new System.Drawing.Size(1194, 451);
             this.tabsConfig.TabIndex = 0;
             this.tabsConfig.SelectedIndexChanged += new System.EventHandler(this.tabsConfig_SelectedIndexChanged);
             // 
@@ -233,10 +234,11 @@ namespace gsNotasNETF
             this.tabNotas.BackColor = System.Drawing.Color.White;
             this.tabNotas.Controls.Add(this.NotasFlowLayoutPanel);
             this.tabNotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.tabNotas.Location = new System.Drawing.Point(4, 29);
+            this.tabNotas.Location = new System.Drawing.Point(4, 40);
+            this.tabNotas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabNotas.Name = "tabNotas";
-            this.tabNotas.Padding = new System.Windows.Forms.Padding(3);
-            this.tabNotas.Size = new System.Drawing.Size(788, 260);
+            this.tabNotas.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabNotas.Size = new System.Drawing.Size(1186, 407);
             this.tabNotas.TabIndex = 0;
             this.tabNotas.Text = "Notas";
             // 
@@ -245,10 +247,11 @@ namespace gsNotasNETF
             this.tabGrupos.BackColor = System.Drawing.Color.White;
             this.tabGrupos.Controls.Add(this.GruposFlowLayoutPanel);
             this.tabGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.tabGrupos.Location = new System.Drawing.Point(4, 29);
+            this.tabGrupos.Location = new System.Drawing.Point(4, 40);
+            this.tabGrupos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabGrupos.Name = "tabGrupos";
-            this.tabGrupos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGrupos.Size = new System.Drawing.Size(788, 260);
+            this.tabGrupos.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabGrupos.Size = new System.Drawing.Size(1186, 407);
             this.tabGrupos.TabIndex = 1;
             this.tabGrupos.Text = "Grupos";
             // 
@@ -262,9 +265,10 @@ namespace gsNotasNETF
             this.GruposFlowLayoutPanel.Controls.Add(this.label9);
             this.GruposFlowLayoutPanel.Controls.Add(this.label8);
             this.GruposFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GruposFlowLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.GruposFlowLayoutPanel.Location = new System.Drawing.Point(4, 5);
+            this.GruposFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GruposFlowLayoutPanel.Name = "GruposFlowLayoutPanel";
-            this.GruposFlowLayoutPanel.Size = new System.Drawing.Size(782, 254);
+            this.GruposFlowLayoutPanel.Size = new System.Drawing.Size(1178, 397);
             this.GruposFlowLayoutPanel.TabIndex = 1;
             this.GruposFlowLayoutPanel.Click += new System.EventHandler(this.LblGrupo_Click);
             this.GruposFlowLayoutPanel.DoubleClick += new System.EventHandler(this.LblGrupo_DoubleClick);
@@ -275,10 +279,10 @@ namespace gsNotasNETF
             this.LblGrupo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.LblGrupo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LblGrupo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblGrupo.Location = new System.Drawing.Point(3, 3);
-            this.LblGrupo.Margin = new System.Windows.Forms.Padding(3);
+            this.LblGrupo.Location = new System.Drawing.Point(4, 5);
+            this.LblGrupo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LblGrupo.Name = "LblGrupo";
-            this.LblGrupo.Size = new System.Drawing.Size(180, 80);
+            this.LblGrupo.Size = new System.Drawing.Size(270, 123);
             this.LblGrupo.TabIndex = 0;
             this.LblGrupo.Text = "LblGrupo\r\nPulsando en una etiqueta la pondrás la primera y con mayor tamaño.\r\nEl " +
     "resto de etiquetas se pondrán en un tamaño más pequeño.";
@@ -291,10 +295,10 @@ namespace gsNotasNETF
             this.label6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(189, 3);
-            this.label6.Margin = new System.Windows.Forms.Padding(3);
+            this.label6.Location = new System.Drawing.Point(282, 5);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(180, 80);
+            this.label6.Size = new System.Drawing.Size(270, 123);
             this.label6.TabIndex = 4;
             this.label6.Text = "label6";
             // 
@@ -304,10 +308,10 @@ namespace gsNotasNETF
             this.label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(375, 3);
-            this.label7.Margin = new System.Windows.Forms.Padding(3);
+            this.label7.Location = new System.Drawing.Point(560, 5);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(180, 80);
+            this.label7.Size = new System.Drawing.Size(270, 123);
             this.label7.TabIndex = 1;
             this.label7.Text = "label1\r\nPrueba con estas etiquetas para moverlas.";
             // 
@@ -317,10 +321,10 @@ namespace gsNotasNETF
             this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(561, 3);
-            this.label9.Margin = new System.Windows.Forms.Padding(3);
+            this.label9.Location = new System.Drawing.Point(838, 5);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(180, 80);
+            this.label9.Size = new System.Drawing.Size(270, 123);
             this.label9.TabIndex = 3;
             this.label9.Text = "label9";
             // 
@@ -330,10 +334,10 @@ namespace gsNotasNETF
             this.label8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(3, 89);
-            this.label8.Margin = new System.Windows.Forms.Padding(3);
+            this.label8.Location = new System.Drawing.Point(4, 138);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(180, 80);
+            this.label8.Size = new System.Drawing.Size(270, 123);
             this.label8.TabIndex = 2;
             this.label8.Text = "label8";
             // 
@@ -342,10 +346,11 @@ namespace gsNotasNETF
             this.tabEditarGrupos.BackColor = System.Drawing.Color.White;
             this.tabEditarGrupos.Controls.Add(this.panelEditarGrupos);
             this.tabEditarGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.tabEditarGrupos.Location = new System.Drawing.Point(4, 29);
+            this.tabEditarGrupos.Location = new System.Drawing.Point(4, 40);
+            this.tabEditarGrupos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabEditarGrupos.Name = "tabEditarGrupos";
-            this.tabEditarGrupos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEditarGrupos.Size = new System.Drawing.Size(788, 260);
+            this.tabEditarGrupos.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabEditarGrupos.Size = new System.Drawing.Size(1186, 407);
             this.tabEditarGrupos.TabIndex = 2;
             this.tabEditarGrupos.Text = "Editar grupos y notas";
             // 
@@ -364,10 +369,11 @@ namespace gsNotasNETF
             this.panelEditarGrupos.Controls.Add(this.lblEdSeleccionar);
             this.panelEditarGrupos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelEditarGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.panelEditarGrupos.Location = new System.Drawing.Point(3, 3);
+            this.panelEditarGrupos.Location = new System.Drawing.Point(4, 5);
+            this.panelEditarGrupos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelEditarGrupos.Name = "panelEditarGrupos";
-            this.panelEditarGrupos.Padding = new System.Windows.Forms.Padding(3);
-            this.panelEditarGrupos.Size = new System.Drawing.Size(782, 254);
+            this.panelEditarGrupos.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelEditarGrupos.Size = new System.Drawing.Size(1178, 397);
             this.panelEditarGrupos.TabIndex = 0;
             this.panelEditarGrupos.Text = "Editar los grupos";
             // 
@@ -376,9 +382,10 @@ namespace gsNotasNETF
             this.btnClasificarGrupos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.btnClasificarGrupos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClasificarGrupos.ForeColor = System.Drawing.Color.White;
-            this.btnClasificarGrupos.Location = new System.Drawing.Point(153, 52);
+            this.btnClasificarGrupos.Location = new System.Drawing.Point(230, 80);
+            this.btnClasificarGrupos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClasificarGrupos.Name = "btnClasificarGrupos";
-            this.btnClasificarGrupos.Size = new System.Drawing.Size(191, 29);
+            this.btnClasificarGrupos.Size = new System.Drawing.Size(286, 45);
             this.btnClasificarGrupos.TabIndex = 7;
             this.btnClasificarGrupos.Text = "Clasificar los grupos";
             this.btnClasificarGrupos.UseVisualStyleBackColor = false;
@@ -392,9 +399,11 @@ namespace gsNotasNETF
             this.groupBox2.Controls.Add(this.cboEdNotas);
             this.groupBox2.Controls.Add(this.lblEdSeleccionarNota);
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.groupBox2.Location = new System.Drawing.Point(6, 128);
+            this.groupBox2.Location = new System.Drawing.Point(9, 197);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(757, 71);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox2.Size = new System.Drawing.Size(1136, 109);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Editar las notas";
@@ -406,9 +415,10 @@ namespace gsNotasNETF
             this.cboEdGrupoDestino.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboEdGrupoDestino.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.cboEdGrupoDestino.FormattingEnabled = true;
-            this.cboEdGrupoDestino.Location = new System.Drawing.Point(630, 21);
+            this.cboEdGrupoDestino.Location = new System.Drawing.Point(945, 32);
+            this.cboEdGrupoDestino.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboEdGrupoDestino.Name = "cboEdGrupoDestino";
-            this.cboEdGrupoDestino.Size = new System.Drawing.Size(121, 25);
+            this.cboEdGrupoDestino.Size = new System.Drawing.Size(180, 36);
             this.cboEdGrupoDestino.TabIndex = 4;
             // 
             // cboEdGrupoNotas
@@ -417,9 +427,10 @@ namespace gsNotasNETF
             this.cboEdGrupoNotas.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboEdGrupoNotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.cboEdGrupoNotas.FormattingEnabled = true;
-            this.cboEdGrupoNotas.Location = new System.Drawing.Point(202, 21);
+            this.cboEdGrupoNotas.Location = new System.Drawing.Point(303, 32);
+            this.cboEdGrupoNotas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboEdGrupoNotas.Name = "cboEdGrupoNotas";
-            this.cboEdGrupoNotas.Size = new System.Drawing.Size(121, 25);
+            this.cboEdGrupoNotas.Size = new System.Drawing.Size(180, 36);
             this.cboEdGrupoNotas.TabIndex = 1;
             this.cboEdGrupoNotas.SelectedIndexChanged += new System.EventHandler(this.cboEdGrupoNotas_SelectedIndexChanged);
             // 
@@ -429,9 +440,10 @@ namespace gsNotasNETF
             this.btnMoverNota.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.btnMoverNota.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMoverNota.ForeColor = System.Drawing.Color.White;
-            this.btnMoverNota.Location = new System.Drawing.Point(540, 17);
+            this.btnMoverNota.Location = new System.Drawing.Point(810, 26);
+            this.btnMoverNota.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnMoverNota.Name = "btnMoverNota";
-            this.btnMoverNota.Size = new System.Drawing.Size(84, 29);
+            this.btnMoverNota.Size = new System.Drawing.Size(126, 45);
             this.btnMoverNota.TabIndex = 3;
             this.btnMoverNota.Text = "Mover a";
             this.btnMoverNota.UseVisualStyleBackColor = false;
@@ -445,17 +457,18 @@ namespace gsNotasNETF
             this.cboEdNotas.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboEdNotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.cboEdNotas.FormattingEnabled = true;
-            this.cboEdNotas.Location = new System.Drawing.Point(329, 21);
+            this.cboEdNotas.Location = new System.Drawing.Point(494, 32);
+            this.cboEdNotas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboEdNotas.Name = "cboEdNotas";
-            this.cboEdNotas.Size = new System.Drawing.Size(205, 25);
+            this.cboEdNotas.Size = new System.Drawing.Size(306, 36);
             this.cboEdNotas.TabIndex = 2;
             // 
             // lblEdSeleccionarNota
             // 
-            this.lblEdSeleccionarNota.Location = new System.Drawing.Point(6, 24);
-            this.lblEdSeleccionarNota.Margin = new System.Windows.Forms.Padding(3);
+            this.lblEdSeleccionarNota.Location = new System.Drawing.Point(9, 37);
+            this.lblEdSeleccionarNota.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lblEdSeleccionarNota.Name = "lblEdSeleccionarNota";
-            this.lblEdSeleccionarNota.Size = new System.Drawing.Size(190, 23);
+            this.lblEdSeleccionarNota.Size = new System.Drawing.Size(285, 35);
             this.lblEdSeleccionarNota.TabIndex = 0;
             this.lblEdSeleccionarNota.Text = "Selecciona la nota a mover:";
             // 
@@ -464,10 +477,10 @@ namespace gsNotasNETF
             this.lblEdInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEdInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.lblEdInfo.ForeColor = System.Drawing.Color.White;
-            this.lblEdInfo.Location = new System.Drawing.Point(440, 61);
-            this.lblEdInfo.Margin = new System.Windows.Forms.Padding(3);
+            this.lblEdInfo.Location = new System.Drawing.Point(665, 94);
+            this.lblEdInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lblEdInfo.Name = "lblEdInfo";
-            this.lblEdInfo.Size = new System.Drawing.Size(326, 81);
+            this.lblEdInfo.Size = new System.Drawing.Size(489, 125);
             this.lblEdInfo.TabIndex = 6;
             this.lblEdInfo.Text = "Si indicas un nombre existente, las notas se moverán a ese grupo.\r\nEn los nombres" +
     " de los grupos se distinguen mayúsculas de minúsculas.";
@@ -477,9 +490,10 @@ namespace gsNotasNETF
             this.btnBorrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrar.ForeColor = System.Drawing.Color.White;
-            this.btnBorrar.Location = new System.Drawing.Point(350, 18);
+            this.btnBorrar.Location = new System.Drawing.Point(525, 28);
+            this.btnBorrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(84, 29);
+            this.btnBorrar.Size = new System.Drawing.Size(126, 45);
             this.btnBorrar.TabIndex = 2;
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.UseVisualStyleBackColor = false;
@@ -491,9 +505,10 @@ namespace gsNotasNETF
             this.btnCambiarNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.btnCambiarNombre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCambiarNombre.ForeColor = System.Drawing.Color.White;
-            this.btnCambiarNombre.Location = new System.Drawing.Point(682, 21);
+            this.btnCambiarNombre.Location = new System.Drawing.Point(1028, 32);
+            this.btnCambiarNombre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCambiarNombre.Name = "btnCambiarNombre";
-            this.btnCambiarNombre.Size = new System.Drawing.Size(84, 29);
+            this.btnCambiarNombre.Size = new System.Drawing.Size(126, 45);
             this.btnCambiarNombre.TabIndex = 5;
             this.btnCambiarNombre.Text = "Cambiar";
             this.btnCambiarNombre.UseVisualStyleBackColor = false;
@@ -503,18 +518,19 @@ namespace gsNotasNETF
             // 
             this.txtEdNombreGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEdNombreGrupo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.txtEdNombreGrupo.Location = new System.Drawing.Point(576, 24);
+            this.txtEdNombreGrupo.Location = new System.Drawing.Point(869, 37);
+            this.txtEdNombreGrupo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtEdNombreGrupo.Name = "txtEdNombreGrupo";
-            this.txtEdNombreGrupo.Size = new System.Drawing.Size(100, 25);
+            this.txtEdNombreGrupo.Size = new System.Drawing.Size(148, 33);
             this.txtEdNombreGrupo.TabIndex = 4;
             // 
             // lblEdCambiar
             // 
             this.lblEdCambiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEdCambiar.Location = new System.Drawing.Point(443, 27);
-            this.lblEdCambiar.Margin = new System.Windows.Forms.Padding(3);
+            this.lblEdCambiar.Location = new System.Drawing.Point(669, 42);
+            this.lblEdCambiar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lblEdCambiar.Name = "lblEdCambiar";
-            this.lblEdCambiar.Size = new System.Drawing.Size(127, 23);
+            this.lblEdCambiar.Size = new System.Drawing.Size(190, 35);
             this.lblEdCambiar.TabIndex = 3;
             this.lblEdCambiar.Text = "Nuevo nombre:";
             // 
@@ -524,17 +540,18 @@ namespace gsNotasNETF
             this.cboEdGrupos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboEdGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.cboEdGrupos.FormattingEnabled = true;
-            this.cboEdGrupos.Location = new System.Drawing.Point(153, 21);
+            this.cboEdGrupos.Location = new System.Drawing.Point(230, 32);
+            this.cboEdGrupos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboEdGrupos.Name = "cboEdGrupos";
-            this.cboEdGrupos.Size = new System.Drawing.Size(191, 25);
+            this.cboEdGrupos.Size = new System.Drawing.Size(284, 36);
             this.cboEdGrupos.TabIndex = 1;
             // 
             // lblEdSeleccionar
             // 
-            this.lblEdSeleccionar.Location = new System.Drawing.Point(6, 24);
-            this.lblEdSeleccionar.Margin = new System.Windows.Forms.Padding(3);
+            this.lblEdSeleccionar.Location = new System.Drawing.Point(9, 37);
+            this.lblEdSeleccionar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lblEdSeleccionar.Name = "lblEdSeleccionar";
-            this.lblEdSeleccionar.Size = new System.Drawing.Size(141, 23);
+            this.lblEdSeleccionar.Size = new System.Drawing.Size(212, 35);
             this.lblEdSeleccionar.TabIndex = 0;
             this.lblEdSeleccionar.Text = "Selecciona el grupo:";
             // 
@@ -543,10 +560,11 @@ namespace gsNotasNETF
             this.tabBuscarTexto.BackColor = System.Drawing.Color.White;
             this.tabBuscarTexto.Controls.Add(this.panelBuscarTexto);
             this.tabBuscarTexto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.tabBuscarTexto.Location = new System.Drawing.Point(4, 29);
+            this.tabBuscarTexto.Location = new System.Drawing.Point(4, 40);
+            this.tabBuscarTexto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabBuscarTexto.Name = "tabBuscarTexto";
-            this.tabBuscarTexto.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBuscarTexto.Size = new System.Drawing.Size(788, 260);
+            this.tabBuscarTexto.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabBuscarTexto.Size = new System.Drawing.Size(1186, 407);
             this.tabBuscarTexto.TabIndex = 3;
             this.tabBuscarTexto.Text = "Buscar texto";
             // 
@@ -563,10 +581,11 @@ namespace gsNotasNETF
             this.panelBuscarTexto.Controls.Add(this.lblBuscar);
             this.panelBuscarTexto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBuscarTexto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.panelBuscarTexto.Location = new System.Drawing.Point(3, 3);
+            this.panelBuscarTexto.Location = new System.Drawing.Point(4, 5);
+            this.panelBuscarTexto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelBuscarTexto.Name = "panelBuscarTexto";
-            this.panelBuscarTexto.Padding = new System.Windows.Forms.Padding(3);
-            this.panelBuscarTexto.Size = new System.Drawing.Size(782, 254);
+            this.panelBuscarTexto.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelBuscarTexto.Size = new System.Drawing.Size(1178, 397);
             this.panelBuscarTexto.TabIndex = 0;
             // 
             // lblResultadoBuscar
@@ -575,10 +594,10 @@ namespace gsNotasNETF
             this.lblResultadoBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.lblResultadoBuscar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblResultadoBuscar.ForeColor = System.Drawing.Color.White;
-            this.lblResultadoBuscar.Location = new System.Drawing.Point(489, 21);
-            this.lblResultadoBuscar.Margin = new System.Windows.Forms.Padding(3);
+            this.lblResultadoBuscar.Location = new System.Drawing.Point(739, 32);
+            this.lblResultadoBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lblResultadoBuscar.Name = "lblResultadoBuscar";
-            this.lblResultadoBuscar.Size = new System.Drawing.Size(284, 23);
+            this.lblResultadoBuscar.Size = new System.Drawing.Size(426, 35);
             this.lblResultadoBuscar.TabIndex = 5;
             this.lblResultadoBuscar.Text = "Resultado de la búsqueda:";
             // 
@@ -589,10 +608,10 @@ namespace gsNotasNETF
             this.lblBuscando.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.lblBuscando.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBuscando.ForeColor = System.Drawing.Color.White;
-            this.lblBuscando.Location = new System.Drawing.Point(9, 222);
-            this.lblBuscando.Margin = new System.Windows.Forms.Padding(3);
+            this.lblBuscando.Location = new System.Drawing.Point(14, 348);
+            this.lblBuscando.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lblBuscando.Name = "lblBuscando";
-            this.lblBuscando.Size = new System.Drawing.Size(474, 23);
+            this.lblBuscando.Size = new System.Drawing.Size(716, 35);
             this.lblBuscando.TabIndex = 4;
             this.lblBuscando.Text = "Buscando...";
             // 
@@ -602,10 +621,11 @@ namespace gsNotasNETF
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstResultadoBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.lstResultadoBuscar.FormattingEnabled = true;
-            this.lstResultadoBuscar.ItemHeight = 17;
-            this.lstResultadoBuscar.Location = new System.Drawing.Point(489, 51);
+            this.lstResultadoBuscar.ItemHeight = 28;
+            this.lstResultadoBuscar.Location = new System.Drawing.Point(739, 78);
+            this.lstResultadoBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lstResultadoBuscar.Name = "lstResultadoBuscar";
-            this.lstResultadoBuscar.Size = new System.Drawing.Size(284, 157);
+            this.lstResultadoBuscar.Size = new System.Drawing.Size(424, 228);
             this.lstResultadoBuscar.Sorted = true;
             this.lstResultadoBuscar.TabIndex = 6;
             this.lstResultadoBuscar.DoubleClick += new System.EventHandler(this.lstResultadoBuscar_DoubleClick);
@@ -614,9 +634,10 @@ namespace gsNotasNETF
             // 
             this.chkBuscarEnGrupoActual.AutoSize = true;
             this.chkBuscarEnGrupoActual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.chkBuscarEnGrupoActual.Location = new System.Drawing.Point(78, 55);
+            this.chkBuscarEnGrupoActual.Location = new System.Drawing.Point(117, 85);
+            this.chkBuscarEnGrupoActual.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chkBuscarEnGrupoActual.Name = "chkBuscarEnGrupoActual";
-            this.chkBuscarEnGrupoActual.Size = new System.Drawing.Size(268, 21);
+            this.chkBuscarEnGrupoActual.Size = new System.Drawing.Size(391, 32);
             this.chkBuscarEnGrupoActual.TabIndex = 3;
             this.chkBuscarEnGrupoActual.Text = "Buscar solo en las notas del grupo actual";
             this.chkBuscarEnGrupoActual.UseVisualStyleBackColor = true;
@@ -626,9 +647,10 @@ namespace gsNotasNETF
             this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
-            this.btnBuscar.Location = new System.Drawing.Point(231, 18);
+            this.btnBuscar.Location = new System.Drawing.Point(346, 28);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(84, 29);
+            this.btnBuscar.Size = new System.Drawing.Size(126, 45);
             this.btnBuscar.TabIndex = 2;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = false;
@@ -637,18 +659,19 @@ namespace gsNotasNETF
             // txtBuscar
             // 
             this.txtBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.txtBuscar.Location = new System.Drawing.Point(75, 21);
+            this.txtBuscar.Location = new System.Drawing.Point(112, 32);
+            this.txtBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(150, 25);
+            this.txtBuscar.Size = new System.Drawing.Size(223, 33);
             this.txtBuscar.TabIndex = 1;
             // 
             // lblBuscar
             // 
             this.lblBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.lblBuscar.Location = new System.Drawing.Point(6, 24);
-            this.lblBuscar.Margin = new System.Windows.Forms.Padding(3);
+            this.lblBuscar.Location = new System.Drawing.Point(9, 37);
+            this.lblBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lblBuscar.Name = "lblBuscar";
-            this.lblBuscar.Size = new System.Drawing.Size(63, 23);
+            this.lblBuscar.Size = new System.Drawing.Size(94, 35);
             this.lblBuscar.TabIndex = 0;
             this.lblBuscar.Text = "Buscar:";
             // 
@@ -657,10 +680,11 @@ namespace gsNotasNETF
             this.tabOpciones.BackColor = System.Drawing.Color.White;
             this.tabOpciones.Controls.Add(this.panelOpciones);
             this.tabOpciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.tabOpciones.Location = new System.Drawing.Point(4, 29);
+            this.tabOpciones.Location = new System.Drawing.Point(4, 40);
+            this.tabOpciones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabOpciones.Name = "tabOpciones";
-            this.tabOpciones.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOpciones.Size = new System.Drawing.Size(788, 260);
+            this.tabOpciones.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabOpciones.Size = new System.Drawing.Size(1186, 407);
             this.tabOpciones.TabIndex = 4;
             this.tabOpciones.Text = "Opciones";
             // 
@@ -685,18 +709,20 @@ namespace gsNotasNETF
             this.panelOpciones.Controls.Add(this.OpcChkAutoGuardar);
             this.panelOpciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelOpciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.panelOpciones.Location = new System.Drawing.Point(3, 3);
+            this.panelOpciones.Location = new System.Drawing.Point(4, 5);
+            this.panelOpciones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelOpciones.Name = "panelOpciones";
-            this.panelOpciones.Padding = new System.Windows.Forms.Padding(3);
-            this.panelOpciones.Size = new System.Drawing.Size(782, 254);
+            this.panelOpciones.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelOpciones.Size = new System.Drawing.Size(1178, 397);
             this.panelOpciones.TabIndex = 0;
             // 
             // OpcChkIniciarConWindows
             // 
             this.OpcChkIniciarConWindows.AutoSize = true;
-            this.OpcChkIniciarConWindows.Location = new System.Drawing.Point(6, 249);
+            this.OpcChkIniciarConWindows.Location = new System.Drawing.Point(9, 383);
+            this.OpcChkIniciarConWindows.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OpcChkIniciarConWindows.Name = "OpcChkIniciarConWindows";
-            this.OpcChkIniciarConWindows.Size = new System.Drawing.Size(143, 21);
+            this.OpcChkIniciarConWindows.Size = new System.Drawing.Size(213, 32);
             this.OpcChkIniciarConWindows.TabIndex = 15;
             this.OpcChkIniciarConWindows.Text = "Iniciar con Windows";
             this.toolTip1.SetToolTip(this.OpcChkIniciarConWindows, "Debes ejecutar la aplicación con provilegios de administrador para que surta efec" +
@@ -711,9 +737,10 @@ namespace gsNotasNETF
             this.OpcBtnGuardarEnDrive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnGuardarEnDrive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnGuardarEnDrive.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnGuardarEnDrive.Location = new System.Drawing.Point(434, 234);
+            this.OpcBtnGuardarEnDrive.Location = new System.Drawing.Point(859, 360);
+            this.OpcBtnGuardarEnDrive.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OpcBtnGuardarEnDrive.Name = "OpcBtnGuardarEnDrive";
-            this.OpcBtnGuardarEnDrive.Size = new System.Drawing.Size(223, 29);
+            this.OpcBtnGuardarEnDrive.Size = new System.Drawing.Size(484, 62);
             this.OpcBtnGuardarEnDrive.TabIndex = 11;
             this.OpcBtnGuardarEnDrive.Text = "Guardar las notas en Google Drive";
             this.OpcBtnGuardarEnDrive.UseVisualStyleBackColor = false;
@@ -724,10 +751,10 @@ namespace gsNotasNETF
             this.OpcLinkSolicitarAutorización.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OpcLinkSolicitarAutorización.AutoSize = true;
             this.OpcLinkSolicitarAutorización.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.OpcLinkSolicitarAutorización.Location = new System.Drawing.Point(434, 211);
-            this.OpcLinkSolicitarAutorización.Margin = new System.Windows.Forms.Padding(3);
+            this.OpcLinkSolicitarAutorización.Location = new System.Drawing.Point(1009, 325);
+            this.OpcLinkSolicitarAutorización.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OpcLinkSolicitarAutorización.Name = "OpcLinkSolicitarAutorización";
-            this.OpcLinkSolicitarAutorización.Size = new System.Drawing.Size(129, 17);
+            this.OpcLinkSolicitarAutorización.Size = new System.Drawing.Size(196, 28);
             this.OpcLinkSolicitarAutorización.TabIndex = 10;
             this.OpcLinkSolicitarAutorización.TabStop = true;
             this.OpcLinkSolicitarAutorización.Text = "Solicitar autorización";
@@ -739,9 +766,10 @@ namespace gsNotasNETF
             // OpcChkMostrarHorizontal
             // 
             this.OpcChkMostrarHorizontal.AutoSize = true;
-            this.OpcChkMostrarHorizontal.Location = new System.Drawing.Point(6, 195);
+            this.OpcChkMostrarHorizontal.Location = new System.Drawing.Point(9, 300);
+            this.OpcChkMostrarHorizontal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OpcChkMostrarHorizontal.Name = "OpcChkMostrarHorizontal";
-            this.OpcChkMostrarHorizontal.Size = new System.Drawing.Size(228, 21);
+            this.OpcChkMostrarHorizontal.Size = new System.Drawing.Size(337, 32);
             this.OpcChkMostrarHorizontal.TabIndex = 8;
             this.OpcChkMostrarHorizontal.Text = "Mostrar las notas horizontalmente";
             this.OpcChkMostrarHorizontal.UseVisualStyleBackColor = true;
@@ -750,9 +778,10 @@ namespace gsNotasNETF
             // OpcChkOcultarPanelSuperior
             // 
             this.OpcChkOcultarPanelSuperior.AutoSize = true;
-            this.OpcChkOcultarPanelSuperior.Location = new System.Drawing.Point(6, 141);
+            this.OpcChkOcultarPanelSuperior.Location = new System.Drawing.Point(9, 217);
+            this.OpcChkOcultarPanelSuperior.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OpcChkOcultarPanelSuperior.Name = "OpcChkOcultarPanelSuperior";
-            this.OpcChkOcultarPanelSuperior.Size = new System.Drawing.Size(299, 21);
+            this.OpcChkOcultarPanelSuperior.Size = new System.Drawing.Size(442, 32);
             this.OpcChkOcultarPanelSuperior.TabIndex = 6;
             this.OpcChkOcultarPanelSuperior.Text = "Al iniciar la aplicación ocultar el panel superior";
             this.OpcChkOcultarPanelSuperior.UseVisualStyleBackColor = true;
@@ -761,9 +790,10 @@ namespace gsNotasNETF
             // OpcChkMostrarMismoGrupo
             // 
             this.OpcChkMostrarMismoGrupo.AutoSize = true;
-            this.OpcChkMostrarMismoGrupo.Location = new System.Drawing.Point(6, 114);
+            this.OpcChkMostrarMismoGrupo.Location = new System.Drawing.Point(9, 175);
+            this.OpcChkMostrarMismoGrupo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OpcChkMostrarMismoGrupo.Name = "OpcChkMostrarMismoGrupo";
-            this.OpcChkMostrarMismoGrupo.Size = new System.Drawing.Size(361, 21);
+            this.OpcChkMostrarMismoGrupo.Size = new System.Drawing.Size(533, 32);
             this.OpcChkMostrarMismoGrupo.TabIndex = 5;
             this.OpcChkMostrarMismoGrupo.Text = "Al iniciar la aplicación mostrar el mismo grupo que había";
             this.OpcChkMostrarMismoGrupo.UseVisualStyleBackColor = true;
@@ -772,9 +802,10 @@ namespace gsNotasNETF
             // OpcChkIniciarMinimizada
             // 
             this.OpcChkIniciarMinimizada.AutoSize = true;
-            this.OpcChkIniciarMinimizada.Location = new System.Drawing.Point(6, 87);
+            this.OpcChkIniciarMinimizada.Location = new System.Drawing.Point(9, 134);
+            this.OpcChkIniciarMinimizada.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OpcChkIniciarMinimizada.Name = "OpcChkIniciarMinimizada";
-            this.OpcChkIniciarMinimizada.Size = new System.Drawing.Size(267, 21);
+            this.OpcChkIniciarMinimizada.Size = new System.Drawing.Size(398, 32);
             this.OpcChkIniciarMinimizada.TabIndex = 4;
             this.OpcChkIniciarMinimizada.Text = "Al inicar la aplicación hacerlo minimizado";
             this.OpcChkIniciarMinimizada.UseVisualStyleBackColor = true;
@@ -787,9 +818,10 @@ namespace gsNotasNETF
             this.OpcBtnDeshacer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnDeshacer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnDeshacer.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnDeshacer.Location = new System.Drawing.Point(577, 6);
+            this.OpcBtnDeshacer.Location = new System.Drawing.Point(1201, 9);
+            this.OpcBtnDeshacer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OpcBtnDeshacer.Name = "OpcBtnDeshacer";
-            this.OpcBtnDeshacer.Size = new System.Drawing.Size(88, 29);
+            this.OpcBtnDeshacer.Size = new System.Drawing.Size(154, 62);
             this.OpcBtnDeshacer.TabIndex = 14;
             this.OpcBtnDeshacer.Text = "Deshacer";
             this.toolTip1.SetToolTip(this.OpcBtnDeshacer, "Deshacer los cambios actuales");
@@ -803,9 +835,10 @@ namespace gsNotasNETF
             this.OpcBtnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnGuardar.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnGuardar.Location = new System.Drawing.Point(671, 6);
+            this.OpcBtnGuardar.Location = new System.Drawing.Point(1355, 9);
+            this.OpcBtnGuardar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OpcBtnGuardar.Name = "OpcBtnGuardar";
-            this.OpcBtnGuardar.Size = new System.Drawing.Size(88, 29);
+            this.OpcBtnGuardar.Size = new System.Drawing.Size(142, 62);
             this.OpcBtnGuardar.TabIndex = 13;
             this.OpcBtnGuardar.Text = "Guardar";
             this.OpcBtnGuardar.UseVisualStyleBackColor = false;
@@ -814,9 +847,10 @@ namespace gsNotasNETF
             // OpcChkMinimizarAlCerrar
             // 
             this.OpcChkMinimizarAlCerrar.AutoSize = true;
-            this.OpcChkMinimizarAlCerrar.Location = new System.Drawing.Point(6, 222);
+            this.OpcChkMinimizarAlCerrar.Location = new System.Drawing.Point(9, 342);
+            this.OpcChkMinimizarAlCerrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OpcChkMinimizarAlCerrar.Name = "OpcChkMinimizarAlCerrar";
-            this.OpcChkMinimizarAlCerrar.Size = new System.Drawing.Size(400, 21);
+            this.OpcChkMinimizarAlCerrar.Size = new System.Drawing.Size(581, 32);
             this.OpcChkMinimizarAlCerrar.TabIndex = 9;
             this.OpcChkMinimizarAlCerrar.Text = "Al cerrar (desde X de la ventana) minimizar en el área de tareas";
             this.OpcChkMinimizarAlCerrar.UseVisualStyleBackColor = true;
@@ -825,9 +859,10 @@ namespace gsNotasNETF
             // OpcChkAjusteLineas
             // 
             this.OpcChkAjusteLineas.AutoSize = true;
-            this.OpcChkAjusteLineas.Location = new System.Drawing.Point(6, 168);
+            this.OpcChkAjusteLineas.Location = new System.Drawing.Point(9, 258);
+            this.OpcChkAjusteLineas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OpcChkAjusteLineas.Name = "OpcChkAjusteLineas";
-            this.OpcChkAjusteLineas.Size = new System.Drawing.Size(194, 21);
+            this.OpcChkAjusteLineas.Size = new System.Drawing.Size(287, 32);
             this.OpcChkAjusteLineas.TabIndex = 7;
             this.OpcChkAjusteLineas.Text = "Ajuste de líneas (WordWrap)";
             this.OpcChkAjusteLineas.UseVisualStyleBackColor = true;
@@ -839,9 +874,10 @@ namespace gsNotasNETF
             this.OpcBtnRestablecerTam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnRestablecerTam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnRestablecerTam.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnRestablecerTam.Location = new System.Drawing.Point(412, 55);
+            this.OpcBtnRestablecerTam.Location = new System.Drawing.Point(618, 85);
+            this.OpcBtnRestablecerTam.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OpcBtnRestablecerTam.Name = "OpcBtnRestablecerTam";
-            this.OpcBtnRestablecerTam.Size = new System.Drawing.Size(199, 29);
+            this.OpcBtnRestablecerTam.Size = new System.Drawing.Size(434, 62);
             this.OpcBtnRestablecerTam.TabIndex = 3;
             this.OpcBtnRestablecerTam.Text = "Restablecer tamaño y posición";
             this.toolTip1.SetToolTip(this.OpcBtnRestablecerTam, "Restablece (ahora) el tamaño y posición de la ventana");
@@ -851,9 +887,10 @@ namespace gsNotasNETF
             // OpcChkRecordarTam
             // 
             this.OpcChkRecordarTam.AutoSize = true;
-            this.OpcChkRecordarTam.Location = new System.Drawing.Point(6, 60);
+            this.OpcChkRecordarTam.Location = new System.Drawing.Point(9, 92);
+            this.OpcChkRecordarTam.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OpcChkRecordarTam.Name = "OpcChkRecordarTam";
-            this.OpcChkRecordarTam.Size = new System.Drawing.Size(400, 21);
+            this.OpcChkRecordarTam.Size = new System.Drawing.Size(592, 32);
             this.OpcChkRecordarTam.TabIndex = 2;
             this.OpcChkRecordarTam.Text = "Al iniciar la aplicación recordar posición y tamaño de la ventana";
             this.OpcChkRecordarTam.UseVisualStyleBackColor = true;
@@ -864,9 +901,10 @@ namespace gsNotasNETF
             this.OpChkNoGuardarEnBlanco.AutoSize = true;
             this.OpChkNoGuardarEnBlanco.Checked = true;
             this.OpChkNoGuardarEnBlanco.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.OpChkNoGuardarEnBlanco.Location = new System.Drawing.Point(6, 33);
+            this.OpChkNoGuardarEnBlanco.Location = new System.Drawing.Point(9, 51);
+            this.OpChkNoGuardarEnBlanco.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OpChkNoGuardarEnBlanco.Name = "OpChkNoGuardarEnBlanco";
-            this.OpChkNoGuardarEnBlanco.Size = new System.Drawing.Size(193, 21);
+            this.OpChkNoGuardarEnBlanco.Size = new System.Drawing.Size(282, 32);
             this.OpChkNoGuardarEnBlanco.TabIndex = 1;
             this.OpChkNoGuardarEnBlanco.Text = "No guardar notas en blanco";
             this.toolTip1.SetToolTip(this.OpChkNoGuardarEnBlanco, "Aunque en NotaUC se hace esta comprobación,\r\nesta opción no está habilitada para " +
@@ -877,9 +915,10 @@ namespace gsNotasNETF
             // OpcChkAutoGuardar
             // 
             this.OpcChkAutoGuardar.AutoSize = true;
-            this.OpcChkAutoGuardar.Location = new System.Drawing.Point(6, 6);
+            this.OpcChkAutoGuardar.Location = new System.Drawing.Point(9, 9);
+            this.OpcChkAutoGuardar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OpcChkAutoGuardar.Name = "OpcChkAutoGuardar";
-            this.OpcChkAutoGuardar.Size = new System.Drawing.Size(510, 21);
+            this.OpcChkAutoGuardar.Size = new System.Drawing.Size(753, 32);
             this.OpcChkAutoGuardar.TabIndex = 0;
             this.OpcChkAutoGuardar.Text = "Auto guardar las notas (se actualiza automáticamente al cambiar de nota o grupo)";
             this.toolTip1.SetToolTip(this.OpcChkAutoGuardar, "Por ahora se crea una nueva nota en el grupo actual \r\n(cuando se cambia de grupo)" +
@@ -892,10 +931,11 @@ namespace gsNotasNETF
             this.tabAcercaDe.BackColor = System.Drawing.Color.White;
             this.tabAcercaDe.Controls.Add(this.panelAcercaDe);
             this.tabAcercaDe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.tabAcercaDe.Location = new System.Drawing.Point(4, 29);
+            this.tabAcercaDe.Location = new System.Drawing.Point(4, 40);
+            this.tabAcercaDe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabAcercaDe.Name = "tabAcercaDe";
-            this.tabAcercaDe.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAcercaDe.Size = new System.Drawing.Size(788, 260);
+            this.tabAcercaDe.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabAcercaDe.Size = new System.Drawing.Size(1186, 407);
             this.tabAcercaDe.TabIndex = 5;
             this.tabAcercaDe.Text = "Acerca de";
             // 
@@ -904,18 +944,20 @@ namespace gsNotasNETF
             this.panelAcercaDe.Controls.Add(this.txtAcercaDe);
             this.panelAcercaDe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelAcercaDe.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelAcercaDe.Location = new System.Drawing.Point(3, 3);
+            this.panelAcercaDe.Location = new System.Drawing.Point(4, 5);
+            this.panelAcercaDe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelAcercaDe.Name = "panelAcercaDe";
-            this.panelAcercaDe.Size = new System.Drawing.Size(782, 254);
+            this.panelAcercaDe.Size = new System.Drawing.Size(1178, 397);
             this.panelAcercaDe.TabIndex = 0;
             // 
             // txtAcercaDe
             // 
             this.txtAcercaDe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtAcercaDe.Location = new System.Drawing.Point(0, 0);
+            this.txtAcercaDe.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtAcercaDe.Multiline = true;
             this.txtAcercaDe.Name = "txtAcercaDe";
-            this.txtAcercaDe.Size = new System.Drawing.Size(782, 254);
+            this.txtAcercaDe.Size = new System.Drawing.Size(1178, 397);
             this.txtAcercaDe.TabIndex = 0;
             // 
             // notifyIcon1
@@ -928,31 +970,32 @@ namespace gsNotasNETF
             // 
             // contextNotify
             // 
+            this.contextNotify.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextNotify.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NotifyMenuRestaurar,
             this.toolStripSeparator1,
             this.NotifyMenuCerrar});
             this.contextNotify.Name = "contextNotify";
-            this.contextNotify.Size = new System.Drawing.Size(124, 54);
+            this.contextNotify.Size = new System.Drawing.Size(166, 74);
             // 
             // NotifyMenuRestaurar
             // 
             this.NotifyMenuRestaurar.Image = ((System.Drawing.Image)(resources.GetObject("NotifyMenuRestaurar.Image")));
             this.NotifyMenuRestaurar.Name = "NotifyMenuRestaurar";
-            this.NotifyMenuRestaurar.Size = new System.Drawing.Size(123, 22);
+            this.NotifyMenuRestaurar.Size = new System.Drawing.Size(165, 32);
             this.NotifyMenuRestaurar.Text = "Restaurar";
             this.NotifyMenuRestaurar.Click += new System.EventHandler(this.MnuNotifyRestaurar_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(120, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(162, 6);
             // 
             // NotifyMenuCerrar
             // 
             this.NotifyMenuCerrar.Image = ((System.Drawing.Image)(resources.GetObject("NotifyMenuCerrar.Image")));
             this.NotifyMenuCerrar.Name = "NotifyMenuCerrar";
-            this.NotifyMenuCerrar.Size = new System.Drawing.Size(123, 22);
+            this.NotifyMenuCerrar.Size = new System.Drawing.Size(165, 32);
             this.NotifyMenuCerrar.Text = "Cerrar";
             this.NotifyMenuCerrar.Click += new System.EventHandler(this.MnuNotifyCerrar_Click);
             // 
@@ -961,7 +1004,8 @@ namespace gsNotasNETF
             this.picOcultarPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picOcultarPanel1.BackColor = System.Drawing.Color.Transparent;
             this.picOcultarPanel1.Image = global::gsNotasNETF.Properties.Resources.ExpanderDown;
-            this.picOcultarPanel1.Location = new System.Drawing.Point(780, 3);
+            this.picOcultarPanel1.Location = new System.Drawing.Point(1170, 5);
+            this.picOcultarPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.picOcultarPanel1.Name = "picOcultarPanel1";
             this.picOcultarPanel1.Size = new System.Drawing.Size(21, 21);
             this.picOcultarPanel1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -1003,14 +1047,14 @@ namespace gsNotasNETF
             this.notaUC1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notaUC1.Grupo = "";
             this.notaUC1.InvertirColores = false;
-            this.notaUC1.Location = new System.Drawing.Point(4, 305);
-            this.notaUC1.Margin = new System.Windows.Forms.Padding(1);
-            this.notaUC1.MinimumSize = new System.Drawing.Size(400, 200);
+            this.notaUC1.Location = new System.Drawing.Point(6, 469);
+            this.notaUC1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.notaUC1.MinimumSize = new System.Drawing.Size(599, 307);
             this.notaUC1.Name = "notaUC1";
             this.notaUC1.Nota = "Prueba NotaUC";
             this.notaUC1.Notas = ((System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>>)(resources.GetObject("notaUC1.Notas")));
-            this.notaUC1.Padding = new System.Windows.Forms.Padding(1);
-            this.notaUC1.Size = new System.Drawing.Size(799, 310);
+            this.notaUC1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.notaUC1.Size = new System.Drawing.Size(1198, 476);
             this.notaUC1.StatusInfo = "Grupo: \'\' con 1 nota";
             this.notaUC1.TabIndex = 1;
             this.notaUC1.Titulo = "Prueba NotaUC";
@@ -1028,15 +1072,16 @@ namespace gsNotasNETF
             // 
             // FormNotasUC
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(807, 620);
+            this.ClientSize = new System.Drawing.Size(1210, 954);
             this.Controls.Add(this.picOcultarPanel1);
             this.Controls.Add(this.tabsConfig);
             this.Controls.Add(this.notaUC1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(500, 300);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MinimumSize = new System.Drawing.Size(739, 431);
             this.Name = "FormNotasUC";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "gsNotasNETF - Gestionar notas y grupos de notas usando NotaUC";

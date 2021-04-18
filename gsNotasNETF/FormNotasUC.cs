@@ -2,7 +2,7 @@
 // FormNotaUC                                                       (05/Dic/20)
 // Formulario para manejar las notas
 //
-// (c) Guillermo Som (elGuille), 2020
+// (c) Guillermo Som (elGuille), 2020-2021
 //-----------------------------------------------------------------------------
 /* Versiones y cambios
 v1.0.0.0    05-dic-20   Primera versión.
@@ -87,6 +87,7 @@ v1.0.0.145              Se movieron los botones de Guardar/Cancelar en la pesta�
                         Al iniciar la aplicación (o guardar los datos de configuración)
                         ocultar la aplicación si se inicia minimizada.
 v1.0.0.146              Para que esto funcione bien en el evento Load hay que usar un temporizador.
+v1.0.0.147  14-abr-21   Cambio el icono de FormEditarNotaUC.
 
 */
 using System;
