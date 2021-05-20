@@ -88,6 +88,8 @@ v1.0.0.145              Se movieron los botones de Guardar/Cancelar en la pesta�
                         ocultar la aplicación si se inicia minimizada.
 v1.0.0.146              Para que esto funcione bien en el evento Load hay que usar un temporizador.
 v1.0.0.147  14-abr-21   Cambio el icono de FormEditarNotaUC.
+v1.0.0.148  21-abr-21   Se "perdieron" los botones de Guardar y Deshacer en las Opciones.
+                        Pongo el tamaño mínimo en 800x400, el tamaño en diseño es 823; 659
 
 */
 using System;
@@ -1244,7 +1246,7 @@ No se guardan los grupos y notas en blanco.
             if (OpcChkMostrarHorizontal.Checked)
             {
                 HorizontalSize.Width = NotasFlowLayoutPanel.ClientSize.Width - 12;
-                NotasFlowLayoutPanel.WrapContents = true;
+                NotasFlowLayoutPanel.WrapContents = false; // true;
             }
             else
                 NotasFlowLayoutPanel.WrapContents = false;
