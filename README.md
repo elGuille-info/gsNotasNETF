@@ -15,6 +15,28 @@
  <br>
  He cambiado el .NET Framework a la versión 4.8.1 y está firmado con nombre seguro usando elGuille_compartido.snk (que seguramente no esté en el código fuente porque tengo filtrado que publique todos los .snk)<br>
  <br>
+ **Los cambios realizados después de la versión 1.0.0.139 del 20-dic-2020:**
+ <br>
+ ```
+ v1.0.0.140  24-dic-20   Cambio el icono de la aplicación.
+v1.0.0.141              Y el del formulario y por tanto el del icono de notificación.
+v1.0.0.142  26-dic-20   Se puede iniciar con Windows (se debe ejecutar como administrador).
+v1.0.0.143  30-dic-20   Añado un tab para acerca de y hago comprobación de si es la versión más reciente.
+                        Añado menú contextual de edición a la caja de texto.
+v1.0.0.144  10-feb-21   Quito el aviso cuando se inicia y no puede acceder al registro.
+                        Si se quiere seguir mostrando el aviso, asignar true a mostrarAvisoReg
+                        Añado la propiedad StatusInfo a NotaUC para mostrar un mensaje en la barra de estado.
+v1.0.0.145              Se movieron los botones de Guardar/Cancelar en la pestaña de opciones.
+                        Al iniciar la aplicación (o guardar los datos de configuración)
+                        ocultar la aplicación si se inicia minimizada.
+v1.0.0.146              Para que esto funcione bien en el evento Load hay que usar un temporizador.
+v1.0.0.147  14-abr-21   Cambio el icono de FormEditarNotaUC.
+v1.0.0.148  21-abr-21   Se "perdieron" los botones de Guardar y Deshacer en las Opciones.
+                        Pongo el tamaño mínimo en 800x400, el tamaño en diseño es 823; 659
+v1.0.0.149  15-oct-22   Cambio a .NET Framework 4.8.1
+
+ ```
+ <br>
  <br>
  Ahora estoy haciendo [**releases**](https://github.com/elGuille-info/gsNotasNETF/releases) con cada nueva versión, incluyendo tanto el ejecutable como el código fuente (aparte del código fuente aquí publicado).
  <br>
