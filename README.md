@@ -10,13 +10,19 @@
  
  ## Actualizaciones
  Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
+ <br>
+ **Nota 15-oct-22:**
+ <br>
+ He cambiado el .NET Framework a la versión 4.8.1 y está firmado con nombre seguro usando elGuille_compartido.snk (que seguramente no esté en el código fuente porque tengo filtrado que publique todos los .snk)<br>
+ <br>
+ <br>
  Ahora estoy haciendo [**releases**](https://github.com/elGuille-info/gsNotasNETF/releases) con cada nueva versión, incluyendo tanto el ejecutable como el código fuente (aparte del código fuente aquí publicado).
  <br>
  <br>
   
   ## Nota sobre la versión de C# usada y cómo configurar los proyectos de .NET Framework para que use la última
  
- Código escrito con C# 9.0 y Visual Studio 2019 copn .NET Framework 4.8
+ Código escrito con C# 9.0 y Visual Studio 2019 con .NET Framework 4.8.1
  
  Para usar las características de C# 9.0 en un proyecto de .NET Framework 4.8 (por defecto se usa C# 7.3)
  hay que indicar esto en el fichero del proyecto:<br>
@@ -42,4 +48,4 @@ namespace System.Runtime.CompilerServices
 ```
 
 <br>
-Si no, no se podrá usar el mopdificador <b>init</b> en la definición de las propiedades.
+Si no, no se podrá usar el modificador <b>init</b> en la definición de las propiedades.
