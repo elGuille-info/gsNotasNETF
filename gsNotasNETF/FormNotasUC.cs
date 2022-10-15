@@ -2,7 +2,7 @@
 // FormNotaUC                                                       (05/Dic/20)
 // Formulario para manejar las notas
 //
-// (c) Guillermo Som (elGuille), 2020-2021
+// (c) Guillermo Som (elGuille), 2020-2022
 //-----------------------------------------------------------------------------
 /* Versiones y cambios
 v1.0.0.0    05-dic-20   Primera versión.
