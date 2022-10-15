@@ -90,7 +90,7 @@ v1.0.0.146              Para que esto funcione bien en el evento Load hay que us
 v1.0.0.147  14-abr-21   Cambio el icono de FormEditarNotaUC.
 v1.0.0.148  21-abr-21   Se "perdieron" los botones de Guardar y Deshacer en las Opciones.
                         Pongo el tamaño mínimo en 800x400, el tamaño en diseño es 823; 659
-v1.0.0.149  15-oct-22   Camnbio a .NET Framework 4.8.1
+v1.0.0.149  15-oct-22   Cambio a .NET Framework 4.8.1
 */
 using System;
 using System.Collections.Generic;
