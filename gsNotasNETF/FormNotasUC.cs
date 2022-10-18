@@ -95,6 +95,7 @@ v1.0.0.150  18-oct-22   Mover las notas mostradas de forma independiente.
                         Pongo el título con el de la nota y en el status el nombre del grupo (antes mostraba el valor predeterminado).
                         Pongo scroll en el texto de AcercaDe.
                         Cambio tamaño fuente de los tabs. Diseño de editar grupos y notas.
+v1.0.0.151              Nuevos directorios para notas y backup gestionado desde NotaUC.
 */
 using System;
 using System.Collections.Generic;

@@ -3,7 +3,9 @@
 // Editor de notas (y grupos)
 // Unifico CabeceraNotaUC y NotaUC en este fichero                  (09/Dic/20)
 //
-// 18-oct-22: Pruebo a lanzar los evento de MouseDown, MouseMove y MouseUp.
+// 18-oct-22:   Pruebo a lanzar los evento de MouseDown, MouseMove y MouseUp.
+//              Nuevos directorios para las notas y copias de seguridad.
+//              En lugar del directorio de documentos se usa el indicado en %LOCALAPPDATA%.
 //
 // (c) Guillermo Som (elGuille), 2020-2022
 //-----------------------------------------------------------------------------
@@ -48,11 +50,37 @@ namespace gsNotasNETF
         /// </summary>
         private string FileVersion { get; init; }
 
-        private string _dirDocumentos;
-        private string _dirNotas;
-        private string _ficNotasSinPath;
+        ///// <summary>
+        ///// La carpeta de documentos.
+        ///// </summary>
+        //private string _dirDocumentos { get; set; }
 
-        //private bool _hacerBackup;
+        /// <summary>
+        /// La carpeta local para los datos.
+        /// </summary>
+        private string _dirLocal { get; set; }
+
+        /// <summary>
+        /// El directorio de las notas. Será en Documentos\gsNotas.
+        /// </summary>
+        /// <remarks>Antes era el directorio del backup.</remarks>
+        private string _dirNotas { get; set; }
+
+        /// <summary>
+        /// El fichero anterior de notas.
+        /// </summary>
+        private string _ficNotasAnt { get; set; }
+
+        /// <summary>
+        /// El directorio para el backup de las notas. Será en Documentos\gsNotas\Backup.
+        /// </summary>
+        /// <remarks>Estará dentro del directorio de Notas</remarks>
+        private string _dirNotasBackup { get; set; }
+
+        /// <summary>
+        /// El nombre del fichero con las notas sin el path.
+        /// </summary>
+        private string _ficNotasSinPath { get; set; }
 
         private string NombreProducto { get; init; }
         private string VersionProducto { get; init; }
@@ -71,19 +99,38 @@ namespace gsNotasNETF
             this.LabelTitulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.NotaUC_MouseMove);
             this.LabelTitulo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.NotaUC_MouseUp);
 
-            _dirDocumentos = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            _dirNotas = Path.Combine(DirDocumentos, "gsNotasNETF");
-            if(! Directory.Exists(_dirNotas))
+            // El directorio de documentos (es posible que no siempre esté accesible)
+            // Usado para acceder al fichero de versiones anteriores.
+            var _dirDocumentos = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            // Usar como directorio de datos uno compatible con la aplicación móvil. (18/oct/22 16.37)
+            _dirLocal = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
+
+            // El directorio de las notas (para que no esté directamente en documentos). (18/oct/22)
+            //_dirNotas = Path.Combine(DirDocumentos, "gsNotasNETF");
+            _dirNotas = Path.Combine(_dirLocal, "gsNotas");
+            if (! Directory.Exists(_dirNotas))
             {
                 try
                 {
                     Directory.CreateDirectory(_dirNotas);
-                    //_hacerBackup = true;
                 }
                 catch 
                 { 
-                    //_hacerBackup = false;
-                    statusInfo.Text = "Error al crear el directorio de BackUp, se cancelan los backups.";
+                     statusInfo.Text = "Error al crear el directorio de las notas.";
+                }
+            }
+            // El directorio para el backup de las notas. (18/oct/22)
+            _dirNotasBackup = Path.Combine(_dirNotas, "Backup");
+            if (!Directory.Exists(_dirNotasBackup))
+            {
+                try
+                {
+                    Directory.CreateDirectory(_dirNotasBackup);
+                }
+                catch
+                {
+                    statusInfo.Text = "Error al crear el directorio de Backup.";
                 }
             }
 
@@ -105,16 +152,26 @@ namespace gsNotasNETF
 
             _ficNotasSinPath = $"{fvi.ProductName}.notasUC.txt";
 
-            FicNotas = Path.Combine(DirDocumentos, _ficNotasSinPath);
+            // Las notas ahora se guardan en el directorio de notas. (18/oct/22 14.20)
+            //FicNotas = Path.Combine(DirDocumentos, _ficNotasSinPath);
+            FicNotas = Path.Combine(DirNotas, _ficNotasSinPath);
+            // El fichero según la ruta usada hasta la versión 1.0.0.50. (18/oct/22 14.32)
+            _ficNotasAnt = Path.Combine(_dirDocumentos, _ficNotasSinPath);
 
             LongitudTituloNota = LongitudTituloNotaDefault;
 
             // Esto estaba en el evento Load
-            const int m_AñoActual = 2020;
+            const int m_AñoActual = 2022;
 
             var elGuille = "©Guillermo Som (elGuille), 2020";
             if (DateTime.Now.Year > m_AñoActual)
+            {
                 elGuille += $"-{DateTime.Now.Year}";
+            }
+            else
+            {
+                elGuille += $"-{m_AñoActual}";
+            }
             elGuille += $" - {NombreProducto} v{VersionProducto} ({FileVersion})";
 
             statusInfo.Text = elGuille;
@@ -675,6 +732,7 @@ namespace gsNotasNETF
         [Browsable(false)]
         private bool GuardarNotasEnFichero(string path = "")
         {
+            // Guardar siempre en el nuevo path. (18/oct/22)
             if (string.IsNullOrWhiteSpace(path))
                 path = FicNotas;
 
@@ -737,7 +795,16 @@ namespace gsNotasNETF
         public void LeerNotas(string path = "")
         {
             if (string.IsNullOrWhiteSpace(path))
+            {
                 path = FicNotas;
+                
+                // Si no existe en el nuevo path, usar el anterior. (18/oct/22)
+                // Esto solo ocurrirá la primera vez, siempre que se guarden los datos.
+                if (File.Exists(path) == false)
+                {
+                    path = _ficNotasAnt;
+                }
+            }
 
             var colNotas = new Dictionary<string, List<string>>();
 
@@ -835,26 +902,36 @@ namespace gsNotasNETF
         public string FicNotas { get; private set; }
 
         /// <summary>
-        /// El Directorio donde se guardarán las copias de seguridad de las notas.
+        /// El Directorio donde se guardarán las notas y el directorio con las copias de seguridad de las notas.
         /// </summary>
-        [Browsable(false)]
-        [Description("El Directorio donde se guardarán las copias de seguridad de las notas.")]
-        //[DefaultValue("Notas.notasUC.txt")]
-        [Category("NotasUC")]
+        [Browsable(true)]
+        [Description("El Directorio donde se guardarán las notas y el directorio con las copias de seguridad de las notas.")]
+        [Category("Directorios - solo lectura")]
         public string DirNotas 
         {
             get { return _dirNotas; }
         }
 
         /// <summary>
+        /// El Directorio donde se guardarán las notas y el directorio con las copias de seguridad de las notas.
+        /// </summary>
+        [Browsable(true)]
+        [Description("El Directorio donde se guardarán las copias de seguridad de las notas.")]
+        [Category("Directorios - solo lectura")]
+        public string DirNotasBackup
+        {
+            get { return _dirNotasBackup; }
+        }
+
+        /// <summary>
         /// El path al directorio de documentos.
         /// </summary>
         [Browsable(true)]
-        [Description("El directorio de documentos.")]
-        [Category("NotasUC")]
+        [Description("El directorio local para los datos (antes el de documentos).")]
+        [Category("Directorios - solo lectura")]
         public string DirDocumentos
         {
-            get { return _dirDocumentos; }
+            get { return _dirLocal; }
         }
 
         /// <summary>
@@ -1960,7 +2037,7 @@ No se guardan los grupos y notas en blanco.
         {
             var sDateTime = DateTime.Now.ToString("yyyy-MM-dd_HH-mm");
             var nombreBak = $"Backup_{sDateTime}_{_ficNotasSinPath}";
-            var fic = Path.Combine(_dirNotas, nombreBak);
+            var fic = Path.Combine(_dirNotasBackup, nombreBak);
             try
             {
                 File.Copy(FicNotas, fic, true);
