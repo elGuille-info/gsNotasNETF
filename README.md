@@ -12,6 +12,11 @@ Si quieres ir a la página en mi blog: [gsNotasNETF](http://www.elguillemola.com
 Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
 <br>
 
+**Nota 18-oct-22 (v1.0.0.154):**
+<br>
+En opciones, mostrar los colores de las etiquetas según el color seleccionado.
+<br>
+
 **Nota 18-oct-22 (v1.0.0.153):**
 <br>
 Crear nuevos grupos desde Editar grupos y notas.
