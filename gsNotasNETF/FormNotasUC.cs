@@ -1563,6 +1563,18 @@ No se guardan los grupos y notas en blanco.
             OpcBtnGuardarEnDrive.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Right |AnchorStyles.Left;
             OpcBtnRestablecerTam.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+
+            btnCambiarNombre.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtEdNombreGrupo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblEdCambiar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblEdInfo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            cboEdGrupos.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
+            txtEdNuevoNombreGrupo.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
+
+            groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
+            cboEdGrupoDestino.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMoverNota.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            cboEdNotas.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Left;
         }
     }
 }

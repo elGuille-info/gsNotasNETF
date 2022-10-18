@@ -396,8 +396,6 @@ namespace gsNotasNETF
             // 
             // txtEdNuevoNombreGrupo
             // 
-            this.txtEdNuevoNombreGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEdNuevoNombreGrupo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.txtEdNuevoNombreGrupo.Location = new System.Drawing.Point(153, 92);
             this.txtEdNuevoNombreGrupo.Name = "txtEdNuevoNombreGrupo";
@@ -443,7 +441,6 @@ namespace gsNotasNETF
             // 
             // cboEdGrupoDestino
             // 
-            this.cboEdGrupoDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboEdGrupoDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboEdGrupoDestino.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboEdGrupoDestino.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
@@ -466,7 +463,6 @@ namespace gsNotasNETF
             // 
             // btnMoverNota
             // 
-            this.btnMoverNota.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMoverNota.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.btnMoverNota.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMoverNota.ForeColor = System.Drawing.Color.White;
@@ -480,8 +476,6 @@ namespace gsNotasNETF
             // 
             // cboEdNotas
             // 
-            this.cboEdNotas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.cboEdNotas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboEdNotas.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboEdNotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
@@ -502,7 +496,6 @@ namespace gsNotasNETF
             // 
             // lblEdInfo
             // 
-            this.lblEdInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEdInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.lblEdInfo.ForeColor = System.Drawing.Color.White;
             this.lblEdInfo.Location = new System.Drawing.Point(459, 61);
@@ -528,7 +521,6 @@ namespace gsNotasNETF
             // 
             // btnCambiarNombre
             // 
-            this.btnCambiarNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCambiarNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.btnCambiarNombre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCambiarNombre.ForeColor = System.Drawing.Color.White;
@@ -542,7 +534,6 @@ namespace gsNotasNETF
             // 
             // txtEdNombreGrupo
             // 
-            this.txtEdNombreGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEdNombreGrupo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.txtEdNombreGrupo.Location = new System.Drawing.Point(562, 24);
             this.txtEdNombreGrupo.Name = "txtEdNombreGrupo";
@@ -551,7 +542,6 @@ namespace gsNotasNETF
             // 
             // lblEdCambiar
             // 
-            this.lblEdCambiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEdCambiar.Location = new System.Drawing.Point(459, 29);
             this.lblEdCambiar.Margin = new System.Windows.Forms.Padding(3);
             this.lblEdCambiar.Name = "lblEdCambiar";
@@ -561,8 +551,6 @@ namespace gsNotasNETF
             // 
             // cboEdGrupos
             // 
-            this.cboEdGrupos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.cboEdGrupos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboEdGrupos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboEdGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
