@@ -11,11 +11,22 @@ Si quieres ir a la página en mi blog: [gsNotasNETF](http://www.elguillemola.com
 ## Actualizaciones
 Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
 <br>
+
+**Nota 18-oct-22 (v1.0.0.151):**
+<br>
+El directorio de "documentos" ahora es el indicado en %LOCALAPPDATA% (C:\Users\\[usuario]\AppData\Local)<br>
+Ahí se creará el directorio **gsNotas** con el fichero de las notas y dentro de esa carpeta estará el birectorio **Backup** con las copias.<br>
+En las versiones anteriores a la v1.0.0.151 se usaba el directorio de Documentos para guardar el fichero de notas y la carpeta **gsNotasNETF** para guardar las copias de seguridad.<br>
+>El fichero de notas anterior y el directorio con las copias de seguridad anteriores se mantienen.<br>
+
+<br>
+
 **Nota 18-oct-22 (v1.0.0.150):**
 <br>
 Mover las notas mostradas de forma independiente.<br>
 Pongo el título con el de la nota y en el status el nombre del grupo (antes mostraba el valor predeterminado).<br>
 Pongo scroll en el texto de AcercaDe.<br>
+Cambio tamaño fuente de los tabs. Diseño de editar grupos y notas.
 
 **Nota 15-oct-22 (v1.0.0.149):**
 <br>
