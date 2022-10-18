@@ -912,6 +912,8 @@ Operaciones que puedes hacer:
     Leer y guardar las notas en un fichero de texto.
     Buscar texto en las notas.
 
+Al hacer doble-pulsación en una nota, se editará de forma independiente.
+
 No se guardan los grupos y notas en blanco.
 
 {msgVersion}";

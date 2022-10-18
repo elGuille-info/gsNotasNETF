@@ -2,6 +2,8 @@
 // FormEditarNotaUC                                                 (09/Dic/20)
 // Editar una nota en ventana independiente
 //
+// 18-oct-22: Simplifico el borde de la ventana y añado el título.
+//
 // (c) Guillermo Som (elGuille), 2020-2022
 //-----------------------------------------------------------------------------
 
@@ -39,7 +41,11 @@ namespace gsNotasNETF
             notaUC1.EditorText = laNota;
             notaUC1.ModoEdicionNota = true;
             notaUC1.TituloCabecera = laNota;
+            // Añadir el título de la nota. (18/oct/22 13.04)
+            this.Text = notaUC1.TituloNota;
             notaUC1.ComboGrupos.Text = nuevaNotaUC.ComboGrupos.Text;
+            // Asignar el grupo al que pertenece la nota. (18/oct/22 13.17)
+            notaUC1.StatusInfo = $"Nota del grupo: '{nuevaNotaUC.ComboGrupos.Text}'";
             notaUC1.NotaReemplazada += NotaUC1_NotaReemplazada;
             notaUC1.Tema = nuevaNotaUC.Tema;
             this.BackColor = notaUC1.ForeColor;
@@ -77,6 +83,8 @@ namespace gsNotasNETF
         private int pX;
         private int pY;
         private bool ratonPulsado;
+
+        // Estos eventos no se producen.
 
         private void notaUC1_MouseDown(object sender, MouseEventArgs e)
         {

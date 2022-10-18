@@ -171,9 +171,9 @@ namespace gsNotasNETF
             // 
             this.statusInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.statusInfo.Name = "statusInfo";
-            this.statusInfo.Size = new System.Drawing.Size(339, 17);
+            this.statusInfo.Size = new System.Drawing.Size(308, 17);
             this.statusInfo.Spring = true;
-            this.statusInfo.Text = "ToolStripStatusLabel1";
+            this.statusInfo.Text = "statusInfo";
             this.statusInfo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // statusInfoPos
@@ -426,7 +426,7 @@ namespace gsNotasNETF
             this.toolStripSeparator8,
             this.mnuBuscar});
             this.contextEditor.Name = "contextEditor";
-            this.contextEditor.Size = new System.Drawing.Size(205, 198);
+            this.contextEditor.Size = new System.Drawing.Size(205, 176);
             this.contextEditor.Opening += new System.ComponentModel.CancelEventHandler(this.contextEditor_Opening);
             // 
             // mnuDeshacer

@@ -3,7 +3,9 @@
 // Editor de notas (y grupos)
 // Unifico CabeceraNotaUC y NotaUC en este fichero                  (09/Dic/20)
 //
-// (c) Guillermo Som (elGuille), 2020
+// 18-oct-22: Pruebo a lanzar los evento de MouseDown, MouseMove y MouseUp.
+//
+// (c) Guillermo Som (elGuille), 2020-2022
 //-----------------------------------------------------------------------------
 
 using System;
@@ -58,7 +60,17 @@ namespace gsNotasNETF
         public NotaUC()
         {
             InitializeComponent();
-            
+
+            // Interceptar los eventos del ratón. (18/oct/22)
+            // No interceptar los del control, solo los de la etiqueta del título.
+            //MouseDown += NotaUC_MouseDown;
+            //MouseMove += NotaUC_MouseMove;
+            //MouseUp += NotaUC_MouseUp;
+            // Estos de la etiqueta LabelTitulo los quito del diseñador, para que quede claro que están definidos.
+            this.LabelTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.NotaUC_MouseDown);
+            this.LabelTitulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.NotaUC_MouseMove);
+            this.LabelTitulo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.NotaUC_MouseUp);
+
             _dirDocumentos = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             _dirNotas = Path.Combine(DirDocumentos, "gsNotasNETF");
             if(! Directory.Exists(_dirNotas))
@@ -124,6 +136,36 @@ namespace gsNotasNETF
             iniciando = false;
         }
 
+        // Los eventos para MouseDown, MouseMove y MouseUp. (18/oct/22 12.30)
+        // No hace falta definirlos, solo usarlos.
+        // Estos son para LabelTitulo.
+
+        // Para solo lanzar el evento MouseMove cuando se pulse en el ratón ( sino, dará overflow)
+        private bool ratonPulsado;
+
+        private void NotaUC_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.OnMouseDown(e);
+            ratonPulsado = true;
+        }
+
+        private void NotaUC_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Solo lanzarlo si está el botón pulsado.
+            if (ratonPulsado)
+            {
+                this.OnMouseMove(e);
+            }
+        }
+
+        private void NotaUC_MouseUp(object sender, MouseEventArgs e)
+        {
+            this.OnMouseUp(e);
+            ratonPulsado = false;
+        }
+
+        // </Fin de los eventos del ratón.
+
         private void ApisDriveDocs_IniciadoGuardarNotasEnDrive()
         {
             statusInfo.BackColor = Color.Firebrick;
@@ -164,7 +206,6 @@ namespace gsNotasNETF
         {
             BuscarTexto?.Invoke(mensaje);
         }
-
 
         [Browsable(true)]
         [Description("Este evento se produce cuando se guardan las notas.")]
@@ -464,7 +505,6 @@ namespace gsNotasNETF
                 Tema = _Tema; 
             }
         }
-
 
         /// <summary>
         /// El título a mostrar.
@@ -1988,5 +2028,6 @@ No se guardan los grupos y notas en blanco.
             mnuRehacer.Enabled = txtEdit.CanRedo;
             mnuSeleccionarTodo.Enabled = txtEdit.CanSelect;
         }
+
     }
 }
