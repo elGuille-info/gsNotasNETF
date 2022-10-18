@@ -142,7 +142,7 @@ namespace gsNotasNETF
             this.LblNota.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LblNota.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblNota.Location = new System.Drawing.Point(3, 3);
-            this.LblNota.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.LblNota.Margin = new System.Windows.Forms.Padding(3);
             this.LblNota.Name = "LblNota";
             this.LblNota.Size = new System.Drawing.Size(752, 87);
             this.LblNota.TabIndex = 0;
@@ -157,7 +157,7 @@ namespace gsNotasNETF
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(3, 96);
-            this.label4.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label4.Margin = new System.Windows.Forms.Padding(3);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(201, 80);
             this.label4.TabIndex = 4;
@@ -171,7 +171,7 @@ namespace gsNotasNETF
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 182);
-            this.label1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label1.Margin = new System.Windows.Forms.Padding(3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(180, 87);
             this.label1.TabIndex = 1;
@@ -185,7 +185,7 @@ namespace gsNotasNETF
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(3, 275);
-            this.label2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label2.Margin = new System.Windows.Forms.Padding(3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(180, 80);
             this.label2.TabIndex = 2;
@@ -199,7 +199,7 @@ namespace gsNotasNETF
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(3, 361);
-            this.label3.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label3.Margin = new System.Windows.Forms.Padding(3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(180, 80);
             this.label3.TabIndex = 3;
@@ -220,7 +220,7 @@ namespace gsNotasNETF
             this.tabsConfig.Controls.Add(this.tabAcercaDe);
             this.tabsConfig.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabsConfig.Location = new System.Drawing.Point(5, 10);
-            this.tabsConfig.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.tabsConfig.Margin = new System.Windows.Forms.Padding(1);
             this.tabsConfig.Multiline = true;
             this.tabsConfig.Name = "tabsConfig";
             this.tabsConfig.SelectedIndex = 0;
@@ -235,7 +235,7 @@ namespace gsNotasNETF
             this.tabNotas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.tabNotas.Location = new System.Drawing.Point(4, 29);
             this.tabNotas.Name = "tabNotas";
-            this.tabNotas.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabNotas.Padding = new System.Windows.Forms.Padding(3);
             this.tabNotas.Size = new System.Drawing.Size(788, 260);
             this.tabNotas.TabIndex = 0;
             this.tabNotas.Text = "Notas";
@@ -247,7 +247,7 @@ namespace gsNotasNETF
             this.tabGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.tabGrupos.Location = new System.Drawing.Point(4, 29);
             this.tabGrupos.Name = "tabGrupos";
-            this.tabGrupos.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabGrupos.Padding = new System.Windows.Forms.Padding(3);
             this.tabGrupos.Size = new System.Drawing.Size(788, 260);
             this.tabGrupos.TabIndex = 1;
             this.tabGrupos.Text = "Grupos";
@@ -276,7 +276,7 @@ namespace gsNotasNETF
             this.LblGrupo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LblGrupo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblGrupo.Location = new System.Drawing.Point(3, 3);
-            this.LblGrupo.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.LblGrupo.Margin = new System.Windows.Forms.Padding(3);
             this.LblGrupo.Name = "LblGrupo";
             this.LblGrupo.Size = new System.Drawing.Size(180, 80);
             this.LblGrupo.TabIndex = 0;
@@ -292,7 +292,7 @@ namespace gsNotasNETF
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(189, 3);
-            this.label6.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label6.Margin = new System.Windows.Forms.Padding(3);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(180, 80);
             this.label6.TabIndex = 4;
@@ -305,7 +305,7 @@ namespace gsNotasNETF
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(375, 3);
-            this.label7.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label7.Margin = new System.Windows.Forms.Padding(3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(180, 80);
             this.label7.TabIndex = 1;
@@ -318,7 +318,7 @@ namespace gsNotasNETF
             this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(561, 3);
-            this.label9.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label9.Margin = new System.Windows.Forms.Padding(3);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(180, 80);
             this.label9.TabIndex = 3;
@@ -331,7 +331,7 @@ namespace gsNotasNETF
             this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(3, 89);
-            this.label8.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.label8.Margin = new System.Windows.Forms.Padding(3);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(180, 80);
             this.label8.TabIndex = 2;
@@ -344,7 +344,7 @@ namespace gsNotasNETF
             this.tabEditarGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.tabEditarGrupos.Location = new System.Drawing.Point(4, 29);
             this.tabEditarGrupos.Name = "tabEditarGrupos";
-            this.tabEditarGrupos.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabEditarGrupos.Padding = new System.Windows.Forms.Padding(3);
             this.tabEditarGrupos.Size = new System.Drawing.Size(788, 260);
             this.tabEditarGrupos.TabIndex = 2;
             this.tabEditarGrupos.Text = "Editar grupos y notas";
@@ -366,7 +366,7 @@ namespace gsNotasNETF
             this.panelEditarGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panelEditarGrupos.Location = new System.Drawing.Point(3, 3);
             this.panelEditarGrupos.Name = "panelEditarGrupos";
-            this.panelEditarGrupos.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.panelEditarGrupos.Padding = new System.Windows.Forms.Padding(3);
             this.panelEditarGrupos.Size = new System.Drawing.Size(782, 254);
             this.panelEditarGrupos.TabIndex = 0;
             this.panelEditarGrupos.Text = "Editar los grupos";
@@ -453,7 +453,7 @@ namespace gsNotasNETF
             // lblEdSeleccionarNota
             // 
             this.lblEdSeleccionarNota.Location = new System.Drawing.Point(6, 24);
-            this.lblEdSeleccionarNota.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblEdSeleccionarNota.Margin = new System.Windows.Forms.Padding(3);
             this.lblEdSeleccionarNota.Name = "lblEdSeleccionarNota";
             this.lblEdSeleccionarNota.Size = new System.Drawing.Size(190, 23);
             this.lblEdSeleccionarNota.TabIndex = 0;
@@ -465,7 +465,7 @@ namespace gsNotasNETF
             this.lblEdInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.lblEdInfo.ForeColor = System.Drawing.Color.White;
             this.lblEdInfo.Location = new System.Drawing.Point(440, 61);
-            this.lblEdInfo.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblEdInfo.Margin = new System.Windows.Forms.Padding(3);
             this.lblEdInfo.Name = "lblEdInfo";
             this.lblEdInfo.Size = new System.Drawing.Size(326, 81);
             this.lblEdInfo.TabIndex = 6;
@@ -512,7 +512,7 @@ namespace gsNotasNETF
             // 
             this.lblEdCambiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEdCambiar.Location = new System.Drawing.Point(443, 27);
-            this.lblEdCambiar.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblEdCambiar.Margin = new System.Windows.Forms.Padding(3);
             this.lblEdCambiar.Name = "lblEdCambiar";
             this.lblEdCambiar.Size = new System.Drawing.Size(127, 23);
             this.lblEdCambiar.TabIndex = 3;
@@ -532,7 +532,7 @@ namespace gsNotasNETF
             // lblEdSeleccionar
             // 
             this.lblEdSeleccionar.Location = new System.Drawing.Point(6, 24);
-            this.lblEdSeleccionar.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblEdSeleccionar.Margin = new System.Windows.Forms.Padding(3);
             this.lblEdSeleccionar.Name = "lblEdSeleccionar";
             this.lblEdSeleccionar.Size = new System.Drawing.Size(141, 23);
             this.lblEdSeleccionar.TabIndex = 0;
@@ -545,7 +545,7 @@ namespace gsNotasNETF
             this.tabBuscarTexto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.tabBuscarTexto.Location = new System.Drawing.Point(4, 29);
             this.tabBuscarTexto.Name = "tabBuscarTexto";
-            this.tabBuscarTexto.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabBuscarTexto.Padding = new System.Windows.Forms.Padding(3);
             this.tabBuscarTexto.Size = new System.Drawing.Size(788, 260);
             this.tabBuscarTexto.TabIndex = 3;
             this.tabBuscarTexto.Text = "Buscar texto";
@@ -565,7 +565,7 @@ namespace gsNotasNETF
             this.panelBuscarTexto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panelBuscarTexto.Location = new System.Drawing.Point(3, 3);
             this.panelBuscarTexto.Name = "panelBuscarTexto";
-            this.panelBuscarTexto.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.panelBuscarTexto.Padding = new System.Windows.Forms.Padding(3);
             this.panelBuscarTexto.Size = new System.Drawing.Size(782, 254);
             this.panelBuscarTexto.TabIndex = 0;
             // 
@@ -576,7 +576,7 @@ namespace gsNotasNETF
             this.lblResultadoBuscar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblResultadoBuscar.ForeColor = System.Drawing.Color.White;
             this.lblResultadoBuscar.Location = new System.Drawing.Point(490, 21);
-            this.lblResultadoBuscar.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblResultadoBuscar.Margin = new System.Windows.Forms.Padding(3);
             this.lblResultadoBuscar.Name = "lblResultadoBuscar";
             this.lblResultadoBuscar.Size = new System.Drawing.Size(284, 23);
             this.lblResultadoBuscar.TabIndex = 5;
@@ -590,7 +590,7 @@ namespace gsNotasNETF
             this.lblBuscando.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBuscando.ForeColor = System.Drawing.Color.White;
             this.lblBuscando.Location = new System.Drawing.Point(9, 222);
-            this.lblBuscando.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblBuscando.Margin = new System.Windows.Forms.Padding(3);
             this.lblBuscando.Name = "lblBuscando";
             this.lblBuscando.Size = new System.Drawing.Size(474, 23);
             this.lblBuscando.TabIndex = 4;
@@ -646,7 +646,7 @@ namespace gsNotasNETF
             // 
             this.lblBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.lblBuscar.Location = new System.Drawing.Point(6, 24);
-            this.lblBuscar.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.lblBuscar.Margin = new System.Windows.Forms.Padding(3);
             this.lblBuscar.Name = "lblBuscar";
             this.lblBuscar.Size = new System.Drawing.Size(63, 23);
             this.lblBuscar.TabIndex = 0;
@@ -659,7 +659,7 @@ namespace gsNotasNETF
             this.tabOpciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.tabOpciones.Location = new System.Drawing.Point(4, 29);
             this.tabOpciones.Name = "tabOpciones";
-            this.tabOpciones.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabOpciones.Padding = new System.Windows.Forms.Padding(3);
             this.tabOpciones.Size = new System.Drawing.Size(788, 260);
             this.tabOpciones.TabIndex = 4;
             this.tabOpciones.Text = "Opciones";
@@ -687,7 +687,7 @@ namespace gsNotasNETF
             this.panelOpciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panelOpciones.Location = new System.Drawing.Point(3, 3);
             this.panelOpciones.Name = "panelOpciones";
-            this.panelOpciones.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.panelOpciones.Padding = new System.Windows.Forms.Padding(3);
             this.panelOpciones.Size = new System.Drawing.Size(782, 254);
             this.panelOpciones.TabIndex = 0;
             // 
@@ -711,7 +711,7 @@ namespace gsNotasNETF
             this.OpcBtnGuardarEnDrive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnGuardarEnDrive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnGuardarEnDrive.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnGuardarEnDrive.Location = new System.Drawing.Point(436, 234);
+            this.OpcBtnGuardarEnDrive.Location = new System.Drawing.Point(419, 234);
             this.OpcBtnGuardarEnDrive.Name = "OpcBtnGuardarEnDrive";
             this.OpcBtnGuardarEnDrive.Size = new System.Drawing.Size(323, 40);
             this.OpcBtnGuardarEnDrive.TabIndex = 11;
@@ -724,8 +724,8 @@ namespace gsNotasNETF
             this.OpcLinkSolicitarAutorización.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OpcLinkSolicitarAutorización.AutoSize = true;
             this.OpcLinkSolicitarAutorización.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.OpcLinkSolicitarAutorización.Location = new System.Drawing.Point(630, 211);
-            this.OpcLinkSolicitarAutorización.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.OpcLinkSolicitarAutorización.Location = new System.Drawing.Point(613, 211);
+            this.OpcLinkSolicitarAutorización.Margin = new System.Windows.Forms.Padding(3);
             this.OpcLinkSolicitarAutorización.Name = "OpcLinkSolicitarAutorización";
             this.OpcLinkSolicitarAutorización.Size = new System.Drawing.Size(129, 17);
             this.OpcLinkSolicitarAutorización.TabIndex = 10;
@@ -787,7 +787,7 @@ namespace gsNotasNETF
             this.OpcBtnDeshacer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnDeshacer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnDeshacer.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnDeshacer.Location = new System.Drawing.Point(555, 6);
+            this.OpcBtnDeshacer.Location = new System.Drawing.Point(538, 6);
             this.OpcBtnDeshacer.Name = "OpcBtnDeshacer";
             this.OpcBtnDeshacer.Size = new System.Drawing.Size(103, 40);
             this.OpcBtnDeshacer.TabIndex = 14;
@@ -803,7 +803,7 @@ namespace gsNotasNETF
             this.OpcBtnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnGuardar.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnGuardar.Location = new System.Drawing.Point(664, 6);
+            this.OpcBtnGuardar.Location = new System.Drawing.Point(647, 6);
             this.OpcBtnGuardar.Name = "OpcBtnGuardar";
             this.OpcBtnGuardar.Size = new System.Drawing.Size(95, 40);
             this.OpcBtnGuardar.TabIndex = 13;
@@ -894,7 +894,7 @@ namespace gsNotasNETF
             this.tabAcercaDe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.tabAcercaDe.Location = new System.Drawing.Point(4, 29);
             this.tabAcercaDe.Name = "tabAcercaDe";
-            this.tabAcercaDe.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabAcercaDe.Padding = new System.Windows.Forms.Padding(3);
             this.tabAcercaDe.Size = new System.Drawing.Size(788, 260);
             this.tabAcercaDe.TabIndex = 5;
             this.tabAcercaDe.Text = "Acerca de";
@@ -915,6 +915,7 @@ namespace gsNotasNETF
             this.txtAcercaDe.Location = new System.Drawing.Point(0, 0);
             this.txtAcercaDe.Multiline = true;
             this.txtAcercaDe.Name = "txtAcercaDe";
+            this.txtAcercaDe.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtAcercaDe.Size = new System.Drawing.Size(782, 254);
             this.txtAcercaDe.TabIndex = 0;
             // 
@@ -1005,12 +1006,12 @@ namespace gsNotasNETF
             this.notaUC1.Grupo = "";
             this.notaUC1.InvertirColores = false;
             this.notaUC1.Location = new System.Drawing.Point(4, 305);
-            this.notaUC1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.notaUC1.Margin = new System.Windows.Forms.Padding(1);
             this.notaUC1.MinimumSize = new System.Drawing.Size(400, 200);
             this.notaUC1.Name = "notaUC1";
             this.notaUC1.Nota = "Prueba NotaUC";
             this.notaUC1.Notas = ((System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<string>>)(resources.GetObject("notaUC1.Notas")));
-            this.notaUC1.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.notaUC1.Padding = new System.Windows.Forms.Padding(1);
             this.notaUC1.Size = new System.Drawing.Size(799, 310);
             this.notaUC1.StatusInfo = "Grupo: \'\' con 1 nota";
             this.notaUC1.TabIndex = 1;
