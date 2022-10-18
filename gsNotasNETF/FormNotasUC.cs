@@ -96,6 +96,7 @@ v1.0.0.150  18-oct-22   Mover las notas mostradas de forma independiente.
                         Pongo scroll en el texto de AcercaDe.
                         Cambio tamaño fuente de los tabs. Diseño de editar grupos y notas.
 v1.0.0.151              Nuevos directorios para notas y backup gestionado desde NotaUC.
+v1.0.0.152              Opción para usar los colores indicados o aleatorio y nuevos colores en tema oscuro.
 */
 using System;
 using System.Collections.Generic;
@@ -115,8 +116,7 @@ namespace gsNotasNETF
     public partial class FormNotasUC : Form
     {
         /// <summary>
-        /// Si se quiere o no mostrar el aviso en caso de error al 
-        /// escribir en el registro.
+        /// Si se quiere o no mostrar el aviso en caso de error al escribir en el registro.
         /// </summary>
         private bool mostrarAvisoReg = false;
 
@@ -124,6 +124,7 @@ namespace gsNotasNETF
         /// Acceso a los datos de configuración.
         /// </summary>
         private Properties.Settings MySetting = Properties.Settings.Default;
+
         /// <summary>
         /// Array con los controles a no asignar cuando se permite cambiar el tamaño y posición.
         /// </summary>
@@ -133,8 +134,7 @@ namespace gsNotasNETF
         /// </summary>
         private bool iniciando = true;
         /// <summary>
-        /// Colección con las notas del grupo seleccionado. 
-        /// A mostrar en la ficha Notas.
+        /// Colección con las notas del grupo seleccionado. A mostrar en la ficha Notas.
         /// </summary>
         private readonly List<Label> CtrlNotas = new List<Label>();
         /// <summary>
@@ -145,17 +145,22 @@ namespace gsNotasNETF
         /// El grupo seleccionado del combo.
         /// </summary>
         private string ElGrupo;
+
         /// <summary>
         /// El índice del grupo seleccionado.
         /// </summary>
         private int ElGrupoIndex;
+
+        /// <summary>
+        /// El color de grupo a usar.
+        /// </summary>
+        private int ColorGrupo { get; set; }
+
         /// <summary>
         /// Colección con los colores a mostrar en cada grupo y notas de cada grupo.
         /// </summary>
-        private List<Color> ColoresGrupo = new List<Color>() {
-                    Color.FromArgb(0,99,177), Color.Gold, Color.PaleGreen, Color.Pink, Color.Yellow,
-                    Color.LightGray,Color.AliceBlue, Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow 
-                    };
+        private List<Color> ColoresGrupo;
+        
         /// <summary>
         /// El tamaño normal de las notas y grupos en el panel.
         /// </summary>
@@ -177,19 +182,41 @@ namespace gsNotasNETF
             InitializeComponent();
 
             // Seleccionar que grupo de colores se usarán
-            Random rnd = new Random();
-            var n = rnd.Next(0, 3);
-            if (n==1)
-                ColoresGrupo = new List<Color>() {Color.LightSkyBlue, Color.Gold, Color.PaleGreen, Color.LightPink, Color.Yellow,
-                                                  Color.FromArgb(0,99,177), Color.LightGoldenrodYellow, Color.AliceBlue, Color.LightGray, Color.Pink };
-            else if(n==2)
-                ColoresGrupo = new List<Color>() {Color.AliceBlue, Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow,
-                                                  Color.LightGray, Color.Gold, Color.FromArgb(0,99,177), Color.PaleGreen, Color.Pink, Color.Yellow };
-            else
-                ColoresGrupo = new List<Color>() {Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow, Color.Gold, Color.DeepPink,
-                                                  Color.PaleGreen, Color.Yellow, Color.LightGray,Color.AliceBlue,Color.FromArgb(0,99,177) };
+
+            // Poder indicar en configuración que se use aleatorio o el indicado.
+            ColorGrupo = MySetting.ColorGrupo;
+            AsignarColoresGrupo();
 
             NoAsignar = new string[] { notaUC1.Name };
+        }
+
+        /// <summary>
+        /// Asignar los colores del grupo según el valor de ColorGrupo (de la configuración).
+        /// </summary>
+        private void AsignarColoresGrupo()
+        {
+            int elColorGrupo = ColorGrupo;
+
+            if (ColorGrupo < 1)
+            {
+                Random rnd = new Random();
+                // Un valor aleatorio entre 1 y 4 (inclusive)
+                elColorGrupo = rnd.Next(1, 5);
+            }
+            var n = elColorGrupo;
+            if (n == 2)
+                ColoresGrupo = new List<Color>() {Color.LightSkyBlue, Color.Gold, Color.PaleGreen, Color.LightPink, Color.Yellow,
+                                                  Color.FromArgb(0,99,177), Color.LightGoldenrodYellow, Color.AliceBlue, Color.LightGray, Color.Pink };
+            else if (n == 3)
+                ColoresGrupo = new List<Color>() {Color.AliceBlue, Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow,
+                                                  Color.LightGray, Color.Gold, Color.FromArgb(0,99,177), Color.PaleGreen, Color.Pink, Color.Yellow };
+            else if (n == 4)
+                ColoresGrupo = new List<Color>() {Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow, Color.Gold, Color.DeepPink,
+                                                  Color.PaleGreen, Color.Yellow, Color.LightGray,Color.AliceBlue,Color.FromArgb(0,99,177) };
+            else
+                // Predeterminado (el que estaba asignado al definir ColoresGrupo.
+                ColoresGrupo = new List<Color>() {Color.FromArgb(0,99,177), Color.Gold, Color.PaleGreen, Color.Pink, Color.Yellow,
+                                                  Color.LightGray, Color.AliceBlue, Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow };
         }
 
         private void FormNotasUC_Load(object sender, EventArgs e)
@@ -523,53 +550,76 @@ namespace gsNotasNETF
             }
         }
 
+        /// <summary>
+        /// Asignar los colores para que haya para todos los grupos de notas.
+        /// </summary>
         private Color AsignarColoresGrupos()
         {
             Color col = GetRandomColor();
             var rnd = new Random();
 
-            if (ColoresGrupo.Count == 0)
-            {
-                for (var j = 0; j < notaUC1.Notas.Keys.Count; j++)
-                {
-                    ColoresGrupo.Add(col);
-                    var n = rnd.Next(1, 4);
-                    byte r = col.R, g = col.G, b = col.B;
-                    if (n == 1)
-                        r = 0;
-                    else if (n == 2)
-                        g = 0;
-                    else if (n == 3)
-                        b = 0;
-                    Color col2;
-                    do
-                    {
-                        col2 = GetRandomColor(r, g, b);
-                    } while (col.Equals(col2));
-                    col = col2;
-                }
-            }
-            else if (ColoresGrupo.Count < notaUC1.Notas.Keys.Count)
-            {
-                for (var j = ColoresGrupo.Count; j < notaUC1.Notas.Keys.Count; j++)
-                {
-                    var n = rnd.Next(1, 4);
-                    byte r = col.R, g = col.G, b = col.B;
-                    if (n == 1)
-                        r = 0;
-                    else if (n == 2)
-                        g = 0;
-                    else if (n == 3)
-                        b = 0;
-                    Color col2;
-                    do
-                    {
-                        col2 = GetRandomColor(r, g, b);
-                    } while (col.Equals(col2));
-                    col = col2;
+            //if (ColoresGrupo.Count == 0)
+            //{
+            //    for (var j = 0; j < notaUC1.Notas.Keys.Count; j++)
+            //    {
+            //        ColoresGrupo.Add(col);
+            //        var n = rnd.Next(1, 4);
+            //        byte r = col.R, g = col.G, b = col.B;
+            //        if (n == 1)
+            //            r = 0;
+            //        else if (n == 2)
+            //            g = 0;
+            //        else if (n == 3)
+            //            b = 0;
+            //        Color col2;
+            //        do
+            //        {
+            //            col2 = GetRandomColor(r, g, b);
+            //        } while (col.Equals(col2));
+            //        col = col2;
+            //    }
+            //}
+            //else if (ColoresGrupo.Count < notaUC1.Notas.Keys.Count)
+            //{
+            //    for (var j = ColoresGrupo.Count; j < notaUC1.Notas.Keys.Count; j++)
+            //    {
+            //        var n = rnd.Next(1, 4);
+            //        byte r = col.R, g = col.G, b = col.B;
+            //        if (n == 1)
+            //            r = 0;
+            //        else if (n == 2)
+            //            g = 0;
+            //        else if (n == 3)
+            //            b = 0;
+            //        Color col2;
+            //        do
+            //        {
+            //            col2 = GetRandomColor(r, g, b);
+            //        } while (col.Equals(col2));
+            //        col = col2;
 
-                    ColoresGrupo.Add(col);
-                }
+            //        ColoresGrupo.Add(col);
+            //    }
+            //}
+            // No es necesario hacer la comprobación de si no hay datos de colores. (18/oct/22 17.11)
+            for (var j = ColoresGrupo.Count; j < notaUC1.Notas.Keys.Count; j++)
+            {
+                var n = rnd.Next(1, 4);
+                byte r = col.R, g = col.G, b = col.B;
+                if (n == 1)
+                    r = 0;
+                else if (n == 2)
+                    g = 0;
+                else if (n == 3)
+                    b = 0;
+                Color col2;
+                do
+                {
+                    col2 = GetRandomColor(r, g, b);
+                } while (col.Equals(col2));
+                col = col2;
+
+                ColoresGrupo.Add(col);
             }
             return col;
         }
@@ -587,10 +637,16 @@ namespace gsNotasNETF
             return lbl;
         }
 
-        private Color GetRandomColor(byte red=0, byte green=0, byte blue=0)
+        /// <summary>
+        /// Crear un color de forma aleatoria.
+        /// </summary>
+        /// <param name="red">Si no se indica o se indica el valor cero, se asignará un valor aleatorio para el rojo.</param>
+        /// <param name="green">Si no se indica o se indica el valor cero, se asignará un valor aleatorio para el verde.</param>
+        /// <param name="blue">Si no se indica o se indica el valor cero, se asignará un valor aleatorio para el azul.</param>
+        private Color GetRandomColor(byte red = 0, byte green = 0, byte blue = 0)
         {
             Random random = new Random((int)DateTime.Now.Ticks);
-            byte r = red==0 ? (byte)random.Next(0, 255): red;
+            byte r = red == 0 ? (byte)random.Next(0, 255): red;
             byte g = green == 0 ? (byte)random.Next(0, 255) : green;
             byte b = blue == 0 ? (byte)random.Next(0, 255) : blue;
             if(random.Next(0,2) == 0)
@@ -880,7 +936,7 @@ namespace gsNotasNETF
         private void tabsConfig_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Mostrar todo el formulario cuando se pulsa en una ficha
-            if(OcultarPanelExpanded)
+            if (OcultarPanelExpanded)
                 OcultarPanelSuperior(false);
 
             if (tabsConfig.SelectedTab.Name == "tabOpciones")
@@ -889,7 +945,7 @@ namespace gsNotasNETF
                 return;
             }
 
-            if(tabsConfig.SelectedTab.Name == "tabAcercaDe")
+            if (tabsConfig.SelectedTab.Name == "tabAcercaDe")
             {
                 System.Reflection.Assembly ensamblado = typeof(VersionUtilidades).Assembly;
 
@@ -1096,6 +1152,8 @@ No se guardan los grupos y notas en blanco.
         {
             if (OpcConfigurando) return;
 
+            // Asignar el valor del color del grupo a usar (los valores van de 0 a 4)
+            OpcCboColorGrupo.SelectedIndex = MySetting.ColorGrupo;
             OpcChkAutoGuardar.Checked = MySetting.Autoguardar;
             OpcChkRecordarTam.Checked = MySetting.RecordarTam;
             OpcChkAjusteLineas.Checked = MySetting.AjusteLineas;
@@ -1140,6 +1198,8 @@ No se guardan los grupos y notas en blanco.
             else if (OpcChkOcultarPanelSuperior.Checked != MySetting.OcultarPanelSuperior)
                 modificado = true;
             else if (OpcChkIniciarConWindows.Checked != MySetting.IniciarConWindows)
+                modificado = true;
+            else if (OpcCboColorGrupo.SelectedIndex != MySetting.ColorGrupo)
                 modificado = true;
 
             //else if (OpcChkGuardarEnDrive.Checked != MySetting.GuardarEnDrive)
@@ -1199,6 +1259,8 @@ No se guardan los grupos y notas en blanco.
 
         private void OpcBtnGuardar_Click(object sender, EventArgs e)
         {
+            MySetting.ColorGrupo = OpcCboColorGrupo.SelectedIndex;
+            ColorGrupo = MySetting.ColorGrupo;
             MySetting.Autoguardar = OpcChkAutoGuardar.Checked;
             MySetting.RecordarTam = OpcChkRecordarTam.Checked;
             MySetting.AjusteLineas = OpcChkAjusteLineas.Checked;
@@ -1217,6 +1279,11 @@ No se guardan los grupos y notas en blanco.
             
             MySetting.Save();
             OpcConfigurando = false;
+
+            AsignarColoresGrupo();
+            AsignarColores();
+            // Colorear también los grupos.
+            MostrarGrupos(ElGrupo, ElGrupoIndex);
 
             AsignarSettings();
 

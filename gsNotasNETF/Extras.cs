@@ -21,7 +21,7 @@
     }
 */
 //
-// (c) Guillermo Som (elGuille), 2020
+// (c) Guillermo Som (elGuille), 2020. 2022
 //-----------------------------------------------------------------------------
 
 using System;
@@ -66,7 +66,7 @@ namespace gsNotasNETF
     /// </summary>
     [Browsable(false)]
     [Description("Enumeración para los temas a usar. Light/Claro, Dark/Oscuro.")]
-    [Category("NotasUC")]
+    [Category("Colores")]
     public enum Temas
     {
         /// <summary>
@@ -77,7 +77,20 @@ namespace gsNotasNETF
         /// Tema oscuro (1)
         /// </summary>
         Oscuro = 1,
+        // En inglés...
+        Light = Claro,
+        Dark = Oscuro
     }
+
+    //// Enumeración para los colores a usar en los grupos.
+    //public enum ColorGrupo
+    //{
+    //    Aleatorio = 0,
+    //    Predeterminado = 1,
+    //    Color1 = 2,
+    //    Color2 = 3,
+    //    Color3 = 4
+    //}
 }
 
 /* 

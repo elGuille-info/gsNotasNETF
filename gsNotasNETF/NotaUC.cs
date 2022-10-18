@@ -6,6 +6,7 @@
 // 18-oct-22:   Pruebo a lanzar los evento de MouseDown, MouseMove y MouseUp.
 //              Nuevos directorios para las notas y copias de seguridad.
 //              En lugar del directorio de documentos se usa el indicado en %LOCALAPPDATA%.
+//              Usar colores predeterminados para los temas.
 //
 // (c) Guillermo Som (elGuille), 2020-2022
 //-----------------------------------------------------------------------------
@@ -30,18 +31,6 @@ namespace gsNotasNETF
     /// </summary>
     public partial class NotaUC : UserControl
     {
-
-        /// <summary>
-        /// Para acceder al control statusInfo.
-        /// </summary>
-        [Browsable(false)]
-        [Description("Para acceder al control statusInfo.")]
-        [Category("NotasUC")]
-        public string StatusInfo
-        {
-            get { return statusInfo.Text; }
-            set { statusInfo.Text = value; }
-        }
 
         private bool iniciando = true;
 
@@ -384,6 +373,18 @@ namespace gsNotasNETF
         //
 
         /// <summary>
+        /// Para acceder al control statusInfo.
+        /// </summary>
+        [Browsable(false)]
+        [Description("Para acceder al control statusInfo.")]
+        [Category("NotasUC")]
+        public string StatusInfo
+        {
+            get { return statusInfo.Text; }
+            set { statusInfo.Text = value; }
+        }
+
+        /// <summary>
         /// Si se deben guardar las notas como documentos en Google Drive.
         /// Para hacerlo debes tener tu correo de GMail autorizado.
         /// Los docuemntos se crean con el tipo de letra 'Roboto Mono'.
@@ -479,16 +480,57 @@ namespace gsNotasNETF
             }
         }
 
+        private bool _ColoresPredeterminados = true;
+
         /// <summary>
-        /// Colores a usar en el tema Oscuro.
-        /// Fondo negro, letras amarillo.
+        /// Si se deben usar los colores predeterminados de los temas.
         /// </summary>
         [Browsable(true)]
-        [Description("Colores a usar en el tema Oscuro. Fondo negro, letras Gold.")]
-        [DefaultValue(typeof(Color[]),"Black, Gold")]
-        [Category("NotasUC")]
-        public Color[] ColoresOscuro { get; set; } = new Color[] { Color.DimGray, Color.Lime};
+        [Description("Usar los colores predeterminados de los temas (true sobre-escribe los definidos en diseño, false permite definir colores propios).")]
+        [DefaultValue(typeof(bool), "true")]
+        [Category("Colores")]
+        public bool ColoresPredeterminados
+        {
+            get { return _ColoresPredeterminados; }
+            set
+            {
+                _ColoresPredeterminados = value;
+                if (value)
+                {
+                    // Asignar los colores.
+                    ColoresOscuro = new Color[] { Color.FromArgb(30, 30, 30), Color.FromArgb(87, 166, 58) };
+                    ColoresClaro = new Color[] { Color.White, Color.FromArgb(0, 99, 177) };
+                }
+            }
+        }
 
+        /// <summary>
+        /// Colores a usar en el tema Oscuro. Fondo negro, letras verdes.
+        /// </summary>
+        /// <remarks>Si ColoresPredeterminados es true, no se asignan los nuevos colores.</remarks>
+        [Browsable(true)]
+        [Description("Colores a usar en el tema Oscuro. Fondo negro, letras verde.")]
+        [DefaultValue(typeof(Color[]), "(30, 30, 30), (87, 166, 58)")]
+        [Category("Colores")]
+        public Color[] ColoresOscuro { get; set; } = new Color[] { Color.FromArgb(30, 30, 30), Color.FromArgb(87, 166, 58) };
+
+        //private Color[] _ColoresOscuro = new Color[] { Color.FromArgb(30, 30, 30), Color.FromArgb(87, 166, 58) };
+        //public Color[] ColoresOscuro 
+        //{ 
+        //    get { return _ColoresOscuro; }
+        //    set
+        //    {
+        //        if (ColoresPredeterminados)
+        //        {
+        //            value = new Color[] { Color.FromArgb(30, 30, 30), Color.FromArgb(87, 166, 58) };
+        //        }
+        //        _ColoresOscuro = value;
+        //    }
+        //}
+
+        //public Color[] ColoresOscuro { get; set; } = new Color[] { Color.FromArgb(30, 30, 30), Color.FromArgb(87, 166, 58) };
+        //public Color[] ColoresOscuro { get; set; } = new Color[] { Color.Black, Color.Green};
+        //public Color[] ColoresOscuro { get; set; } = new Color[] { Color.DimGray, Color.Lime};
         //public Color[] ColoresOscuro { get; set; } = new Color[] { Color.DimGray, Color.Gold};
 
         /// <summary>
@@ -498,7 +540,7 @@ namespace gsNotasNETF
         [Browsable(true)]
         [Description("Colores a usar en el tema Claro. Fondo blanco, letras en color azul (0,99,177).")]
         [DefaultValue(typeof(Color[]), "White, (0,99,177)")]
-        [Category("NotasUC")]
+        [Category("Colores")]
         public Color[] ColoresClaro { get; set; } = new Color[] {Color.White, Color.FromArgb(0,99,177) };
 
         private Temas _Tema = Temas.Claro;
@@ -509,7 +551,7 @@ namespace gsNotasNETF
         [Browsable(true)]
         [Description("El color de los temas. Light/Claro o Dark/Oscuro.")]
         [DefaultValue(typeof(Temas),"Claro")]
-        [Category("NotasUC")]
+        [Category("Colores")]
         public Temas Tema
         {
             get { return _Tema; }
@@ -551,7 +593,7 @@ namespace gsNotasNETF
         [Browsable(true)]
         [Description("Si se invierten los colores del tema actual.")]
         [DefaultValue("false")]
-        [Category("NotasUC")]
+        [Category("Colores")]
         public bool InvertirColores 
         {
             get { return _invertirColores; }
@@ -669,11 +711,12 @@ namespace gsNotasNETF
         /// El valor de la longitud del texto a mostrar en el título.
         /// El título será el nombre del grupo y la nota seleccionada.
         /// </summary>
+        /// <remarks>18-oct-22: Antes 70, ahora 79.</remarks>
         [Browsable(false)]
         [Description("El valor predeterminado de la longitud máxima del título")]
-        [DefaultValue(70)]
+        [DefaultValue(79)]
         [Category("NotasUC")]
-        public const int LongitudTituloNotaDefault = 70;
+        public const int LongitudTituloNotaDefault = 79;
 
         /// <summary>
         /// Longitud del título de la nota.
@@ -958,7 +1001,7 @@ namespace gsNotasNETF
         [Browsable(true)]
         [Description("El color de fondo del control, del control de las notas y del color del texto del título.")]
         [DefaultValue(typeof(Color), "White")]
-        [Category("NotasUC")]
+        [Category("Colores")]
         public override Color BackColor
         {
             get => base.BackColor;
@@ -984,7 +1027,7 @@ namespace gsNotasNETF
         [Browsable(true)]
         [Description("El color del texto y del fondo del título.")]
         [DefaultValue(typeof(Color), "0,99,177")]
-        [Category("NotasUC")]
+        [Category("Colores")]
         public override Color ForeColor
         {
             get => base.ForeColor;
@@ -1394,7 +1437,6 @@ namespace gsNotasNETF
                 }
             }
         }
-
 
         //
         // Fin de los métodos públicos.
@@ -1942,6 +1984,7 @@ No se guardan los grupos y notas en blanco.
         {
             MnuTemaClaro.Checked = (Tema == Temas.Claro);
             MnuTemaOscuro.Checked = (Tema == Temas.Oscuro);
+            MnuTemaColoresPredeterminados.Checked = ColoresPredeterminados;
         }
 
         private void MnuCerrar_Click(object sender, EventArgs e)
@@ -2106,5 +2149,12 @@ No se guardan los grupos y notas en blanco.
             mnuSeleccionarTodo.Enabled = txtEdit.CanSelect;
         }
 
+        private void MnuTemaColoresPredeterminados_Click(object sender, EventArgs e)
+        {
+            ColoresPredeterminados = !ColoresPredeterminados;
+            // Forzar el cambio de color.
+            Tema = Tema;
+            OnCambioDeTema(Tema);
+        }
     }
 }

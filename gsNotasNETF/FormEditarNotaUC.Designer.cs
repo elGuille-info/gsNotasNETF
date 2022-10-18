@@ -41,7 +41,7 @@ namespace gsNotasNETF
         System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))))};
             this.notaUC1.ColoresOscuro = new System.Drawing.Color[] {
         System.Drawing.Color.Black,
-        System.Drawing.Color.Gold};
+        System.Drawing.Color.Green};
             this.notaUC1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.notaUC1.EditorRtf = resources.GetString("notaUC1.EditorRtf");
             this.notaUC1.EspCaracteres = new string[] {

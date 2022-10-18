@@ -73,6 +73,8 @@ namespace gsNotasNETF
             this.lblBuscar = new System.Windows.Forms.Label();
             this.tabOpciones = new System.Windows.Forms.TabPage();
             this.panelOpciones = new System.Windows.Forms.Panel();
+            this.OpcCboColorGrupo = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.OpcChkIniciarConWindows = new System.Windows.Forms.CheckBox();
             this.OpcBtnGuardarEnDrive = new System.Windows.Forms.Button();
             this.OpcLinkSolicitarAutorización = new System.Windows.Forms.LinkLabel();
@@ -665,6 +667,8 @@ namespace gsNotasNETF
             // 
             this.panelOpciones.AutoScroll = true;
             this.panelOpciones.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelOpciones.Controls.Add(this.OpcCboColorGrupo);
+            this.panelOpciones.Controls.Add(this.label5);
             this.panelOpciones.Controls.Add(this.OpcChkIniciarConWindows);
             this.panelOpciones.Controls.Add(this.OpcBtnGuardarEnDrive);
             this.panelOpciones.Controls.Add(this.OpcLinkSolicitarAutorización);
@@ -688,13 +692,39 @@ namespace gsNotasNETF
             this.panelOpciones.Size = new System.Drawing.Size(782, 258);
             this.panelOpciones.TabIndex = 0;
             // 
+            // OpcCboColorGrupo
+            // 
+            this.OpcCboColorGrupo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.OpcCboColorGrupo.FormattingEnabled = true;
+            this.OpcCboColorGrupo.Items.AddRange(new object[] {
+            "Aleatorio",
+            "Predeterminado",
+            "Colores 1",
+            "Colores 2",
+            "Colores 3"});
+            this.OpcCboColorGrupo.Location = new System.Drawing.Point(573, 114);
+            this.OpcCboColorGrupo.Name = "OpcCboColorGrupo";
+            this.OpcCboColorGrupo.Size = new System.Drawing.Size(121, 21);
+            this.OpcCboColorGrupo.TabIndex = 7;
+            // 
+            // label5
+            // 
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.label5.Location = new System.Drawing.Point(470, 112);
+            this.label5.Margin = new System.Windows.Forms.Padding(3);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(97, 23);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Colores grupo:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // OpcChkIniciarConWindows
             // 
             this.OpcChkIniciarConWindows.AutoSize = true;
             this.OpcChkIniciarConWindows.Location = new System.Drawing.Point(6, 249);
             this.OpcChkIniciarConWindows.Name = "OpcChkIniciarConWindows";
             this.OpcChkIniciarConWindows.Size = new System.Drawing.Size(122, 17);
-            this.OpcChkIniciarConWindows.TabIndex = 15;
+            this.OpcChkIniciarConWindows.TabIndex = 13;
             this.OpcChkIniciarConWindows.Text = "Iniciar con Windows";
             this.toolTip1.SetToolTip(this.OpcChkIniciarConWindows, "Debes ejecutar la aplicación con provilegios de administrador para que surta efec" +
         "to.");
@@ -708,10 +738,10 @@ namespace gsNotasNETF
             this.OpcBtnGuardarEnDrive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnGuardarEnDrive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnGuardarEnDrive.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnGuardarEnDrive.Location = new System.Drawing.Point(419, 234);
+            this.OpcBtnGuardarEnDrive.Location = new System.Drawing.Point(385, 234);
             this.OpcBtnGuardarEnDrive.Name = "OpcBtnGuardarEnDrive";
             this.OpcBtnGuardarEnDrive.Size = new System.Drawing.Size(323, 40);
-            this.OpcBtnGuardarEnDrive.TabIndex = 11;
+            this.OpcBtnGuardarEnDrive.TabIndex = 14;
             this.OpcBtnGuardarEnDrive.Text = "Guardar las notas en Google Drive";
             this.OpcBtnGuardarEnDrive.UseVisualStyleBackColor = false;
             this.OpcBtnGuardarEnDrive.Click += new System.EventHandler(this.OpcBtnGuardarEnDrive_Click);
@@ -721,11 +751,11 @@ namespace gsNotasNETF
             this.OpcLinkSolicitarAutorización.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OpcLinkSolicitarAutorización.AutoSize = true;
             this.OpcLinkSolicitarAutorización.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.OpcLinkSolicitarAutorización.Location = new System.Drawing.Point(613, 211);
+            this.OpcLinkSolicitarAutorización.Location = new System.Drawing.Point(579, 211);
             this.OpcLinkSolicitarAutorización.Margin = new System.Windows.Forms.Padding(3);
             this.OpcLinkSolicitarAutorización.Name = "OpcLinkSolicitarAutorización";
             this.OpcLinkSolicitarAutorización.Size = new System.Drawing.Size(104, 13);
-            this.OpcLinkSolicitarAutorización.TabIndex = 10;
+            this.OpcLinkSolicitarAutorización.TabIndex = 12;
             this.OpcLinkSolicitarAutorización.TabStop = true;
             this.OpcLinkSolicitarAutorización.Text = "Solicitar autorización";
             this.OpcLinkSolicitarAutorización.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -739,7 +769,7 @@ namespace gsNotasNETF
             this.OpcChkMostrarHorizontal.Location = new System.Drawing.Point(6, 195);
             this.OpcChkMostrarHorizontal.Name = "OpcChkMostrarHorizontal";
             this.OpcChkMostrarHorizontal.Size = new System.Drawing.Size(183, 17);
-            this.OpcChkMostrarHorizontal.TabIndex = 8;
+            this.OpcChkMostrarHorizontal.TabIndex = 10;
             this.OpcChkMostrarHorizontal.Text = "Mostrar las notas horizontalmente";
             this.OpcChkMostrarHorizontal.UseVisualStyleBackColor = true;
             this.OpcChkMostrarHorizontal.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
@@ -750,7 +780,7 @@ namespace gsNotasNETF
             this.OpcChkOcultarPanelSuperior.Location = new System.Drawing.Point(6, 141);
             this.OpcChkOcultarPanelSuperior.Name = "OpcChkOcultarPanelSuperior";
             this.OpcChkOcultarPanelSuperior.Size = new System.Drawing.Size(242, 17);
-            this.OpcChkOcultarPanelSuperior.TabIndex = 6;
+            this.OpcChkOcultarPanelSuperior.TabIndex = 8;
             this.OpcChkOcultarPanelSuperior.Text = "Al iniciar la aplicación ocultar el panel superior";
             this.OpcChkOcultarPanelSuperior.UseVisualStyleBackColor = true;
             this.OpcChkOcultarPanelSuperior.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
@@ -784,10 +814,10 @@ namespace gsNotasNETF
             this.OpcBtnDeshacer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnDeshacer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnDeshacer.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnDeshacer.Location = new System.Drawing.Point(538, 6);
+            this.OpcBtnDeshacer.Location = new System.Drawing.Point(504, 6);
             this.OpcBtnDeshacer.Name = "OpcBtnDeshacer";
             this.OpcBtnDeshacer.Size = new System.Drawing.Size(103, 40);
-            this.OpcBtnDeshacer.TabIndex = 14;
+            this.OpcBtnDeshacer.TabIndex = 15;
             this.OpcBtnDeshacer.Text = "Deshacer";
             this.toolTip1.SetToolTip(this.OpcBtnDeshacer, "Deshacer los cambios actuales");
             this.OpcBtnDeshacer.UseVisualStyleBackColor = false;
@@ -800,10 +830,10 @@ namespace gsNotasNETF
             this.OpcBtnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnGuardar.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnGuardar.Location = new System.Drawing.Point(647, 6);
+            this.OpcBtnGuardar.Location = new System.Drawing.Point(613, 6);
             this.OpcBtnGuardar.Name = "OpcBtnGuardar";
             this.OpcBtnGuardar.Size = new System.Drawing.Size(95, 40);
-            this.OpcBtnGuardar.TabIndex = 13;
+            this.OpcBtnGuardar.TabIndex = 16;
             this.OpcBtnGuardar.Text = "Guardar";
             this.OpcBtnGuardar.UseVisualStyleBackColor = false;
             this.OpcBtnGuardar.Click += new System.EventHandler(this.OpcBtnGuardar_Click);
@@ -814,7 +844,7 @@ namespace gsNotasNETF
             this.OpcChkMinimizarAlCerrar.Location = new System.Drawing.Point(6, 222);
             this.OpcChkMinimizarAlCerrar.Name = "OpcChkMinimizarAlCerrar";
             this.OpcChkMinimizarAlCerrar.Size = new System.Drawing.Size(323, 17);
-            this.OpcChkMinimizarAlCerrar.TabIndex = 9;
+            this.OpcChkMinimizarAlCerrar.TabIndex = 11;
             this.OpcChkMinimizarAlCerrar.Text = "Al cerrar (desde X de la ventana) minimizar en el área de tareas";
             this.OpcChkMinimizarAlCerrar.UseVisualStyleBackColor = true;
             this.OpcChkMinimizarAlCerrar.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
@@ -825,7 +855,7 @@ namespace gsNotasNETF
             this.OpcChkAjusteLineas.Location = new System.Drawing.Point(6, 168);
             this.OpcChkAjusteLineas.Name = "OpcChkAjusteLineas";
             this.OpcChkAjusteLineas.Size = new System.Drawing.Size(163, 17);
-            this.OpcChkAjusteLineas.TabIndex = 7;
+            this.OpcChkAjusteLineas.TabIndex = 9;
             this.OpcChkAjusteLineas.Text = "Ajuste de líneas (WordWrap)";
             this.OpcChkAjusteLineas.UseVisualStyleBackColor = true;
             this.OpcChkAjusteLineas.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
@@ -983,8 +1013,9 @@ namespace gsNotasNETF
         System.Drawing.Color.White,
         System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))))};
             this.notaUC1.ColoresOscuro = new System.Drawing.Color[] {
-        System.Drawing.Color.DimGray,
-        System.Drawing.Color.Lime};
+        System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(40)))), ((int)(((byte)(80))))),
+        System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(166)))), ((int)(((byte)(58)))))};
+            this.notaUC1.ColoresPredeterminados = false;
             this.notaUC1.EditorRtf = resources.GetString("notaUC1.EditorRtf");
             this.notaUC1.EditorText = "Prueba NotaUC";
             this.notaUC1.EspCaracteres = new string[] {
@@ -1139,6 +1170,8 @@ namespace gsNotasNETF
         private System.Windows.Forms.Panel panelAcercaDe;
         private System.Windows.Forms.TextBox txtAcercaDe;
         private System.Windows.Forms.Timer timerInicio;
+        private System.Windows.Forms.ComboBox OpcCboColorGrupo;
+        private System.Windows.Forms.Label label5;
     }
 }
 
