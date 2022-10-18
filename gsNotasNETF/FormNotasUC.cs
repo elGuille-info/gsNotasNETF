@@ -97,6 +97,7 @@ v1.0.0.150  18-oct-22   Mover las notas mostradas de forma independiente.
                         Cambio tamaño fuente de los tabs. Diseño de editar grupos y notas.
 v1.0.0.151              Nuevos directorios para notas y backup gestionado desde NotaUC.
 v1.0.0.152              Opción para usar los colores indicados o aleatorio y nuevos colores en tema oscuro.
+v1.0.0.153              Crear nuevos grupos desde Editar grupos y notas.
 */
 using System;
 using System.Collections.Generic;
@@ -1446,6 +1447,17 @@ No se guardan los grupos y notas en blanco.
             txtBuscar.Text = mensaje;
             tabsConfig.SelectedTab = tabBuscarTexto;
             tabBuscarTexto.Show();
+        }
+
+        private void btnCrearGrupo_Click(object sender, EventArgs e)
+        {
+            var nuevoGrupo = txtEdNuevoNombreGrupo.Text;
+            // Si ese nombre existe no se hace nada, si no existe, se crea vacío.
+            if (!notaUC1.Notas.ContainsKey(nuevoGrupo))
+                notaUC1.Notas.Add(nuevoGrupo, new List<string>());
+            
+            notaUC1.AsignarGrupos(grupo: nuevoGrupo);
+            tabsConfig_SelectedIndexChanged(null, null);
         }
     }
 }

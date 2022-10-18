@@ -102,6 +102,9 @@ namespace gsNotasNETF
             this.picOcultarPanel1 = new System.Windows.Forms.PictureBox();
             this.timerInicio = new System.Windows.Forms.Timer(this.components);
             this.notaUC1 = new gsNotasNETF.NotaUC();
+            this.btnCrearGrupo = new System.Windows.Forms.Button();
+            this.txtEdNuevoNombreGrupo = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.NotasFlowLayoutPanel.SuspendLayout();
             this.tabsConfig.SuspendLayout();
             this.tabNotas.SuspendLayout();
@@ -354,6 +357,9 @@ namespace gsNotasNETF
             // 
             this.panelEditarGrupos.AutoScroll = true;
             this.panelEditarGrupos.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelEditarGrupos.Controls.Add(this.btnCrearGrupo);
+            this.panelEditarGrupos.Controls.Add(this.txtEdNuevoNombreGrupo);
+            this.panelEditarGrupos.Controls.Add(this.label10);
             this.panelEditarGrupos.Controls.Add(this.btnClasificarGrupos);
             this.panelEditarGrupos.Controls.Add(this.groupBox2);
             this.panelEditarGrupos.Controls.Add(this.lblEdInfo);
@@ -396,7 +402,7 @@ namespace gsNotasNETF
             this.groupBox2.Location = new System.Drawing.Point(6, 141);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(757, 111);
-            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Editar las notas";
             // 
@@ -516,10 +522,12 @@ namespace gsNotasNETF
             this.lblEdCambiar.Name = "lblEdCambiar";
             this.lblEdCambiar.Size = new System.Drawing.Size(97, 23);
             this.lblEdCambiar.TabIndex = 3;
-            this.lblEdCambiar.Text = "Nuevo nombre:";
+            this.lblEdCambiar.Text = "Cambiar nombre:";
             // 
             // cboEdGrupos
             // 
+            this.cboEdGrupos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cboEdGrupos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboEdGrupos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboEdGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
@@ -1056,6 +1064,38 @@ namespace gsNotasNETF
             this.notaUC1.NotaCambiada += new gsNotasNETF.TextoModificado(this.notaUC1_NotaCambiada);
             this.notaUC1.GrupoCambiado += new gsNotasNETF.TextoModificado(this.notaUC1_GrupoCambiado);
             // 
+            // btnCrearGrupo
+            // 
+            this.btnCrearGrupo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.btnCrearGrupo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCrearGrupo.ForeColor = System.Drawing.Color.White;
+            this.btnCrearGrupo.Location = new System.Drawing.Point(350, 87);
+            this.btnCrearGrupo.Name = "btnCrearGrupo";
+            this.btnCrearGrupo.Size = new System.Drawing.Size(84, 29);
+            this.btnCrearGrupo.TabIndex = 10;
+            this.btnCrearGrupo.Text = "Crear";
+            this.btnCrearGrupo.UseVisualStyleBackColor = false;
+            this.btnCrearGrupo.Click += new System.EventHandler(this.btnCrearGrupo_Click);
+            // 
+            // txtEdNuevoNombreGrupo
+            // 
+            this.txtEdNuevoNombreGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEdNuevoNombreGrupo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.txtEdNuevoNombreGrupo.Location = new System.Drawing.Point(153, 92);
+            this.txtEdNuevoNombreGrupo.Name = "txtEdNuevoNombreGrupo";
+            this.txtEdNuevoNombreGrupo.Size = new System.Drawing.Size(191, 20);
+            this.txtEdNuevoNombreGrupo.TabIndex = 9;
+            // 
+            // label10
+            // 
+            this.label10.Location = new System.Drawing.Point(6, 95);
+            this.label10.Margin = new System.Windows.Forms.Padding(3);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(97, 23);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "Crear grupo:";
+            // 
             // FormNotasUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1172,6 +1212,9 @@ namespace gsNotasNETF
         private System.Windows.Forms.Timer timerInicio;
         private System.Windows.Forms.ComboBox OpcCboColorGrupo;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnCrearGrupo;
+        private System.Windows.Forms.TextBox txtEdNuevoNombreGrupo;
+        private System.Windows.Forms.Label label10;
     }
 }
 
