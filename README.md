@@ -15,6 +15,7 @@ Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
 **Nota 18-oct-22 (v1.0.0.155):**
 <br>
 Asignar los anchor manualmente (quitados en diseño) porque al FormDesigner se le va la olla.
+Pongo todos los controles de las opciones.
 <br>
 
 **Nota 18-oct-22 (v1.0.0.154):**
