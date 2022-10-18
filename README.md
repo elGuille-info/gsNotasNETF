@@ -15,7 +15,7 @@
  <br>
  He cambiado el .NET Framework a la versión 4.8.1 y está firmado con nombre seguro usando elGuille_compartido.snk (que seguramente no esté en el código fuente porque tengo filtrado que publique todos los .snk)<br>
  <br>
- **Los cambios realizados después de la versión 1.0.0.139 del 20-dic-2020:**
+ **Los cambios realizados después de la versión 1.0.0.139 del 19-dic-2020:**
  <br>
  ```
 v1.0.0.140  24-dic-20  Cambio el icono de la aplicación.
