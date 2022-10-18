@@ -16,6 +16,7 @@ Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
 Mover las notas mostradas de forma independiente.<br>
 Pongo el título con el de la nota y en el status el nombre del grupo (antes mostraba el valor predeterminado).<br>
 Pongo scroll en el texto de AcercaDe.<br>
+Cambio tamaño fuente de los tabs. Diseño de editar grupos y notas.
 
 **Nota 15-oct-22 (v1.0.0.149):**
 <br>
