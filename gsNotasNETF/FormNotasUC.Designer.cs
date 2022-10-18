@@ -48,6 +48,9 @@ namespace gsNotasNETF
             this.label8 = new System.Windows.Forms.Label();
             this.tabEditarGrupos = new System.Windows.Forms.TabPage();
             this.panelEditarGrupos = new System.Windows.Forms.Panel();
+            this.btnCrearGrupo = new System.Windows.Forms.Button();
+            this.txtEdNuevoNombreGrupo = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.btnClasificarGrupos = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cboEdGrupoDestino = new System.Windows.Forms.ComboBox();
@@ -73,6 +76,8 @@ namespace gsNotasNETF
             this.lblBuscar = new System.Windows.Forms.Label();
             this.tabOpciones = new System.Windows.Forms.TabPage();
             this.panelOpciones = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label11 = new System.Windows.Forms.Label();
             this.OpcCboColorGrupo = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.OpcChkIniciarConWindows = new System.Windows.Forms.CheckBox();
@@ -102,9 +107,6 @@ namespace gsNotasNETF
             this.picOcultarPanel1 = new System.Windows.Forms.PictureBox();
             this.timerInicio = new System.Windows.Forms.Timer(this.components);
             this.notaUC1 = new gsNotasNETF.NotaUC();
-            this.btnCrearGrupo = new System.Windows.Forms.Button();
-            this.txtEdNuevoNombreGrupo = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.NotasFlowLayoutPanel.SuspendLayout();
             this.tabsConfig.SuspendLayout();
             this.tabNotas.SuspendLayout();
@@ -117,6 +119,7 @@ namespace gsNotasNETF
             this.panelBuscarTexto.SuspendLayout();
             this.tabOpciones.SuspendLayout();
             this.panelOpciones.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.tabAcercaDe.SuspendLayout();
             this.panelAcercaDe.SuspendLayout();
             this.contextNotify.SuspendLayout();
@@ -378,6 +381,38 @@ namespace gsNotasNETF
             this.panelEditarGrupos.TabIndex = 0;
             this.panelEditarGrupos.Text = "Editar los grupos";
             // 
+            // btnCrearGrupo
+            // 
+            this.btnCrearGrupo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.btnCrearGrupo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCrearGrupo.ForeColor = System.Drawing.Color.White;
+            this.btnCrearGrupo.Location = new System.Drawing.Point(350, 87);
+            this.btnCrearGrupo.Name = "btnCrearGrupo";
+            this.btnCrearGrupo.Size = new System.Drawing.Size(84, 29);
+            this.btnCrearGrupo.TabIndex = 10;
+            this.btnCrearGrupo.Text = "Crear";
+            this.btnCrearGrupo.UseVisualStyleBackColor = false;
+            this.btnCrearGrupo.Click += new System.EventHandler(this.btnCrearGrupo_Click);
+            // 
+            // txtEdNuevoNombreGrupo
+            // 
+            this.txtEdNuevoNombreGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEdNuevoNombreGrupo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.txtEdNuevoNombreGrupo.Location = new System.Drawing.Point(153, 92);
+            this.txtEdNuevoNombreGrupo.Name = "txtEdNuevoNombreGrupo";
+            this.txtEdNuevoNombreGrupo.Size = new System.Drawing.Size(191, 20);
+            this.txtEdNuevoNombreGrupo.TabIndex = 9;
+            // 
+            // label10
+            // 
+            this.label10.Location = new System.Drawing.Point(6, 95);
+            this.label10.Margin = new System.Windows.Forms.Padding(3);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(97, 23);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "Crear grupo:";
+            // 
             // btnClasificarGrupos
             // 
             this.btnClasificarGrupos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
@@ -579,7 +614,6 @@ namespace gsNotasNETF
             // 
             // lblResultadoBuscar
             // 
-            this.lblResultadoBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblResultadoBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.lblResultadoBuscar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblResultadoBuscar.ForeColor = System.Drawing.Color.White;
@@ -592,12 +626,10 @@ namespace gsNotasNETF
             // 
             // lblBuscando
             // 
-            this.lblBuscando.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBuscando.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.lblBuscando.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBuscando.ForeColor = System.Drawing.Color.White;
-            this.lblBuscando.Location = new System.Drawing.Point(9, 226);
+            this.lblBuscando.Location = new System.Drawing.Point(6, 229);
             this.lblBuscando.Margin = new System.Windows.Forms.Padding(3);
             this.lblBuscando.Name = "lblBuscando";
             this.lblBuscando.Size = new System.Drawing.Size(474, 23);
@@ -606,13 +638,11 @@ namespace gsNotasNETF
             // 
             // lstResultadoBuscar
             // 
-            this.lstResultadoBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstResultadoBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.lstResultadoBuscar.FormattingEnabled = true;
             this.lstResultadoBuscar.Location = new System.Drawing.Point(490, 51);
             this.lstResultadoBuscar.Name = "lstResultadoBuscar";
-            this.lstResultadoBuscar.Size = new System.Drawing.Size(284, 121);
+            this.lstResultadoBuscar.Size = new System.Drawing.Size(284, 173);
             this.lstResultadoBuscar.Sorted = true;
             this.lstResultadoBuscar.TabIndex = 6;
             this.lstResultadoBuscar.DoubleClick += new System.EventHandler(this.lstResultadoBuscar_DoubleClick);
@@ -675,6 +705,7 @@ namespace gsNotasNETF
             // 
             this.panelOpciones.AutoScroll = true;
             this.panelOpciones.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelOpciones.Controls.Add(this.flowLayoutPanel1);
             this.panelOpciones.Controls.Add(this.OpcCboColorGrupo);
             this.panelOpciones.Controls.Add(this.label5);
             this.panelOpciones.Controls.Add(this.OpcChkIniciarConWindows);
@@ -700,6 +731,22 @@ namespace gsNotasNETF
             this.panelOpciones.Size = new System.Drawing.Size(782, 258);
             this.panelOpciones.TabIndex = 0;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.label11);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(470, 137);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(286, 64);
+            this.flowLayoutPanel1.TabIndex = 17;
+            // 
+            // label11
+            // 
+            this.label11.Location = new System.Drawing.Point(3, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(41, 13);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "label11";
+            // 
             // OpcCboColorGrupo
             // 
             this.OpcCboColorGrupo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -710,15 +757,16 @@ namespace gsNotasNETF
             "Colores 1",
             "Colores 2",
             "Colores 3"});
-            this.OpcCboColorGrupo.Location = new System.Drawing.Point(573, 114);
+            this.OpcCboColorGrupo.Location = new System.Drawing.Point(573, 110);
             this.OpcCboColorGrupo.Name = "OpcCboColorGrupo";
             this.OpcCboColorGrupo.Size = new System.Drawing.Size(121, 21);
             this.OpcCboColorGrupo.TabIndex = 7;
+            this.OpcCboColorGrupo.SelectedIndexChanged += new System.EventHandler(this.OpcCboColorGrupo_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.label5.Location = new System.Drawing.Point(470, 112);
+            this.label5.Location = new System.Drawing.Point(470, 108);
             this.label5.Margin = new System.Windows.Forms.Padding(3);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(97, 23);
@@ -729,7 +777,7 @@ namespace gsNotasNETF
             // OpcChkIniciarConWindows
             // 
             this.OpcChkIniciarConWindows.AutoSize = true;
-            this.OpcChkIniciarConWindows.Location = new System.Drawing.Point(6, 249);
+            this.OpcChkIniciarConWindows.Location = new System.Drawing.Point(6, 241);
             this.OpcChkIniciarConWindows.Name = "OpcChkIniciarConWindows";
             this.OpcChkIniciarConWindows.Size = new System.Drawing.Size(122, 17);
             this.OpcChkIniciarConWindows.TabIndex = 13;
@@ -741,12 +789,11 @@ namespace gsNotasNETF
             // 
             // OpcBtnGuardarEnDrive
             // 
-            this.OpcBtnGuardarEnDrive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OpcBtnGuardarEnDrive.AutoSize = true;
             this.OpcBtnGuardarEnDrive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnGuardarEnDrive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnGuardarEnDrive.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnGuardarEnDrive.Location = new System.Drawing.Point(385, 234);
+            this.OpcBtnGuardarEnDrive.Location = new System.Drawing.Point(436, 230);
             this.OpcBtnGuardarEnDrive.Name = "OpcBtnGuardarEnDrive";
             this.OpcBtnGuardarEnDrive.Size = new System.Drawing.Size(323, 40);
             this.OpcBtnGuardarEnDrive.TabIndex = 14;
@@ -756,10 +803,9 @@ namespace gsNotasNETF
             // 
             // OpcLinkSolicitarAutorización
             // 
-            this.OpcLinkSolicitarAutorización.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OpcLinkSolicitarAutorización.AutoSize = true;
             this.OpcLinkSolicitarAutorización.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.OpcLinkSolicitarAutorización.Location = new System.Drawing.Point(579, 211);
+            this.OpcLinkSolicitarAutorización.Location = new System.Drawing.Point(652, 211);
             this.OpcLinkSolicitarAutorización.Margin = new System.Windows.Forms.Padding(3);
             this.OpcLinkSolicitarAutorización.Name = "OpcLinkSolicitarAutorización";
             this.OpcLinkSolicitarAutorización.Size = new System.Drawing.Size(104, 13);
@@ -774,7 +820,7 @@ namespace gsNotasNETF
             // OpcChkMostrarHorizontal
             // 
             this.OpcChkMostrarHorizontal.AutoSize = true;
-            this.OpcChkMostrarHorizontal.Location = new System.Drawing.Point(6, 195);
+            this.OpcChkMostrarHorizontal.Location = new System.Drawing.Point(6, 191);
             this.OpcChkMostrarHorizontal.Name = "OpcChkMostrarHorizontal";
             this.OpcChkMostrarHorizontal.Size = new System.Drawing.Size(183, 17);
             this.OpcChkMostrarHorizontal.TabIndex = 10;
@@ -785,7 +831,7 @@ namespace gsNotasNETF
             // OpcChkOcultarPanelSuperior
             // 
             this.OpcChkOcultarPanelSuperior.AutoSize = true;
-            this.OpcChkOcultarPanelSuperior.Location = new System.Drawing.Point(6, 141);
+            this.OpcChkOcultarPanelSuperior.Location = new System.Drawing.Point(6, 137);
             this.OpcChkOcultarPanelSuperior.Name = "OpcChkOcultarPanelSuperior";
             this.OpcChkOcultarPanelSuperior.Size = new System.Drawing.Size(242, 17);
             this.OpcChkOcultarPanelSuperior.TabIndex = 8;
@@ -796,7 +842,7 @@ namespace gsNotasNETF
             // OpcChkMostrarMismoGrupo
             // 
             this.OpcChkMostrarMismoGrupo.AutoSize = true;
-            this.OpcChkMostrarMismoGrupo.Location = new System.Drawing.Point(6, 114);
+            this.OpcChkMostrarMismoGrupo.Location = new System.Drawing.Point(6, 110);
             this.OpcChkMostrarMismoGrupo.Name = "OpcChkMostrarMismoGrupo";
             this.OpcChkMostrarMismoGrupo.Size = new System.Drawing.Size(289, 17);
             this.OpcChkMostrarMismoGrupo.TabIndex = 5;
@@ -807,7 +853,7 @@ namespace gsNotasNETF
             // OpcChkIniciarMinimizada
             // 
             this.OpcChkIniciarMinimizada.AutoSize = true;
-            this.OpcChkIniciarMinimizada.Location = new System.Drawing.Point(6, 87);
+            this.OpcChkIniciarMinimizada.Location = new System.Drawing.Point(6, 83);
             this.OpcChkIniciarMinimizada.Name = "OpcChkIniciarMinimizada";
             this.OpcChkIniciarMinimizada.Size = new System.Drawing.Size(217, 17);
             this.OpcChkIniciarMinimizada.TabIndex = 4;
@@ -817,12 +863,11 @@ namespace gsNotasNETF
             // 
             // OpcBtnDeshacer
             // 
-            this.OpcBtnDeshacer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OpcBtnDeshacer.AutoSize = true;
             this.OpcBtnDeshacer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnDeshacer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnDeshacer.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnDeshacer.Location = new System.Drawing.Point(504, 6);
+            this.OpcBtnDeshacer.Location = new System.Drawing.Point(555, 6);
             this.OpcBtnDeshacer.Name = "OpcBtnDeshacer";
             this.OpcBtnDeshacer.Size = new System.Drawing.Size(103, 40);
             this.OpcBtnDeshacer.TabIndex = 15;
@@ -833,12 +878,11 @@ namespace gsNotasNETF
             // 
             // OpcBtnGuardar
             // 
-            this.OpcBtnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OpcBtnGuardar.AutoSize = true;
             this.OpcBtnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.OpcBtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OpcBtnGuardar.ForeColor = System.Drawing.Color.White;
-            this.OpcBtnGuardar.Location = new System.Drawing.Point(613, 6);
+            this.OpcBtnGuardar.Location = new System.Drawing.Point(664, 6);
             this.OpcBtnGuardar.Name = "OpcBtnGuardar";
             this.OpcBtnGuardar.Size = new System.Drawing.Size(95, 40);
             this.OpcBtnGuardar.TabIndex = 16;
@@ -849,7 +893,7 @@ namespace gsNotasNETF
             // OpcChkMinimizarAlCerrar
             // 
             this.OpcChkMinimizarAlCerrar.AutoSize = true;
-            this.OpcChkMinimizarAlCerrar.Location = new System.Drawing.Point(6, 222);
+            this.OpcChkMinimizarAlCerrar.Location = new System.Drawing.Point(6, 218);
             this.OpcChkMinimizarAlCerrar.Name = "OpcChkMinimizarAlCerrar";
             this.OpcChkMinimizarAlCerrar.Size = new System.Drawing.Size(323, 17);
             this.OpcChkMinimizarAlCerrar.TabIndex = 11;
@@ -860,7 +904,7 @@ namespace gsNotasNETF
             // OpcChkAjusteLineas
             // 
             this.OpcChkAjusteLineas.AutoSize = true;
-            this.OpcChkAjusteLineas.Location = new System.Drawing.Point(6, 168);
+            this.OpcChkAjusteLineas.Location = new System.Drawing.Point(6, 164);
             this.OpcChkAjusteLineas.Name = "OpcChkAjusteLineas";
             this.OpcChkAjusteLineas.Size = new System.Drawing.Size(163, 17);
             this.OpcChkAjusteLineas.TabIndex = 9;
@@ -886,7 +930,7 @@ namespace gsNotasNETF
             // OpcChkRecordarTam
             // 
             this.OpcChkRecordarTam.AutoSize = true;
-            this.OpcChkRecordarTam.Location = new System.Drawing.Point(6, 60);
+            this.OpcChkRecordarTam.Location = new System.Drawing.Point(6, 56);
             this.OpcChkRecordarTam.Name = "OpcChkRecordarTam";
             this.OpcChkRecordarTam.Size = new System.Drawing.Size(325, 17);
             this.OpcChkRecordarTam.TabIndex = 2;
@@ -899,7 +943,7 @@ namespace gsNotasNETF
             this.OpChkNoGuardarEnBlanco.AutoSize = true;
             this.OpChkNoGuardarEnBlanco.Checked = true;
             this.OpChkNoGuardarEnBlanco.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.OpChkNoGuardarEnBlanco.Location = new System.Drawing.Point(6, 33);
+            this.OpChkNoGuardarEnBlanco.Location = new System.Drawing.Point(6, 29);
             this.OpChkNoGuardarEnBlanco.Name = "OpChkNoGuardarEnBlanco";
             this.OpChkNoGuardarEnBlanco.Size = new System.Drawing.Size(158, 17);
             this.OpChkNoGuardarEnBlanco.TabIndex = 1;
@@ -1064,38 +1108,6 @@ namespace gsNotasNETF
             this.notaUC1.NotaCambiada += new gsNotasNETF.TextoModificado(this.notaUC1_NotaCambiada);
             this.notaUC1.GrupoCambiado += new gsNotasNETF.TextoModificado(this.notaUC1_GrupoCambiado);
             // 
-            // btnCrearGrupo
-            // 
-            this.btnCrearGrupo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.btnCrearGrupo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCrearGrupo.ForeColor = System.Drawing.Color.White;
-            this.btnCrearGrupo.Location = new System.Drawing.Point(350, 87);
-            this.btnCrearGrupo.Name = "btnCrearGrupo";
-            this.btnCrearGrupo.Size = new System.Drawing.Size(84, 29);
-            this.btnCrearGrupo.TabIndex = 10;
-            this.btnCrearGrupo.Text = "Crear";
-            this.btnCrearGrupo.UseVisualStyleBackColor = false;
-            this.btnCrearGrupo.Click += new System.EventHandler(this.btnCrearGrupo_Click);
-            // 
-            // txtEdNuevoNombreGrupo
-            // 
-            this.txtEdNuevoNombreGrupo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEdNuevoNombreGrupo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.txtEdNuevoNombreGrupo.Location = new System.Drawing.Point(153, 92);
-            this.txtEdNuevoNombreGrupo.Name = "txtEdNuevoNombreGrupo";
-            this.txtEdNuevoNombreGrupo.Size = new System.Drawing.Size(191, 20);
-            this.txtEdNuevoNombreGrupo.TabIndex = 9;
-            // 
-            // label10
-            // 
-            this.label10.Location = new System.Drawing.Point(6, 95);
-            this.label10.Margin = new System.Windows.Forms.Padding(3);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(97, 23);
-            this.label10.TabIndex = 8;
-            this.label10.Text = "Crear grupo:";
-            // 
             // FormNotasUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1129,6 +1141,7 @@ namespace gsNotasNETF
             this.tabOpciones.ResumeLayout(false);
             this.panelOpciones.ResumeLayout(false);
             this.panelOpciones.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.tabAcercaDe.ResumeLayout(false);
             this.panelAcercaDe.ResumeLayout(false);
             this.panelAcercaDe.PerformLayout();
@@ -1215,6 +1228,8 @@ namespace gsNotasNETF
         private System.Windows.Forms.Button btnCrearGrupo;
         private System.Windows.Forms.TextBox txtEdNuevoNombreGrupo;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Label label11;
     }
 }
 

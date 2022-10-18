@@ -98,6 +98,7 @@ v1.0.0.150  18-oct-22   Mover las notas mostradas de forma independiente.
 v1.0.0.151              Nuevos directorios para notas y backup gestionado desde NotaUC.
 v1.0.0.152              Opción para usar los colores indicados o aleatorio y nuevos colores en tema oscuro.
 v1.0.0.153              Crear nuevos grupos desde Editar grupos y notas.
+v1.0.0.154              En opciones, mostrar los colores de las etiquetas según el color seleccionado.
 */
 using System;
 using System.Collections.Generic;
@@ -110,7 +111,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.IO;
-
+using System.Runtime.Remoting.Messaging;
 
 namespace gsNotasNETF
 {
@@ -204,20 +205,51 @@ namespace gsNotasNETF
                 // Un valor aleatorio entre 1 y 4 (inclusive)
                 elColorGrupo = rnd.Next(1, 5);
             }
-            var n = elColorGrupo;
-            if (n == 2)
-                ColoresGrupo = new List<Color>() {Color.LightSkyBlue, Color.Gold, Color.PaleGreen, Color.LightPink, Color.Yellow,
-                                                  Color.FromArgb(0,99,177), Color.LightGoldenrodYellow, Color.AliceBlue, Color.LightGray, Color.Pink };
-            else if (n == 3)
-                ColoresGrupo = new List<Color>() {Color.AliceBlue, Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow,
-                                                  Color.LightGray, Color.Gold, Color.FromArgb(0,99,177), Color.PaleGreen, Color.Pink, Color.Yellow };
-            else if (n == 4)
-                ColoresGrupo = new List<Color>() {Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow, Color.Gold, Color.DeepPink,
-                                                  Color.PaleGreen, Color.Yellow, Color.LightGray,Color.AliceBlue,Color.FromArgb(0,99,177) };
+            //var n = elColorGrupo;
+            //if (n == 2)
+            //    ColoresGrupo = new List<Color>() {Color.LightSkyBlue, Color.Gold, Color.PaleGreen, Color.LightPink, Color.Yellow,
+            //                                      Color.FromArgb(0,99,177), Color.LightGoldenrodYellow, Color.AliceBlue, Color.LightGray, Color.Pink };
+            //else if (n == 3)
+            //    ColoresGrupo = new List<Color>() {Color.AliceBlue, Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow,
+            //                                      Color.LightGray, Color.Gold, Color.FromArgb(0,99,177), Color.PaleGreen, Color.Pink, Color.Yellow };
+            //else if (n == 4)
+            //    ColoresGrupo = new List<Color>() {Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow, Color.Gold, Color.DeepPink,
+            //                                      Color.PaleGreen, Color.Yellow, Color.LightGray,Color.AliceBlue,Color.FromArgb(0,99,177) };
+            //else
+            //    // Predeterminado (el que estaba asignado al definir ColoresGrupo.
+            //    ColoresGrupo = new List<Color>() {Color.FromArgb(0,99,177), Color.Gold, Color.PaleGreen, Color.Pink, Color.Yellow,
+            //                                      Color.LightGray, Color.AliceBlue, Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow };
+            ColoresGrupo = ElColorGrupo(elColorGrupo);
+        }
+
+        /// <summary>
+        /// Devuelve el color del grupo con un número mínimo de colores.
+        /// </summary>
+        /// <param name="elColorGrupo"></param>
+        /// <param name="cuantosColores"></param>
+        private List<Color> ElColorGrupo(int elColorGrupo, int cuantosColores = 15)
+        {
+            List<Color> colores;
+
+            if (elColorGrupo == 2)
+                colores = new List<Color>() {Color.LightSkyBlue, Color.Gold, Color.PaleGreen, Color.MistyRose, Color.LemonChiffon,
+                                             Color.FromArgb(0,99,177), Color.LightGoldenrodYellow, Color.AliceBlue, Color.LightGray, Color.LightPink };
+            else if (elColorGrupo == 3)
+                // Colores pálidos
+                colores = new List<Color>() {Color.AliceBlue, Color.LightGoldenrodYellow, Color.PaleGreen, Color.PaleTurquoise, Color.Moccasin,
+                                             Color.SeaShell, Color.Beige, Color.LightCyan, Color.LemonChiffon, Color.MistyRose };
+            else if (elColorGrupo == 4)
+                colores = new List<Color>() {Color.MistyRose, Color.LightSkyBlue, Color.LightGoldenrodYellow, Color.Gold, Color.Pink,
+                                             Color.PaleGreen, Color.LemonChiffon, Color.LightGray, Color.AliceBlue, Color.FromArgb(0,99,177) };
             else
                 // Predeterminado (el que estaba asignado al definir ColoresGrupo.
-                ColoresGrupo = new List<Color>() {Color.FromArgb(0,99,177), Color.Gold, Color.PaleGreen, Color.Pink, Color.Yellow,
-                                                  Color.LightGray, Color.AliceBlue, Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow };
+                colores = new List<Color>() {Color.FromArgb(0,99,177), Color.Gold, Color.PaleGreen, Color.Pink, Color.LemonChiffon,
+                                             Color.LightGray, Color.AliceBlue, Color.LightPink, Color.LightSkyBlue, Color.LightGoldenrodYellow };
+            for (int i = colores.Count - 1; i < cuantosColores; i++)
+            {
+                AñadirNuevoColor(colores);
+            }
+            return colores;
         }
 
         private void FormNotasUC_Load(object sender, EventArgs e)
@@ -942,6 +974,7 @@ namespace gsNotasNETF
 
             if (tabsConfig.SelectedTab.Name == "tabOpciones")
             {
+                OpcCboColorGrupo_SelectedIndexChanged(null, null);
                 OpcDeshacerCambios();
                 return;
             }
@@ -1458,6 +1491,61 @@ No se guardan los grupos y notas en blanco.
             
             notaUC1.AsignarGrupos(grupo: nuevoGrupo);
             tabsConfig_SelectedIndexChanged(null, null);
+        }
+
+        /// <summary>
+        /// Añade un nuevo color aleatorio a la colección.
+        /// </summary>
+        /// <param name="colores">Colección con los colores que hay para no repetir.</param>
+        private void AñadirNuevoColor(List<Color> colores)
+        {
+            //var rnd = new Random();
+            //var col = colores[0];
+
+            //var n = rnd.Next(1, 4);
+            //byte r = col.R, g = col.G, b = col.B;
+            //if (n == 1)
+            //    r = 0;
+            //else if (n == 2)
+            //    g = 0;
+            //else if (n == 3)
+            //    b = 0;
+            Color col2;
+            do
+            {
+                col2 = GetRandomColor();
+            } while (colores.Contains(col2));
+
+            colores.Add(col2);
+
+            //return col2;
+        }
+
+        // Mostrar los colores de las etiquetas según el grupo seleccionado. (18/oct/22 21.30)
+        private void OpcCboColorGrupo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (iniciando) return;
+
+            flowLayoutPanel1.Controls.Clear();
+
+            if (OpcCboColorGrupo.SelectedIndex < 0)
+                OpcCboColorGrupo.SelectedIndex = 0;
+
+            // Por si hay más grupos que los colores predeterminados.
+            var colores = ElColorGrupo(OpcCboColorGrupo.SelectedIndex, notaUC1.Notas.Keys.Count);
+
+            // Solo mostrar los colores con los grupos que hay actualmente
+            //for (int i = 0; i < notaUC1.Notas.Keys.Count; i++)
+            for (int i = 0; i < colores.Count; i++)
+            {
+                var col = colores[i];
+                var lbl = new Label();
+                lbl.Width = 30;
+                lbl.Text = i.ToString();
+                lbl.BackColor = col;
+                SetBackColor(lbl, col);
+                flowLayoutPanel1.Controls.Add(lbl);
+            }
         }
     }
 }
