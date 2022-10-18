@@ -1,22 +1,29 @@
 # gsNotasNETF
  Gestionar notas y grupos de notas con editor integrado.
  
- >**NOTA:**<br>
- >El **NETF** del nombre es para indicar que está compilado con .NET Framework y no con .NET (Core)
+>**NOTA:**<br>
+>El **NETF** del nombre es para indicar que está compilado con .NET Framework y no con .NET (Core)
  
- Si quieres ir a la página en mi blog: [gsNotasNETF](http://www.elguillemola.com/utilidades-net/utilidades-para-net-framework-4-8/gsnotasnetf/)
- <br>
- <br>
+Si quieres ir a la página en mi blog: [gsNotasNETF](http://www.elguillemola.com/utilidades-net/utilidades-para-net-framework-4-8/gsnotasnetf/)
+<br>
+<br>
  
- ## Actualizaciones
- Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
- <br>
- **Nota 15-oct-22:**
- <br>
- He cambiado el .NET Framework a la versión 4.8.1 y está firmado con nombre seguro usando elGuille_compartido.snk (que seguramente no esté en el código fuente porque tengo filtrado que publique todos los .snk)<br>
- <br>
- **Los cambios realizados después de la versión 1.0.0.139 del 19-dic-2020:**
- <br>
+## Actualizaciones
+Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
+<br>
+**Nota 18-oct-22:**
+<br>
+Mover las notas mostradas de forma independiente.<br>
+Pongo el título con el de la nota y en el status el nombre del grupo (antes mostraba el valor predeterminado).<br>
+Pongo scroll en el texto de AcercaDe.<br>
+<br>
+<br>
+**Nota 15-oct-22:**
+<br>
+He cambiado el .NET Framework a la versión 4.8.1 y está firmado con nombre seguro usando elGuille_compartido.snk (que seguramente no esté en el código fuente porque tengo filtrado que publique todos los .snk)<br>
+<br>
+**Los cambios realizados después de la versión 1.0.0.139 del 19-dic-2020:**
+<br>
  ```
 v1.0.0.140  24-dic-20  Cambio el icono de la aplicación.
 v1.0.0.141             Y el del formulario y por tanto el del icono de notificación.
