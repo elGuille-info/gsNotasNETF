@@ -13,7 +13,7 @@ Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
 <br>
 **Nota 18-oct-22 (v1.0.0.151):**
 <br>
-El directorio de "documentos" ahora es el indicado en %LOCALAPPDATA% (C:\Users\[usuario]\AppData\Local)<br>
+El directorio de "documentos" ahora es el indicado en %LOCALAPPDATA% (C:\Users\\[usuario]\AppData\Local)<br>
 Ahí se creará el directorio **gsNotas** con el fichero de las notas y dentro de esa carpeta estará el birectorio **Backup** con las copias.<br>
 En las versiones anteriores a la v1.0.0.151 se usaba el directorio de Documentos para guardar el fichero de notas y la carpeta **gsNotasNETF** para guardar las copias de seguridad.<br>
 >El fichero de notas anterior y el directorio con las copias de seguridad anteriores se mantienen.<br>
