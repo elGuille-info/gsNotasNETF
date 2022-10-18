@@ -12,6 +12,11 @@ Si quieres ir a la página en mi blog: [gsNotasNETF](http://www.elguillemola.com
 Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
 <br>
 
+**Nota 18-oct-22 (v1.0.0.152):**
+<br>
+Ahora se pueden indicar los colores a usar en los grupos (y notas) además de nuevos colores para el tema oscuro y opción para usar los predeterminados, por si los cambias en diseño.
+<br>
+
 **Nota 18-oct-22 (v1.0.0.151):**
 <br>
 El directorio de "documentos" ahora es el indicado en %LOCALAPPDATA% (C:\Users\\[usuario]\AppData\Local)<br>
