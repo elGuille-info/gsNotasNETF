@@ -7,7 +7,9 @@
 **/obj
 **/.vs
 *.lnk
-*.snk
+# solo filtrar el mío particular
+# *.snk
+elGuille.snk
 *.zip
 
 # User-specific files
