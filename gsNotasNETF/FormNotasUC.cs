@@ -68,7 +68,7 @@ v1.0.0.136              Quito las opciones de guardar automáticamente en Drive 
                         Ya no se borrarán las notas desde el programa. Me ha dado error de muchos accesos.
                         Pongo un botón para guardar las notas en Drive (pero ya no es automático).
 v1.0.0.137              Se crearán copias de seguridad del fichero de notas (al iniciar el programa)
-                        No se borrarán las copias de seguiridad, de eso te tendrás que encargar tú,
+                        No se borrarán las copias de seguridad, de eso te tendrás que encargar tú,
                         ya que se hace una copia cada vez que se inicia la aplicación.
                         Si da error al crear el directorio, se cancela hacer la copia.
 v1.0.0.138  19-dic-20   A ver si consigo que el link se vea bien al invertir el tema claro

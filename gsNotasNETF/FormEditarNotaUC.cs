@@ -1,8 +1,8 @@
 ﻿//-----------------------------------------------------------------------------
-// <Nombre>                                                         (09/Dic/20)
-// <descripción>
+// FormEditarNotaUC                                                 (09/Dic/20)
+// Editar una nota en ventana independiente
 //
-// (c) Guillermo Som (elGuille), 2020, 2021
+// (c) Guillermo Som (elGuille), 2020-2022
 //-----------------------------------------------------------------------------
 
 using System;
@@ -48,9 +48,7 @@ namespace gsNotasNETF
 
         private void NotaUC1_NotaReemplazada(string grupo, string texto, int index)
         {
-            //OnNotaReemplazada(grupo, texto, index);
             OnNotaReemplazada(ElGrupo, notaUC1.EditorText, IndiceNota);
-            //this.Close();
         }
 
         public event ReemplazarNota NotaReemplazada;
@@ -67,7 +65,7 @@ namespace gsNotasNETF
 
         private void FormEditarNotaUC_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //OnNotaReemplazada(ElGrupo, notaUC1.EditorText, IndiceNota);
+            
         }
 
         //
