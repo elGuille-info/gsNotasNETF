@@ -16,15 +16,14 @@ Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
 Mover las notas mostradas de forma independiente.<br>
 Pongo el título con el de la nota y en el status el nombre del grupo (antes mostraba el valor predeterminado).<br>
 Pongo scroll en el texto de AcercaDe.<br>
-<br>
-<br>
-**Nota 15-oct-22:**
+
+**Nota 15-oct-22 (v1.0.0.149):**
 <br>
 He cambiado el .NET Framework a la versión 4.8.1 y está firmado con nombre seguro usando elGuille_compartido.snk (que seguramente no esté en el código fuente porque tengo filtrado que publique todos los .snk)<br>
 <br>
 **Los cambios realizados después de la versión 1.0.0.139 del 19-dic-2020:**
 <br>
- ```
+```
 v1.0.0.140  24-dic-20  Cambio el icono de la aplicación.
 v1.0.0.141             Y el del formulario y por tanto el del icono de notificación.
 v1.0.0.142  26-dic-20  Se puede iniciar con Windows (se debe ejecutar como administrador).
@@ -42,21 +41,22 @@ v1.0.0.148  21-abr-21  Se "perdieron" los botones de Guardar y Deshacer en las O
                        Pongo el tamaño mínimo en 800x400, el tamaño en diseño es 823; 659
 v1.0.0.149  15-oct-22  Cambio a .NET Framework 4.8.1
 
- ```
- <br>
- <br>
- Ahora estoy haciendo [**releases**](https://github.com/elGuille-info/gsNotasNETF/releases) con cada nueva versión, incluyendo tanto el ejecutable como el código fuente (aparte del código fuente aquí publicado).
- <br>
- <br>
+```
+<br>
+<br>
+
+Ahora estoy haciendo [**releases**](https://github.com/elGuille-info/gsNotasNETF/releases) con cada nueva versión, incluyendo tanto el ejecutable como el código fuente (aparte del código fuente aquí publicado).
+
+<br>
+<br>
   
-  ## Nota sobre la versión de C# usada y cómo configurar los proyectos de .NET Framework para que use la última
+## Nota sobre la versión de C# usada y cómo configurar los proyectos de .NET Framework para que use la última
  
- Código escrito con C# 9.0 y Visual Studio 2019 con .NET Framework 4.8.1
+Código escrito con C# 9.0 y Visual Studio 2019 con .NET Framework 4.8.1
  
- Para usar las características de C# 9.0 en un proyecto de .NET Framework 4.8 (por defecto se usa C# 7.3)
- hay que indicar esto en el fichero del proyecto:<br>
+Para usar las características de C# 9.0 en un proyecto de .NET Framework 4.8 (por defecto se usa C# 7.3) hay que indicar esto en el fichero del proyecto:<br>
  
- ```html
+```html
 <PropertyGroup>
     <LangVersion>latest</LangVersion>
 </PropertyGroup>
