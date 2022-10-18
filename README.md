@@ -11,7 +11,7 @@ Si quieres ir a la página en mi blog: [gsNotasNETF](http://www.elguillemola.com
 ## Actualizaciones
 Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
 <br>
-**Nota 18-oct-22:**
+**Nota 18-oct-22 (v1.0.0.150):**
 <br>
 Mover las notas mostradas de forma independiente.<br>
 Pongo el título con el de la nota y en el status el nombre del grupo (antes mostraba el valor predeterminado).<br>
