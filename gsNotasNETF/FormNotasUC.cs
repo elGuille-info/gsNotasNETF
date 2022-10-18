@@ -94,7 +94,7 @@ v1.0.0.149  15-oct-22   Cambio a .NET Framework 4.8.1
 v1.0.0.150  18-oct-22   Mover las notas mostradas de forma independiente.
                         Pongo el título con el de la nota y en el status el nombre del grupo (antes mostraba el valor predeterminado).
                         Pongo scroll en el texto de AcercaDe.
-                        Cambio tamaño fuente de los tabs. Diseño de editar grupoos y notas.
+                        Cambio tamaño fuente de los tabs. Diseño de editar grupos y notas.
 */
 using System;
 using System.Collections.Generic;
