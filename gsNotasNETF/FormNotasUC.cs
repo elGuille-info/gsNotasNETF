@@ -99,6 +99,7 @@ v1.0.0.151              Nuevos directorios para notas y backup gestionado desde 
 v1.0.0.152              Opción para usar los colores indicados o aleatorio y nuevos colores en tema oscuro.
 v1.0.0.153              Crear nuevos grupos desde Editar grupos y notas.
 v1.0.0.154              En opciones, mostrar los colores de las etiquetas según el color seleccionado.
+v1.0.0.155              Asignar los anchor manualmente (quitados en diseño) porque al FormDesigner se le va la olla.
 */
 using System;
 using System.Collections.Generic;
@@ -387,6 +388,8 @@ namespace gsNotasNETF
                     TabsConfigHeightNormal = tabsConfig.Height;
                 }
                 TamApp = (MySetting.Left, MySetting.Top, MySetting.Width, MySetting.Height);
+
+                AsignarAnchors();
             }
             else if (this.WindowState == FormWindowState.Minimized)
             {
@@ -1546,6 +1549,20 @@ No se guardan los grupos y notas en blanco.
                 SetBackColor(lbl, col);
                 flowLayoutPanel1.Controls.Add(lbl);
             }
+        }
+
+        private void AsignarAnchors()
+        {
+            lblResultadoBuscar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lstResultadoBuscar.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom;
+            lblBuscando.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+
+            OpcBtnGuardar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            OpcBtnDeshacer.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            OpcLinkSolicitarAutorización.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            OpcBtnGuardarEnDrive.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Right |AnchorStyles.Left;
+            OpcBtnRestablecerTam.Anchor = AnchorStyles.Top | AnchorStyles.Right;
         }
     }
 }
