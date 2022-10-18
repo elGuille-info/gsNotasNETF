@@ -91,8 +91,10 @@ v1.0.0.147  14-abr-21   Cambio el icono de FormEditarNotaUC.
 v1.0.0.148  21-abr-21   Se "perdieron" los botones de Guardar y Deshacer en las Opciones.
                         Pongo el tamaño mínimo en 800x400, el tamaño en diseño es 823; 659
 v1.0.0.149  15-oct-22   Cambio a .NET Framework 4.8.1
-v1.0.0.150  18-oct-22   Mover las notas independientes y otras mejoras.
+v1.0.0.150  18-oct-22   Mover las notas mostradas de forma independiente.
+                        Pongo el título con el de la nota y en el status el nombre del grupo (antes mostraba el valor predeterminado).
                         Pongo scroll en el texto de AcercaDe.
+                        Cambio tamaño fuente de los tabs. Diseño de editar grupoos y notas.
 */
 using System;
 using System.Collections.Generic;
