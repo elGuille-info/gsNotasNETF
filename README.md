@@ -14,7 +14,11 @@ Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
 
 **Nota 19-oct-22:**
 <br>
-v1.0.0.161: Actualizo el enlace de OpcLinkSolicitarAutorización.<br>
+v1.0.0.163: Menú contextual para editar la nota en ventana separada.<br>
+v1.0.0.162: Menú Siempre encima (TopMost), el control de usuario no tiene la propiedad TopMost, asignarlo al ParentForm.<br>
+v1.0.0.161:<br>
+&nbsp;... Actualizo el enlace de OpcLinkSolicitarAutorización.<br>
+&nbsp;... ToolTip en importar notas.<br>
 v1.0.0.160: Usar Event Properties para manejar los eventos.<br>
 v1.0.0.159:<br> 
 &nbsp;... Nuevo evento en NotaUC: TemaCambiado (equivale a CambioDeTema, marcado como obsoleto).<br>
