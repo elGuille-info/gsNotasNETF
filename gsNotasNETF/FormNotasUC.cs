@@ -104,6 +104,9 @@ v1.0.0.155              Asignar los anchor manualmente (quitados en diseño) por
 v1.0.0.156  19-oct-22   Quito código no usado. Asignar el tema en Settings.
 v1.0.0.157              Importar notas (deben estar en el formato NotasUC).
 v1.0.0.158              No permitir más de una instancia en ejecución.
+v1.0.0.159              Nuevo evento en NotaUC: TemaCambiado (equivale a CambioDeTema, marcado como obsoleto).
+                        Si se cambia de tema mientras está en opciones, se pierden los colores de la presonalización de los grupos.
+v1.0.0.160              Usar Event Properties para manejar los eventos.
 */
 using System;
 using System.Collections.Generic;
@@ -804,9 +807,14 @@ namespace gsNotasNETF
             notaUC1.Seleccionar(index, true);
         }
 
-        private void notaUC1_CambioDeTema(Temas tema)
+        private void notaUC1_TemaCambiado(Temas tema)
         {
             AsignarColores();
+            // Si está mostrada la pestaña de opciones, colorear los grupos. (19/oct/22 11.29)
+            if (tabsConfig.SelectedTab.Name == "tabOpciones")
+            {
+                OpcCboColorGrupo_SelectedIndexChanged(null, null);
+            }
         }
 
         /// <summary>

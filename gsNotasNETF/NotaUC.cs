@@ -8,6 +8,8 @@
 //              En lugar del directorio de documentos se usa el indicado en %LOCALAPPDATA%.
 //              Usar colores predeterminados para los temas.
 // 19-oct-22:   Importar notas (deben estar en el formato NotasUC).
+//              Añado el evento TemaCambiado (como CambioDeTema).
+//              Usar Event Properties para manejar los eventos.
 //
 // (c) Guillermo Som (elGuille), 2020-2022
 //-----------------------------------------------------------------------------
@@ -244,54 +246,151 @@ namespace gsNotasNETF
         // Los eventos y métodos On asociados.
         //
 
+        // Usar Event Properties para manejar los eventos. (19/oct/22)
+
+        // Define the delegate collection.
+        protected EventHandlerList listEventDelegates = new EventHandlerList();
+
+        // Define a unique key for each event.
+        static readonly object BuscarTextoEventKey = new object();
+        static readonly object NotasGuardadasEventKey = new object();
+        static readonly object NotasLeidasEventKey = new object();
+        static readonly object CambioDeTemaEventKey = new object();
+        static readonly object TemaCambiadoEventKey = new object();
+        static readonly object MenuCerrarEventKey = new object();
+        static readonly object NotaReemplazadaEventKey = new object();
+        static readonly object ErrorEnNotasUCEventKey = new object();
+        static readonly object DatosModificadosEventKey = new object();
+        static readonly object NotaCambiadaEventKey = new object();
+        static readonly object GrupoCambiadoEventKey = new object();
+
         [Browsable(true)]
         [Description("Este evento se produce cuando se pulsa en buscar.")]
         [Category("NotasUC")]
-        public event MensajeDelegate BuscarTexto;
+        public event MensajeDelegate BuscarTexto
+        {
+            // Add the input delegate to the collection.
+            add
+            {
+                listEventDelegates.AddHandler(BuscarTextoEventKey, value);
+            }
+            // Remove the input delegate from the collection.
+            remove
+            {
+                listEventDelegates.RemoveHandler(BuscarTextoEventKey, value);
+            }
+        }
 
         protected virtual void OnBuscarTexto(string mensaje)
         {
-            BuscarTexto?.Invoke(mensaje);
+            //BuscarTexto?.Invoke(mensaje);
+            ((MensajeDelegate)listEventDelegates[BuscarTextoEventKey])?.Invoke(mensaje);
         }
 
         [Browsable(true)]
         [Description("Este evento se produce cuando se guardan las notas.")]
         [Category("NotasUC")]
-        public event MensajeDelegate NotasGuardadas;
+        public event MensajeDelegate NotasGuardadas
+        {
+            add
+            {
+                listEventDelegates.AddHandler(NotasGuardadasEventKey, value);
+            }
+            remove
+            {
+                listEventDelegates.RemoveHandler(NotasGuardadasEventKey, value);
+            }
+        }
 
         protected virtual void OnNotasGuardadas(string mensaje)
         {
-            NotasGuardadas?.Invoke(mensaje);
+            //NotasGuardadas?.Invoke(mensaje);
+            ((MensajeDelegate)listEventDelegates[NotasGuardadasEventKey])?.Invoke(mensaje);
         }
 
         [Browsable(true)]
         [Description("Este evento se produce cuando se leen las notas.")]
         [Category("NotasUC")]
-        public event MensajeDelegate NotasLeidas;
+        public event MensajeDelegate NotasLeidas
+        {
+            add
+            {
+                listEventDelegates.AddHandler(NotasLeidasEventKey, value);
+            }
+            remove
+            {
+                listEventDelegates.RemoveHandler(NotasLeidasEventKey, value);
+            }
+        }
 
         protected virtual void OnNotasLeidas(string mensaje)
         {
-            NotasLeidas?.Invoke(mensaje);
+            //NotasLeidas?.Invoke(mensaje);
+            ((MensajeDelegate)listEventDelegates[NotasLeidasEventKey])?.Invoke(mensaje);
         }
+
+        // Lo marco como obsoleto. (19/oct/22 11.43)
 
         [Browsable(true)]
         [Description("Este evento se produce cuando se cambia el tema.")]
         [Category("NotasUC")]
-        public event TemaCambiado CambioDeTema;
+        [Obsolete("Usar el evento TemaCambiado.")]
+        public event TemaCambiado CambioDeTema
+        {
+            add
+            {
+                listEventDelegates.AddHandler(CambioDeTemaEventKey, value);
+            }
+            remove
+            {
+                listEventDelegates.RemoveHandler(CambioDeTemaEventKey, value);
+            }
+        }
+
+        // Otro nombre para el evento de Cambio de tema. (19/oct/22 11.22)
+        [Browsable(true)]
+        [Description("Este evento se produce cuando se cambia el tema.")]
+        [Category("NotasUC")]
+        public event TemaCambiado TemaCambiado
+        {
+            add
+            {
+                listEventDelegates.AddHandler(TemaCambiadoEventKey, value);
+            }
+            remove
+            {
+                listEventDelegates.RemoveHandler(TemaCambiadoEventKey, value);
+            }
+        }
 
         protected virtual void OnCambioDeTema(Temas tema)
         {
-            CambioDeTema?.Invoke(tema);
+            //CambioDeTema?.Invoke(tema);
+            ((TemaCambiado)listEventDelegates[CambioDeTemaEventKey])?.Invoke(tema);
+
+            //TemaCambiado?.Invoke(tema);
+            ((TemaCambiado)listEventDelegates[TemaCambiadoEventKey])?.Invoke(tema);
         }
 
         [Browsable(true)]
         [Description("Este evento se produce cuando se ha elegido el menú de cerrar.")]
         [Category("NotasUC")]
-        public event MensajeDelegate MenuCerrar;
+        public event MensajeDelegate MenuCerrar
+        {
+            add
+            {
+                listEventDelegates.AddHandler(MenuCerrarEventKey, value);
+            }
+            remove
+            {
+                listEventDelegates.RemoveHandler(MenuCerrarEventKey, value);
+            }
+        }
 
         protected virtual void OnMenuCerrar(string mensaje)
         {
-            MenuCerrar?.Invoke(mensaje);
+            //MenuCerrar?.Invoke(mensaje);
+            ((MensajeDelegate)listEventDelegates[MenuCerrarEventKey])?.Invoke(mensaje);
         }
 
         /// <summary>
@@ -300,11 +399,22 @@ namespace gsNotasNETF
         [Browsable(true)]
         [Description("Este evento se usará para avisar de que se ha reemplazado una nota.")]
         [Category("NotasUC")]
-        public event ReemplazarNota NotaReemplazada;
+        public event ReemplazarNota NotaReemplazada
+        {
+            add
+            {
+                listEventDelegates.AddHandler(NotaReemplazadaEventKey, value);
+            }
+            remove
+            {
+                listEventDelegates.RemoveHandler(NotaReemplazadaEventKey, value);
+            }
+        }
 
         protected virtual void OnNotaReemplazada(string grupo, string texto, int index)
         {
-            NotaReemplazada?.Invoke(grupo, texto, index);
+            //NotaReemplazada?.Invoke(grupo, texto, index);
+            ((ReemplazarNota)listEventDelegates[NotaReemplazadaEventKey])?.Invoke(grupo, texto, index);
         }
 
         /// <summary>
@@ -314,11 +424,22 @@ namespace gsNotasNETF
         [Browsable(true)]
         [Description("Este evento se lanzará cuando se produzca un error o un aviso para alertar de que algo no va del todo bien.")]
         [Category("NotasUC")]
-        public event MensajeDelegate ErrorEnNotasUC;
+        public event MensajeDelegate ErrorEnNotasUC
+        {
+            add
+            {
+                listEventDelegates.AddHandler(ErrorEnNotasUCEventKey, value);
+            }
+            remove
+            {
+                listEventDelegates.RemoveHandler(ErrorEnNotasUCEventKey, value);
+            }
+        }
 
         protected virtual void OnDatosErrorEnNotasUC(string mensaje)
         {
-            ErrorEnNotasUC?.Invoke(mensaje);
+            //ErrorEnNotasUC?.Invoke(mensaje);
+            ((MensajeDelegate)listEventDelegates[ErrorEnNotasUCEventKey])?.Invoke(mensaje);
         }
 
         /// <summary>
@@ -327,11 +448,22 @@ namespace gsNotasNETF
         [Browsable(true)]
         [Description("Este evento se produce cuando se han cambiado los datos y no se han guardado.")]
         [Category("NotasUC")]
-        public event MensajeDelegate DatosModificados;
+        public event MensajeDelegate DatosModificados
+        {
+            add
+            {
+                listEventDelegates.AddHandler(DatosModificadosEventKey, value);
+            }
+            remove
+            {
+                listEventDelegates.RemoveHandler(DatosModificadosEventKey, value);
+            }
+        }
 
         protected virtual void OnDatosModificados(string mensaje)
         {
-            DatosModificados?.Invoke(mensaje);
+            //DatosModificados?.Invoke(mensaje);
+            ((MensajeDelegate)listEventDelegates[DatosModificadosEventKey])?.Invoke(mensaje);
         }
 
         /// <summary>
@@ -340,7 +472,8 @@ namespace gsNotasNETF
         /// <param name="mensaje"></param>
         protected virtual void OnTextoModificado(string mensaje)
         {
-            DatosModificados?.Invoke(mensaje);
+            //DatosModificados?.Invoke(mensaje);
+            ((MensajeDelegate)listEventDelegates[DatosModificadosEventKey])?.Invoke(mensaje);
         }
 
         /// <summary>
@@ -349,11 +482,22 @@ namespace gsNotasNETF
         [Browsable(true)]
         [Description("Se produce cuando se selecciona una nota.")]
         [Category("NotasUC")]
-        public event TextoModificado NotaCambiada;
+        public event TextoModificado NotaCambiada
+        {
+            add
+            {
+                listEventDelegates.AddHandler(NotaCambiadaEventKey, value);
+            }
+            remove
+            {
+                listEventDelegates.RemoveHandler(NotaCambiadaEventKey, value);
+            }
+        }
 
         protected virtual void OnNotaCambiada(string texto, int index)
         {
-            NotaCambiada?.Invoke(texto, index);
+            //NotaCambiada?.Invoke(texto, index);
+            ((TextoModificado)listEventDelegates[NotaCambiadaEventKey])?.Invoke(texto, index);
         }
 
         /// <summary>
@@ -362,11 +506,22 @@ namespace gsNotasNETF
         [Browsable(true)]
         [Description("Se produce cuando se selecciona un grupo.")]
         [Category("NotasUC")]
-        public event TextoModificado GrupoCambiado;
+        public event TextoModificado GrupoCambiado
+        {
+            add
+            {
+                listEventDelegates.AddHandler(GrupoCambiadoEventKey, value);
+            }
+            remove
+            {
+                listEventDelegates.RemoveHandler(GrupoCambiadoEventKey, value);
+            }
+        }
 
         protected virtual void OnGrupoCambiado(string texto, int index)
         {
-            GrupoCambiado?.Invoke(texto, index);
+            //GrupoCambiado?.Invoke(texto, index);
+            ((TextoModificado)listEventDelegates[GrupoCambiadoEventKey])?.Invoke(texto, index);
         }
 
         //

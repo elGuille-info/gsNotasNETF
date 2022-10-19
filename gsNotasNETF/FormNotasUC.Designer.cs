@@ -76,6 +76,7 @@ namespace gsNotasNETF
             this.lblBuscar = new System.Windows.Forms.Label();
             this.tabOpciones = new System.Windows.Forms.TabPage();
             this.panelOpciones = new System.Windows.Forms.Panel();
+            this.OpcChkPermitirVariasInstancias = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label11 = new System.Windows.Forms.Label();
             this.OpcCboColorGrupo = new System.Windows.Forms.ComboBox();
@@ -106,7 +107,6 @@ namespace gsNotasNETF
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.picOcultarPanel1 = new System.Windows.Forms.PictureBox();
             this.timerInicio = new System.Windows.Forms.Timer(this.components);
-            this.OpcChkPermitirVariasInstancias = new System.Windows.Forms.CheckBox();
             this.notaUC1 = new gsNotasNETF.NotaUC();
             this.NotasFlowLayoutPanel.SuspendLayout();
             this.tabsConfig.SuspendLayout();
@@ -721,6 +721,20 @@ namespace gsNotasNETF
             this.panelOpciones.Size = new System.Drawing.Size(782, 258);
             this.panelOpciones.TabIndex = 0;
             // 
+            // OpcChkPermitirVariasInstancias
+            // 
+            this.OpcChkPermitirVariasInstancias.AutoSize = true;
+            this.OpcChkPermitirVariasInstancias.Checked = true;
+            this.OpcChkPermitirVariasInstancias.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.OpcChkPermitirVariasInstancias.Location = new System.Drawing.Point(6, 264);
+            this.OpcChkPermitirVariasInstancias.Name = "OpcChkPermitirVariasInstancias";
+            this.OpcChkPermitirVariasInstancias.Size = new System.Drawing.Size(199, 17);
+            this.OpcChkPermitirVariasInstancias.TabIndex = 15;
+            this.OpcChkPermitirVariasInstancias.Text = "NO Visible - Permitir varias instancias";
+            this.toolTip1.SetToolTip(this.OpcChkPermitirVariasInstancias, "Desactiva esta opción para no permitir varias instancias de la aplicación.");
+            this.OpcChkPermitirVariasInstancias.UseVisualStyleBackColor = true;
+            this.OpcChkPermitirVariasInstancias.Visible = false;
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.label11);
@@ -1045,20 +1059,6 @@ namespace gsNotasNETF
             // 
             this.timerInicio.Tick += new System.EventHandler(this.timerInicio_Tick);
             // 
-            // OpcChkPermitirVariasInstancias
-            // 
-            this.OpcChkPermitirVariasInstancias.AutoSize = true;
-            this.OpcChkPermitirVariasInstancias.Checked = true;
-            this.OpcChkPermitirVariasInstancias.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.OpcChkPermitirVariasInstancias.Location = new System.Drawing.Point(6, 264);
-            this.OpcChkPermitirVariasInstancias.Name = "OpcChkPermitirVariasInstancias";
-            this.OpcChkPermitirVariasInstancias.Size = new System.Drawing.Size(199, 17);
-            this.OpcChkPermitirVariasInstancias.TabIndex = 15;
-            this.OpcChkPermitirVariasInstancias.Text = "NO Visible - Permitir varias instancias";
-            this.toolTip1.SetToolTip(this.OpcChkPermitirVariasInstancias, "Desactiva esta opción para no permitir varias instancias de la aplicación.");
-            this.OpcChkPermitirVariasInstancias.UseVisualStyleBackColor = true;
-            this.OpcChkPermitirVariasInstancias.Visible = false;
-            // 
             // notaUC1
             // 
             this.notaUC1.AllowDrop = true;
@@ -1106,7 +1106,7 @@ namespace gsNotasNETF
             this.notaUC1.Titulo = "Prueba NotaUC";
             this.notaUC1.TituloCabecera = "Prueba NotaUC";
             this.notaUC1.BuscarTexto += new gsNotasNETF.MensajeDelegate(this.notaUC1_BuscarTexto);
-            this.notaUC1.CambioDeTema += new gsNotasNETF.TemaCambiado(this.notaUC1_CambioDeTema);
+            this.notaUC1.TemaCambiado += new gsNotasNETF.TemaCambiado(this.notaUC1_TemaCambiado);
             this.notaUC1.MenuCerrar += new gsNotasNETF.MensajeDelegate(this.notaUC1_MenuCerrar);
             this.notaUC1.NotaReemplazada += new gsNotasNETF.ReemplazarNota(this.notaUC1_NotaReemplazada_1);
             this.notaUC1.NotaCambiada += new gsNotasNETF.TextoModificado(this.notaUC1_NotaCambiada);
