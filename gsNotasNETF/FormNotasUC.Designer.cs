@@ -101,13 +101,15 @@ namespace gsNotasNETF
             this.txtAcercaDe = new System.Windows.Forms.TextBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextNotify = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.NotifyMenuRestaurar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.NotifyMenuCerrar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.picOcultarPanel1 = new System.Windows.Forms.PictureBox();
             this.timerInicio = new System.Windows.Forms.Timer(this.components);
+            this.picOcultarPanel1 = new System.Windows.Forms.PictureBox();
+            this.NotifyMenuRestaurar = new System.Windows.Forms.ToolStripMenuItem();
+            this.NotifyMenuCerrar = new System.Windows.Forms.ToolStripMenuItem();
             this.notaUC1 = new gsNotasNETF.NotaUC();
+            this.contextEditarNota = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editarEnVentanaSeparadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NotasFlowLayoutPanel.SuspendLayout();
             this.tabsConfig.SuspendLayout();
             this.tabNotas.SuspendLayout();
@@ -125,11 +127,13 @@ namespace gsNotasNETF
             this.panelAcercaDe.SuspendLayout();
             this.contextNotify.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picOcultarPanel1)).BeginInit();
+            this.contextEditarNota.SuspendLayout();
             this.SuspendLayout();
             // 
             // NotasFlowLayoutPanel
             // 
             this.NotasFlowLayoutPanel.AutoScroll = true;
+            this.NotasFlowLayoutPanel.ContextMenuStrip = this.contextEditarNota;
             this.NotasFlowLayoutPanel.Controls.Add(this.LblNota);
             this.NotasFlowLayoutPanel.Controls.Add(this.label4);
             this.NotasFlowLayoutPanel.Controls.Add(this.label1);
@@ -157,6 +161,7 @@ namespace gsNotasNETF
             this.LblNota.TabIndex = 0;
             this.LblNota.Text = "LblNota\r\nPulsando en una etiqueta la pondrás la primera y con mayor tamaño.\r\nEl r" +
     "esto de etiquetas se pondrán en un tamaño más pequeño.";
+            this.LblNota.Click += new System.EventHandler(this.LblNota_Click);
             this.LblNota.DoubleClick += new System.EventHandler(this.LblNota_DoubleClick);
             // 
             // label4
@@ -1020,26 +1025,14 @@ namespace gsNotasNETF
             this.contextNotify.Name = "contextNotify";
             this.contextNotify.Size = new System.Drawing.Size(132, 70);
             // 
-            // NotifyMenuRestaurar
-            // 
-            this.NotifyMenuRestaurar.Image = ((System.Drawing.Image)(resources.GetObject("NotifyMenuRestaurar.Image")));
-            this.NotifyMenuRestaurar.Name = "NotifyMenuRestaurar";
-            this.NotifyMenuRestaurar.Size = new System.Drawing.Size(131, 30);
-            this.NotifyMenuRestaurar.Text = "Restaurar";
-            this.NotifyMenuRestaurar.Click += new System.EventHandler(this.MnuNotifyRestaurar_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(128, 6);
             // 
-            // NotifyMenuCerrar
+            // timerInicio
             // 
-            this.NotifyMenuCerrar.Image = ((System.Drawing.Image)(resources.GetObject("NotifyMenuCerrar.Image")));
-            this.NotifyMenuCerrar.Name = "NotifyMenuCerrar";
-            this.NotifyMenuCerrar.Size = new System.Drawing.Size(131, 30);
-            this.NotifyMenuCerrar.Text = "Cerrar";
-            this.NotifyMenuCerrar.Click += new System.EventHandler(this.MnuNotifyCerrar_Click);
+            this.timerInicio.Tick += new System.EventHandler(this.timerInicio_Tick);
             // 
             // picOcultarPanel1
             // 
@@ -1055,9 +1048,21 @@ namespace gsNotasNETF
             this.toolTip1.SetToolTip(this.picOcultarPanel1, "Muestra / oculta el panel de configuración");
             this.picOcultarPanel1.Click += new System.EventHandler(this.picOcultarPanel1_Click);
             // 
-            // timerInicio
+            // NotifyMenuRestaurar
             // 
-            this.timerInicio.Tick += new System.EventHandler(this.timerInicio_Tick);
+            this.NotifyMenuRestaurar.Image = ((System.Drawing.Image)(resources.GetObject("NotifyMenuRestaurar.Image")));
+            this.NotifyMenuRestaurar.Name = "NotifyMenuRestaurar";
+            this.NotifyMenuRestaurar.Size = new System.Drawing.Size(131, 30);
+            this.NotifyMenuRestaurar.Text = "Restaurar";
+            this.NotifyMenuRestaurar.Click += new System.EventHandler(this.MnuNotifyRestaurar_Click);
+            // 
+            // NotifyMenuCerrar
+            // 
+            this.NotifyMenuCerrar.Image = ((System.Drawing.Image)(resources.GetObject("NotifyMenuCerrar.Image")));
+            this.NotifyMenuCerrar.Name = "NotifyMenuCerrar";
+            this.NotifyMenuCerrar.Size = new System.Drawing.Size(131, 30);
+            this.NotifyMenuCerrar.Text = "Cerrar";
+            this.NotifyMenuCerrar.Click += new System.EventHandler(this.MnuNotifyCerrar_Click);
             // 
             // notaUC1
             // 
@@ -1112,6 +1117,21 @@ namespace gsNotasNETF
             this.notaUC1.NotaCambiada += new gsNotasNETF.TextoModificado(this.notaUC1_NotaCambiada);
             this.notaUC1.GrupoCambiado += new gsNotasNETF.TextoModificado(this.notaUC1_GrupoCambiado);
             // 
+            // contextEditarNota
+            // 
+            this.contextEditarNota.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editarEnVentanaSeparadaToolStripMenuItem});
+            this.contextEditarNota.Name = "contextEditarNota";
+            this.contextEditarNota.Size = new System.Drawing.Size(216, 26);
+            // 
+            // editarEnVentanaSeparadaToolStripMenuItem
+            // 
+            this.editarEnVentanaSeparadaToolStripMenuItem.Image = global::gsNotasNETF.Properties.Resources.EditDocument;
+            this.editarEnVentanaSeparadaToolStripMenuItem.Name = "editarEnVentanaSeparadaToolStripMenuItem";
+            this.editarEnVentanaSeparadaToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.editarEnVentanaSeparadaToolStripMenuItem.Text = "Editar en ventana separada";
+            this.editarEnVentanaSeparadaToolStripMenuItem.Click += new System.EventHandler(this.LblNota_DoubleClick);
+            // 
             // FormNotasUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1151,6 +1171,7 @@ namespace gsNotasNETF
             this.panelAcercaDe.PerformLayout();
             this.contextNotify.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picOcultarPanel1)).EndInit();
+            this.contextEditarNota.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1235,6 +1256,8 @@ namespace gsNotasNETF
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckBox OpcChkPermitirVariasInstancias;
+        private System.Windows.Forms.ContextMenuStrip contextEditarNota;
+        private System.Windows.Forms.ToolStripMenuItem editarEnVentanaSeparadaToolStripMenuItem;
     }
 }
 

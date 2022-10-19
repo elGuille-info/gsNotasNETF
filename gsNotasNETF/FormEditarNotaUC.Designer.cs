@@ -91,7 +91,7 @@ namespace gsNotasNETF
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormEditarNotaUC";
-            this.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.Padding = new System.Windows.Forms.Padding(1);
             this.ShowIcon = false;
             this.Text = "Editar NotaUC";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormEditarNotaUC_FormClosing);
@@ -105,6 +105,6 @@ namespace gsNotasNETF
 
         #endregion
 
-        private NotaUC notaUC1;
+        public NotaUC notaUC1;
     }
 }

@@ -53,6 +53,8 @@ namespace gsNotasNETF
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.MnuTopMost = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuDeshacer = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRehacer = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCortar = new System.Windows.Forms.ToolStripMenuItem();
@@ -195,6 +197,8 @@ namespace gsNotasNETF
             this.MnuLeer,
             this.MnuGuardar,
             this.MnuImportar,
+            this.toolStripSeparator10,
+            this.MnuTopMost,
             this.toolStripSeparator6,
             this.MnuTemas,
             this.toolStripSeparator2,
@@ -311,6 +315,20 @@ namespace gsNotasNETF
             this.toolStripSeparator8.Name = "toolStripSeparator8";
             this.toolStripSeparator8.Size = new System.Drawing.Size(201, 6);
             // 
+            // MnuTopMost
+            // 
+            this.MnuTopMost.CheckOnClick = true;
+            this.MnuTopMost.Name = "MnuTopMost";
+            this.MnuTopMost.Size = new System.Drawing.Size(195, 22);
+            this.MnuTopMost.Text = "Siempre encima";
+            this.MnuTopMost.ToolTipText = "Mantener la ventan siempre encima (TopMost)";
+            this.MnuTopMost.Click += new System.EventHandler(this.MnuTopMost_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(192, 6);
+            // 
             // mnuDeshacer
             // 
             this.mnuDeshacer.Image = ((System.Drawing.Image)(resources.GetObject("mnuDeshacer.Image")));
@@ -403,7 +421,8 @@ namespace gsNotasNETF
             this.MnuImportar.Image = global::gsNotasNETF.Properties.Resources.ImportCatalogPart;
             this.MnuImportar.Name = "MnuImportar";
             this.MnuImportar.Size = new System.Drawing.Size(195, 22);
-            this.MnuImportar.Text = "Importar notas...";
+            this.MnuImportar.Text = "&Importar notas...";
+            this.MnuImportar.ToolTipText = "Importar notas en formato NotasUC y añadirlas a las actuales";
             this.MnuImportar.Click += new System.EventHandler(this.MnuImportar_Click);
             // 
             // MnuTemas
@@ -563,7 +582,6 @@ namespace gsNotasNETF
 
         private System.Windows.Forms.Panel panelCabecera;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel statusInfo;
         private System.Windows.Forms.ToolStripStatusLabel statusInfoPos;
         private System.Windows.Forms.ToolStripSplitButton statusInfoTecla;
@@ -606,5 +624,8 @@ namespace gsNotasNETF
         private System.Windows.Forms.ToolStripMenuItem mnuRehacer;
         private System.Windows.Forms.ToolStripMenuItem MnuTemaColoresPredeterminados;
         private System.Windows.Forms.ToolStripMenuItem MnuImportar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripMenuItem MnuTopMost;
+        public System.Windows.Forms.StatusStrip statusStrip1;
     }
 }

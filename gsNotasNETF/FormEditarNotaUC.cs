@@ -38,6 +38,8 @@ namespace gsNotasNETF
 
             // Si se hace esta asignación no se muestra la nota
             //notaUC1 = nuevaNotaUC;
+            notaUC1.SiempreEncima = nuevaNotaUC.SiempreEncima;
+            this.TopMost = notaUC1.SiempreEncima;
             notaUC1.EditorText = laNota;
             notaUC1.ModoEdicionNota = true;
             notaUC1.TituloCabecera = laNota;

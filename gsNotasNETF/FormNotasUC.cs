@@ -108,6 +108,9 @@ v1.0.0.159              Nuevo evento en NotaUC: TemaCambiado (equivale a CambioD
                         Si se cambia de tema mientras está en opciones, se pierden los colores de la presonalización de los grupos.
 v1.0.0.160              Usar Event Properties para manejar los eventos.
 v1.0.0.161              Actualizo el enlace de OpcLinkSolicitarAutorización.
+                        ToolTip en importar notas.
+v1.0.0.162              Menú Siempre encima (TopMost), el control de usuario no tiene la propiedad TopMost, asignarlo al ParentForm.
+v1.0.0.163              Menú contextual para editar la nota en ventana separada.
 */
 using System;
 using System.Collections.Generic;
@@ -121,6 +124,7 @@ using System.Windows.Forms;
 
 using System.IO;
 using System.Runtime.Remoting.Messaging;
+using System.Diagnostics;
 
 namespace gsNotasNETF
 {
@@ -396,6 +400,7 @@ namespace gsNotasNETF
                     MySetting.Width = this.Width;
                 }
             }
+            MySetting.SiempreEncima = notaUC1.SiempreEncima;
             MySetting.Save();
 
             if (e.CloseReason == CloseReason.UserClosing)
@@ -564,6 +569,10 @@ namespace gsNotasNETF
         /// <param name="index">Indica la nota a marcar como seleccionada.</param>
         private void MostrarNotas(string grupo, int index)
         {
+            var cm = new ContextMenu();
+            cm.Popup += Cm_Popup;
+            cm.MenuItems.Add(new MenuItem("Editar en ventana de tamaño fijo", mnu_EditarEnVentana));
+
             Color col = AsignarColoresGrupos();
 
             CtrlNotas.Clear();
@@ -584,6 +593,7 @@ namespace gsNotasNETF
                 var lbl = CrearNota(n, col, true);
                 lbl.Click += LblNota_Click;
                 lbl.DoubleClick += LblNota_DoubleClick;
+                lbl.ContextMenu = cm;
                 CtrlNotas.Add(lbl);
                 NotasFlowLayoutPanel.Controls.Add(lbl);
                 lbl.Tag = j;
@@ -592,6 +602,42 @@ namespace gsNotasNETF
                     AsignarValores(lbl, true, true);
                 }
             }
+        }
+
+        private bool esEnMenu = false;
+
+        private void Cm_Popup(object sender, EventArgs e)
+        {
+            esEnMenu = true;
+        }
+
+        private void mnu_EditarEnVentana(object sender, EventArgs e)
+        {
+            var mnu = sender as MenuItem;
+            if (mnu == null) return;
+
+            esEnMenu = true;
+
+            int index = notaUC1.ComboNotas.SelectedIndex;
+            Label lbl = (mnu.Parent as ContextMenu).SourceControl as Label;
+            if (lbl == null) return;
+
+            index = (int)lbl.Tag;
+
+            FormEditarNotaUC frmEditUC;
+            frmEditUC = new FormEditarNotaUC(notaUC1, lbl.Text, index);
+            frmEditUC.NotaReemplazada += NotaUC1_NotaReemplazada;
+            frmEditUC.FormBorderStyle = FormBorderStyle.None;
+
+            frmEditUC.Show();
+
+            // Al mostrar la nota, ponerla encima y un poco a la derecha para que se vea.
+            if (this.TopMost)
+            {
+                frmEditUC.Left = this.Left + 40;
+            }
+            frmEditUC.BringToFront();
+            esEnMenu = false;
         }
 
         /// <summary>
@@ -744,13 +790,20 @@ namespace gsNotasNETF
 
         private void LblNota_Click(object sender, EventArgs e)
         {
+            if (esEnMenu) return;
+
+            var lbl = sender as Label;
+            if (lbl is null)
+                return;
+
+            // Si tiene este borde es que está seleccionada. (19/oct/22 14.35)
+            // Salir para que al hacer doble-clic reaccione antes.
+            if (lbl.BorderStyle == BorderStyle.Fixed3D) return;
+
             foreach (var l in CtrlNotas)
             {
                 AsignarValores(l, false, true);
             }
-            var lbl = sender as Label;
-            if (lbl is null)
-                return;
 
             AsignarValores(lbl, true, true);
 
@@ -758,6 +811,7 @@ namespace gsNotasNETF
             {
                 notaUC1.Seleccionar((int)lbl.Tag, true);
                 lbl.Click -= LblNota_Click;
+                lbl.DoubleClick -= LblNota_DoubleClick;
             }
         }
 
@@ -768,6 +822,14 @@ namespace gsNotasNETF
             frmEditUC.NotaReemplazada += NotaUC1_NotaReemplazada;
 
             frmEditUC.Show();
+
+            // Al mostrar la nota, ponerla encima y un poco a la izquierda para que se vea.
+            //frmEditUC.TopMost = this.TopMost;
+            if (this.TopMost)
+            {
+                frmEditUC.Left = this.Left + 40;
+            }
+            frmEditUC.BringToFront();
         }
 
         private void NotaUC1_NotaReemplazada(string grupo, string texto, int index)
@@ -919,6 +981,8 @@ namespace gsNotasNETF
                 notaUC1.Tema = Temas.Claro;
             else
                 notaUC1.Tema = Temas.Oscuro;
+
+            notaUC1.SiempreEncima = MySetting.SiempreEncima;
 
             notaUC1.txtEdit.WordWrap = MySetting.AjusteLineas;
             notaUC1.AutoGuardar = MySetting.Autoguardar;
@@ -1385,7 +1449,7 @@ No se guardan los grupos y notas en blanco.
             AsignarSettings();
 
             if (vistaAnt != MySetting.VistaNotasHorizontal)
-                APlicarVista();
+                AplicarVista();
         }
 
         private void OpcBtnDeshacer_Click(object sender, EventArgs e)
@@ -1412,7 +1476,7 @@ No se guardan los grupos y notas en blanco.
             }
         }
 
-        private void APlicarVista()
+        private void AplicarVista()
         {
             if (OpcChkMostrarHorizontal.Checked)
             {

@@ -10,6 +10,8 @@
 // 19-oct-22:   Importar notas (deben estar en el formato NotasUC).
 //              Añado el evento TemaCambiado (como CambioDeTema).
 //              Usar Event Properties para manejar los eventos.
+//              ToolTip en importar notas.
+//              Menú Siempre encima (TopMost), el control de usuario no tiene la propiedad TopMost, asignarlo al ParentForm.
 //
 // (c) Guillermo Som (elGuille), 2020-2022
 //-----------------------------------------------------------------------------
@@ -616,6 +618,8 @@ namespace gsNotasNETF
                         c.Enabled = false;
                         c.Visible = false;
                     }
+                    MnuTopMost.Enabled = true;
+                    MnuTopMost.Visible = true;
                     MnuSustituirNota.Enabled = true;
                     MnuSustituirNota.Visible = true;
                     //MnuSustituirNota.Text = "Sustituir nota y cerrar";
@@ -634,6 +638,19 @@ namespace gsNotasNETF
                     //MnuSustituirNota.Text = "Sustituir nota";
                 }
             }
+        }
+
+        /// <summary>
+        /// Para asignar al menú SiempreEncima (TopMost) el valor.
+        /// </summary>
+        [Browsable(true)]
+        [Description("Si la ventana que contiene el control debe estar siempre encima o no.")]
+        [DefaultValue(typeof(bool), "false")]
+        [Category("NotasUC")]
+        public bool SiempreEncima
+        { 
+            get => MnuTopMost.Checked;
+            set => MnuTopMost.Checked = value;
         }
 
         private bool _ColoresPredeterminados = true;
@@ -2375,6 +2392,13 @@ No se guardan los grupos y notas en blanco.
             // Actualizar el contenido de los grupos.
             AsignarGrupos(false);
             Modificado = true;
+        }
+
+        private void MnuTopMost_Click(object sender, EventArgs e)
+        {
+            // El control de usuario no tiene la propiedad TopMost, asignarlo al ParentForm.
+            //this.TopMost = MnuTopMost.Checked;
+            this.ParentForm.TopMost = MnuTopMost.Checked;
         }
     }
 }
