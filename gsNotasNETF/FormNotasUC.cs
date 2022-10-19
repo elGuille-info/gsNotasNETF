@@ -102,6 +102,7 @@ v1.0.0.154              En opciones, mostrar los colores de las etiquetas según
 v1.0.0.155              Asignar los anchor manualmente (quitados en diseño) porque al FormDesigner se le va la olla.
                         Pongo todos los controles de las opciones.
 v1.0.0.156  19-oct-22   Quito código no usado. Asignar el tema en Settings.
+v1.0.0.157              Importar notas (deben estar en el formato NotasUC).
 */
 using System;
 using System.Collections.Generic;

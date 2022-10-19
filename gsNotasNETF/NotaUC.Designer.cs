@@ -40,41 +40,42 @@ namespace gsNotasNETF
             this.statusInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusInfoPos = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusInfoTecla = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.MnuCerrarSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.panelEditor = new System.Windows.Forms.Panel();
+            this.txtEdit = new System.Windows.Forms.RichTextBox();
+            this.contextEditor = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuDeshacer = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRehacer = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCortar = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCopiar = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPegar = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSeleccionarTodo = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuBuscar = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuLeer = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuGuardar = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.MnuImportar = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuTemas = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuTemaClaro = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuTemaOscuro = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.MnuTemaInvertir = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.MnuTemaColoresPredeterminados = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuNuevoGrupo = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.MnuClasificar = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.MnuEliminarNota = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.MnuSustituirNota = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuAñadirNota = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.MnuAcercaDE = new System.Windows.Forms.ToolStripMenuItem();
-            this.MnuCerrarSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.MnuCerrar = new System.Windows.Forms.ToolStripMenuItem();
-            this.panelEditor = new System.Windows.Forms.Panel();
-            this.txtEdit = new System.Windows.Forms.RichTextBox();
-            this.contextEditor = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuDeshacer = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuRehacer = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuCortar = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCopiar = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuPegar = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuSeleccionarTodo = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuBuscar = new System.Windows.Forms.ToolStripMenuItem();
-            this.MnuTemaColoresPredeterminados = new System.Windows.Forms.ToolStripMenuItem();
             this.panelCabecera.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -193,6 +194,7 @@ namespace gsNotasNETF
             this.statusInfoTecla.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MnuLeer,
             this.MnuGuardar,
+            this.MnuImportar,
             this.toolStripSeparator6,
             this.MnuTemas,
             this.toolStripSeparator2,
@@ -216,6 +218,166 @@ namespace gsNotasNETF
             this.statusInfoTecla.ToolTipText = "Opciones rápidas";
             this.statusInfoTecla.ButtonClick += new System.EventHandler(this.statusInfoTecla_ButtonClick);
             // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(192, 6);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(192, 6);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(192, 6);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(192, 6);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(192, 6);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(192, 6);
+            // 
+            // MnuCerrarSeparator
+            // 
+            this.MnuCerrarSeparator.Name = "MnuCerrarSeparator";
+            this.MnuCerrarSeparator.Size = new System.Drawing.Size(192, 6);
+            // 
+            // panelEditor
+            // 
+            this.panelEditor.BackColor = System.Drawing.Color.White;
+            this.panelEditor.Controls.Add(this.txtEdit);
+            this.panelEditor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelEditor.Location = new System.Drawing.Point(2, 44);
+            this.panelEditor.Name = "panelEditor";
+            this.panelEditor.Size = new System.Drawing.Size(496, 229);
+            this.panelEditor.TabIndex = 2;
+            // 
+            // txtEdit
+            // 
+            this.txtEdit.ContextMenuStrip = this.contextEditor;
+            this.txtEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtEdit.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEdit.Location = new System.Drawing.Point(0, 0);
+            this.txtEdit.Name = "txtEdit";
+            this.txtEdit.Size = new System.Drawing.Size(496, 229);
+            this.txtEdit.TabIndex = 0;
+            this.txtEdit.Text = "";
+            this.txtEdit.SelectionChanged += new System.EventHandler(this.txtEdit_SelectionChanged);
+            this.txtEdit.TextChanged += new System.EventHandler(this.txtEdit_TextChanged);
+            this.txtEdit.Enter += new System.EventHandler(this.txtEdit_Enter);
+            this.txtEdit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEdit_KeyDown);
+            this.txtEdit.Leave += new System.EventHandler(this.txtEdit_Leave);
+            // 
+            // contextEditor
+            // 
+            this.contextEditor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuDeshacer,
+            this.mnuRehacer,
+            this.toolStripSeparator9,
+            this.mnuCortar,
+            this.mnuCopiar,
+            this.mnuPegar,
+            this.toolStripSeparator7,
+            this.mnuSeleccionarTodo,
+            this.toolStripSeparator8,
+            this.mnuBuscar});
+            this.contextEditor.Name = "contextEditor";
+            this.contextEditor.Size = new System.Drawing.Size(205, 176);
+            this.contextEditor.Opening += new System.ComponentModel.CancelEventHandler(this.contextEditor_Opening);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(201, 6);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(201, 6);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(201, 6);
+            // 
+            // mnuDeshacer
+            // 
+            this.mnuDeshacer.Image = ((System.Drawing.Image)(resources.GetObject("mnuDeshacer.Image")));
+            this.mnuDeshacer.Name = "mnuDeshacer";
+            this.mnuDeshacer.ShortcutKeyDisplayString = "Ctrl+Z";
+            this.mnuDeshacer.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this.mnuDeshacer.Size = new System.Drawing.Size(204, 22);
+            this.mnuDeshacer.Text = "Deshacer";
+            this.mnuDeshacer.Click += new System.EventHandler(this.mnuDeshacer_Click);
+            // 
+            // mnuRehacer
+            // 
+            this.mnuRehacer.Image = ((System.Drawing.Image)(resources.GetObject("mnuRehacer.Image")));
+            this.mnuRehacer.Name = "mnuRehacer";
+            this.mnuRehacer.ShortcutKeyDisplayString = "Ctrl+Y";
+            this.mnuRehacer.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
+            this.mnuRehacer.Size = new System.Drawing.Size(204, 22);
+            this.mnuRehacer.Text = "Rehacer";
+            this.mnuRehacer.Click += new System.EventHandler(this.mnuRehacer_Click);
+            // 
+            // mnuCortar
+            // 
+            this.mnuCortar.Image = ((System.Drawing.Image)(resources.GetObject("mnuCortar.Image")));
+            this.mnuCortar.Name = "mnuCortar";
+            this.mnuCortar.ShortcutKeyDisplayString = "Ctrl+X";
+            this.mnuCortar.Size = new System.Drawing.Size(204, 22);
+            this.mnuCortar.Text = "Cor&tar";
+            this.mnuCortar.Click += new System.EventHandler(this.mnuCortar_Click);
+            // 
+            // mnuCopiar
+            // 
+            this.mnuCopiar.Image = ((System.Drawing.Image)(resources.GetObject("mnuCopiar.Image")));
+            this.mnuCopiar.Name = "mnuCopiar";
+            this.mnuCopiar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.mnuCopiar.Size = new System.Drawing.Size(204, 22);
+            this.mnuCopiar.Text = "&Copiar";
+            this.mnuCopiar.Click += new System.EventHandler(this.mnuCopiar_Click);
+            // 
+            // mnuPegar
+            // 
+            this.mnuPegar.Image = ((System.Drawing.Image)(resources.GetObject("mnuPegar.Image")));
+            this.mnuPegar.Name = "mnuPegar";
+            this.mnuPegar.ShortcutKeyDisplayString = "Ctrl+V";
+            this.mnuPegar.Size = new System.Drawing.Size(204, 22);
+            this.mnuPegar.Text = "&Pegar";
+            this.mnuPegar.Click += new System.EventHandler(this.mnuPegar_Click);
+            // 
+            // mnuSeleccionarTodo
+            // 
+            this.mnuSeleccionarTodo.Image = ((System.Drawing.Image)(resources.GetObject("mnuSeleccionarTodo.Image")));
+            this.mnuSeleccionarTodo.Name = "mnuSeleccionarTodo";
+            this.mnuSeleccionarTodo.ShortcutKeyDisplayString = "Ctrl+A";
+            this.mnuSeleccionarTodo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.mnuSeleccionarTodo.Size = new System.Drawing.Size(204, 22);
+            this.mnuSeleccionarTodo.Text = "&Seleccionar todo";
+            this.mnuSeleccionarTodo.Click += new System.EventHandler(this.mnuSeleccionarTodo_Click);
+            // 
+            // mnuBuscar
+            // 
+            this.mnuBuscar.Image = ((System.Drawing.Image)(resources.GetObject("mnuBuscar.Image")));
+            this.mnuBuscar.Name = "mnuBuscar";
+            this.mnuBuscar.ShortcutKeyDisplayString = "Ctrl+F";
+            this.mnuBuscar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.mnuBuscar.Size = new System.Drawing.Size(204, 22);
+            this.mnuBuscar.Text = "&Buscar...";
+            this.mnuBuscar.Click += new System.EventHandler(this.mnuBuscar_Click);
+            // 
             // MnuLeer
             // 
             this.MnuLeer.Image = ((System.Drawing.Image)(resources.GetObject("MnuLeer.Image")));
@@ -236,10 +398,13 @@ namespace gsNotasNETF
             this.MnuGuardar.Text = "Guardar notas";
             this.MnuGuardar.Click += new System.EventHandler(this.MnuGuardar_Click);
             // 
-            // toolStripSeparator6
+            // MnuImportar
             // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(192, 6);
+            this.MnuImportar.Image = global::gsNotasNETF.Properties.Resources.ImportCatalogPart;
+            this.MnuImportar.Name = "MnuImportar";
+            this.MnuImportar.Size = new System.Drawing.Size(195, 22);
+            this.MnuImportar.Text = "Importar notas...";
+            this.MnuImportar.Click += new System.EventHandler(this.MnuImportar_Click);
             // 
             // MnuTemas
             // 
@@ -285,10 +450,13 @@ namespace gsNotasNETF
             this.MnuTemaInvertir.Text = "Invertir colores";
             this.MnuTemaInvertir.Click += new System.EventHandler(this.MnuTemaInvertir_Click);
             // 
-            // toolStripSeparator2
+            // MnuTemaColoresPredeterminados
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(192, 6);
+            this.MnuTemaColoresPredeterminados.CheckOnClick = true;
+            this.MnuTemaColoresPredeterminados.Name = "MnuTemaColoresPredeterminados";
+            this.MnuTemaColoresPredeterminados.Size = new System.Drawing.Size(231, 22);
+            this.MnuTemaColoresPredeterminados.Text = "Usar colores predeterminados";
+            this.MnuTemaColoresPredeterminados.Click += new System.EventHandler(this.MnuTemaColoresPredeterminados_Click);
             // 
             // MnuNuevoGrupo
             // 
@@ -301,11 +469,6 @@ namespace gsNotasNETF
             this.MnuNuevoGrupo.ToolTipText = "Escribe el nuevo nombre del grupo y pulsa ENTER";
             this.MnuNuevoGrupo.Click += new System.EventHandler(this.MnuNuevoGrupo_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(192, 6);
-            // 
             // MnuClasificar
             // 
             this.MnuClasificar.Image = ((System.Drawing.Image)(resources.GetObject("MnuClasificar.Image")));
@@ -317,11 +480,6 @@ namespace gsNotasNETF
             this.MnuClasificar.ToolTipText = "Clasifica las notas del grupo seleccionado";
             this.MnuClasificar.Click += new System.EventHandler(this.MnuClasificar_Click);
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(192, 6);
-            // 
             // MnuEliminarNota
             // 
             this.MnuEliminarNota.Image = ((System.Drawing.Image)(resources.GetObject("MnuEliminarNota.Image")));
@@ -332,11 +490,6 @@ namespace gsNotasNETF
             this.MnuEliminarNota.Text = "Eliminar nota";
             this.MnuEliminarNota.ToolTipText = "Elimina la nota actual";
             this.MnuEliminarNota.Click += new System.EventHandler(this.MnuEliminarNota_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(192, 6);
             // 
             // MnuSustituirNota
             // 
@@ -360,11 +513,6 @@ namespace gsNotasNETF
             this.MnuAñadirNota.ToolTipText = "Añade el texto actual como nueva nota";
             this.MnuAñadirNota.Click += new System.EventHandler(this.MnuAñadirNota_Click);
             // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(192, 6);
-            // 
             // MnuAcercaDE
             // 
             this.MnuAcercaDE.Image = ((System.Drawing.Image)(resources.GetObject("MnuAcercaDE.Image")));
@@ -375,11 +523,6 @@ namespace gsNotasNETF
             this.MnuAcercaDE.Text = "Acerca de...";
             this.MnuAcercaDE.Click += new System.EventHandler(this.MnuAcercaDe_Click);
             // 
-            // MnuCerrarSeparator
-            // 
-            this.MnuCerrarSeparator.Name = "MnuCerrarSeparator";
-            this.MnuCerrarSeparator.Size = new System.Drawing.Size(192, 6);
-            // 
             // MnuCerrar
             // 
             this.MnuCerrar.Image = ((System.Drawing.Image)(resources.GetObject("MnuCerrar.Image")));
@@ -387,139 +530,6 @@ namespace gsNotasNETF
             this.MnuCerrar.Size = new System.Drawing.Size(195, 22);
             this.MnuCerrar.Text = "Cerrar";
             this.MnuCerrar.Click += new System.EventHandler(this.MnuCerrar_Click);
-            // 
-            // panelEditor
-            // 
-            this.panelEditor.BackColor = System.Drawing.Color.White;
-            this.panelEditor.Controls.Add(this.txtEdit);
-            this.panelEditor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelEditor.Location = new System.Drawing.Point(2, 44);
-            this.panelEditor.Name = "panelEditor";
-            this.panelEditor.Size = new System.Drawing.Size(496, 229);
-            this.panelEditor.TabIndex = 2;
-            // 
-            // txtEdit
-            // 
-            this.txtEdit.ContextMenuStrip = this.contextEditor;
-            this.txtEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtEdit.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEdit.Location = new System.Drawing.Point(0, 0);
-            this.txtEdit.Name = "txtEdit";
-            this.txtEdit.Size = new System.Drawing.Size(496, 229);
-            this.txtEdit.TabIndex = 0;
-            this.txtEdit.Text = "";
-            this.txtEdit.SelectionChanged += new System.EventHandler(this.txtEdit_SelectionChanged);
-            this.txtEdit.TextChanged += new System.EventHandler(this.txtEdit_TextChanged);
-            this.txtEdit.Enter += new System.EventHandler(this.txtEdit_Enter);
-            this.txtEdit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEdit_KeyDown);
-            this.txtEdit.Leave += new System.EventHandler(this.txtEdit_Leave);
-            // 
-            // contextEditor
-            // 
-            this.contextEditor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuDeshacer,
-            this.mnuRehacer,
-            this.toolStripSeparator9,
-            this.mnuCortar,
-            this.mnuCopiar,
-            this.mnuPegar,
-            this.toolStripSeparator7,
-            this.mnuSeleccionarTodo,
-            this.toolStripSeparator8,
-            this.mnuBuscar});
-            this.contextEditor.Name = "contextEditor";
-            this.contextEditor.Size = new System.Drawing.Size(205, 176);
-            this.contextEditor.Opening += new System.ComponentModel.CancelEventHandler(this.contextEditor_Opening);
-            // 
-            // mnuDeshacer
-            // 
-            this.mnuDeshacer.Image = ((System.Drawing.Image)(resources.GetObject("mnuDeshacer.Image")));
-            this.mnuDeshacer.Name = "mnuDeshacer";
-            this.mnuDeshacer.ShortcutKeyDisplayString = "Ctrl+Z";
-            this.mnuDeshacer.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.mnuDeshacer.Size = new System.Drawing.Size(204, 22);
-            this.mnuDeshacer.Text = "Deshacer";
-            this.mnuDeshacer.Click += new System.EventHandler(this.mnuDeshacer_Click);
-            // 
-            // mnuRehacer
-            // 
-            this.mnuRehacer.Image = ((System.Drawing.Image)(resources.GetObject("mnuRehacer.Image")));
-            this.mnuRehacer.Name = "mnuRehacer";
-            this.mnuRehacer.ShortcutKeyDisplayString = "Ctrl+Y";
-            this.mnuRehacer.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.mnuRehacer.Size = new System.Drawing.Size(204, 22);
-            this.mnuRehacer.Text = "Rehacer";
-            this.mnuRehacer.Click += new System.EventHandler(this.mnuRehacer_Click);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(201, 6);
-            // 
-            // mnuCortar
-            // 
-            this.mnuCortar.Image = ((System.Drawing.Image)(resources.GetObject("mnuCortar.Image")));
-            this.mnuCortar.Name = "mnuCortar";
-            this.mnuCortar.ShortcutKeyDisplayString = "Ctrl+X";
-            this.mnuCortar.Size = new System.Drawing.Size(204, 22);
-            this.mnuCortar.Text = "Cor&tar";
-            this.mnuCortar.Click += new System.EventHandler(this.mnuCortar_Click);
-            // 
-            // mnuCopiar
-            // 
-            this.mnuCopiar.Image = ((System.Drawing.Image)(resources.GetObject("mnuCopiar.Image")));
-            this.mnuCopiar.Name = "mnuCopiar";
-            this.mnuCopiar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.mnuCopiar.Size = new System.Drawing.Size(204, 22);
-            this.mnuCopiar.Text = "&Copiar";
-            this.mnuCopiar.Click += new System.EventHandler(this.mnuCopiar_Click);
-            // 
-            // mnuPegar
-            // 
-            this.mnuPegar.Image = ((System.Drawing.Image)(resources.GetObject("mnuPegar.Image")));
-            this.mnuPegar.Name = "mnuPegar";
-            this.mnuPegar.ShortcutKeyDisplayString = "Ctrl+V";
-            this.mnuPegar.Size = new System.Drawing.Size(204, 22);
-            this.mnuPegar.Text = "&Pegar";
-            this.mnuPegar.Click += new System.EventHandler(this.mnuPegar_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(201, 6);
-            // 
-            // mnuSeleccionarTodo
-            // 
-            this.mnuSeleccionarTodo.Image = ((System.Drawing.Image)(resources.GetObject("mnuSeleccionarTodo.Image")));
-            this.mnuSeleccionarTodo.Name = "mnuSeleccionarTodo";
-            this.mnuSeleccionarTodo.ShortcutKeyDisplayString = "Ctrl+A";
-            this.mnuSeleccionarTodo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.mnuSeleccionarTodo.Size = new System.Drawing.Size(204, 22);
-            this.mnuSeleccionarTodo.Text = "&Seleccionar todo";
-            this.mnuSeleccionarTodo.Click += new System.EventHandler(this.mnuSeleccionarTodo_Click);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(201, 6);
-            // 
-            // mnuBuscar
-            // 
-            this.mnuBuscar.Image = ((System.Drawing.Image)(resources.GetObject("mnuBuscar.Image")));
-            this.mnuBuscar.Name = "mnuBuscar";
-            this.mnuBuscar.ShortcutKeyDisplayString = "Ctrl+F";
-            this.mnuBuscar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.mnuBuscar.Size = new System.Drawing.Size(204, 22);
-            this.mnuBuscar.Text = "&Buscar...";
-            this.mnuBuscar.Click += new System.EventHandler(this.mnuBuscar_Click);
-            // 
-            // MenuTemaColoresPredeterminados
-            // 
-            this.MnuTemaColoresPredeterminados.CheckOnClick = true;
-            this.MnuTemaColoresPredeterminados.Name = "MenuTemaColoresPredeterminados";
-            this.MnuTemaColoresPredeterminados.Size = new System.Drawing.Size(231, 22);
-            this.MnuTemaColoresPredeterminados.Text = "Usar colores predeterminados";
-            this.MnuTemaColoresPredeterminados.Click += new System.EventHandler(this.MnuTemaColoresPredeterminados_Click);
             // 
             // NotaUC
             // 
@@ -595,5 +605,6 @@ namespace gsNotasNETF
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripMenuItem mnuRehacer;
         private System.Windows.Forms.ToolStripMenuItem MnuTemaColoresPredeterminados;
+        private System.Windows.Forms.ToolStripMenuItem MnuImportar;
     }
 }

@@ -7,6 +7,7 @@
 //              Nuevos directorios para las notas y copias de seguridad.
 //              En lugar del directorio de documentos se usa el indicado en %LOCALAPPDATA%.
 //              Usar colores predeterminados para los temas.
+// 19-oct-22:   Importar notas (deben estar en el formato NotasUC).
 //
 // (c) Guillermo Som (elGuille), 2020-2022
 //-----------------------------------------------------------------------------
@@ -2155,6 +2156,70 @@ No se guardan los grupos y notas en blanco.
             // Forzar el cambio de color.
             Tema = Tema;
             OnCambioDeTema(Tema);
+        }
+
+        private void MnuImportar_Click(object sender, EventArgs e)
+        {
+            // Importar notas (usando el formato de NotasUC) (19/oct/22 07.29)
+            var oFD = new OpenFileDialog();
+            oFD.Title = "Selecciona el fichero para importar en formato gsNotas";
+            oFD.InitialDirectory = DirNotas;
+            oFD.FileName = "gsNotasNET.notasUC.Exportar.txt";
+            oFD.Filter = "Textos (.*.txt)|*.txt|Todos (*.*)|*.*";
+            if (oFD.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            var colNotas = _notas;
+
+            using var sr = new StreamReader(oFD.FileName, System.Text.Encoding.Default, true);
+            while (!sr.EndOfStream)
+            {
+                var s = sr.ReadLine();
+                if (!string.IsNullOrEmpty(s))
+                {
+                    var s1 = s.TrimStart();
+                    // Ignorar los comentarios #
+                    if (s1.StartsWith("#"))
+                        continue;
+
+                    // Si es un grupo
+                    if (s1.StartsWith("g:", StringComparison.OrdinalIgnoreCase))
+                    {
+                        var i = s.IndexOf("g:", StringComparison.OrdinalIgnoreCase);
+                        if (i == -1) continue;
+
+                        var g = s.Substring(i + 2).Trim();
+                        // Es un grupo
+                        // si ya existe, se agregan las notas a ese grupo.
+                        // Aunque puede que haya repetidas. Pero...
+                        if (colNotas.ContainsKey(g) == false)
+                            colNotas.Add(g, new List<string>());
+
+                        // Leer las notas
+                        while (!sr.EndOfStream)
+                        {
+                            s = sr.ReadLine();
+                            if (string.IsNullOrEmpty(s))
+                                continue;
+
+                            s1 = s.TrimStart();
+                            if (!s1.StartsWith("gfin:", StringComparison.OrdinalIgnoreCase))
+                            {
+                                colNotas[g].Add(espPoner(s));
+                            }
+                            else
+                                break;
+                        }
+                    }
+                }
+            }
+            sr.Close();
+
+            // Actualizar el contenido de los grupos.
+            AsignarGrupos(false);
+            Modificado = true;
         }
     }
 }

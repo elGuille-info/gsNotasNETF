@@ -159,6 +159,7 @@
     <None Include="Resources\ExpanderDown.png" />
     <None Include="Resources\ExpanderUp.png" />
     <Content Include="gsNotasNET.Android.ico" />
+    <None Include="Resources\ImportCatalogPart.png" />
     <Content Include="TextTemplate.ico" />
   </ItemGroup>
   <ItemGroup>
