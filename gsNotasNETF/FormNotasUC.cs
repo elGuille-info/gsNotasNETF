@@ -107,6 +107,7 @@ v1.0.0.158              No permitir más de una instancia en ejecución.
 v1.0.0.159              Nuevo evento en NotaUC: TemaCambiado (equivale a CambioDeTema, marcado como obsoleto).
                         Si se cambia de tema mientras está en opciones, se pierden los colores de la presonalización de los grupos.
 v1.0.0.160              Usar Event Properties para manejar los eventos.
+v1.0.0.161              Actualizo el enlace de OpcLinkSolicitarAutorización.
 */
 using System;
 using System.Collections.Generic;
@@ -1426,7 +1427,9 @@ No se guardan los grupos y notas en blanco.
 
         private void OpcLinkSolicitarAutorización_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.elguillemola.com/2020/12/te-gustaria-obtener-mas-prestaciones-de-gsnotasnet/#comments");
+            // Esto da error 404. (19/oct/22 12.46)
+            //System.Diagnostics.Process.Start("http://www.elguillemola.com/2020/12/te-gustaria-obtener-mas-prestaciones-de-gsnotasnet/#comments");
+            System.Diagnostics.Process.Start("https://www.elguillemola.com/te-gustaria-obtener-mas-prestaciones-de-gsnotasnet/#comments");
         }
 
         /// <summary>
