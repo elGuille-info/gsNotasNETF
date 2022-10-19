@@ -106,6 +106,7 @@ namespace gsNotasNETF
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.picOcultarPanel1 = new System.Windows.Forms.PictureBox();
             this.timerInicio = new System.Windows.Forms.Timer(this.components);
+            this.OpcChkPermitirVariasInstancias = new System.Windows.Forms.CheckBox();
             this.notaUC1 = new gsNotasNETF.NotaUC();
             this.NotasFlowLayoutPanel.SuspendLayout();
             this.tabsConfig.SuspendLayout();
@@ -693,6 +694,7 @@ namespace gsNotasNETF
             // 
             this.panelOpciones.AutoScroll = true;
             this.panelOpciones.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelOpciones.Controls.Add(this.OpcChkPermitirVariasInstancias);
             this.panelOpciones.Controls.Add(this.flowLayoutPanel1);
             this.panelOpciones.Controls.Add(this.OpcCboColorGrupo);
             this.panelOpciones.Controls.Add(this.label5);
@@ -1043,6 +1045,20 @@ namespace gsNotasNETF
             // 
             this.timerInicio.Tick += new System.EventHandler(this.timerInicio_Tick);
             // 
+            // OpcChkPermitirVariasInstancias
+            // 
+            this.OpcChkPermitirVariasInstancias.AutoSize = true;
+            this.OpcChkPermitirVariasInstancias.Checked = true;
+            this.OpcChkPermitirVariasInstancias.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.OpcChkPermitirVariasInstancias.Location = new System.Drawing.Point(6, 264);
+            this.OpcChkPermitirVariasInstancias.Name = "OpcChkPermitirVariasInstancias";
+            this.OpcChkPermitirVariasInstancias.Size = new System.Drawing.Size(199, 17);
+            this.OpcChkPermitirVariasInstancias.TabIndex = 15;
+            this.OpcChkPermitirVariasInstancias.Text = "NO Visible - Permitir varias instancias";
+            this.toolTip1.SetToolTip(this.OpcChkPermitirVariasInstancias, "Desactiva esta opción para no permitir varias instancias de la aplicación.");
+            this.OpcChkPermitirVariasInstancias.UseVisualStyleBackColor = true;
+            this.OpcChkPermitirVariasInstancias.Visible = false;
+            // 
             // notaUC1
             // 
             this.notaUC1.AllowDrop = true;
@@ -1218,6 +1234,7 @@ namespace gsNotasNETF
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.CheckBox OpcChkPermitirVariasInstancias;
     }
 }
 

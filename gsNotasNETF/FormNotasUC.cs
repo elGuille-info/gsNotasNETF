@@ -103,6 +103,7 @@ v1.0.0.155              Asignar los anchor manualmente (quitados en diseño) por
                         Pongo todos los controles de las opciones.
 v1.0.0.156  19-oct-22   Quito código no usado. Asignar el tema en Settings.
 v1.0.0.157              Importar notas (deben estar en el formato NotasUC).
+v1.0.0.158              No permitir más de una instancia en ejecución.
 */
 using System;
 using System.Collections.Generic;
@@ -188,6 +189,14 @@ namespace gsNotasNETF
         {
             InitializeComponent();
 
+            //// Comprobar si se permiten varias instancias. (19/oct/22 08.25)
+            //if (MySetting.PermitirVariasInstancias == false)
+            //{
+            //    if (NoPermitirVariasInstancias())
+            //        return;
+            //}
+
+            // Comprobar si se permite más de una instancia de la aplicación.
             // Seleccionar que grupo de colores se usarán
 
             // Poder indicar en configuración que se use aleatorio o el indicado.
@@ -196,6 +205,34 @@ namespace gsNotasNETF
 
             //NoAsignar = new string[] { notaUC1.Name };
         }
+
+        ///// <summary>
+        ///// Si se está ejecutando la aplicación salir.
+        ///// </summary>
+        ///// <returns>True si no se permite otra instancia, false si no está en ejecución.</returns>
+        //private bool NoPermitirVariasInstancias()
+        //{
+        //    // No permitir más de una instancia en ejecución. (19/oct/22)
+
+        //    //bool blnInstance;
+        //    //_ = new System.Threading.Mutex(false, "gsNotasNETF", out blnInstance);
+
+        //    //if (!blnInstance)
+        //    //{
+        //    //    Application.Exit();
+        //    //    return true;
+        //    //}
+        //    //return false;
+
+        //    System.Threading.Mutex mut = new System.Threading.Mutex(false, Application.ProductName);
+        //    bool running = !mut.WaitOne(0, false);
+        //    if (running)
+        //    {
+        //        Application.ExitThread();
+        //        return true;
+        //    }
+        //    return false;
+        //}
 
         /// <summary>
         /// Asignar los colores del grupo según el valor de ColorGrupo (de la configuración).
@@ -1210,6 +1247,8 @@ No se guardan los grupos y notas en blanco.
             OpcChkOcultarPanelSuperior.Checked = MySetting.OcultarPanelSuperior;
             OpcChkIniciarConWindows.Checked = MySetting.IniciarConWindows;
 
+            //OpcChkPermitirVariasInstancias.Checked = MySetting.PermitirVariasInstancias;
+
             //OpcChkGuardarEnDrive.Checked = MySetting.GuardarEnDrive;
             //OpcChkBorrarNotasAnterioresDrive.Checked = MySetting.BorrarNotasAnterioresDeDrive;
 
@@ -1246,6 +1285,8 @@ No se guardan los grupos y notas en blanco.
                 modificado = true;
             else if (OpcCboColorGrupo.SelectedIndex != MySetting.ColorGrupo)
                 modificado = true;
+            //else if (OpcChkPermitirVariasInstancias.Checked != MySetting.PermitirVariasInstancias)
+            //    modificado = true;
 
             //else if (OpcChkGuardarEnDrive.Checked != MySetting.GuardarEnDrive)
             //    modificado = true;
@@ -1304,6 +1345,8 @@ No se guardan los grupos y notas en blanco.
 
         private void OpcBtnGuardar_Click(object sender, EventArgs e)
         {
+            //MySetting.PermitirVariasInstancias = OpcChkPermitirVariasInstancias.Checked;
+
             MySetting.ColorGrupo = OpcCboColorGrupo.SelectedIndex;
             ColorGrupo = MySetting.ColorGrupo;
             MySetting.Autoguardar = OpcChkAutoGuardar.Checked;
