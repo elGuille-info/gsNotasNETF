@@ -12,6 +12,11 @@ Si quieres ir a la página en mi blog: [gsNotasNETF](http://www.elguillemola.com
 Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
 <br>
 
+**Nota 19-oct-22 (v1.0.0.157):**
+<br>
+Importar notas (deben estar en el formato NotasUC).
+<br>
+
 **Nota 19-oct-22 (v1.0.0.156):**
 <br>
 Quito código no usado. Asignar el tema en Settings.
