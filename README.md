@@ -13,6 +13,7 @@ Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
 <br>
 
 **Nota 19-oct-22:**
+<br>
 v1.0.0.158: No permitir más de una instancia en ejecución.<br>
 v1.0.0.157: Importar notas (deben estar en el formato NotasUC). <br>
 v1.0.0.156: Quito código no usado. Asignar el tema en Settings.<br>
