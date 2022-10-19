@@ -14,6 +14,7 @@ Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
 
 **Nota 19-oct-22:**
 <br>
+v1.0.0.160: Usar Event Properties para manejar los eventos.<br>
 v1.0.0.159:<br> 
 &nbsp;... Nuevo evento en NotaUC: TemaCambiado (equivale a CambioDeTema, marcado como obsoleto).<br>
 &nbsp;... Si se cambia de tema mientras está en opciones, se pierden los colores de la presonalización de los grupos.<br>
