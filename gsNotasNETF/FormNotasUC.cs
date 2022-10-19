@@ -100,6 +100,8 @@ v1.0.0.152              Opción para usar los colores indicados o aleatorio y nu
 v1.0.0.153              Crear nuevos grupos desde Editar grupos y notas.
 v1.0.0.154              En opciones, mostrar los colores de las etiquetas según el color seleccionado.
 v1.0.0.155              Asignar los anchor manualmente (quitados en diseño) porque al FormDesigner se le va la olla.
+                        Pongo todos los controles de las opciones.
+v1.0.0.156  19-oct-22   Quito código no usado. Asignar el tema en Settings.
 */
 using System;
 using System.Collections.Generic;
@@ -128,10 +130,11 @@ namespace gsNotasNETF
         /// </summary>
         private Properties.Settings MySetting = Properties.Settings.Default;
 
-        /// <summary>
-        /// Array con los controles a no asignar cuando se permite cambiar el tamaño y posición.
-        /// </summary>
-        private readonly string[] NoAsignar;
+        ///// <summary>
+        ///// Array con los controles a no asignar cuando se permite cambiar el tamaño y posición.
+        ///// </summary>
+        //private readonly string[] NoAsignar;
+
         /// <summary>
         /// Para controlar que no re-entre en un método de evento.
         /// </summary>
@@ -190,7 +193,7 @@ namespace gsNotasNETF
             ColorGrupo = MySetting.ColorGrupo;
             AsignarColoresGrupo();
 
-            NoAsignar = new string[] { notaUC1.Name };
+            //NoAsignar = new string[] { notaUC1.Name };
         }
 
         /// <summary>
@@ -335,7 +338,7 @@ namespace gsNotasNETF
                     notaUC1.GuardarNotas();
                 }
             }
-            if (notaUC1.Tema == Temas.Claro)
+            if (notaUC1.Tema == Temas.Claro || notaUC1.Tema == Temas.Light)
                 MySetting.Tema = "Claro";
             else
                 MySetting.Tema = "Oscuro";
@@ -776,6 +779,9 @@ namespace gsNotasNETF
         {
             MySetting.InvertirColores = notaUC1.InvertirColores;
 
+            // Asignar el tema. (19/oct/22 05.53)
+            MySetting.Tema = notaUC1.Tema.ToString();
+
             this.BackColor =  notaUC1.BackColor;
             this.ForeColor = notaUC1.ForeColor;
             AsignarColores(tabsConfig, MySetting.InvertirColores);
@@ -866,6 +872,7 @@ namespace gsNotasNETF
                 notaUC1.Tema = Temas.Claro;
             else
                 notaUC1.Tema = Temas.Oscuro;
+
             notaUC1.txtEdit.WordWrap = MySetting.AjusteLineas;
             notaUC1.AutoGuardar = MySetting.Autoguardar;
             notaUC1.NoGuardarEnBlanco = MySetting.NoGuardarEnBlanco;
