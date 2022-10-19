@@ -14,6 +14,7 @@ Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
 
 **Nota 19-oct-22:**
 <br>
+v1.0.0.161: Actualizo el enlace de OpcLinkSolicitarAutorización.<br>
 v1.0.0.160: Usar Event Properties para manejar los eventos.<br>
 v1.0.0.159:<br> 
 &nbsp;... Nuevo evento en NotaUC: TemaCambiado (equivale a CambioDeTema, marcado como obsoleto).<br>
