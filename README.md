@@ -12,6 +12,11 @@ Si quieres ir a la página en mi blog: [gsNotasNETF](http://www.elguillemola.com
 Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
 <br>
 
+**Nota 19-oct-22 (v1.0.0.156):**
+<br>
+Quito código no usado. Asignar el tema en Settings.
+<br>
+
 **Nota 18-oct-22 (v1.0.0.155):**
 <br>
 Asignar los anchor manualmente (quitados en diseño) porque al FormDesigner se le va la olla.
