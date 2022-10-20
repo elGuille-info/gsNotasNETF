@@ -1,6 +1,15 @@
 # gsNotasNETF
  Gestionar notas y grupos de notas con editor integrado.
- 
+
+<br>
+
+**NOTA del 20-oct-2022:**
+> He creado una nueva versión del proyecto usando .NET 6 para aplicación de escritorio con WindowsForms.<br>
+> La nueva versión (**gsNotas**) sustituirá a esta que usa .NET Framework 4.8.1.<br>
+> Pero este repositorio lo dejaré y cuando tenga el nuevo creado (que seguramente incluirá una nueva versión para móvil) pondré aquí [el enlace](https://github.com/elGuille-info/gsNotas).<br>
+
+<br>
+
 >**NOTA:**<br>
 >El **NETF** del nombre es para indicar que está compilado con .NET Framework y no con .NET (Core)
  
