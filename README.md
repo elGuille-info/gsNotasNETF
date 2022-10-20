@@ -12,6 +12,14 @@ Si quieres ir a la página en mi blog: [gsNotasNETF](http://www.elguillemola.com
 Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
 <br>
 
+**Nota 20-oct-22:**
+<br>
+
+v1.0.0.164: El texto acerca de estaba repetido.<br>
+Quito contextEditarNota del diseño.<br>
+
+<br>
+
 **Nota 19-oct-22:**
 <br>
 v1.0.0.163: Menú contextual para editar la nota en ventana separada.<br>
