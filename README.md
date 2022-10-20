@@ -15,7 +15,8 @@ Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
 **Nota 20-oct-22:**
 <br>
 
-v1.0.0.164: El acerca de estaba repetido.<br>
+v1.0.0.164: El texto acerca de estaba repetido.<br>
+Quito contextEditarNota del diseño.<br>
 
 <br>
 
