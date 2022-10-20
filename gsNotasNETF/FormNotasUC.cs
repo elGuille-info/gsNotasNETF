@@ -1005,22 +1005,6 @@ namespace gsNotasNETF
             AsignarTamañoVentana(TamApp);
 
             MostrarNotas(notaUC1.Grupo, notaUC1.ComboNotas.SelectedIndex);
-
-            //
-            // Quitado de AsignarSettings y puesto en el evento Load (10/feb/21)
-            //
-
-            //if (MySetting.IniciarMinimizada)
-            //    this.WindowState = FormWindowState.Minimized;
-
-            //// Aunque esto se puede poner dentro del if anterior,   (10/Feb/21)
-            //// dejarlo así, por separado.
-            //if (this.WindowState == FormWindowState.Minimized)
-            //{
-            //    NotifyMenuRestaurar.Text = "Restaurar";
-            //    // al minimizar, ocultar el formulario
-            //    this.Hide();
-            //}
         }
 
         private void notaUC1_MenuCerrar(string mensaje)

@@ -932,13 +932,12 @@ namespace gsNotasNETF
             this.OpChkNoGuardarEnBlanco.AutoSize = true;
             this.OpChkNoGuardarEnBlanco.Checked = true;
             this.OpChkNoGuardarEnBlanco.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.OpChkNoGuardarEnBlanco.Enabled = false;
             this.OpChkNoGuardarEnBlanco.Location = new System.Drawing.Point(6, 29);
             this.OpChkNoGuardarEnBlanco.Name = "OpChkNoGuardarEnBlanco";
             this.OpChkNoGuardarEnBlanco.Size = new System.Drawing.Size(158, 17);
             this.OpChkNoGuardarEnBlanco.TabIndex = 1;
             this.OpChkNoGuardarEnBlanco.Text = "No guardar notas en blanco";
-            this.toolTip1.SetToolTip(this.OpChkNoGuardarEnBlanco, "Aunque en NotaUC se hace esta comprobación,\r\nesta opción no está habilitada para " +
-        "comprobar siempre \r\nque la nota  a añadir no esté en blanco.");
             this.OpChkNoGuardarEnBlanco.UseVisualStyleBackColor = true;
             this.OpChkNoGuardarEnBlanco.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
             // 
