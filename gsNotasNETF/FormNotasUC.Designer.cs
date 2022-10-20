@@ -76,7 +76,6 @@ namespace gsNotasNETF
             this.lblBuscar = new System.Windows.Forms.Label();
             this.tabOpciones = new System.Windows.Forms.TabPage();
             this.panelOpciones = new System.Windows.Forms.Panel();
-            this.OpcChkPermitirVariasInstancias = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label11 = new System.Windows.Forms.Label();
             this.OpcCboColorGrupo = new System.Windows.Forms.ComboBox();
@@ -101,15 +100,13 @@ namespace gsNotasNETF
             this.txtAcercaDe = new System.Windows.Forms.TextBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextNotify = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.timerInicio = new System.Windows.Forms.Timer(this.components);
-            this.picOcultarPanel1 = new System.Windows.Forms.PictureBox();
             this.NotifyMenuRestaurar = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.NotifyMenuCerrar = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.picOcultarPanel1 = new System.Windows.Forms.PictureBox();
+            this.timerInicio = new System.Windows.Forms.Timer(this.components);
             this.notaUC1 = new gsNotasNETF.NotaUC();
-            this.contextEditarNota = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editarEnVentanaSeparadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NotasFlowLayoutPanel.SuspendLayout();
             this.tabsConfig.SuspendLayout();
             this.tabNotas.SuspendLayout();
@@ -127,13 +124,11 @@ namespace gsNotasNETF
             this.panelAcercaDe.SuspendLayout();
             this.contextNotify.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picOcultarPanel1)).BeginInit();
-            this.contextEditarNota.SuspendLayout();
             this.SuspendLayout();
             // 
             // NotasFlowLayoutPanel
             // 
             this.NotasFlowLayoutPanel.AutoScroll = true;
-            this.NotasFlowLayoutPanel.ContextMenuStrip = this.contextEditarNota;
             this.NotasFlowLayoutPanel.Controls.Add(this.LblNota);
             this.NotasFlowLayoutPanel.Controls.Add(this.label4);
             this.NotasFlowLayoutPanel.Controls.Add(this.label1);
@@ -440,7 +435,7 @@ namespace gsNotasNETF
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.groupBox2.Location = new System.Drawing.Point(6, 141);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(757, 111);
+            this.groupBox2.Size = new System.Drawing.Size(770, 111);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Editar las notas";
@@ -507,7 +502,7 @@ namespace gsNotasNETF
             this.lblEdInfo.Location = new System.Drawing.Point(459, 61);
             this.lblEdInfo.Margin = new System.Windows.Forms.Padding(3);
             this.lblEdInfo.Name = "lblEdInfo";
-            this.lblEdInfo.Size = new System.Drawing.Size(307, 74);
+            this.lblEdInfo.Size = new System.Drawing.Size(317, 74);
             this.lblEdInfo.TabIndex = 6;
             this.lblEdInfo.Text = "Si indicas un nombre existente, las notas se moverán a ese grupo.\r\nEn los nombres" +
     " de los grupos se distinguen mayúsculas de minúsculas.";
@@ -530,7 +525,7 @@ namespace gsNotasNETF
             this.btnCambiarNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.btnCambiarNombre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCambiarNombre.ForeColor = System.Drawing.Color.White;
-            this.btnCambiarNombre.Location = new System.Drawing.Point(682, 21);
+            this.btnCambiarNombre.Location = new System.Drawing.Point(692, 21);
             this.btnCambiarNombre.Name = "btnCambiarNombre";
             this.btnCambiarNombre.Size = new System.Drawing.Size(84, 29);
             this.btnCambiarNombre.TabIndex = 5;
@@ -543,7 +538,7 @@ namespace gsNotasNETF
             this.txtEdNombreGrupo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.txtEdNombreGrupo.Location = new System.Drawing.Point(562, 24);
             this.txtEdNombreGrupo.Name = "txtEdNombreGrupo";
-            this.txtEdNombreGrupo.Size = new System.Drawing.Size(114, 20);
+            this.txtEdNombreGrupo.Size = new System.Drawing.Size(124, 20);
             this.txtEdNombreGrupo.TabIndex = 4;
             // 
             // lblEdCambiar
@@ -699,7 +694,6 @@ namespace gsNotasNETF
             // 
             this.panelOpciones.AutoScroll = true;
             this.panelOpciones.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panelOpciones.Controls.Add(this.OpcChkPermitirVariasInstancias);
             this.panelOpciones.Controls.Add(this.flowLayoutPanel1);
             this.panelOpciones.Controls.Add(this.OpcCboColorGrupo);
             this.panelOpciones.Controls.Add(this.label5);
@@ -726,27 +720,13 @@ namespace gsNotasNETF
             this.panelOpciones.Size = new System.Drawing.Size(782, 258);
             this.panelOpciones.TabIndex = 0;
             // 
-            // OpcChkPermitirVariasInstancias
-            // 
-            this.OpcChkPermitirVariasInstancias.AutoSize = true;
-            this.OpcChkPermitirVariasInstancias.Checked = true;
-            this.OpcChkPermitirVariasInstancias.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.OpcChkPermitirVariasInstancias.Location = new System.Drawing.Point(6, 264);
-            this.OpcChkPermitirVariasInstancias.Name = "OpcChkPermitirVariasInstancias";
-            this.OpcChkPermitirVariasInstancias.Size = new System.Drawing.Size(199, 17);
-            this.OpcChkPermitirVariasInstancias.TabIndex = 15;
-            this.OpcChkPermitirVariasInstancias.Text = "NO Visible - Permitir varias instancias";
-            this.toolTip1.SetToolTip(this.OpcChkPermitirVariasInstancias, "Desactiva esta opción para no permitir varias instancias de la aplicación.");
-            this.OpcChkPermitirVariasInstancias.UseVisualStyleBackColor = true;
-            this.OpcChkPermitirVariasInstancias.Visible = false;
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.label11);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(470, 137);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(286, 64);
-            this.flowLayoutPanel1.TabIndex = 17;
+            this.flowLayoutPanel1.TabIndex = 13;
             // 
             // label11
             // 
@@ -769,7 +749,7 @@ namespace gsNotasNETF
             this.OpcCboColorGrupo.Location = new System.Drawing.Point(573, 110);
             this.OpcCboColorGrupo.Name = "OpcCboColorGrupo";
             this.OpcCboColorGrupo.Size = new System.Drawing.Size(121, 21);
-            this.OpcCboColorGrupo.TabIndex = 7;
+            this.OpcCboColorGrupo.TabIndex = 12;
             this.OpcCboColorGrupo.SelectedIndexChanged += new System.EventHandler(this.OpcCboColorGrupo_SelectedIndexChanged);
             // 
             // label5
@@ -779,7 +759,7 @@ namespace gsNotasNETF
             this.label5.Margin = new System.Windows.Forms.Padding(3);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(97, 23);
-            this.label5.TabIndex = 6;
+            this.label5.TabIndex = 11;
             this.label5.Text = "Colores grupo:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -789,7 +769,7 @@ namespace gsNotasNETF
             this.OpcChkIniciarConWindows.Location = new System.Drawing.Point(6, 241);
             this.OpcChkIniciarConWindows.Name = "OpcChkIniciarConWindows";
             this.OpcChkIniciarConWindows.Size = new System.Drawing.Size(122, 17);
-            this.OpcChkIniciarConWindows.TabIndex = 13;
+            this.OpcChkIniciarConWindows.TabIndex = 9;
             this.OpcChkIniciarConWindows.Text = "Iniciar con Windows";
             this.toolTip1.SetToolTip(this.OpcChkIniciarConWindows, "Debes ejecutar la aplicación con provilegios de administrador para que surta efec" +
         "to.");
@@ -805,7 +785,7 @@ namespace gsNotasNETF
             this.OpcBtnGuardarEnDrive.Location = new System.Drawing.Point(436, 230);
             this.OpcBtnGuardarEnDrive.Name = "OpcBtnGuardarEnDrive";
             this.OpcBtnGuardarEnDrive.Size = new System.Drawing.Size(323, 40);
-            this.OpcBtnGuardarEnDrive.TabIndex = 14;
+            this.OpcBtnGuardarEnDrive.TabIndex = 15;
             this.OpcBtnGuardarEnDrive.Text = "Guardar las notas en Google Drive";
             this.OpcBtnGuardarEnDrive.UseVisualStyleBackColor = false;
             this.OpcBtnGuardarEnDrive.Click += new System.EventHandler(this.OpcBtnGuardarEnDrive_Click);
@@ -818,7 +798,7 @@ namespace gsNotasNETF
             this.OpcLinkSolicitarAutorización.Margin = new System.Windows.Forms.Padding(3);
             this.OpcLinkSolicitarAutorización.Name = "OpcLinkSolicitarAutorización";
             this.OpcLinkSolicitarAutorización.Size = new System.Drawing.Size(104, 13);
-            this.OpcLinkSolicitarAutorización.TabIndex = 12;
+            this.OpcLinkSolicitarAutorización.TabIndex = 14;
             this.OpcLinkSolicitarAutorización.TabStop = true;
             this.OpcLinkSolicitarAutorización.Text = "Solicitar autorización";
             this.OpcLinkSolicitarAutorización.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -832,7 +812,7 @@ namespace gsNotasNETF
             this.OpcChkMostrarHorizontal.Location = new System.Drawing.Point(6, 191);
             this.OpcChkMostrarHorizontal.Name = "OpcChkMostrarHorizontal";
             this.OpcChkMostrarHorizontal.Size = new System.Drawing.Size(183, 17);
-            this.OpcChkMostrarHorizontal.TabIndex = 10;
+            this.OpcChkMostrarHorizontal.TabIndex = 7;
             this.OpcChkMostrarHorizontal.Text = "Mostrar las notas horizontalmente";
             this.OpcChkMostrarHorizontal.UseVisualStyleBackColor = true;
             this.OpcChkMostrarHorizontal.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
@@ -843,7 +823,7 @@ namespace gsNotasNETF
             this.OpcChkOcultarPanelSuperior.Location = new System.Drawing.Point(6, 137);
             this.OpcChkOcultarPanelSuperior.Name = "OpcChkOcultarPanelSuperior";
             this.OpcChkOcultarPanelSuperior.Size = new System.Drawing.Size(242, 17);
-            this.OpcChkOcultarPanelSuperior.TabIndex = 8;
+            this.OpcChkOcultarPanelSuperior.TabIndex = 5;
             this.OpcChkOcultarPanelSuperior.Text = "Al iniciar la aplicación ocultar el panel superior";
             this.OpcChkOcultarPanelSuperior.UseVisualStyleBackColor = true;
             this.OpcChkOcultarPanelSuperior.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
@@ -854,7 +834,7 @@ namespace gsNotasNETF
             this.OpcChkMostrarMismoGrupo.Location = new System.Drawing.Point(6, 110);
             this.OpcChkMostrarMismoGrupo.Name = "OpcChkMostrarMismoGrupo";
             this.OpcChkMostrarMismoGrupo.Size = new System.Drawing.Size(289, 17);
-            this.OpcChkMostrarMismoGrupo.TabIndex = 5;
+            this.OpcChkMostrarMismoGrupo.TabIndex = 4;
             this.OpcChkMostrarMismoGrupo.Text = "Al iniciar la aplicación mostrar el mismo grupo que había";
             this.OpcChkMostrarMismoGrupo.UseVisualStyleBackColor = true;
             this.OpcChkMostrarMismoGrupo.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
@@ -865,7 +845,7 @@ namespace gsNotasNETF
             this.OpcChkIniciarMinimizada.Location = new System.Drawing.Point(6, 83);
             this.OpcChkIniciarMinimizada.Name = "OpcChkIniciarMinimizada";
             this.OpcChkIniciarMinimizada.Size = new System.Drawing.Size(217, 17);
-            this.OpcChkIniciarMinimizada.TabIndex = 4;
+            this.OpcChkIniciarMinimizada.TabIndex = 3;
             this.OpcChkIniciarMinimizada.Text = "Al inicar la aplicación hacerlo minimizado";
             this.OpcChkIniciarMinimizada.UseVisualStyleBackColor = true;
             this.OpcChkIniciarMinimizada.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
@@ -879,7 +859,7 @@ namespace gsNotasNETF
             this.OpcBtnDeshacer.Location = new System.Drawing.Point(555, 6);
             this.OpcBtnDeshacer.Name = "OpcBtnDeshacer";
             this.OpcBtnDeshacer.Size = new System.Drawing.Size(103, 40);
-            this.OpcBtnDeshacer.TabIndex = 15;
+            this.OpcBtnDeshacer.TabIndex = 16;
             this.OpcBtnDeshacer.Text = "Deshacer";
             this.toolTip1.SetToolTip(this.OpcBtnDeshacer, "Deshacer los cambios actuales");
             this.OpcBtnDeshacer.UseVisualStyleBackColor = false;
@@ -894,7 +874,7 @@ namespace gsNotasNETF
             this.OpcBtnGuardar.Location = new System.Drawing.Point(664, 6);
             this.OpcBtnGuardar.Name = "OpcBtnGuardar";
             this.OpcBtnGuardar.Size = new System.Drawing.Size(95, 40);
-            this.OpcBtnGuardar.TabIndex = 16;
+            this.OpcBtnGuardar.TabIndex = 17;
             this.OpcBtnGuardar.Text = "Guardar";
             this.OpcBtnGuardar.UseVisualStyleBackColor = false;
             this.OpcBtnGuardar.Click += new System.EventHandler(this.OpcBtnGuardar_Click);
@@ -905,7 +885,7 @@ namespace gsNotasNETF
             this.OpcChkMinimizarAlCerrar.Location = new System.Drawing.Point(6, 218);
             this.OpcChkMinimizarAlCerrar.Name = "OpcChkMinimizarAlCerrar";
             this.OpcChkMinimizarAlCerrar.Size = new System.Drawing.Size(323, 17);
-            this.OpcChkMinimizarAlCerrar.TabIndex = 11;
+            this.OpcChkMinimizarAlCerrar.TabIndex = 8;
             this.OpcChkMinimizarAlCerrar.Text = "Al cerrar (desde X de la ventana) minimizar en el área de tareas";
             this.OpcChkMinimizarAlCerrar.UseVisualStyleBackColor = true;
             this.OpcChkMinimizarAlCerrar.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
@@ -916,7 +896,7 @@ namespace gsNotasNETF
             this.OpcChkAjusteLineas.Location = new System.Drawing.Point(6, 164);
             this.OpcChkAjusteLineas.Name = "OpcChkAjusteLineas";
             this.OpcChkAjusteLineas.Size = new System.Drawing.Size(163, 17);
-            this.OpcChkAjusteLineas.TabIndex = 9;
+            this.OpcChkAjusteLineas.TabIndex = 6;
             this.OpcChkAjusteLineas.Text = "Ajuste de líneas (WordWrap)";
             this.OpcChkAjusteLineas.UseVisualStyleBackColor = true;
             this.OpcChkAjusteLineas.CheckedChanged += new System.EventHandler(this.Opciones_CheckedChanged);
@@ -930,7 +910,7 @@ namespace gsNotasNETF
             this.OpcBtnRestablecerTam.Location = new System.Drawing.Point(470, 52);
             this.OpcBtnRestablecerTam.Name = "OpcBtnRestablecerTam";
             this.OpcBtnRestablecerTam.Size = new System.Drawing.Size(289, 40);
-            this.OpcBtnRestablecerTam.TabIndex = 3;
+            this.OpcBtnRestablecerTam.TabIndex = 10;
             this.OpcBtnRestablecerTam.Text = "Restablecer tamaño y posición";
             this.toolTip1.SetToolTip(this.OpcBtnRestablecerTam, "Restablece (ahora) el tamaño y posición de la ventana");
             this.OpcBtnRestablecerTam.UseVisualStyleBackColor = false;
@@ -1025,14 +1005,26 @@ namespace gsNotasNETF
             this.contextNotify.Name = "contextNotify";
             this.contextNotify.Size = new System.Drawing.Size(132, 70);
             // 
+            // NotifyMenuRestaurar
+            // 
+            this.NotifyMenuRestaurar.Image = ((System.Drawing.Image)(resources.GetObject("NotifyMenuRestaurar.Image")));
+            this.NotifyMenuRestaurar.Name = "NotifyMenuRestaurar";
+            this.NotifyMenuRestaurar.Size = new System.Drawing.Size(131, 30);
+            this.NotifyMenuRestaurar.Text = "Restaurar";
+            this.NotifyMenuRestaurar.Click += new System.EventHandler(this.MnuNotifyRestaurar_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(128, 6);
             // 
-            // timerInicio
+            // NotifyMenuCerrar
             // 
-            this.timerInicio.Tick += new System.EventHandler(this.timerInicio_Tick);
+            this.NotifyMenuCerrar.Image = ((System.Drawing.Image)(resources.GetObject("NotifyMenuCerrar.Image")));
+            this.NotifyMenuCerrar.Name = "NotifyMenuCerrar";
+            this.NotifyMenuCerrar.Size = new System.Drawing.Size(131, 30);
+            this.NotifyMenuCerrar.Text = "Cerrar";
+            this.NotifyMenuCerrar.Click += new System.EventHandler(this.MnuNotifyCerrar_Click);
             // 
             // picOcultarPanel1
             // 
@@ -1048,21 +1040,9 @@ namespace gsNotasNETF
             this.toolTip1.SetToolTip(this.picOcultarPanel1, "Muestra / oculta el panel de configuración");
             this.picOcultarPanel1.Click += new System.EventHandler(this.picOcultarPanel1_Click);
             // 
-            // NotifyMenuRestaurar
+            // timerInicio
             // 
-            this.NotifyMenuRestaurar.Image = ((System.Drawing.Image)(resources.GetObject("NotifyMenuRestaurar.Image")));
-            this.NotifyMenuRestaurar.Name = "NotifyMenuRestaurar";
-            this.NotifyMenuRestaurar.Size = new System.Drawing.Size(131, 30);
-            this.NotifyMenuRestaurar.Text = "Restaurar";
-            this.NotifyMenuRestaurar.Click += new System.EventHandler(this.MnuNotifyRestaurar_Click);
-            // 
-            // NotifyMenuCerrar
-            // 
-            this.NotifyMenuCerrar.Image = ((System.Drawing.Image)(resources.GetObject("NotifyMenuCerrar.Image")));
-            this.NotifyMenuCerrar.Name = "NotifyMenuCerrar";
-            this.NotifyMenuCerrar.Size = new System.Drawing.Size(131, 30);
-            this.NotifyMenuCerrar.Text = "Cerrar";
-            this.NotifyMenuCerrar.Click += new System.EventHandler(this.MnuNotifyCerrar_Click);
+            this.timerInicio.Tick += new System.EventHandler(this.timerInicio_Tick);
             // 
             // notaUC1
             // 
@@ -1117,21 +1097,6 @@ namespace gsNotasNETF
             this.notaUC1.NotaCambiada += new gsNotasNETF.TextoModificado(this.notaUC1_NotaCambiada);
             this.notaUC1.GrupoCambiado += new gsNotasNETF.TextoModificado(this.notaUC1_GrupoCambiado);
             // 
-            // contextEditarNota
-            // 
-            this.contextEditarNota.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editarEnVentanaSeparadaToolStripMenuItem});
-            this.contextEditarNota.Name = "contextEditarNota";
-            this.contextEditarNota.Size = new System.Drawing.Size(216, 26);
-            // 
-            // editarEnVentanaSeparadaToolStripMenuItem
-            // 
-            this.editarEnVentanaSeparadaToolStripMenuItem.Image = global::gsNotasNETF.Properties.Resources.EditDocument;
-            this.editarEnVentanaSeparadaToolStripMenuItem.Name = "editarEnVentanaSeparadaToolStripMenuItem";
-            this.editarEnVentanaSeparadaToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.editarEnVentanaSeparadaToolStripMenuItem.Text = "Editar en ventana separada";
-            this.editarEnVentanaSeparadaToolStripMenuItem.Click += new System.EventHandler(this.LblNota_DoubleClick);
-            // 
             // FormNotasUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1171,7 +1136,6 @@ namespace gsNotasNETF
             this.panelAcercaDe.PerformLayout();
             this.contextNotify.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picOcultarPanel1)).EndInit();
-            this.contextEditarNota.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1255,9 +1219,6 @@ namespace gsNotasNETF
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.CheckBox OpcChkPermitirVariasInstancias;
-        private System.Windows.Forms.ContextMenuStrip contextEditarNota;
-        private System.Windows.Forms.ToolStripMenuItem editarEnVentanaSeparadaToolStripMenuItem;
     }
 }
 

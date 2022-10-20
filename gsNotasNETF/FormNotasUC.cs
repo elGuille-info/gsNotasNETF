@@ -111,6 +111,8 @@ v1.0.0.161              Actualizo el enlace de OpcLinkSolicitarAutorización.
                         ToolTip en importar notas.
 v1.0.0.162              Menú Siempre encima (TopMost), el control de usuario no tiene la propiedad TopMost, asignarlo al ParentForm.
 v1.0.0.163              Menú contextual para editar la nota en ventana separada.
+                        Quito contextEditarNota del diseño.
+v1.0.0.164  20-oct-22   El acerca de estaba repetido.
 */
 using System;
 using System.Collections.Generic;
@@ -123,7 +125,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.IO;
-using System.Runtime.Remoting.Messaging;
+//using System.Runtime.Remoting.Messaging;
 using System.Diagnostics;
 
 namespace gsNotasNETF
@@ -1114,7 +1116,7 @@ namespace gsNotasNETF
                 else //if (cualVersion == -1)
                     msgVersion = $"Esta versión de '{Application.ProductName}' es la más reciente.";
 
-                var titulo = $"Acerca de {Application.ProductName} v{Application.ProductVersion}";
+                var titulo = $"{Application.ProductName} v{Application.ProductVersion}";
                 var msg = @$"Acerca de {titulo}
 
 Utilidad para crear notas y grupos de notas.
