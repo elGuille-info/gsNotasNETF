@@ -113,6 +113,7 @@ v1.0.0.162              Menú Siempre encima (TopMost), el control de usuario no
 v1.0.0.163              Menú contextual para editar la nota en ventana separada.
                         Quito contextEditarNota del diseño.
 v1.0.0.164  20-oct-22   El acerca de estaba repetido.
+v1.0.0.165  21-oct-22   Compilar la última versión para .NET Framework 4.8.1
 */
 using System;
 using System.Collections.Generic;
