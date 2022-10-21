@@ -21,6 +21,13 @@ Si quieres ir a la página en mi blog: [gsNotasNETF](http://www.elguillemola.com
 Hay varias actualizaciones desde que publiqué esto por primera vez.<br>
 <br>
 
+**Nota 21-oct-22:**
+<br>
+
+v1.0.0.165: Compilar la última versión para .NET Framework 4.8.1
+
+<br>
+
 **Nota 20-oct-22:**
 <br>
 
